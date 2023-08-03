@@ -1,0 +1,25 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.wordWrap": "off",
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "editor.bracketPairColorization.enabled": true,
+    "git.ignoreLimitWarning": true,
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*styles", ".*Styles", ".*Variants"]
+}

@@ -1,0 +1,22 @@
+{
+    "name": "data",
+    "version": "0.0.0",
+    "main": "./index.ts",
+    "types": "./types.d.ts",
+    "license": "MIT",
+    "scripts": {
+        "lint": "eslint \"**/*.ts*\""
+    },
+    "dependencies": {
+        "weresk": "*",
+        "globals": "*"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "@sanity/eslint-config-studio": "^2.0.4",
+        "typescript": "^4.5.2",
+        "tsconfig": "*",
+        "sanity": "^3.14.4"
+    }
+}

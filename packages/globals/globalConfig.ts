@@ -1,0 +1,61 @@
+import { GlobalConfig } from './types';
+
+export type Locale = 'su' | 'ru' | 'en';
+
+const globalConfig: GlobalConfig = {
+    localization: {
+        languages: [
+            {
+                id: 'su',
+                title: 'Suomi'
+            },
+            {
+                id: 'ru',
+                title: 'Русский'
+            },
+            {
+                id: 'en',
+                title: 'English'
+            }
+        ],
+        default: 'en'
+    },
+    apps: {
+        template: {
+            title: 'Cultura-säätiö Website',
+            domain: 'https://template.culturas.fi',
+            localization: {
+                languages: ['su', 'ru', 'en'],
+                default: 'su'
+            },
+            schemas: {
+                documents: ['page', 'person']
+            }
+        },
+        hub: {
+            title: 'Cultura-säätiö Hub',
+            domain: 'https://hub.culturas.fi',
+            localization: {
+                languages: ['su', 'en', 'ru'],
+                default: 'en'
+            },
+            schemas: {
+                documents: ['page', 'person']
+            }
+        },
+        culturaweek: {
+            title: 'CulturaWeek',
+            domain: 'https://culturaweek.fi',
+            localization: {
+                languages: ['su'],
+                default: 'su'
+            },
+            schemas: {
+                documents: ['page', 'person']
+            }
+        }
+    },
+    creator: 'Alexander Kalachev <alexanderkalachev.com>'
+};
+
+export default globalConfig;
