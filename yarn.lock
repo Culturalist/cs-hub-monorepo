@@ -1567,6 +1567,26 @@
     picocolors "^1.0.0"
     tslib "^2.6.0"
 
+"@portabletext/react@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@portabletext/react/-/react-3.0.4.tgz#cd1316c782b227fad206fd3147e1c9d60aa933a8"
+  integrity sha512-M15IXRgoOgWiu3WxwdCZPpi/0sdP2KrMcRKCZFHI4D2nkhXO1A8Avs6Djc+uPg5ayfnCxewLl/FnXA0hFgccBw==
+  dependencies:
+    "@portabletext/toolkit" "^2.0.4"
+    "@portabletext/types" "^2.0.5"
+
+"@portabletext/toolkit@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@portabletext/toolkit/-/toolkit-2.0.4.tgz#5e5d4461f3451736c3165962b4a39d0693c9834b"
+  integrity sha512-ZE+WntiZQ40vxMBu3/QXRbGjzL8/R2BOFgdf6danJOahvlL9lZ1/DDShyUsxNaAvoBarwGJtjuZVOcRJWcsVng==
+  dependencies:
+    "@portabletext/types" "^2.0.5"
+
+"@portabletext/types@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@portabletext/types/-/types-2.0.5.tgz#89872bd5b25df8c1d917e13fe3f035cdf135ae0e"
+  integrity sha512-AceKp/Y6UIzvUe/T675oPKlO2Dnt1BVIiUpwhcplPzLeYqaYaWYvb7ricVyWj7j0rukYRgBRQdrTBvgo9E1D+g==
+
 "@rexxars/react-json-inspector@^8.0.1":
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/@rexxars/react-json-inspector/-/react-json-inspector-8.0.1.tgz#cd903eaf7bec40d4e870e1085619af5067196c59"
@@ -1721,7 +1741,7 @@
   resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-3.0.0.tgz#60e9cba61b82103ea3761730a53cd9310b98892d"
   integrity sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==
 
-"@sanity/groq-store@^2.1.0":
+"@sanity/groq-store@2.3.1", "@sanity/groq-store@^2.1.0":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@sanity/groq-store/-/groq-store-2.3.1.tgz#64ae4b3552721332d8e8f177c01dcf4c8bd53a07"
   integrity sha512-jImw8B4ZtMAHOB/Hv5ADa9fHZeUzMDOXbYnUeftJbdziE7XpXVxBtJ6WN1mqmr5jiQVNs0FaMHUFXpA4XomnXg==
@@ -1823,6 +1843,22 @@
     is-hotkey "^0.1.6"
     lodash "^4.17.21"
     slate "0.81.1"
+
+"@sanity/preview-kit@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@sanity/preview-kit/-/preview-kit-2.4.0.tgz#fd3c76efd7a2d2cc55bbc527aee8ed725c317781"
+  integrity sha512-Q2HY7KfiLVZCbPbak1SN68LFA0fv9brrYb/Uo3aLl69MosRLYAQdSpbNKB2ydBLdkYHjCX0zXyayQzaLvCJeHA==
+  dependencies:
+    "@sanity/eventsource" "^5.0.0"
+    "@sanity/groq-store" "2.3.1"
+    "@vercel/stega" "0.1.0"
+    lodash.get "4.4.2"
+    lodash.isplainobject "4.0.6"
+    lru-cache "10.0.0"
+    mendoza "2.1.1"
+    react-fast-compare "3.2.2"
+    tiny-invariant "1.3.1"
+    use-sync-external-store "1.2.0"
 
 "@sanity/preview-kit@^1.2.15":
   version "1.5.5"
@@ -1957,7 +1993,7 @@
     json5 "^2.2.3"
     lodash "^4.17.21"
 
-"@sanity/webhook@^2.0.0":
+"@sanity/webhook@2.0.0", "@sanity/webhook@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@sanity/webhook/-/webhook-2.0.0.tgz#22e5916fd6ea616625b4105a68f2858408de8eee"
   integrity sha512-KusHeWVy6yW3hcgVHbGx6qVv//bUj3CD9Nr0EOw086+mo/ESrUV21HjOCrNQ+AYqXvJ9H5qhqmMiuc8H5dXUGA==
@@ -2339,6 +2375,11 @@
     path-to-regexp "6.1.0"
   optionalDependencies:
     ajv "^6.0.0"
+
+"@vercel/stega@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@vercel/stega/-/stega-0.1.0.tgz#2eadbbc9eb0eaab26d28b0c443a922d78c23b6e3"
+  integrity sha512-5b0PkOJsFBX5alChuIO3qpkt5vIZBevzLPhUQ1UP8UzVjL3F1VllnZxp/thfD8R5ol7D7WHkgZHIjdUBX4tDpQ==
 
 "@vercel/stega@^0.0.5":
   version "0.0.5"
@@ -4538,6 +4579,11 @@ groq@^2.33.2:
   resolved "https://registry.yarnpkg.com/groq/-/groq-2.33.2.tgz#3a85c85a1e43e79bba77f171f23997f541d61010"
   integrity sha512-5pf4c91JESCS28IJCgolJq/WBw4Xvf2m8FgZVUlrCig17I+qERosALAHLyyutXu403EYnyCD3DdCLaPb3aGneA==
 
+groq@^3.0.0:
+  version "3.14.5"
+  resolved "https://registry.yarnpkg.com/groq/-/groq-3.14.5.tgz#a240244cd1e28f45a486628844c2ec878d49c83e"
+  integrity sha512-1kpBA0FPgNL72G+Qj4PwyTjpNfOqO6FPzIANc8aDxdesUtg6JVMGYXF6zsvR/9nIMfuT8+TEoyyKT9V7ls8e+g==
+
 gunzip-maybe@^1.4.1:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/gunzip-maybe/-/gunzip-maybe-1.4.2.tgz#b913564ae3be0eda6f3de36464837a9cd94b98ac"
@@ -5390,12 +5436,12 @@ lodash.flatten@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
   integrity sha512-C5N2Z3DgnnKr0LOpv/hKCgKdb7ZZwafIrsesve6lmzvZIRZRGaZ/l6Q8+2W7NaT+ZwO3fFlSCzCzrDCFdJfZ4g==
 
-lodash.get@^4.4.2:
+lodash.get@4.4.2, lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
   integrity sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==
 
-lodash.isplainobject@^4.0.6:
+lodash.isplainobject@4.0.6, lodash.isplainobject@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
   integrity sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==
@@ -5454,6 +5500,11 @@ lower-case@^1.1.0, lower-case@^1.1.1, lower-case@^1.1.2:
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
   integrity sha512-2Fgx1Ycm599x+WGpIYwJOvsjmXFzTSc34IwDWALRA/8AopUKAVPwfJ+h5+f85BCp0PWmmJcWzEpxOpoXycMpdA==
 
+lru-cache@10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.0.0.tgz#b9e2a6a72a129d81ab317202d93c7691df727e61"
+  integrity sha512-svTf/fzsKHffP42sujkO/Rjs37BCIsQVRCeNYIm9WN8rgT7ffoUnRtZCqU+6BqcSBdv8gwJeTz8knJpgACeQMw==
+
 lru-cache@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-5.1.1.tgz#1da27e6710271947695daf6848e847f01d84b920"
@@ -5495,7 +5546,7 @@ memoize-resolver@~1.0.0:
   resolved "https://registry.yarnpkg.com/memoize-resolver/-/memoize-resolver-1.0.0.tgz#93f01b61909008eb9d9b521fc1db152cc1b47f06"
   integrity sha512-mXfNXte0RSWl0rEIsQhXutfM2R2Oa7UyKDD7XoZMEbKeucTRms04y5y41U8gLqPzRx7ViN/QyYnTR2TX/5tawA==
 
-mendoza@^2.1.1:
+mendoza@2.1.1, mendoza@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/mendoza/-/mendoza-2.1.1.tgz#19ad4efc3f424439d895e1f1841818a4e268af55"
   integrity sha512-8f3Se8HDfobXCsdESXZBSSYcVzIRi+cMIEmz/SR4bjgFEjHJaXzrsBYr+vyrFGEtK5xTpCcU+DiwxWJV6hCuhQ==
@@ -5680,6 +5731,15 @@ next-sanity@^3.1.9:
     "@sanity/preview-kit" "^1.2.15"
     "@sanity/webhook" "^2.0.0"
     groq "^2.33.2"
+
+next-sanity@^5.1.3:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/next-sanity/-/next-sanity-5.1.3.tgz#12971e4e1fc9774a42d942f77ca63d8daf8b1692"
+  integrity sha512-V0kD5+B/QahSdrRtfrZLhiW8fmjQdk6QLRgxRq6VU86ZAGIz5d5W3LupssIaikbNKQIGpWJKV5fynCUJaSo3SA==
+  dependencies:
+    "@sanity/preview-kit" "2.4.0"
+    "@sanity/webhook" "2.0.0"
+    groq "^3.0.0"
 
 next@^13.4.1:
   version "13.4.12"
@@ -6368,7 +6428,7 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-fast-compare@^3.2.0:
+react-fast-compare@3.2.2, react-fast-compare@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
@@ -7377,7 +7437,7 @@ tiny-invariant@1.0.6:
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.6.tgz#b3f9b38835e36a41c843a3b0907a5a7b3755de73"
   integrity sha512-FOyLWWVjG+aC0UqG76V53yAWdXfH8bO6FNmyZOuUrzDzK8DI3/JRY25UD7+g49JWM1LXwymsKERB+DzI0dTEQA==
 
-tiny-invariant@^1.3.1:
+tiny-invariant@1.3.1, tiny-invariant@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.3.1.tgz#8560808c916ef02ecfd55e66090df23a4b7aa642"
   integrity sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==
@@ -7772,7 +7832,7 @@ use-sidecar@^1.1.2:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
 
-use-sync-external-store@^1.2.0:
+use-sync-external-store@1.2.0, use-sync-external-store@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
