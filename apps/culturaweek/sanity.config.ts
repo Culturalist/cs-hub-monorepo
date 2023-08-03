@@ -3,8 +3,6 @@ import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
 import deskStructure from './studio/deskStructure';
 import StudioLogo from './studio/StudioLogo';
-import ToolMenu from './studio/ToolMenu';
-import { templates } from './studio/templates';
 import globalConfig from 'globals/globalConfig';
 import { schemaTypes } from './studio/schemaTypes';
 import app from './app.json';
