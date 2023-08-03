@@ -16,7 +16,7 @@ export default defineConfig({
     name: appName,
     title: globalConfig.apps[appName].title,
     basePath: '/admin',
-    projectId,
+    projectId: '96e1dixo',
     dataset: 'production',
     apiVersion: globalConfig.latestUpdate,
 
