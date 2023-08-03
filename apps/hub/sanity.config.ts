@@ -12,7 +12,6 @@ const projectId = process.env.SANITY_STUDIO_PROJECT_ID || '';
 export default defineConfig({
     name: appName,
     title: globalConfig.apps[appName].title,
-    basePath: '/admin',
     projectId,
     dataset: 'production',
     apiVersion: globalConfig.latestUpdate,

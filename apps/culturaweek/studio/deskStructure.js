@@ -27,7 +27,7 @@ import app from '../app.json';
 const { appName } = app;
 
 export default {
-    name: appName,
+    name: 'desk',
     title: 'Desk',
     icon: MasterDetailIcon,
     // defaultDocumentNode: defaultDocumentNode,
