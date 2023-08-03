@@ -13,16 +13,16 @@ const { appName } = app;
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
 
 export default defineConfig({
-    name: appName,
-    title: globalConfig.apps[appName].title,
+    name: 'template', //appName,
+    // title: globalConfig.apps[appName].title,
     basePath: '/admin',
     projectId: '96e1dixo',
     dataset: 'production',
-    apiVersion: globalConfig.latestUpdate,
+    apiVersion: '2023-08-01', //globalConfig.latestUpdate,
 
     plugins: [
-        deskTool(deskStructure),
-        languageFilter(languageFilterConfig(appName))
+        deskTool()
+        // languageFilter(languageFilterConfig(appName))
         // visionTool(),
     ],
     // document: {
@@ -44,11 +44,11 @@ export default defineConfig({
     schema: {
         types: schemaTypes
         // templates: templates
-    },
-    studio: {
-        components: {
-            logo: StudioLogo
-            // toolMenu: ToolMenu
-        }
     }
+    // studio: {
+    //     components: {
+    //         logo: StudioLogo
+    //         // toolMenu: ToolMenu
+    //     }
+    // }
 });
