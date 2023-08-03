@@ -2,11 +2,12 @@ import { createClient as createClientNext } from 'next-sanity';
 import { createClient } from '@sanity/client';
 import createImageUrlBuilder from '@sanity/image-url';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import globalConfig from '../../globalConfig';
 
 //Sanity project variables
-const projectId = process.env['SANITY_STUDIO_PROJECT_ID'] || '';
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
+const apiVersion = globalConfig.latestUpdate;
 const dataset = 'production';
-const apiVersion = process.env['SANITY_STUDIO_API_VERSION'];
 
 //Sanity Next client
 export const client = createClient({

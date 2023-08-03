@@ -1,6 +1,8 @@
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
+import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
+import ToolMenu from './studio/ToolMenu';
 import deskStructure from './studio/deskStructure';
 import StudioLogo from './studio/StudioLogo';
 import globalConfig from 'globals/globalConfig';
@@ -20,43 +22,17 @@ export default defineConfig({
 
     plugins: [
         deskTool(deskStructure)
+        // vercelDeployTool()
         // visionTool(),
-        //Based on project localization config, decide if to add languageFilter and to configure it
-        // ...(wereskConfig.localization && typeof wereskConfig.localization === 'object'
-        //     ? [
-        //           languageFilter({
-        //               supportedLanguages: wereskConfig.localization.languages,
-        //               defaultLanguages: [],
-        //               documentTypes: localeDocuments,
-        //               filterField: (enclosingType, field, selectedLanguageIds) =>
-        //                   !enclosingType.name.startsWith('locale') || selectedLanguageIds.includes(field.name)
-        //           })
-        //       ]
-        //     : [])
     ],
-    // document: {
-    //     actions: (prev, { schemaType }) => {
-    //         if (singleDocuments.includes(schemaType)) {
-    //             return prev.filter(
-    //                 prevAction =>
-    //                     prevAction.action !== 'unpublish' &&
-    //                     prevAction.action !== 'delete' &&
-    //                     prevAction.action !== 'duplicate'
-    //             );
-    //         }
-    //         return prev;
-    //     },
-    //     newDocumentOptions: prev => {
-    //         return prev.filter(action => !singleDocuments.includes(action.templateId));
-    //     }
-    // },
     schema: {
         types: schemaTypes
         // templates: templates
     },
     studio: {
         components: {
-            logo: StudioLogo
+            logo: StudioLogo,
+            toolMenu: ToolMenu
         }
     }
 });

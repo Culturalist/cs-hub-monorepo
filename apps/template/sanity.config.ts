@@ -2,6 +2,7 @@ import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
 import deskStructure from './studio/deskStructure';
+import ToolMenu from './studio/ToolMenu';
 import StudioLogo from './studio/StudioLogo';
 import globalConfig from 'globals/globalConfig';
 import { languageFilterConfig } from 'globals/lib/language-filter';
@@ -25,30 +26,14 @@ export default defineConfig({
         languageFilter(languageFilterConfig(appName))
         // visionTool(),
     ],
-    // document: {
-    //     actions: (prev, { schemaType }) => {
-    //         if (singleDocuments.includes(schemaType)) {
-    //             return prev.filter(
-    //                 prevAction =>
-    //                     prevAction.action !== 'unpublish' &&
-    //                     prevAction.action !== 'delete' &&
-    //                     prevAction.action !== 'duplicate'
-    //             );
-    //         }
-    //         return prev;
-    //     },
-    //     newDocumentOptions: prev => {
-    //         return prev.filter(action => !singleDocuments.includes(action.templateId));
-    //     }
-    // },
     schema: {
         types: schemaTypes
         // templates: templates
     },
     studio: {
         components: {
-            logo: StudioLogo
-            // toolMenu: ToolMenu
+            logo: StudioLogo,
+            toolMenu: ToolMenu
         }
     }
 });
