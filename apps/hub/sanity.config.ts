@@ -1,5 +1,6 @@
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
+import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
 import { visionTool } from '@sanity/vision';
 import StudioLogo from './studio/StudioLogo';
 import globalConfig from 'globals/globalConfig';
@@ -17,7 +18,8 @@ export default defineConfig({
     apiVersion: globalConfig.latestUpdate,
 
     plugins: [
-        deskTool()
+        deskTool(),
+        vercelDeployTool()
         // visionTool()
     ],
 

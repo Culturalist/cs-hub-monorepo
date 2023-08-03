@@ -57,7 +57,6 @@ export default defineConfig({
     studio: {
         components: {
             logo: StudioLogo
-            // toolMenu: ToolMenu
         }
     }
 });
