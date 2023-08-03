@@ -21,9 +21,8 @@ import {
     SearchIcon,
     TerminalIcon
 } from '@sanity/icons';
+import { appName } from '../app.json';
 // import { defaultDocumentNode } from './defaultDocumentNode';
-
-const appName = process.env['NEXT_PUBLIC_APP_NAME'] || 'template';
 
 export default {
     name: appName,

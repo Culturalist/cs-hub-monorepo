@@ -55,6 +55,7 @@ const globalConfig: GlobalConfig = {
             }
         }
     },
+    latestUpdate: '2023-08-03',
     creator: 'Alexander Kalachev <alexanderkalachev.com>'
 };
 

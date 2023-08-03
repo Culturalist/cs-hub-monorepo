@@ -21,6 +21,7 @@ export interface GlobalConfig {
         default: Locale;
     };
     apps: Record<string, AppConfig>;
+    latestUpdate: string;
     creator: string;
 }
 

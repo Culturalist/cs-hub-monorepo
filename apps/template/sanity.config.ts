@@ -9,23 +9,21 @@ import globalConfig from 'globals/globalConfig';
 import { languageFilterConfig } from 'globals/lib/language-filter';
 import { schemaTypes } from './studio/schemaTypes';
 import { languageFilter } from '@sanity/language-filter';
+import { appName } from './app.json';
 
-const name = process.env['NEXT_PUBLIC_APP_NAME'] || 'template';
 const projectId = process.env['NEXT_PUBLIC_SANITY_PROJECT_ID'] || '';
-const dataset = 'production';
-const apiVersion = process.env['NEXT_PUBLIC_SANITY_API_VERSION'];
 
 export default defineConfig({
-    name,
-    title: globalConfig.apps[name].title,
+    name: appName,
+    title: globalConfig.apps[appName].title,
     basePath: '/admin',
     projectId,
-    dataset,
-    apiVersion,
+    dataset: 'production',
+    apiVersion: globalConfig.latestUpdate,
 
     plugins: [
         deskTool(deskStructure),
-        languageFilter(languageFilterConfig(name))
+        languageFilter(languageFilterConfig(appName))
         // visionTool(),
     ],
     // document: {

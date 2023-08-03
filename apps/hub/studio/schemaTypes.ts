@@ -1,4 +1,5 @@
 import globalConfig from 'globals/globalConfig';
+import { appName } from '../app.json';
 
 //Locales
 import { localeString, localeText } from 'data/schemas';
@@ -8,8 +9,6 @@ import { globalSchemaTypes } from 'data/schemas';
 
 //Documents
 import { page, person } from 'data/schemas';
-
-const appName = process.env['NEXT_PUBLIC_APP_NAME'] || 'template';
 
 export const schemaTypes = [
     ...globalSchemaTypes,
