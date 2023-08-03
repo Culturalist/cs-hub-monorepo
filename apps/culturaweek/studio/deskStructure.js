@@ -21,8 +21,10 @@ import {
     SearchIcon,
     TerminalIcon
 } from '@sanity/icons';
-import { appName } from '../app.json';
+import app from '../app.json';
 // import { defaultDocumentNode } from './defaultDocumentNode';
+
+const { appName } = app;
 
 export default {
     name: appName,

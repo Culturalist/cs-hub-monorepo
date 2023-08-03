@@ -4,9 +4,10 @@ import { visionTool } from '@sanity/vision';
 import StudioLogo from './studio/StudioLogo';
 import globalConfig from 'globals/globalConfig';
 import { schemaTypes } from './studio/schemaTypes';
-import { appName } from './app.json';
+import app from './app.json';
 
-const projectId = process.env['SANITY_STUDIO_PROJECT_ID'] || '';
+const { appName } = app;
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || '';
 
 export default defineConfig({
     name: appName,

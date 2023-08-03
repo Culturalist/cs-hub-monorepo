@@ -1,5 +1,5 @@
 import globalConfig from 'globals/globalConfig';
-import { appName } from '../app.json';
+import app from '../app.json';
 
 //Locales
 import { localeString, localeText } from 'data/schemas';
@@ -9,6 +9,8 @@ import { globalSchemaTypes } from 'data/schemas';
 
 //Documents
 import { page, person } from 'data/schemas';
+
+const { appName } = app;
 
 export const schemaTypes = [
     ...globalSchemaTypes,

@@ -9,9 +9,10 @@ import globalConfig from 'globals/globalConfig';
 import { languageFilterConfig } from 'globals/lib/language-filter';
 import { schemaTypes } from './studio/schemaTypes';
 import { languageFilter } from '@sanity/language-filter';
-import { appName } from './app.json';
+import app from './app.json';
 
-const projectId = process.env['NEXT_PUBLIC_SANITY_PROJECT_ID'] || '';
+const { appName } = app;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
 
 export default defineConfig({
     name: appName,
