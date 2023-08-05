@@ -6,8 +6,9 @@ import ToolMenu from './studio/ToolMenu';
 import StudioLogo from './studio/StudioLogo';
 import globalConfig from 'globals/globalConfig';
 import { languageFilterConfig } from 'globals/lib/language-filter';
-import { schemaTypes } from './studio/schemaTypes';
+import { schemaTypes } from 'data/schemas';
 import { languageFilter } from '@sanity/language-filter';
+import { colorInput } from '@sanity/color-input';
 import app from './app.json';
 
 const { appName } = app;
@@ -23,11 +24,12 @@ export default defineConfig({
 
     plugins: [
         deskTool(deskStructure),
-        languageFilter(languageFilterConfig(appName))
+        languageFilter(languageFilterConfig(appName)),
+        colorInput()
         // visionTool(),
     ],
     schema: {
-        types: schemaTypes
+        types: schemaTypes(appName)
         // templates: templates
     },
     studio: {

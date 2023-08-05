@@ -1,5 +1,5 @@
-export { globalSchemaTypes } from './globalSchemaTypes';
+export { default as schemaTypes } from './schemaTypes';
 export * from './documents';
-export * from './locales';
 export * from './objects';
 export * from './system';
+export * from './values';

@@ -1,14 +1,14 @@
 import { defineType, defineField, SanityDocument } from 'sanity';
 import { UserIcon } from '@sanity/icons';
-import { Locale } from 'globals';
 import globalConfig from 'globals/globalConfig';
+import { selectDefaultLocale } from '../../utils';
 
 export interface Person extends SanityDocument {
     _type: 'person' | 'reference';
     _ref?: string;
 }
 
-export default function person(appDefaultLanguage: Locale = globalConfig.localization.default) {
+export default function person(appName: string = 'hub') {
     return defineType({
         name: 'person',
         title: 'Person',
@@ -22,13 +22,21 @@ export default function person(appDefaultLanguage: Locale = globalConfig.localiz
             defineField({
                 name: 'position',
                 title: 'Position',
-                type: 'string'
+                type: 'localeString'
             })
         ],
         preview: {
             select: {
-                title: `name.${appDefaultLanguage}`,
-                subtitle: 'position'
+                name: 'name',
+                position: 'position'
+            },
+            prepare({ name, position }) {
+                const localeName = selectDefaultLocale(name, appName);
+                const localePosition = selectDefaultLocale(position, appName);
+                return {
+                    title: localeName || 'Person',
+                    subtitle: localeName ? localePosition : ''
+                };
             }
         },
         icon: UserIcon

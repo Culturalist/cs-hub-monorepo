@@ -1,6 +1,4 @@
-import { GlobalConfig } from './types';
-
-export type Locale = 'su' | 'ru' | 'en';
+import { GlobalConfig, Locale } from './types';
 
 const globalConfig: GlobalConfig = {
     localization: {
@@ -29,7 +27,9 @@ const globalConfig: GlobalConfig = {
                 default: 'su'
             },
             schemas: {
-                documents: ['page', 'person']
+                documents: ['page', 'person'],
+                links: ['page', 'person'],
+                navigation: ['page']
             }
         },
         hub: {
@@ -40,18 +40,22 @@ const globalConfig: GlobalConfig = {
                 default: 'en'
             },
             schemas: {
-                documents: ['page', 'person']
+                documents: ['page', 'person'],
+                links: ['page', 'person'],
+                navigation: ['page']
             }
         },
         culturaweek: {
             title: 'CulturaWeek',
             domain: 'https://culturaweek.fi',
             localization: {
-                languages: ['su'],
+                languages: ['su', 'en'],
                 default: 'su'
             },
             schemas: {
-                documents: ['page', 'person']
+                documents: ['page', 'person'],
+                links: ['page', 'person'],
+                navigation: ['page']
             }
         }
     },

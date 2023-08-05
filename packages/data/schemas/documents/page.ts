@@ -1,10 +1,9 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { DocumentIcon } from '@sanity/icons';
-import { Locale } from 'globals';
-import globalConfig from 'globals/globalConfig';
-import { LocaleString } from '../locales/localeString';
+import { LocaleString } from '../objects/localeString';
 import { App } from '../system/app';
 import { MetadataPage } from '../objects/metadataPage';
+import { selectDefaultLocale } from '../../utils';
 
 export interface Page extends SanityDocument {
     _type: 'page' | 'reference';
@@ -15,7 +14,7 @@ export interface Page extends SanityDocument {
     metadata?: MetadataPage;
 }
 
-export default function page(appDefaultLanguage: Locale = globalConfig.localization.default) {
+export default function page(appName: string = 'hub') {
     return defineType({
         name: 'page',
         title: 'Page',
@@ -44,9 +43,6 @@ export default function page(appDefaultLanguage: Locale = globalConfig.localizat
             defineField({
                 name: 'slug',
                 type: 'normalizedSlug',
-                options: {
-                    source: `title.${appDefaultLanguage}`
-                },
                 validation: Rule => Rule.required(),
                 group: 'card'
             }),
@@ -56,6 +52,12 @@ export default function page(appDefaultLanguage: Locale = globalConfig.localizat
                 type: 'reference',
                 to: [{ type: 'app' }],
                 group: 'card'
+            }),
+            defineField({
+                name: 'body',
+                type: 'bodyPage',
+                title: 'Body',
+                group: 'page'
             }),
             defineField({
                 name: 'metadata',
@@ -69,14 +71,15 @@ export default function page(appDefaultLanguage: Locale = globalConfig.localizat
         ],
         preview: {
             select: {
-                title: `title.${appDefaultLanguage}`,
-                channel: 'channel.title',
+                appName: 'app._ref',
+                title: 'title',
                 cover: 'metadata.sharedImage'
             },
-            prepare({ title, channel, cover }) {
+            prepare({ appName, title, cover }) {
+                const localeTitle = selectDefaultLocale(title, appName);
                 return {
-                    title: title || 'Page',
-                    subtitle: `${title ? 'Page' : ''}${title && channel ? ' | ' : ''}${channel || ''}`,
+                    title: localeTitle || 'Page',
+                    subtitle: localeTitle ? 'Page' : '',
                     media: cover
                 };
             }
@@ -86,7 +89,7 @@ export default function page(appDefaultLanguage: Locale = globalConfig.localizat
             {
                 title: 'Title',
                 name: 'titleAsc',
-                by: [{ field: `title.${appDefaultLanguage}`, direction: 'asc' }]
+                by: [{ field: 'slug.current', direction: 'asc' }]
             }
         ]
     });

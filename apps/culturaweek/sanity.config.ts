@@ -6,7 +6,10 @@ import ToolMenu from './studio/ToolMenu';
 import deskStructure from './studio/deskStructure';
 import StudioLogo from './studio/StudioLogo';
 import globalConfig from 'globals/globalConfig';
-import { schemaTypes } from './studio/schemaTypes';
+import { schemaTypes } from 'data/schemas';
+import { languageFilter } from '@sanity/language-filter';
+import { languageFilterConfig } from 'globals/lib/language-filter';
+import { colorInput } from '@sanity/color-input';
 import app from './app.json';
 
 const { appName } = app;
@@ -21,12 +24,14 @@ export default defineConfig({
     apiVersion: globalConfig.latestUpdate,
 
     plugins: [
-        deskTool(deskStructure)
+        deskTool(deskStructure),
+        languageFilter(languageFilterConfig(appName)),
+        colorInput()
         // vercelDeployTool()
         // visionTool(),
     ],
     schema: {
-        types: schemaTypes
+        types: schemaTypes(appName)
         // templates: templates
     },
     studio: {

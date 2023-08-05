@@ -1,22 +1,25 @@
+import globalConfig from 'globals/globalConfig';
 import { defineType } from 'sanity';
 
-const normalizedSlug = defineType({
-    name: 'normalizedSlug',
-    title: 'Slug',
-    type: 'slug',
-    description: 'Unique part of the link to the page. Max length: 60 characters.',
-    options: {
-        maxLength: 60,
-        slugify: (input: string) =>
-            input
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .toLowerCase()
-                .trim()
-                .replace(/[^a-z0-9 -]/g, '')
-                .replace(/\s+/g, '-')
-    }
-});
-
-export default normalizedSlug;
+export default function normalizedSlug() {
+    return defineType({
+        name: 'normalizedSlug',
+        title: 'Slug',
+        type: 'slug',
+        description: 'Unique part of the link to the page. Max length: 60 characters.',
+        options: {
+            source: (doc: any, options: any) =>
+                options?.parent?.title[globalConfig.apps[doc?.app?._ref || 'hub'].localization.default],
+            maxLength: 60,
+            slugify: (input: any) =>
+                input
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^a-z0-9 -]/g, '')
+                    .replace(/\s+/g, '-')
+        }
+    });
+}
