@@ -6,7 +6,7 @@ import ToolMenu from './studio/ToolMenu';
 import deskStructure from './studio/deskStructure';
 import StudioLogo from './studio/StudioLogo';
 import globalConfig from 'globals/globalConfig';
-import { schemaTypes } from 'data/schemas';
+import { initialValueTemplates, schemaTypes } from 'data/schemas';
 import { languageFilter } from '@sanity/language-filter';
 import { languageFilterConfig } from 'globals/lib/language-filter';
 import { colorInput } from '@sanity/color-input';
@@ -31,8 +31,8 @@ export default defineConfig({
         // visionTool(),
     ],
     schema: {
-        types: schemaTypes(appName)
-        // templates: templates
+        types: schemaTypes(appName),
+        templates: initialValueTemplates
     },
     studio: {
         components: {

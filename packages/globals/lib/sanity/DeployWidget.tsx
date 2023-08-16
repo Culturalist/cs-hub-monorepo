@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Button } from '@sanity/ui';
 import { UploadIcon, ClockIcon } from '@sanity/icons';

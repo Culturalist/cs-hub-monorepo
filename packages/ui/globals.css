@@ -1,0 +1,178 @@
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* Font import */
+    @font-face {
+        font-family: 'Mabry Pro';
+        font-style: normal;
+        font-weight: 300;
+        src: url(/fonts/mabry-light-pro.otf) format('opentype');
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Mabry Pro';
+        font-style: normal;
+        font-weight: 400;
+        src: url(/fonts/mabry-regular-pro.otf) format('opentype');
+        font-display: swap;
+    }
+
+    :root {
+        /* Media */
+        --media-sm: 644;
+        --media-md: 956;
+        --media-lg: 1268;
+        /* Metrics */
+        --metrics-unit: 4px;
+        --metrics-offset: 20px;
+        --metrics-gutter: 20px;
+        --metrics-module: 32px;
+        /* Constants */
+        --c-header-height: calc(var(--metrics-module) + 2 * var(--metrics-gutter));
+
+        /* Swatches */
+        --swatch-white: 255 255 255;
+        --swatch-black: 50 50 50;
+        --swatch-blue: 44 44 227;
+        --swatch-green: 60 80 60;
+        --swatch-sky-blue: 160 193 245;
+        --swatch-grey: 153 153 153;
+
+        /* Theme */
+        --theme-surface: var(--swatch-white);
+        --theme-text: var(--swatch-black);
+        --theme-text-light: var(--swatch-grey);
+        --theme-card-surface: var(--swatch-blue);
+        --theme-card-text: var(--swatch-white);
+    }
+
+    html[data-useragent='hhea'] {
+        --MP-CH: 0.205em;
+        --MP-XH: 0.43em;
+        --MP-B: 0.102em;
+        --MP-I: 0.08em;
+    }
+
+    html[data-useragent='typo'] {
+        --MP-CH: 0.205em;
+        --MP-XH: 0.43em;
+        --MP-B: 0.1em;
+        --MP-I: 0.08em;
+    }
+
+    /* ANTI ALIASING */
+    html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+
+    body {
+        @apply relative overflow-x-hidden kern;
+    }
+
+    main {
+        @apply static sm:container mx-auto min-h-screen;
+    }
+}
+
+@layer components {
+    /* Utils */
+    .grid-columns {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+    @media (min-width: theme('screens.sm')) {
+        .grid-columns {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+        }
+    }
+    @media (min-width: theme('screens.md')) {
+        .grid-columns {
+            grid-template-columns: repeat(18, minmax(0, 1fr));
+        }
+    }
+    @media (min-width: theme('screens.lg')) {
+        .grid-columns {
+            grid-template-columns: repeat(24, minmax(0, 1fr));
+        }
+    }
+
+    .fill-grid {
+        background-image: linear-gradient(red 1px, #ff000055 1px), linear-gradient(to right, red 1px, #ff000055 1px);
+        background-size: var(--metrics-unit) var(--metrics-unit);
+    }
+
+    .fill-rows {
+        background-image: linear-gradient(
+            180deg,
+            red calc(var(--metrics-module)),
+            transparent calc(var(--metrics-module))
+        );
+        background-size: calc(var(--metrics-module) + var(--metrics-gutter))
+            calc(var(--metrics-module) + var(--metrics-gutter));
+    }
+
+    /* Typography Utils */
+    .kern {
+        --x-height: var(--MP-XH);
+        --cap-height: var(--MP-CH);
+        --bottom-height: var(--MP-B);
+        --inset: var(--MP-I);
+    }
+
+    .calc-fontsize {
+        font-size: calc(var(--font-size) * 1px);
+        line-height: calc(var(--line-height) * 1px);
+    }
+
+    .calc-trim {
+        --line-height-extra: calc((var(--line-height) - var(--font-size)) / 2);
+        --top-offset-x: calc(var(--line-height-extra) * 1px + var(--x-height));
+        --top-offset-cap: calc(var(--line-height-extra) * 1px + var(--cap-height));
+        --bottom-offset: calc(var(--line-height-extra) * 1px + var(--bottom-height));
+    }
+
+    .trim {
+        @apply block calc-trim;
+        margin-top: calc(var(--top-offset-x) * -1);
+        margin-bottom: calc(var(--bottom-offset) * -1);
+        margin-left: calc(var(--inset) * -1);
+    }
+
+    .trim-cap {
+        @apply block calc-trim;
+        margin-top: calc(var(--top-offset-cap) * -1);
+        margin-bottom: calc(var(--bottom-offset) * -1);
+        margin-left: calc(var(--inset) * -1);
+    }
+
+    .trim-line {
+        @apply block calc-trim;
+        padding-top: var(--bottom-offset);
+        margin-bottom: calc(var(--bottom-offset) * -1);
+        margin-left: calc(var(--inset) * -1);
+    }
+
+    .trim-bottom {
+        @apply block calc-trim;
+        margin-bottom: calc(var(--bottom-offset) * -1);
+    }
+
+    /* Typography styles */
+    .typo-outlined {
+        @apply calc-fontsize;
+        --font-size: 64;
+        --line-height: 64;
+        letter-spacing: -0.03em;
+    }
+    @media (min-width: theme('screens.md')) {
+        .typo-outlined {
+            --font-size: 240;
+            --line-height: 200;
+        }
+    }
+}

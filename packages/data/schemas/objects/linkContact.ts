@@ -1,7 +1,14 @@
 import { defineType } from 'sanity';
-import { contactTypeList } from '../values';
+import { ContactType, contactTypeList } from '../values';
 import { LinkIcon } from '@sanity/icons';
 import { capitalize } from 'weresk/utils';
+
+export interface LinkContact {
+    _type: 'linkContact';
+    _key: string;
+    type: ContactType;
+    url?: string;
+}
 
 export default function linkContact() {
     return defineType({

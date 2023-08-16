@@ -1,12 +1,13 @@
 import globalConfig from 'globals/globalConfig';
 import { defineField, defineType } from 'sanity';
 import { filterByDocumentApp } from '../../utils';
-import { LinkType, linkTypeList } from '../values';
+import { LinkType, linkTypeList, PageDocument } from '../values';
 
 export interface LinkTyped {
     _type: 'linkTyped';
+    _key: string;
     type: LinkType;
-    //reference?: LinkReference;
+    reference?: PageDocument;
     external?: string;
     internal?: string;
     anchor?: string;
@@ -70,6 +71,12 @@ export default function linkTyped(appName: string) {
                 type: 'string',
                 description: 'ID of the block on the same page',
                 hidden: ({ parent }) => parent?.type !== 'anchor'
+            }),
+            defineField({
+                name: 'file',
+                title: 'File',
+                type: 'file',
+                hidden: ({ parent }) => parent?.type !== 'file'
             })
         ]
     });

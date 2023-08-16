@@ -1,5 +1,20 @@
 import { defineField, defineType } from 'sanity';
-import { actionTypeList } from '../values';
+import { ActionType, actionTypeList } from '../values';
+import { MediaBlock } from '../objects/mediaArray';
+import { LocaleString } from '../objects/localeString';
+import { CardManual } from '../objects/cardManual';
+import { LinkCaptioned } from '../objects/linkCaptioned';
+import { Theme } from '../system/theme';
+
+export interface Hero {
+    _type: 'hero';
+    covers?: MediaBlock[];
+    lead?: LocaleString;
+    actionType: ActionType;
+    cards?: CardManual;
+    links?: LinkCaptioned[];
+    theme?: Theme;
+}
 
 export default function hero() {
     return defineType({
@@ -20,7 +35,7 @@ export default function hero() {
             defineField({
                 name: 'covers',
                 title: 'Covers',
-                type: 'mediaArray'
+                type: 'mediaArrayHero'
             }),
             defineField({
                 name: 'lead',
@@ -28,7 +43,7 @@ export default function hero() {
                 type: 'localeString'
             }),
             defineField({
-                name: 'action',
+                name: 'actionType',
                 title: 'Action type',
                 type: 'string',
                 initialValue: 'cards',
@@ -44,16 +59,18 @@ export default function hero() {
                 title: 'Cards',
                 type: 'array',
                 of: [{ type: 'cardManual' }],
+                description: 'Up to 3 cards may be added',
                 validation: Rule => Rule.max(3),
-                hidden: ({ parent }) => parent?.action !== 'cards'
+                hidden: ({ parent }) => parent?.actionType !== 'cards'
             }),
             defineField({
                 name: 'links',
                 title: 'Links',
                 type: 'array',
                 of: [{ type: 'linkCaptioned' }],
+                description: 'Up to 3 links may be added',
                 validation: Rule => Rule.max(3),
-                hidden: ({ parent }) => !(parent?.action == 'links' || parent?.action == 'buttons')
+                hidden: ({ parent }) => !(parent?.actionType == 'links' || parent?.actionType == 'buttons')
             }),
             defineField({
                 name: 'theme',

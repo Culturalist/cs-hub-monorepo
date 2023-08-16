@@ -1,12 +1,19 @@
 import { defineType, defineField, SanityDocument } from 'sanity';
 import { ComponentIcon } from '@sanity/icons';
-import { MetadataApp } from '../objects/metadataApp';
+import { MetadataApp } from '../sections/metadataApp';
 import { selectDefaultLocale } from '../../utils';
+import { LocaleString } from '../objects/localeString';
+import { Footer, Header, Hero } from '../sections';
+import { Theme } from './theme';
 
 export interface App extends SanityDocument {
     _type: 'app' | 'reference';
     _ref?: string;
-    title?: string;
+    title?: LocaleString;
+    header?: Header;
+    footer?: Footer;
+    hero?: Hero;
+    theme?: Theme;
     metadata?: MetadataApp;
 }
 
@@ -55,6 +62,12 @@ export default function app() {
                 name: 'hero',
                 title: 'Hero',
                 type: 'hero',
+                group: 'main'
+            }),
+            defineField({
+                name: 'body',
+                type: 'bodyApp',
+                title: 'Body',
                 group: 'main'
             }),
             defineField({

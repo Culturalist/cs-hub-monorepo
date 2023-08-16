@@ -6,7 +6,7 @@ import { selectDefaultLocale } from '../../utils';
 import { caseTransform } from 'weresk/utils';
 
 export interface MediaEmbed {
-    _type: 'mediaVideo';
+    _type: 'mediEmbed';
     _key: string;
     link?: string;
     useMedia: UseMedia[];
@@ -28,7 +28,7 @@ export default function mediaEmbed(appName: string = 'hub') {
                 validation: Rule =>
                     Rule.custom(link => {
                         const regex = /^(http|https):\/\/vimeo.com\S+/g;
-                        if (regex.test(link)) {
+                        if (!link || regex.test(link)) {
                             return true;
                         } else {
                             return 'Not a valid Vimeo link';

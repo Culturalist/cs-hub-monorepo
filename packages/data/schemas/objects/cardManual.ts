@@ -9,6 +9,7 @@ import { Color } from 'globals';
 
 export interface CardManual {
     _type: 'cardManual';
+    _key: string;
     title?: LocaleString;
     subtitle?: LocaleString;
     link?: LinkTyped;

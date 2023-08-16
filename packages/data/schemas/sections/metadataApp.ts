@@ -1,6 +1,6 @@
 import { defineType, defineField } from 'sanity';
 import { SanityImageObject } from '@sanity/image-url/lib/types/types';
-import { LocaleString } from './localeString';
+import { LocaleString } from '../objects/localeString';
 
 export interface MetadataApp {
     _type: 'metadataHome';
@@ -9,7 +9,7 @@ export interface MetadataApp {
     template?: LocaleString;
     description?: LocaleString;
     keywords?: LocaleString;
-    organization?: LocaleString;
+    // organization?: LocaleString;
 }
 
 export default function metadataApp() {
@@ -39,11 +39,11 @@ export default function metadataApp() {
                 title: 'Keywords',
                 type: 'localeText'
             }),
-            defineField({
-                name: 'organization',
-                title: 'Organization',
-                type: 'localeString'
-            }),
+            // defineField({
+            //     name: 'organization',
+            //     title: 'Organization',
+            //     type: 'localeString'
+            // }),
             defineField({
                 name: 'sharedImage',
                 title: 'SharedImage',

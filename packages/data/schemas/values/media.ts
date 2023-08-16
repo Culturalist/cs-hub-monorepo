@@ -5,5 +5,18 @@ export const useMediaList = [
 export const useMediaInitialValue = ['desktop', 'mobile'];
 export type UseMedia = 'desktop' | 'mobile';
 
-export const mediaFormats = ['image', 'video'];
-export type MediaFormat = 'image' | 'video';
+export const mediaFormats = ['image', 'video', 'embed'];
+export type MediaFormat = 'image' | 'video' | 'embed';
+export type MediaBlockFormat = `media${Capitalize<MediaFormat>}`;
+export interface MediaElement {
+    type: MediaBlockFormat;
+}
+
+export type MediaParent = 'hero' | 'cover' | 'block';
+export const mediaParents: MediaParent[] = ['hero', 'cover', 'block'];
+
+export const mediaArrays: Record<MediaParent, MediaBlockFormat[]> = {
+    hero: ['mediaImage', 'mediaVideo'],
+    cover: ['mediaImage', 'mediaVideo'],
+    block: ['mediaImage', 'mediaVideo', 'mediaEmbed']
+};

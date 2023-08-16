@@ -1,9 +1,11 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { DocumentIcon } from '@sanity/icons';
-import { LocaleString } from '../objects/localeString';
+import { BodyBlock, LocaleString, MediaBlock } from '../objects';
 import { App } from '../system/app';
-import { MetadataPage } from '../objects/metadataPage';
-import { selectDefaultLocale } from '../../utils';
+import { MetadataPage } from '../sections';
+import { getMediaCover, selectDefaultLocale } from '../../utils';
+import globalConfig from 'globals/globalConfig';
+import { Theme } from '../system';
 
 export interface Page extends SanityDocument {
     _type: 'page' | 'reference';
@@ -11,6 +13,10 @@ export interface Page extends SanityDocument {
     title?: LocaleString;
     slug: Slug;
     app?: App;
+    covers?: MediaBlock[];
+    index?: boolean;
+    body?: BodyBlock[];
+    theme?: Theme;
     metadata?: MetadataPage;
 }
 
@@ -27,6 +33,10 @@ export default function page(appName: string = 'hub') {
             {
                 name: 'page',
                 title: 'Page'
+            },
+            {
+                name: 'style',
+                title: 'Style'
             },
             {
                 name: 'seo',
@@ -51,13 +61,37 @@ export default function page(appName: string = 'hub') {
                 title: 'App',
                 type: 'reference',
                 to: [{ type: 'app' }],
+                group: 'card',
+                hidden: !globalConfig.debug,
+                readOnly: !globalConfig.debug
+            }),
+            defineField({
+                name: 'covers',
+                title: 'Covers',
+                type: 'mediaArrayCover',
                 group: 'card'
+            }),
+            defineField({
+                name: 'index',
+                title: 'Page index',
+                description: 'Creates page index from blocks with titles and IDs',
+                type: 'boolean',
+                initialValue: false,
+                group: 'page'
             }),
             defineField({
                 name: 'body',
                 type: 'bodyPage',
                 title: 'Body',
                 group: 'page'
+            }),
+            defineField({
+                name: 'theme',
+                title: 'Page theme',
+                type: 'reference',
+                description: 'If not set – default website theme will be used',
+                to: [{ type: 'theme' }],
+                group: 'style'
             }),
             defineField({
                 name: 'metadata',
@@ -73,10 +107,12 @@ export default function page(appName: string = 'hub') {
             select: {
                 appName: 'app._ref',
                 title: 'title',
-                cover: 'metadata.sharedImage'
+                covers: 'covers',
+                metaCover: 'metadata.sharedImage'
             },
-            prepare({ appName, title, cover }) {
+            prepare({ appName, title, covers, metaCover }) {
                 const localeTitle = selectDefaultLocale(title, appName);
+                const cover = getMediaCover(covers) || metaCover;
                 return {
                     title: localeTitle || 'Page',
                     subtitle: localeTitle ? 'Page' : '',

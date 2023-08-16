@@ -2,9 +2,10 @@ import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
 import { visionTool } from '@sanity/vision';
+import deskStructure from './studio/deskStructure';
 import StudioLogo from './studio/StudioLogo';
 import globalConfig from 'globals/globalConfig';
-import { schemaTypes } from 'data/schemas';
+import { DocumentAny, initialValueTemplates, schemaTypes } from 'data/schemas';
 import { languageFilter } from '@sanity/language-filter';
 import { languageFilterConfig } from 'globals/lib/language-filter';
 import { colorInput } from '@sanity/color-input';
@@ -21,7 +22,7 @@ export default defineConfig({
     apiVersion: globalConfig.latestUpdate,
 
     plugins: [
-        deskTool(),
+        deskTool(deskStructure),
         languageFilter(languageFilterConfig(appName)),
         vercelDeployTool(),
         colorInput()
@@ -29,11 +30,30 @@ export default defineConfig({
     ],
 
     schema: {
-        types: schemaTypes(appName)
+        types: schemaTypes(appName),
+        templates: initialValueTemplates
     },
     studio: {
         components: {
             logo: StudioLogo
+        }
+    },
+    document: {
+        actions: (prev, { schemaType }) => {
+            if (!globalConfig.apps[appName].schemas.create.includes(schemaType as DocumentAny)) {
+                return prev.filter(
+                    prevAction =>
+                        prevAction.action !== 'unpublish' &&
+                        prevAction.action !== 'delete' &&
+                        prevAction.action !== 'duplicate'
+                );
+            }
+            return prev;
+        },
+        newDocumentOptions: prev => {
+            return prev.filter(action =>
+                globalConfig.apps[appName].schemas.create.includes(action.templateId as DocumentAny)
+            );
         }
     }
 });

@@ -3,6 +3,10 @@ import globalConfig from 'globals/globalConfig';
 import { hideLanguageField } from '../../utils';
 import { capitalize } from 'weresk/utils';
 import { BlockParent } from '../values';
+import { PortableTextBlock } from './portableText';
+import { Locale } from 'globals';
+
+export type LocalePortableText = Record<Locale, PortableTextBlock>;
 
 export default function localePortableText(parent: BlockParent) {
     return defineType({

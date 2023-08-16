@@ -1,7 +1,19 @@
 import React from 'react';
-import { defineType, defineField } from 'sanity';
+import { defineType, defineField, SanityDocument } from 'sanity';
 import { SunIcon } from '@sanity/icons';
 import { themeColors } from '../values';
+import { Color } from 'globals';
+
+export interface Theme extends SanityDocument {
+    _type: 'theme' | 'reference';
+    _ref?: string;
+    name?: string;
+    surface: Color;
+    text: Color;
+    textLight: Color;
+    cardSurface: Color;
+    cardText: Color;
+}
 
 export default function theme() {
     return defineType({
@@ -23,7 +35,8 @@ export default function theme() {
                 type: 'color',
                 options: {
                     colorList: themeColors
-                }
+                },
+                validation: Rule => Rule.required()
             }),
             defineField({
                 name: 'text',
@@ -31,7 +44,8 @@ export default function theme() {
                 type: 'color',
                 options: {
                     colorList: themeColors
-                }
+                },
+                validation: Rule => Rule.required()
             }),
             defineField({
                 name: 'textLight',
@@ -39,7 +53,8 @@ export default function theme() {
                 type: 'color',
                 options: {
                     colorList: themeColors
-                }
+                },
+                validation: Rule => Rule.required()
             }),
             defineField({
                 name: 'cardSurface',
@@ -47,7 +62,8 @@ export default function theme() {
                 type: 'color',
                 options: {
                     colorList: themeColors
-                }
+                },
+                validation: Rule => Rule.required()
             }),
             defineField({
                 name: 'cardText',
@@ -55,7 +71,8 @@ export default function theme() {
                 type: 'color',
                 options: {
                     colorList: themeColors
-                }
+                },
+                validation: Rule => Rule.required()
             })
         ],
         preview: {

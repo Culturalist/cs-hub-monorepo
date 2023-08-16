@@ -4,7 +4,7 @@ const globalConfig: GlobalConfig = {
     localization: {
         languages: [
             {
-                id: 'su',
+                id: 'fi',
                 title: 'Suomi'
             },
             {
@@ -19,48 +19,65 @@ const globalConfig: GlobalConfig = {
         default: 'en'
     },
     apps: {
-        template: {
-            title: 'Cultura-säätiö Website',
-            domain: 'https://template.culturas.fi',
-            localization: {
-                languages: ['su', 'ru', 'en'],
-                default: 'su'
-            },
-            schemas: {
-                documents: ['page', 'person'],
-                links: ['page', 'person'],
-                navigation: ['page']
-            }
-        },
         hub: {
             title: 'Cultura-säätiö Hub',
             domain: 'https://hub.culturas.fi',
             localization: {
-                languages: ['su', 'en', 'ru'],
-                default: 'en'
+                languages: ['fi', 'en', 'ru'],
+                default: 'fi'
             },
             schemas: {
-                documents: ['page', 'person'],
-                links: ['page', 'person'],
-                navigation: ['page']
+                documents: ['page', 'person', 'post', 'project', 'event', 'note'],
+                links: ['page', 'person', 'post', 'project', 'event', 'note'],
+                navigation: ['page', 'project', 'event'],
+                create: ['page', 'person', 'post', 'project', 'event', 'note', 'theme', 'label']
             }
         },
         culturaweek: {
             title: 'CulturaWeek',
             domain: 'https://culturaweek.fi',
             localization: {
-                languages: ['su', 'en'],
-                default: 'su'
+                languages: ['fi', 'ru', 'en'],
+                default: 'fi'
             },
             schemas: {
-                documents: ['page', 'person'],
-                links: ['page', 'person'],
-                navigation: ['page']
+                documents: ['page', 'person', 'event'],
+                links: ['page', 'person', 'event'],
+                navigation: ['page', 'event'],
+                create: ['page', 'person', 'event', 'theme', 'label']
+            }
+        },
+        template: {
+            title: 'Cultura-säätiö Website',
+            domain: 'https://template.culturas.fi',
+            localization: {
+                languages: ['fi', 'ru', 'en'],
+                default: 'fi'
+            },
+            schemas: {
+                documents: ['page', 'person', 'post', 'project', 'event', 'note'],
+                links: ['page', 'person', 'post', 'project', 'event', 'note'],
+                navigation: ['page', 'project', 'event'],
+                create: ['page', 'person', 'post', 'project', 'event', 'note', 'theme', 'label']
+            },
+            parentDocuments: {
+                post: 'a3ea64e2-9845-45e1-a558-872ecd5d43ca',
+                project: '47caba4a-434e-48df-be7b-b548c6be36da'
             }
         }
     },
+    routes: {
+        page: '',
+        person: 'person',
+        post: 'post',
+        project: 'project',
+        event: 'event',
+        note: 'note'
+    },
     latestUpdate: '2023-08-01',
-    creator: 'Alexander Kalachev <alexanderkalachev.com>'
+    organization: 'Cultura-säätiö',
+    creator: 'Alexander Kalachev <alexanderkalachev.com>',
+    debug: true
 };
 
 export default globalConfig;

@@ -6,6 +6,7 @@ import { LinkTyped } from './linkTyped';
 
 export interface LinkCaptioned {
     _type: 'linkCaptioned';
+    _key: string;
     caption?: LocaleString;
     link?: LinkTyped;
 }
@@ -19,12 +20,18 @@ export default function linkCaptioned(appName: string) {
             defineField({
                 name: 'caption',
                 title: 'Caption',
-                type: 'localeString'
+                type: 'localeString',
+                options: {
+                    collapsed: false
+                }
             }),
             defineField({
                 name: 'link',
                 title: 'Link',
-                type: 'linkTyped'
+                type: 'linkTyped',
+                options: {
+                    collapsed: false
+                }
             })
         ],
         preview: {

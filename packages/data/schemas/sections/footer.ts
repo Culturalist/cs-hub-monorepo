@@ -1,6 +1,18 @@
+import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import globalConfig from 'globals/globalConfig';
 import { defineField, defineType } from 'sanity';
 import { filterByDocumentApp } from '../../utils';
+import { LinkContact } from '../objects/linkContact';
+import { LocalePortableText } from '../objects/localePortableText';
+import { PageDocument } from '../values';
+
+export interface Footer {
+    _type: 'footer';
+    logo?: SanityImageObject;
+    links?: PageDocument[];
+    contacts?: LocalePortableText;
+    social?: LinkContact[];
+}
 
 export default function footer(appName: string = 'hub') {
     return defineType({

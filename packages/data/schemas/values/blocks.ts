@@ -2,11 +2,12 @@ import { DocumentAny } from './documents';
 
 export const linkTypeList = [
     { title: 'Reference', value: 'reference' },
-    { title: 'Anchor', value: 'anchor' },
     { title: 'External', value: 'external' },
+    { title: 'File', value: 'file' },
+    { title: 'Anchor', value: 'anchor' },
     { title: 'Internal', value: 'internal' }
 ];
-export type LinkType = 'reference' | 'anchor' | 'external' | 'internal';
+export type LinkType = 'reference' | 'anchor' | 'external' | 'internal' | 'file';
 
 export const contactTypeList = [
     { title: 'Website', value: 'website' },
@@ -20,7 +21,7 @@ export type ContactType = 'website' | 'email' | 'facebook' | 'instagram' | 'twit
 
 export type BlockParent = 'body' | 'section' | 'column' | 'field';
 export const portableTextParents: BlockParent[] = ['section', 'field'];
-export const bodyParents: DocumentAny[] = ['page', 'person', 'app'];
+export const bodyParents: DocumentAny[] = ['page', 'person', 'post', 'project', 'event', 'note', 'app'];
 
 export type PortableTextDefinition = 'styles' | 'lists' | 'annotations' | 'blocks';
 export type PortableTextElements = Record<PortableTextDefinition, Record<BlockParent, string[]>>;
@@ -67,3 +68,12 @@ export const actionTypeList = [
     { title: 'Buttons', value: 'buttons' }
 ];
 export type ActionType = 'cards' | 'links' | 'buttons';
+
+export const cardsTypeList = [
+    { title: 'Manual', value: 'manual' },
+    { title: 'Projects', value: 'projects' },
+    { title: 'Posts', value: 'posts' },
+    { title: 'People', value: 'people' },
+    { title: 'Events', value: 'events' }
+];
+export type CardsType = 'manual' | 'projects' | 'posts' | 'people' | 'events';
