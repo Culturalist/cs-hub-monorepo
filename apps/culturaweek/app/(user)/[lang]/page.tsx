@@ -15,6 +15,12 @@ export default async function Home({ params: { lang } }: DefaultPageProps) {
                 <h1 className="mt-32 ml-20 border border-blue w-fit">
                     <span className="typo-outlined trim-line">Media and trust</span>
                 </h1>
+                <h1 className="mt-32 ml-20 border border-blue w-fit">
+                    <span className="typo-outlined trim">Media and trust</span>
+                </h1>
+                <h1 className="mt-32 ml-20 border border-blue w-fit">
+                    <span className="typo-outlined trim-cap">Media and trust</span>
+                </h1>
                 {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
             </div>
         </>
