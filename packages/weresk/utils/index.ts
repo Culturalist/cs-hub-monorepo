@@ -1,13 +1,8 @@
 export * from './normalizeLink';
 export * from './caseTransform';
 export * from './neatTextBreaks';
-export { getNestedValueById } from './getNestedValueById';
 export { localizeString } from './localizeString';
 export { formatKeywords } from './formatKeywords';
 export { typedValue } from './typedValue';
-export { typedLinkPreview } from './typedLinkPreview';
-export { getFirstCaption } from './getFirstCaption';
 export { objectMap } from './objectMap';
 export { safeId } from './safeId';
-export { calcImagesBlockHeight } from './calcImagesBlockHeight';
-export { calcImagesAspectRatio } from './calcImagesAspectRatio';
