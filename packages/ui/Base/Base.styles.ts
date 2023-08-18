@@ -9,10 +9,11 @@ const defaultStyles = {
 };
 
 export const createStyles = ({ className }: styleProps) => {
-    return purgeEmptyStrings({
+    const styles = {
         ...defaultStyles,
         container: cx(defaultStyles.container, className)
-    });
+    };
+    return purgeEmptyStrings(styles) as Partial<typeof styles>;
 };
 
-export type Styles = ReturnType<typeof createStyles> & Partial<typeof defaultStyles>;
+export type Styles = ReturnType<typeof createStyles>;

@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { DefaultPropsWithChildren } from 'globals';
 import { LinkTyped } from 'data/schemas';
@@ -48,5 +49,5 @@ export default function LinkWrapper(props: LinkWrapperProps) {
         );
     }
 
-    return <div {...commonProps}>{children}</div>;
+    return <span {...commonProps}>{children}</span>;
 }

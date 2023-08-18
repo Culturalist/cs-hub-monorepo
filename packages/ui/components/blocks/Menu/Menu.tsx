@@ -1,10 +1,9 @@
 'use client';
 import { PageDocument } from 'data/schemas';
 import { wrapReference } from 'data/utils';
-import { DefaultProps, Locale } from 'globals';
-import { localizeString, setCSSVariable } from 'weresk/utils';
+import { DefaultProps } from 'globals';
+import { localizeString } from 'weresk/utils';
 import { createStyles } from './Menu.styles';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import LinkWrapper from '../LinkWrapper';
 import { useState } from 'react';
 import Languages from '../Languages';
@@ -60,13 +59,8 @@ export default function Menu(props: MenuProps) {
                     {links.map((link, i) => {
                         if (link._type !== 'reference') {
                             return (
-                                <LinkWrapper
-                                    link={wrapReference(link)}
-                                    lang={lang}
-                                    className={styles.linkWrapper}
-                                    key={i}
-                                >
-                                    <span className={styles.link}>{localizeString(link.title, lang)}</span>
+                                <LinkWrapper link={wrapReference(link)} lang={lang} className={styles.link} key={i}>
+                                    <span className={styles.linkCaption}>{localizeString(link.title, lang)}</span>
                                 </LinkWrapper>
                             );
                         }

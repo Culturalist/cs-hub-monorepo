@@ -39,8 +39,8 @@ export default function portableText(parent: BlockParent) {
                 ].filter(style => portableTextDefinitions.lists[parent].includes(style.value)),
                 marks: {
                     decorators: [
-                        // { title: 'Strong', value: 'strong' },
                         // { title: 'Emphasis', value: 'em' },
+                        { title: 'Strong', value: 'strong' },
                         { title: 'Underline', value: 'underline' },
                         { title: 'Strikethrough', value: 'strike-through' }
                     ],

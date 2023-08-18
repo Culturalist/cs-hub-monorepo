@@ -91,7 +91,8 @@ module.exports = {
         },
         extend: {
             invert: {
-                'header-logo': 'var(--theme-header-logo)'
+                'header-logo': 'var(--theme-header-logo)',
+                'footer-logo': 'var(--theme-footer-logo)'
             }
         }
     },

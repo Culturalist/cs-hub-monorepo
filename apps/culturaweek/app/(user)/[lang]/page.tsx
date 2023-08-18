@@ -10,7 +10,8 @@ export default async function Home({ params: { lang } }: DefaultPageProps) {
     const data: App = await clientNext.fetch(homeQuery, { appName });
     return (
         <>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <br />
+            {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
         </>
     );
 }

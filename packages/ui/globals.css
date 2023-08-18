@@ -51,6 +51,7 @@
 
         --theme-header-text: var(--swatch-black);
         --theme-header-logo: 0;
+        --theme-footer-logo: 0.6;
     }
 
     html[data-useragent='hhea'] {
@@ -248,11 +249,36 @@
         letter-spacing: -0.03em;
     }
 
+    .typo-short {
+        @apply calc-fontsize;
+        --font-size: 16;
+        --line-height: 20;
+        letter-spacing: -0.01em;
+    }
+
+    .typo-short-sm {
+        @apply calc-fontsize;
+        --font-size: 16;
+        --line-height: 16;
+        letter-spacing: -0.01em;
+    }
+    @media (min-width: theme('screens.md')) {
+        .typo-short-sm {
+            --font-size: 12;
+            --line-height: 16;
+        }
+    }
+
     /* Effects */
     @supports (-webkit-text-stroke-width: 1px) {
         .text-outline {
             -webkit-text-fill-color: transparent;
             -webkit-text-stroke-width: 1px;
+        }
+
+        .text-outline-thin {
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke-width: 0.5px;
         }
     }
 }
