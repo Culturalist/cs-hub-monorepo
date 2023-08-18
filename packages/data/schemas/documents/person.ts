@@ -1,11 +1,14 @@
-import { defineType, defineField, SanityDocument } from 'sanity';
+import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { UserIcon } from '@sanity/icons';
-import globalConfig from 'globals/globalConfig';
 import { selectDefaultLocale } from '../../utils';
+import { LocaleString } from '../objects';
 
 export interface Person extends SanityDocument {
     _type: 'person' | 'reference';
     _ref?: string;
+    title?: LocaleString;
+    position?: LocaleString;
+    slug: Slug;
 }
 
 export default function person(appName: string = 'hub') {
@@ -15,7 +18,7 @@ export default function person(appName: string = 'hub') {
         type: 'document',
         fields: [
             defineField({
-                name: 'name',
+                name: 'title',
                 title: 'Name',
                 type: 'localeString'
             }),
@@ -23,11 +26,16 @@ export default function person(appName: string = 'hub') {
                 name: 'position',
                 title: 'Position',
                 type: 'localeString'
+            }),
+            defineField({
+                name: 'slug',
+                type: 'normalizedSlug',
+                validation: Rule => Rule.required()
             })
         ],
         preview: {
             select: {
-                name: 'name',
+                name: 'title',
                 position: 'position'
             },
             prepare({ name, position }) {

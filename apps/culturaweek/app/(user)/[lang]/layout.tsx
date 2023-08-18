@@ -14,7 +14,7 @@ export default async function RootLayout({ children, params: { lang } }: Default
         <html lang={lang} data-useragent="hhea">
             <body>
                 <ThemeInit />
-                {/* <Header data={data.header} lang={lang} /> */}
+                <Header data={data.header} title={data.title} lang={lang} />
                 <main>{children}</main>
                 <Footer data={data.footer} lang={lang} />
             </body>

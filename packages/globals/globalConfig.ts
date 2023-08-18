@@ -5,15 +5,18 @@ const globalConfig: GlobalConfig = {
         languages: [
             {
                 id: 'fi',
-                title: 'Suomi'
+                title: 'Suomi',
+                abbr: 'su'
             },
             {
                 id: 'ru',
-                title: 'Русский'
+                title: 'Русский',
+                abbr: 'ru'
             },
             {
                 id: 'en',
-                title: 'English'
+                title: 'English',
+                abbr: 'en'
             }
         ],
         default: 'en'

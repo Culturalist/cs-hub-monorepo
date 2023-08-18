@@ -1,15 +1,14 @@
 import { BodyBlock } from 'data';
 import { DefaultProps, Locale } from 'globals';
-import { createStyles } from './Base.styles';
+import { createStyles, Styles } from './Base.styles';
 
 interface BaseProps extends DefaultProps {
     data: BodyBlock[];
-    lang: Locale;
 }
 
 export default function Base(props: BaseProps) {
     const { data, lang, className } = props;
-    const styles = createStyles({ className });
+    const styles: Styles = createStyles({ className });
 
     return (
         <div className={styles.container}>

@@ -47,5 +47,5 @@ export const config = {
     //   ].includes(pathname)
     // )
     //   return
-    matcher: ['/((?!api|admin|fonts|_next/static|_ipx|_next/image|favicon.ico).*)']
+    matcher: ['/((?!api|admin|fonts|assets|_next/static|_ipx|_next/image|favicon.ico).*)']
 };

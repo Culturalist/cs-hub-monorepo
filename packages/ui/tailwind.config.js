@@ -54,11 +54,14 @@ module.exports = {
             grey: 'rgb(var(--swatch-grey))',
             theme: {
                 surface: 'rgb(var(--theme-surface))',
-                text: 'rgb(var(--theme-surface))',
-                'text-light': 'rgb(var(--theme-surface))',
+                text: 'rgb(var(--theme-text))',
+                'text-light': 'rgb(var(--theme-text-light))',
                 card: {
                     surface: 'rgb(var(--theme-card-surface))',
                     text: 'rgb(var(--theme-card-text))'
+                },
+                header: {
+                    text: 'rgb(var(--theme-header-text))'
                 }
             }
         },
@@ -85,6 +88,11 @@ module.exports = {
             gutter: 'var(--metrics-gutter)',
             module: 'var(--metrics-module)',
             'header-height': 'var(--c-header-height)'
+        },
+        extend: {
+            invert: {
+                'header-logo': 'var(--theme-header-logo)'
+            }
         }
     },
     mode: 'jit',

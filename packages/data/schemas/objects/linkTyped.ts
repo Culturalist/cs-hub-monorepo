@@ -2,15 +2,17 @@ import globalConfig from 'globals/globalConfig';
 import { defineField, defineType } from 'sanity';
 import { filterByDocumentApp } from '../../utils';
 import { LinkType, linkTypeList, PageDocument } from '../values';
+import { SanityAsset } from '@sanity/image-url/lib/types/types';
 
 export interface LinkTyped {
     _type: 'linkTyped';
-    _key: string;
+    _key?: string;
     type: LinkType;
     reference?: PageDocument;
     external?: string;
     internal?: string;
     anchor?: string;
+    file?: SanityAsset;
 }
 
 export default function linkTyped(appName: string) {

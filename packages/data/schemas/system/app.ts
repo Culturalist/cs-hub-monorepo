@@ -1,4 +1,4 @@
-import { defineType, defineField, SanityDocument } from 'sanity';
+import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { ComponentIcon } from '@sanity/icons';
 import { MetadataApp } from '../sections/metadataApp';
 import { selectDefaultLocale } from '../../utils';
@@ -9,6 +9,7 @@ import { Theme } from './theme';
 export interface App extends SanityDocument {
     _type: 'app' | 'reference';
     _ref?: string;
+    // slug: Slug;
     title?: LocaleString;
     header?: Header;
     footer?: Footer;
@@ -46,6 +47,13 @@ export default function app() {
                 title: 'Website title',
                 type: 'localeString'
             }),
+            // defineField({
+            //     name: 'slug',
+            //     type: 'slug',
+            //     initialValue: { current: '' }
+            //     // hidden: true,
+            //     // readOnly: true
+            // }),
             defineField({
                 name: 'header',
                 title: 'Header',

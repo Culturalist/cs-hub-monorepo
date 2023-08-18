@@ -9,6 +9,7 @@
         "generate:component": "turbo gen react-component"
     },
     "dependencies": {
+        "@heroicons/react": "^2.0.18",
         "class-variance-authority": "^0.7.0",
         "globals": "*",
         "react-hotkeys-hook": "^4.4.1"

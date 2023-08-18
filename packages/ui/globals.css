@@ -48,6 +48,9 @@
         --theme-text-light: var(--swatch-grey);
         --theme-card-surface: var(--swatch-blue);
         --theme-card-text: var(--swatch-white);
+
+        --theme-header-text: var(--swatch-black);
+        --theme-header-logo: 0;
     }
 
     html[data-useragent='hhea'] {
@@ -58,9 +61,9 @@
     }
 
     html[data-useragent='typo'] {
-        --MP-CH: 0.205em;
-        --MP-XH: 0.43em;
-        --MP-B: 0.1em;
+        --MP-CH: 0.2em;
+        --MP-XH: 0.425em;
+        --MP-B: 0.105em;
         --MP-I: 0.08em;
     }
 
@@ -72,7 +75,7 @@
     }
 
     body {
-        @apply relative overflow-x-hidden kern;
+        @apply relative overflow-x-hidden kern text-theme-text bg-theme-surface;
     }
 
     main {
@@ -163,6 +166,7 @@
     }
 
     /* Typography styles */
+
     .typo-outlined {
         @apply calc-fontsize;
         --font-size: 64;
@@ -173,6 +177,82 @@
         .typo-outlined {
             --font-size: 240;
             --line-height: 200;
+        }
+    }
+
+    .typo-caps-3xl {
+        @apply calc-fontsize uppercase;
+        --font-size: 64;
+        --line-height: 64;
+        letter-spacing: -0.03em;
+    }
+    @media (min-width: theme('screens.md')) {
+        .typo-caps-3xl {
+            --font-size: 88;
+            --line-height: 88;
+        }
+    }
+
+    .typo-caps-2xl {
+        @apply calc-fontsize uppercase;
+        --font-size: 64;
+        --line-height: 64;
+        letter-spacing: -0.03em;
+    }
+    @media (min-width: theme('screens.md')) {
+        .typo-caps-3xl {
+            --font-size: 72;
+            --line-height: 72;
+        }
+    }
+
+    .typo-caps-lxl {
+        @apply calc-fontsize uppercase;
+        --font-size: 48;
+        --line-height: 48;
+        letter-spacing: -0.03em;
+    }
+
+    .typo-caps-lg {
+        @apply calc-fontsize uppercase;
+        --font-size: 40;
+        --line-height: 40;
+        letter-spacing: -0.03em;
+    }
+
+    .typo-caps {
+        @apply calc-fontsize uppercase;
+        --font-size: 32;
+        --line-height: 32;
+        letter-spacing: -0.03em;
+    }
+
+    .typo-caps-sm {
+        @apply calc-fontsize uppercase;
+        --font-size: 24;
+        --line-height: 24;
+        letter-spacing: -0.03em;
+    }
+
+    .typo-caps-xs {
+        @apply calc-fontsize uppercase;
+        --font-size: 20;
+        --line-height: 20;
+        letter-spacing: -0.03em;
+    }
+
+    .typo-caps-2xs {
+        @apply calc-fontsize uppercase;
+        --font-size: 16;
+        --line-height: 16;
+        letter-spacing: -0.03em;
+    }
+
+    /* Effects */
+    @supports (-webkit-text-stroke-width: 1px) {
+        .text-outline {
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke-width: 1px;
         }
     }
 }

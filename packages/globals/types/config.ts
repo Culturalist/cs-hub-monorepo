@@ -23,6 +23,7 @@ export interface GlobalConfig {
         languages: {
             id: Locale;
             title: string;
+            abbr: string;
         }[];
         default: Locale;
     };

@@ -7,7 +7,7 @@ const initialValueTemplates = [
         title: 'Page in app',
         schemaType: 'page',
         parameters: [{ name: 'appName', type: 'string' }],
-        value: params => ({
+        value: (params: any) => ({
             app: { _type: 'reference', _ref: params.appName }
         })
     },
@@ -16,7 +16,7 @@ const initialValueTemplates = [
         title: 'Notes in app',
         schemaType: 'note',
         parameters: [{ name: 'appName', type: 'string' }],
-        value: params => ({
+        value: (params: any) => ({
             app: { _type: 'reference', _ref: params.appName }
         })
     },
@@ -25,10 +25,10 @@ const initialValueTemplates = [
         title: 'Post in app',
         schemaType: 'post',
         parameters: [{ name: 'appName', type: 'string' }],
-        value: params => ({
+        value: (params: any) => ({
             app: { _type: 'reference', _ref: params.appName },
             parent: globalConfig.apps[params.appName]?.parentDocuments?.post
-                ? { _type: 'reference', _ref: globalConfig.apps[params.appName].parentDocuments.post }
+                ? { _type: 'reference', _ref: globalConfig.apps[params.appName]?.parentDocuments?.post }
                 : undefined
         })
     },
@@ -37,10 +37,10 @@ const initialValueTemplates = [
         title: 'Project in app',
         schemaType: 'project',
         parameters: [{ name: 'appName', type: 'string' }],
-        value: params => ({
+        value: (params: any) => ({
             app: { _type: 'reference', _ref: params.appName },
             parent: globalConfig.apps[params.appName]?.parentDocuments?.project
-                ? { _type: 'reference', _ref: globalConfig.apps[params.appName].parentDocuments.project }
+                ? { _type: 'reference', _ref: globalConfig.apps[params.appName]?.parentDocuments?.project }
                 : undefined
         })
     },
@@ -49,10 +49,10 @@ const initialValueTemplates = [
         title: 'Event in app',
         schemaType: 'event',
         parameters: [{ name: 'appName', type: 'string' }],
-        value: params => ({
+        value: (params: any) => ({
             app: { _type: 'reference', _ref: params.appName },
             parent: globalConfig.apps[params.appName]?.parentDocuments?.event
-                ? { _type: 'reference', _ref: globalConfig.apps[params.appName].parentDocuments.event }
+                ? { _type: 'reference', _ref: globalConfig.apps[params.appName]?.parentDocuments?.event }
                 : undefined,
             action: {
                 _type: 'linkCaptioned',
