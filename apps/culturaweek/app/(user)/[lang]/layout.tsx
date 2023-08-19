@@ -34,3 +34,10 @@ export default async function RootLayout({ children, params: { lang } }: Default
         </html>
     );
 }
+
+export const metadata = {
+    viewport: {
+        width: '644',
+        userScalable: false
+    }
+};
