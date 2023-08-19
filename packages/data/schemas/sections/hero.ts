@@ -14,6 +14,7 @@ export interface Hero {
     cards?: CardManual[];
     links?: LinkCaptioned[];
     theme?: Theme;
+    coverOnHover?: boolean;
 }
 
 export default function hero() {
@@ -78,6 +79,13 @@ export default function hero() {
                 type: 'reference',
                 description: 'If not set – default website theme will be used',
                 to: [{ type: 'theme' }],
+                fieldset: 'style'
+            }),
+            defineField({
+                name: 'coverOnHover',
+                title: 'Show cards cover only on hover',
+                type: 'boolean',
+                initialValue: false,
                 fieldset: 'style'
             })
         ]

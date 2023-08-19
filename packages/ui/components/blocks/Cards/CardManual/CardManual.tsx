@@ -11,11 +11,12 @@ import LinkWrapper from '../../LinkWrapper';
 
 interface CardManualProps extends DefaultProps {
     data: CardManual;
+    coverOnHover?: boolean;
 }
 
 export default function CardManual(props: CardManualProps) {
-    const { data, lang, className } = props;
-    const { cover, link, cardSurface, coverOnHover } = data;
+    const { data, coverOnHover, lang, className } = props;
+    const { cover, link, cardSurface } = data;
     const title = neatTextBreaks(localizeString(data.title, lang));
     const subtitle = neatTextBreaks(localizeString(data.subtitle, lang));
 

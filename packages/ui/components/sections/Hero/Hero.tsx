@@ -13,7 +13,7 @@ export default function Hero(props: HeroProps) {
     const { data, lang, className } = props;
     if (!data) return null;
 
-    const { covers, actionType, cards, links, theme } = data;
+    const { covers, actionType, cards, links, coverOnHover, theme } = data;
     const lead = neatTextBreaks(localizeString(data.lead, lang));
     const styles = createStyles({ className, leadLength: lead.length });
 
@@ -28,7 +28,9 @@ export default function Hero(props: HeroProps) {
                 )}
                 {/* ACTIONS */}
                 {/* CARDS */}
-                {actionType == 'cards' && <Cards data={cards} type="hero" lang={lang} className={styles.cards} />}
+                {actionType == 'cards' && (
+                    <Cards data={cards} type="hero" coverOnHover={coverOnHover} lang={lang} className={styles.cards} />
+                )}
             </div>
             <div className={styles.bg}></div>
             {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}

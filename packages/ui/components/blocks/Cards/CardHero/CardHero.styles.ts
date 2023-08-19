@@ -16,7 +16,7 @@ const defaultStyles = {
     subtitleWrapper: '',
     subtitle: 'typo-short trim-line min-w-0 whitespace-nowrap overflow-hidden text-ellipsis',
     cover: 'shrink-0 min-w-full min-h-full',
-    onHover: 'invisible group-hover:visible'
+    onHover: 'invisible md:group-hover:visible'
 };
 
 export const createStyles = ({ className, cardSurface, coverOnHover = true }: styleProps) => {
