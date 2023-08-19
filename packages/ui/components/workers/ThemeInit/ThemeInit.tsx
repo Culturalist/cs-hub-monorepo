@@ -12,6 +12,8 @@ export default function ThemeInit(props: ThemeInitProps) {
     useHotkeys('shift+g', () => setShowGrid(prev => !prev));
 
     useEffect(() => {
+        //Set app theme
+        // setPageTheme(app);
         //Determine font rendering method
         if (/Chrome|Safari/i.test(navigator.userAgent) && !/Android|Windows/i.test(navigator.userAgent)) {
             document.documentElement.setAttribute('data-useragent', 'hhea');

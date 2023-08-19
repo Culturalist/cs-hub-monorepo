@@ -8,15 +8,17 @@ import { LinkWrapper, PortableText } from '../../blocks';
 import { createStyles } from './Footer.styles';
 
 interface FooterProps extends DefaultProps {
-    data: Footer;
-    lang: Locale;
+    data?: Footer;
 }
 
 export default function Footer(props: FooterProps) {
     const { data, lang, className } = props;
+    if (!data) return null;
+
     const { contacts, links, social } = data;
     const logoUrl = data.logo && getImageUrl(data.logo);
     const styles = createStyles({ className });
+
     return (
         <footer className={styles.container}>
             {/* NAVIGATION */}

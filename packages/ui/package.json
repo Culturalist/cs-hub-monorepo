@@ -5,14 +5,14 @@
     "types": "./index.tsx",
     "license": "MIT",
     "scripts": {
-        "lint": "eslint \"**/*.ts*\"",
-        "generate:component": "turbo gen react-component"
+        "lint": "eslint \"**/*.ts*\""
     },
     "dependencies": {
         "@heroicons/react": "^2.0.18",
         "class-variance-authority": "^0.7.0",
         "globals": "*",
-        "react-hotkeys-hook": "^4.4.1"
+        "react-hotkeys-hook": "^4.4.1",
+        "data": "*"
     },
     "devDependencies": {
         "@types/react": "^18.2.0",

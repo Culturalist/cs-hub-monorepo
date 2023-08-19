@@ -29,6 +29,12 @@ export interface GlobalConfig {
     };
     apps: Record<string, AppConfig>;
     routes: Record<DocumentApp, string>;
+    metrics: {
+        unit: number;
+        offset: number;
+        module: number;
+        gutter: number;
+    };
     latestUpdate: string;
     organization: string;
     creator: string;

@@ -6,7 +6,7 @@ export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
     container: 'sm:container mx-auto h-header-height px-offset py-gutter flex flex-row gap-gutter items-center',
-    wrapper: 'w-full flex flex-row gap-gutter items-center text-theme-header-text',
+    wrapper: 'w-full flex flex-row gap-gutter lg:gap-module items-center text-theme-header-text',
     logo: '',
     logoImage: 'h-24 sm:h-40 invert-header-logo',
     defaultLogo: 'flex flex-row items-center gap-8 sm:gap-gutter',

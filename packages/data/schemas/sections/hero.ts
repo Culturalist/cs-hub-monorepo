@@ -11,7 +11,7 @@ export interface Hero {
     covers?: MediaBlock[];
     lead?: LocaleString;
     actionType: ActionType;
-    cards?: CardManual;
+    cards?: CardManual[];
     links?: LinkCaptioned[];
     theme?: Theme;
 }

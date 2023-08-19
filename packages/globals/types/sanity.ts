@@ -1,5 +1,4 @@
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
-import { LocaleString } from 'data/schemas/objects/localeString';
 
 export interface Span {
     _type: 'span';

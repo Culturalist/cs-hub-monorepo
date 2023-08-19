@@ -31,8 +31,19 @@
         --metrics-offset: 20px;
         --metrics-gutter: 20px;
         --metrics-module: 32px;
+
         /* Constants */
+        --c-module-2: calc(2 * var(--metrics-module) + var(--metrics-gutter));
+        --c-module-3: calc(3 * var(--metrics-module) + 2 * var(--metrics-gutter));
+        --c-module-4: calc(4 * var(--metrics-module) + 3 * var(--metrics-gutter));
+        --c-module-5: calc(5 * var(--metrics-module) + 4 * var(--metrics-gutter));
+        --c-module-6: calc(6 * var(--metrics-module) + 5 * var(--metrics-gutter));
+        --c-module-8: calc(8 * var(--metrics-module) + 7 * var(--metrics-gutter));
+        --c-module-10: calc(10 * var(--metrics-module) + 9 * var(--metrics-gutter));
+        --c-module-12: calc(12 * var(--metrics-module) + 11 * var(--metrics-gutter));
+
         --c-header-height: calc(var(--metrics-module) + 2 * var(--metrics-gutter));
+        --c-hero-height: calc(100dvh - var(--c-header-height));
 
         /* Swatches */
         --swatch-white: 255 255 255;
@@ -168,42 +179,79 @@
 
     /* Typography styles */
 
-    .typo-outlined {
+    .typo-title-lg {
         @apply calc-fontsize;
-        --font-size: 64;
-        --line-height: 64;
-        letter-spacing: -0.03em;
+        --font-size: 32;
+        --line-height: 32;
+        letter-spacing: -0.02em;
+    }
+
+    .typo-title {
+        @apply calc-fontsize;
+        --font-size: 24;
+        --line-height: 24;
+        letter-spacing: -0.02em;
+    }
+
+    .typo-title-sm {
+        @apply calc-fontsize;
+        --font-size: 20;
+        --line-height: 20;
+        letter-spacing: -0.02em;
+    }
+
+    .typo-short {
+        @apply calc-fontsize;
+        --font-size: 16;
+        --line-height: 20;
+        letter-spacing: -0.01em;
+    }
+
+    .typo-short-sm {
+        @apply calc-fontsize;
+        --font-size: 16;
+        --line-height: 16;
+        letter-spacing: -0.01em;
     }
     @media (min-width: theme('screens.md')) {
-        .typo-outlined {
-            --font-size: 240;
-            --line-height: 200;
+        .typo-short-sm {
+            --font-size: 12;
+            --line-height: 16;
         }
     }
 
-    .typo-caps-3xl {
-        @apply calc-fontsize uppercase;
-        --font-size: 64;
-        --line-height: 64;
-        letter-spacing: -0.03em;
-    }
-    @media (min-width: theme('screens.md')) {
-        .typo-caps-3xl {
-            --font-size: 88;
-            --line-height: 88;
-        }
-    }
-
+    .typo-caps-huge,
+    .typo-caps-3xl,
     .typo-caps-2xl {
         @apply calc-fontsize uppercase;
         --font-size: 64;
         --line-height: 64;
         letter-spacing: -0.03em;
     }
+
     @media (min-width: theme('screens.md')) {
+        .typo-caps-huge {
+            --font-size: 88;
+            --line-height: 88;
+        }
         .typo-caps-3xl {
             --font-size: 72;
             --line-height: 72;
+        }
+        .typo-caps-2xl {
+            --font-size: 72;
+            --line-height: 72;
+        }
+    }
+
+    @media (min-width: theme('screens.lg')) {
+        .typo-caps-huge {
+            --font-size: 120;
+            --line-height: 120;
+        }
+        .typo-caps-3xl {
+            --font-size: 88;
+            --line-height: 88;
         }
     }
 
@@ -249,36 +297,43 @@
         letter-spacing: -0.03em;
     }
 
-    .typo-short {
-        @apply calc-fontsize;
-        --font-size: 16;
-        --line-height: 20;
-        letter-spacing: -0.01em;
-    }
-
-    .typo-short-sm {
-        @apply calc-fontsize;
-        --font-size: 16;
-        --line-height: 16;
-        letter-spacing: -0.01em;
-    }
-    @media (min-width: theme('screens.md')) {
-        .typo-short-sm {
-            --font-size: 12;
-            --line-height: 16;
-        }
-    }
-
     /* Effects */
     @supports (-webkit-text-stroke-width: 1px) {
         .text-outline {
             -webkit-text-fill-color: transparent;
+            -webkit-text-stroke-color: var(--theme-text);
             -webkit-text-stroke-width: 1px;
+            padding-left: 1px;
+            padding-right: 1px;
         }
 
         .text-outline-thin {
             -webkit-text-fill-color: transparent;
+            -webkit-text-stroke-color: var(--theme-text);
             -webkit-text-stroke-width: 0.5px;
+            padding-left: 0.5px;
+            padding-right: 0.5px;
         }
+    }
+
+    /* Boxes */
+    .box-12x3 {
+        width: var(--c-module-12);
+        height: var(--c-module-3);
+    }
+
+    .box-8x5 {
+        width: var(--c-module-8);
+        height: var(--c-module-5);
+    }
+
+    .box-6x4 {
+        width: var(--c-module-6);
+        height: var(--c-module-4);
+    }
+
+    .box-4x6 {
+        width: var(--c-module-4);
+        height: var(--c-module-6);
     }
 }

@@ -1,3 +1,4 @@
+import { CardManual } from '../objects';
 import { DocumentAny } from './documents';
 
 export const linkTypeList = [
@@ -76,4 +77,6 @@ export const cardsTypeList = [
     { title: 'People', value: 'people' },
     { title: 'Events', value: 'events' }
 ];
-export type CardsType = 'manual' | 'projects' | 'posts' | 'people' | 'events';
+export type CardsType = 'manual' | 'hero' | 'projects' | 'posts' | 'people' | 'events';
+
+export type Card = CardManual;

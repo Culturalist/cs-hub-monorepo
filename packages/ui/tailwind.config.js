@@ -87,7 +87,16 @@ module.exports = {
             offset: 'var(--metrics-offset)',
             gutter: 'var(--metrics-gutter)',
             module: 'var(--metrics-module)',
-            'header-height': 'var(--c-header-height)'
+            m2: 'var(--c-module-2)',
+            m3: 'var(--c-module-3)',
+            m4: 'var(--c-module-4)',
+            m5: 'var(--c-module-5)',
+            m6: 'var(--c-module-6)',
+            m8: 'var(--c-module-8)',
+            m10: 'var(--c-module-10)',
+            m12: 'var(--c-module-12)',
+            'header-height': 'var(--c-header-height)',
+            'hero-height': 'var(--c-hero-height)'
         },
         extend: {
             invert: {

@@ -8,13 +8,14 @@ import { localizeString } from 'weresk/utils';
 import globalConfig from 'globals/globalConfig';
 
 interface HeaderProps extends DefaultProps {
-    data: Header;
+    data?: Header;
     title?: LocaleString;
-    lang: Locale;
 }
 
 export default function Header(props: HeaderProps) {
     const { data, lang, className } = props;
+    if (!data) return null;
+
     const { marker, links, languages } = data;
     const logoUrl = data.logo && getImageUrl(data.logo);
     const title = localizeString(props.title, lang);

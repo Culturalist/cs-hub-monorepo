@@ -1,4 +1,4 @@
-import { GlobalConfig, Locale } from './types';
+import { GlobalConfig } from './types';
 
 const globalConfig: GlobalConfig = {
     localization: {
@@ -76,6 +76,12 @@ const globalConfig: GlobalConfig = {
         project: 'project',
         event: 'event',
         note: 'note'
+    },
+    metrics: {
+        unit: 4,
+        offset: 20,
+        module: 32,
+        gutter: 20
     },
     latestUpdate: '2023-08-01',
     organization: 'Cultura-säätiö',
