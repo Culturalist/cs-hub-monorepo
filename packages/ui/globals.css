@@ -43,7 +43,7 @@
         --c-module-12: calc(12 * var(--metrics-module) + 11 * var(--metrics-gutter));
 
         --c-header-height: calc(var(--metrics-module) + 2 * var(--metrics-gutter));
-        --c-hero-height: calc(100dvh - var(--c-header-height));
+        --c-hero-height: calc(100svh - var(--c-header-height));
 
         /* Swatches */
         --swatch-white: 255 255 255;
