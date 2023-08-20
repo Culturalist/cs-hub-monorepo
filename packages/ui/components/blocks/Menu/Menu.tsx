@@ -22,10 +22,8 @@ export default function Menu(props: MenuProps) {
 
     function handleClick() {
         const body = document.querySelector('body');
-        if (open) {
-            if (body) {
-                !open ? body.classList.add('lock-scroll') : body.classList.remove('lock-scroll');
-            }
+        if (body) {
+            !open ? body.classList.add('lock-scroll') : body.classList.remove('lock-scroll');
         }
         setOpen(prev => !prev);
     }
