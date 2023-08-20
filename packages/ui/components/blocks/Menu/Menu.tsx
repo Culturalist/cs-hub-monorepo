@@ -5,7 +5,7 @@ import { DefaultProps } from 'globals';
 import { localizeString } from 'weresk/utils';
 import { createStyles } from './Menu.styles';
 import LinkWrapper from '../LinkWrapper';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Languages from '../Languages';
 
 interface MenuProps extends DefaultProps {
@@ -21,15 +21,14 @@ export default function Menu(props: MenuProps) {
     const styles = createStyles({ className, open });
 
     function handleClick() {
+        const body = document.querySelector('body');
+        if (open) {
+            if (body) {
+                !open ? body.classList.add('lock-scroll') : body.classList.remove('lock-scroll');
+            }
+        }
         setOpen(prev => !prev);
     }
-
-    useEffect(() => {
-        const body = document.querySelector('body');
-        if (body) {
-            open ? body.classList.add('lock-scroll') : body.classList.remove('lock-scroll');
-        }
-    }, [open]);
 
     return (
         <>
