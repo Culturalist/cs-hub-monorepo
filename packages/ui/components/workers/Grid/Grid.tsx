@@ -11,7 +11,7 @@ export default function Grid(props: GridProps) {
         <div className={styles.container}>
             <div className={styles.rows}></div>
             <div className={styles.columns}>
-                {[...Array(72)].map((x, i) => (
+                {[...Array(24)].map((x, i) => (
                     <div className={styles.column} key={i}></div>
                 ))}
             </div>

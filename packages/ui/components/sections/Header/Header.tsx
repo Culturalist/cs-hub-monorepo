@@ -56,7 +56,7 @@ export default function Header(props: HeaderProps) {
                 )}
             </div>
             {links && links.length > 0 && (
-                <Menu links={links} languages={languages} lang={lang} className={styles.menu} />
+                <Menu links={links} marker={marker} languages={languages} lang={lang} className={styles.menu} />
             )}
             {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
         </header>

@@ -5,13 +5,13 @@ import { purgeEmptyStrings } from 'weresk/utils';
 export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: 'sm:container mx-auto px-offset py-gutter flex flex-col gap-module',
-    navigation: 'typo-caps-sm flex flex-col sm:flex-row items-stretch flex-wrap gap-x-gutter gap-y-8 sm:gap-y-12',
+    container: 'xs:container mx-auto p-offset flex flex-col gap-32',
+    navigation: 'typo-caps-sm flex flex-col xs:flex-row items-stretch flex-wrap gap-x-20 gap-y-8 xs:gap-y-12',
     navLink: '',
     navLinkCaption: 'trim-line hover:text-theme-text-light',
-    wrapper: 'flex flex-col items-start md:flex-row gap-8 md:gap-gutter text-theme-text-light',
+    wrapper: 'flex flex-col items-start sm:flex-row gap-8 sm:gap-gutter text-theme-text-light',
     logoImage: 'h-32 invert-footer-logo',
-    contactsWrapper: 'typo-short-sm self-stretch basis-full shrink-0 flex justify-between pt-8',
+    contactsWrapper: 'typo-short grow shrink-0 flex justify-between pt-[6px]',
     contacts: 'flex flex-col md:flex-row flex-wrap gap-y-4 gap-x-gutter',
     social: 'flex flex-col md:flex-row items-end md:items-start gap-y-4 gap-x-gutter flex-nowrap',
     socialLink: 'underline hover:no-underline hover:text-theme-text',

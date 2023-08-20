@@ -9,8 +9,8 @@ export interface styleProps extends DefaultStyleProps {
 
 const defaultStyles = {
     container: 'grid',
-    manual: 'grid-cols-2 md:grid-cols-3 gap-gutter',
-    hero: 'grid-cols-1 md:grid-cols-3 gap-8 md:gap-gutter',
+    manual: 'grid-cols-2 sm:grid-cols-3 gap-gutter',
+    hero: 'grid-cols-1 sm:grid-cols-3 gap-gutter',
     projects: '',
     posts: '',
     people: '',

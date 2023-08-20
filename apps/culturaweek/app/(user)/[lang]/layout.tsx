@@ -1,3 +1,5 @@
+import tailwindConfig from 'ui/tailwind.config';
+import resolveConfig from 'tailwindcss/resolveConfig';
 import 'ui/globals.css';
 import { App } from 'data/schemas';
 import { DefaultLayoutProps } from 'globals';
@@ -23,10 +25,10 @@ export default async function RootLayout({ children, params: { lang } }: Default
 
     return (
         <html lang={lang} data-useragent="hhea">
-            <Suspense fallback={<></>}>
-                <ThemeInit />
-            </Suspense>
             <body>
+                <Suspense fallback={<></>}>
+                    <ThemeInit />
+                </Suspense>
                 <Header data={data.header} title={data.title} lang={lang} />
                 <main>{children}</main>
                 <Footer data={data.footer} lang={lang} />
@@ -37,7 +39,7 @@ export default async function RootLayout({ children, params: { lang } }: Default
 
 export const metadata = {
     viewport: {
-        width: '644',
+        width: resolveConfig(tailwindConfig).theme.screens.xs,
         userScalable: false
     }
 };

@@ -8,7 +8,7 @@ interface ThemeInitProps {}
 
 export default function ThemeInit(props: ThemeInitProps) {
     // const searchParams = useSearchParams();
-    const [showGrid, setShowGrid] = useState(false);
+    const [showGrid, setShowGrid] = useState(true);
     useHotkeys('shift+g', () => setShowGrid(prev => !prev));
 
     useEffect(() => {

@@ -4,11 +4,13 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
     theme: {
         screens: {
-            sm: '644px',
-            md: '956px',
+            xs: '512px',
+            sm: '796px',
+            md: '984px',
             lg: '1268px',
-            'max-sm': { max: '643px' },
-            'max-md': { max: '955px' },
+            'max-xs': { max: '511px' },
+            'max-sm': { max: '795px' },
+            'max-md': { max: '983px' },
             'max-lg': { max: '1267px' }
         },
         fontFamily: {
@@ -92,9 +94,14 @@ module.exports = {
             m4: 'var(--c-module-4)',
             m5: 'var(--c-module-5)',
             m6: 'var(--c-module-6)',
+            m7: 'var(--c-module-7)',
             m8: 'var(--c-module-8)',
+            m9: 'var(--c-module-9)',
             m10: 'var(--c-module-10)',
+            m11: 'var(--c-module-11)',
             m12: 'var(--c-module-12)',
+            'bar-height': 'var(--c-bar-height)',
+            'logo-height': 'var(--c-logo-height)',
             'header-height': 'var(--c-header-height)',
             'hero-height': 'var(--c-hero-height)'
         },

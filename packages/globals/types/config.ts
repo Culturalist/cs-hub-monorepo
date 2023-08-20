@@ -1,6 +1,7 @@
 import { DocumentAny, DocumentApp } from 'data';
 
 export type Locale = 'fi' | 'ru' | 'en';
+export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface AppConfig {
     title: string;
@@ -29,12 +30,17 @@ export interface GlobalConfig {
     };
     apps: Record<string, AppConfig>;
     routes: Record<DocumentApp, string>;
+    breakpoints: Record<Breakpoint, number>;
     metrics: {
         unit: number;
         offset: number;
-        module: number;
-        gutter: number;
-    };
+    } & Record<
+        Breakpoint,
+        {
+            module: number;
+            gutter: number;
+        }
+    >;
     latestUpdate: string;
     organization: string;
     creator: string;

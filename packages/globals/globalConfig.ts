@@ -77,11 +77,31 @@ const globalConfig: GlobalConfig = {
         event: 'event',
         note: 'note'
     },
+    breakpoints: {
+        xs: 512,
+        sm: 796,
+        md: 984,
+        lg: 1268
+    },
     metrics: {
         unit: 4,
         offset: 20,
-        module: 32,
-        gutter: 20
+        xs: {
+            module: 12,
+            gutter: 8
+        },
+        sm: {
+            module: 20,
+            gutter: 12
+        },
+        md: {
+            module: 24,
+            gutter: 16
+        },
+        lg: {
+            module: 32,
+            gutter: 20
+        }
     },
     latestUpdate: '2023-08-01',
     organization: 'Cultura-säätiö',

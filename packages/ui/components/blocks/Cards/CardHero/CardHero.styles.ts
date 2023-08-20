@@ -9,14 +9,14 @@ export interface styleProps extends DefaultStyleProps {
 
 const defaultStyles = {
     container: 'group relative bg-theme-card-surface overflow-hidden flex justify-center items-center',
-    box: 'h-m3 sm:box-12x3 md:box-6x4 lg:box-8x5',
+    box: 'h-m3 xs:w-m12 xs:h-m3 sm:w-m8 sm:h-m5',
     content: 'absolute z-10 inset-0 h-full px-16 pt-8 pb-16 flex flex-col justify-between gap-8 text-theme-card-text',
-    titleWrapper: 'grow shrink min-h-0 pr-16 md:pr-0',
-    title: 'typo-title trim-line hyphens-auto sm:hyphens-none line-clamp-3 md:line-clamp-5 lg:line-clamp-6',
+    titleWrapper: 'grow shrink min-h-0 pr-16 sm:pr-0',
+    title: 'typo-title sm:typo-title-sm md:typo-title trim-line hyphens-auto xs:hyphens-none line-clamp-3 sm:line-clamp-5 lg:line-clamp-6',
     subtitleWrapper: '',
     subtitle: 'typo-short trim-line min-w-0 whitespace-nowrap overflow-hidden text-ellipsis',
     cover: 'shrink-0 min-w-full min-h-full',
-    onHover: 'invisible md:group-hover:visible'
+    onHover: 'invisible sm:group-hover:visible'
 };
 
 export const createStyles = ({ className, cardSurface, coverOnHover = true }: styleProps) => {

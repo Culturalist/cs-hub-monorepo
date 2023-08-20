@@ -21,29 +21,66 @@
         font-display: swap;
     }
 
+    /* Media */
     :root {
-        /* Media */
-        --media-sm: 644;
-        --media-md: 956;
+        --media-xs: 512;
+        --media-sm: 796;
+        --media-md: 984;
         --media-lg: 1268;
-        /* Metrics */
+    }
+
+    /* Metrics */
+    :root {
+        --metrics-columns: 12;
         --metrics-unit: 4px;
         --metrics-offset: 20px;
-        --metrics-gutter: 20px;
+        --metrics-gutter: 8px;
         --metrics-module: 32px;
 
-        /* Constants */
+        --c-bar-height: 24px;
+        --c-logo-height: calc(var(--c-bar-height) + 4px);
+        --c-header-height: calc(var(--c-bar-height) + 2 * var(--metrics-offset));
+        --c-hero-height: calc(100svh - var(--c-header-height));
+    }
+    @media (min-width: theme('screens.xs')) {
+        :root {
+            --c-bar-height: 32px;
+            --c-logo-height: calc(var(--c-bar-height) + 8px);
+        }
+    }
+    @media (min-width: theme('screens.sm')) {
+        :root {
+            --metrics-columns: 24;
+            --metrics-gutter: 12px;
+            --metrics-module: 20px;
+        }
+    }
+    @media (min-width: theme('screens.md')) {
+        :root {
+            --metrics-gutter: 16px;
+            --metrics-module: 24px;
+        }
+    }
+    @media (min-width: theme('screens.lg')) {
+        :root {
+            --metrics-gutter: 20px;
+            --metrics-module: 32px;
+        }
+    }
+
+    /* Constants */
+    :root {
         --c-module-2: calc(2 * var(--metrics-module) + var(--metrics-gutter));
         --c-module-3: calc(3 * var(--metrics-module) + 2 * var(--metrics-gutter));
         --c-module-4: calc(4 * var(--metrics-module) + 3 * var(--metrics-gutter));
         --c-module-5: calc(5 * var(--metrics-module) + 4 * var(--metrics-gutter));
         --c-module-6: calc(6 * var(--metrics-module) + 5 * var(--metrics-gutter));
+        --c-module-7: calc(7 * var(--metrics-module) + 6 * var(--metrics-gutter));
         --c-module-8: calc(8 * var(--metrics-module) + 7 * var(--metrics-gutter));
+        --c-module-9: calc(9 * var(--metrics-module) + 8 * var(--metrics-gutter));
         --c-module-10: calc(10 * var(--metrics-module) + 9 * var(--metrics-gutter));
+        --c-module-11: calc(11 * var(--metrics-module) + 10 * var(--metrics-gutter));
         --c-module-12: calc(12 * var(--metrics-module) + 11 * var(--metrics-gutter));
-
-        --c-header-height: calc(var(--metrics-module) + 2 * var(--metrics-gutter));
-        --c-hero-height: calc(100svh - var(--c-header-height));
 
         /* Swatches */
         --swatch-white: 255 255 255;
@@ -91,29 +128,18 @@
     }
 
     main {
-        @apply static sm:container mx-auto min-h-screen;
+        @apply static xs:container mx-auto min-h-screen;
+    }
+
+    body.lock-scroll {
+        overflow: hidden;
     }
 }
 
 @layer components {
     /* Utils */
     .grid-columns {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
-    @media (min-width: theme('screens.sm')) {
-        .grid-columns {
-            grid-template-columns: repeat(12, minmax(0, 1fr));
-        }
-    }
-    @media (min-width: theme('screens.md')) {
-        .grid-columns {
-            grid-template-columns: repeat(18, minmax(0, 1fr));
-        }
-    }
-    @media (min-width: theme('screens.lg')) {
-        .grid-columns {
-            grid-template-columns: repeat(24, minmax(0, 1fr));
-        }
+        grid-template-columns: repeat(var(--metrics-columns), minmax(0, 1fr));
     }
 
     .fill-grid {
@@ -321,26 +347,5 @@
             padding-left: 0.5px;
             padding-right: 0.5px;
         }
-    }
-
-    /* Boxes */
-    .box-12x3 {
-        width: var(--c-module-12);
-        height: var(--c-module-3);
-    }
-
-    .box-8x5 {
-        width: var(--c-module-8);
-        height: var(--c-module-5);
-    }
-
-    .box-6x4 {
-        width: var(--c-module-6);
-        height: var(--c-module-4);
-    }
-
-    .box-4x6 {
-        width: var(--c-module-4);
-        height: var(--c-module-6);
     }
 }

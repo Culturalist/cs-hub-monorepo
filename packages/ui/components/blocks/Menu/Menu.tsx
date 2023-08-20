@@ -1,26 +1,36 @@
 'use client';
-import { PageDocument } from 'data/schemas';
+import { LinkCaptioned, PageDocument } from 'data/schemas';
 import { wrapReference } from 'data/utils';
 import { DefaultProps } from 'globals';
 import { localizeString } from 'weresk/utils';
 import { createStyles } from './Menu.styles';
 import LinkWrapper from '../LinkWrapper';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Languages from '../Languages';
 
 interface MenuProps extends DefaultProps {
-    links: PageDocument[];
+    links?: PageDocument[];
+    marker?: LinkCaptioned;
     languages?: string[];
 }
 
 export default function Menu(props: MenuProps) {
-    const { links, languages, lang, className } = props;
+    const { links, marker, languages, lang, className } = props;
+    const markerCaption = marker && localizeString(marker.caption, lang);
     const [open, setOpen] = useState(false);
     const styles = createStyles({ className, open });
 
     function handleClick() {
         setOpen(prev => !prev);
     }
+
+    useEffect(() => {
+        console.log(open);
+        const body = document.querySelector('body');
+        if (body) {
+            open ? body.classList.add('lock-scroll') : body.classList.remove('lock-scroll');
+        }
+    }, [open]);
 
     return (
         <>
@@ -53,22 +63,39 @@ export default function Menu(props: MenuProps) {
                     <rect x="4" y="3" width="36" height="2.5" rx="0.5" transform="rotate(45 4 3)" />
                 </svg>
             </button>
-            <div className={styles.wrapper}>
-                {/* NAVIGATION */}
-                <nav className={styles.navigation}>
-                    {links.map((link, i) => {
-                        if (link._type !== 'reference') {
-                            return (
-                                <LinkWrapper link={wrapReference(link)} lang={lang} className={styles.link} key={i}>
-                                    <span className={styles.linkCaption}>{localizeString(link.title, lang)}</span>
-                                </LinkWrapper>
-                            );
-                        }
-                        return null;
-                    })}
-                </nav>
-                {/* LANGUAGES */}
-                <Languages active={languages} lang={lang} className={styles.languages} />
+            <div className={styles.container}>
+                {/* MARKER */}
+                {marker && (
+                    <LinkWrapper link={marker.link} lang={lang} className={styles.markerWrapper}>
+                        <span className={styles.marker}>{markerCaption}</span>
+                    </LinkWrapper>
+                )}
+                <div className={styles.wrapper}>
+                    {/* NAVIGATION */}
+                    <nav className={styles.navigation}>
+                        {links &&
+                            links.length > 0 &&
+                            links.map((link, i) => {
+                                if (link._type !== 'reference') {
+                                    return (
+                                        <LinkWrapper
+                                            link={wrapReference(link)}
+                                            lang={lang}
+                                            className={styles.link}
+                                            key={i}
+                                        >
+                                            <span className={styles.linkCaption}>
+                                                {localizeString(link.title, lang)}
+                                            </span>
+                                        </LinkWrapper>
+                                    );
+                                }
+                                return null;
+                            })}
+                    </nav>
+                    {/* LANGUAGES */}
+                    <Languages active={languages} lang={lang} className={styles.languages} />
+                </div>
             </div>
         </>
     );
