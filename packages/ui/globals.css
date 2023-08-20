@@ -132,7 +132,7 @@
     }
 
     body.lock-scroll {
-        height: 100dvh;
+        height: -webkit-fill-available;
         overflow: hidden;
     }
 }
