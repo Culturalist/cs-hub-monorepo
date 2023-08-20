@@ -132,6 +132,7 @@
     }
 
     body.lock-scroll {
+        height: 100dvh;
         overflow: hidden;
     }
 }
@@ -246,24 +247,42 @@
         }
     }
 
-    .typo-caps-huge,
-    .typo-caps-3xl,
-    .typo-caps-2xl {
+    .typo-caps-huge {
         @apply calc-fontsize uppercase;
         --font-size: 64;
         --line-height: 64;
         letter-spacing: -0.03em;
     }
-
     @media (min-width: theme('screens.md')) {
         .typo-caps-huge {
             --font-size: 88;
             --line-height: 88;
         }
-        .typo-caps-3xl {
-            --font-size: 72;
-            --line-height: 72;
+    }
+    @media (min-width: theme('screens.lg')) {
+        .typo-caps-huge {
+            --font-size: 120;
+            --line-height: 120;
         }
+    }
+
+    .typo-caps-3xl,
+    .typo-caps-2xl {
+        @apply calc-fontsize uppercase;
+        --font-size: 48;
+        --line-height: 48;
+        letter-spacing: -0.03em;
+    }
+    @media (min-width: theme('screens.sm')) {
+        .typo-caps-3xl,
+        .typo-caps-2xl {
+            @apply calc-fontsize uppercase;
+            --font-size: 64;
+            --line-height: 64;
+            letter-spacing: -0.03em;
+        }
+    }
+    @media (min-width: theme('screens.md')) {
         .typo-caps-2xl {
             --font-size: 72;
             --line-height: 72;
@@ -271,10 +290,6 @@
     }
 
     @media (min-width: theme('screens.lg')) {
-        .typo-caps-huge {
-            --font-size: 120;
-            --line-height: 120;
-        }
         .typo-caps-3xl {
             --font-size: 88;
             --line-height: 88;

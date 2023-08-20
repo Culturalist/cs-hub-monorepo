@@ -67,13 +67,13 @@ export default function Menu(props: MenuProps) {
                 </svg>
             </button>
             <div className={styles.container}>
-                {/* MARKER */}
-                {marker && (
-                    <LinkWrapper link={marker.link} lang={lang} className={styles.markerWrapper}>
-                        <span className={styles.marker}>{markerCaption}</span>
-                    </LinkWrapper>
-                )}
                 <div className={styles.wrapper}>
+                    {/* MARKER */}
+                    {marker && (
+                        <LinkWrapper link={marker.link} lang={lang} className={styles.markerWrapper}>
+                            <span className={styles.marker}>{markerCaption}</span>
+                        </LinkWrapper>
+                    )}
                     {/* NAVIGATION */}
                     <nav className={styles.navigation}>
                         {links &&
