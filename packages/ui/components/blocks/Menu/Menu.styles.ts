@@ -12,10 +12,10 @@ const defaultStyles = {
     close: 'text-theme-text',
     menu: 'text-theme-header-text',
     container:
-        'absolute z-40 top-0 left-0 w-full h-screen pt-12 flex flex-col items-center gap-offset bg-theme-surface transitiion-opacity duration-300',
+        'absolute z-40 top-0 left-0 w-full h-[100dvh] pt-12 flex flex-col items-center gap-offset bg-theme-surface transitiion-opacity duration-300',
     markerWrapper: 'visible sm:invisible',
     marker: 'typo-caps-lg trim-line font-light text-center whitespace-nowrap',
-    wrapper: 'w-full h-[100svh] pb-32 flex flex-col items-center justify-between gap-offset',
+    wrapper: 'w-full h-full pb-32 flex flex-col items-center justify-between gap-offset',
     navigation: 'flex flex-col items-center gap-20',
     link: '',
     linkCaption: 'typo-caps-3xl trim-line hover:text-outline',
