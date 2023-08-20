@@ -4,13 +4,7 @@ export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
     ...,
     header {
         ...,
-        links[]-> {
-            ...,
-            file{
-                ...,
-                "url": asset->url
-            }
-        },
+        links[]->,
         marker {
             ...,
             link {
@@ -18,19 +12,14 @@ export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
                 file {
                     ...,
                     "url": asset->url
-                }
+                },
+                reference->
             }
         }
     },
     footer {
         ...,
-        links[]-> {
-            ...,
-            file{
-                ...,
-                "url": asset->url
-            }
-        },
+        links[]->,
         contacts {
             ...,
             fi[] {
@@ -42,7 +31,8 @@ export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
                         file{
                             ...,
                             "url": asset->url
-                        }
+                        },
+                        reference->
                     }
                 }
             },
@@ -55,7 +45,8 @@ export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
                         file{
                             ...,
                             "url": asset->url
-                        }
+                        },
+                        reference->
                     }
                 }
             },
@@ -68,7 +59,8 @@ export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
                         file{
                             ...,
                             "url": asset->url
-                        }
+                        },
+                        reference->
                     }
                 }
             }
@@ -83,7 +75,19 @@ export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
                 file{
                     ...,
                     "url": asset->url
-                }
+                },
+                reference->
+            }
+        },
+        links[] {
+            ...,
+            link {
+                ...,
+                file{
+                    ...,
+                    "url": asset->url
+                },
+                reference->
             }
         },
         theme->

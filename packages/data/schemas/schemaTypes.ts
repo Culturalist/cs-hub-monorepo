@@ -5,6 +5,7 @@ import {
     blockId,
     blockSection,
     blockCards,
+    blockLinks,
     normalizedSlug,
     portableText,
     localeString,
@@ -54,6 +55,7 @@ export default function schemaTypes(appName: string = 'hub') {
         cardManual,
         blockSection,
         blockCards,
+        blockLinks,
         elementLineup
     ].map(typeClass => typeClass(appName));
 
@@ -68,9 +70,10 @@ export default function schemaTypes(appName: string = 'hub') {
         note
     };
 
-    const appDocuments = globalConfig.apps[appName].schemas.documents.map(documentType =>
-        allDocuments[documentType](appName)
-    );
+    const appDocuments = globalConfig.apps[appName].schemas.documents.map(documentType => {
+        const typeObject = allDocuments[documentType];
+        if (typeObject) return typeObject(appName);
+    });
 
     return [...globalObjects, ...appObjects, ...systemDocuments, ...appDocuments];
 }

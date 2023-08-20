@@ -1,8 +1,6 @@
 import { defineField, defineType } from 'sanity';
-import { selectDefaultLocale } from '../../utils';
+import { joinLocaleStrings, selectDefaultLocale } from '../../utils';
 import { UsersIcon } from '@sanity/icons';
-import { LocaleString } from './localeString';
-import { LinkTyped } from './linkTyped';
 import { Label } from '../system';
 import { Person } from '../documents';
 
@@ -50,9 +48,7 @@ export default function elementLineup(appName: string = 'hub') {
             },
             prepare({ label, person1, person2, person3 }) {
                 const localeLabel = selectDefaultLocale(label, appName);
-                let names = selectDefaultLocale(person1, appName);
-                !!selectDefaultLocale(person2, appName) && (names += ', ' + selectDefaultLocale(person2, appName));
-                !!selectDefaultLocale(person3, appName) && (names += ', ' + selectDefaultLocale(person3, appName));
+                const names = joinLocaleStrings([person1, person2, person3], appName);
                 return {
                     title: localeLabel || 'Lineup',
                     subtitle: names || ''

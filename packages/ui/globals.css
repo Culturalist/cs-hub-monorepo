@@ -81,6 +81,7 @@
         --c-module-10: calc(10 * var(--metrics-module) + 9 * var(--metrics-gutter));
         --c-module-11: calc(11 * var(--metrics-module) + 10 * var(--metrics-gutter));
         --c-module-12: calc(12 * var(--metrics-module) + 11 * var(--metrics-gutter));
+        --c-module-16: calc(16 * var(--metrics-module) + 15 * var(--metrics-gutter));
 
         /* Swatches */
         --swatch-white: 255 255 255;
@@ -128,7 +129,7 @@
     }
 
     main {
-        @apply static xs:container mx-auto min-h-screen;
+        @apply static xs:container mx-auto;
     }
 
     body.lock-scroll {
@@ -296,7 +297,7 @@
         }
     }
 
-    .typo-caps-lxl {
+    .typo-caps-xl {
         @apply calc-fontsize uppercase;
         --font-size: 48;
         --line-height: 48;

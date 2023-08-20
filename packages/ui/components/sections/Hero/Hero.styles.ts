@@ -18,7 +18,8 @@ const defaultStyles = {
     short: 'typo-caps-huge',
     medium: 'typo-caps-3xl',
     long: 'typo-caps-2xl',
-    cards: ''
+    cards: '',
+    links: 'mb-gutter'
 };
 
 export const createStyles = ({ className, leadLength }: styleProps) => {

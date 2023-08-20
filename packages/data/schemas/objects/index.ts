@@ -1,6 +1,7 @@
 export { default as blockId } from './blockId';
 export { default as blockSection } from './blockSection';
 export { default as blockCards } from './blockCards';
+export { default as blockLinks } from './blockLinks';
 export { default as elementDate } from './elementDate';
 export { default as elementLineup } from './elementLineup';
 export { default as linkContact } from './linkContact';
@@ -20,6 +21,7 @@ export { default as cardManual } from './cardManual';
 
 export type { BlockCards } from './blockCards';
 export type { BlockSection } from './blockSection';
+export type { BlockLinks } from './blockLinks';
 export type { BodyBlock, BlockWithId } from './body';
 export type { CardManual } from './cardManual';
 export type { ElementDate } from './elementDate';

@@ -49,7 +49,7 @@ export default function blockCards(appName: string) {
                 const subtitle = `${localeTitle ? 'Cards ' : ''}${id || ''}`;
                 return {
                     title: localeTitle || 'Cards',
-                    subtitle: ''
+                    subtitle: subtitle
                 };
             }
         },

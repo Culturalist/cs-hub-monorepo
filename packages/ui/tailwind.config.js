@@ -100,6 +100,7 @@ module.exports = {
             m10: 'var(--c-module-10)',
             m11: 'var(--c-module-11)',
             m12: 'var(--c-module-12)',
+            m16: 'var(--c-module-16)',
             'bar-height': 'var(--c-bar-height)',
             'logo-height': 'var(--c-logo-height)',
             'header-height': 'var(--c-header-height)',
@@ -109,6 +110,20 @@ module.exports = {
             invert: {
                 'header-logo': 'var(--theme-header-logo)',
                 'footer-logo': 'var(--theme-footer-logo)'
+            },
+            maxWidth: {
+                m2: 'var(--c-module-2)',
+                m3: 'var(--c-module-3)',
+                m4: 'var(--c-module-4)',
+                m5: 'var(--c-module-5)',
+                m6: 'var(--c-module-6)',
+                m7: 'var(--c-module-7)',
+                m8: 'var(--c-module-8)',
+                m9: 'var(--c-module-9)',
+                m10: 'var(--c-module-10)',
+                m11: 'var(--c-module-11)',
+                m12: 'var(--c-module-12)',
+                m16: 'var(--c-module-16)'
             }
         }
     },

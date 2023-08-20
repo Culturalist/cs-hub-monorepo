@@ -18,6 +18,6 @@ export default function body(parent: DocumentAny) {
         name: `body${capitalize(parent)}`,
         title: 'Body',
         type: 'array',
-        of: [{ type: 'blockSection' }, { type: 'blockCards' }]
+        of: [{ type: 'blockSection' }, { type: 'blockCards' }, { type: 'blockLinks' }]
     });
 }

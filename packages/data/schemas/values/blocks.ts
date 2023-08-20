@@ -63,13 +63,6 @@ export const themeColors: string[] = [
     '#A0C1F5' //CS Sky Blue
 ];
 
-export const actionTypeList = [
-    { title: 'Cards', value: 'cards' },
-    { title: 'Links', value: 'links' },
-    { title: 'Buttons', value: 'buttons' }
-];
-export type ActionType = 'cards' | 'links' | 'buttons';
-
 export const cardsTypeList = [
     { title: 'Manual', value: 'manual' },
     { title: 'Projects', value: 'projects' },
@@ -80,3 +73,15 @@ export const cardsTypeList = [
 export type CardsType = 'manual' | 'hero' | 'projects' | 'posts' | 'people' | 'events';
 
 export type Card = CardManual;
+
+export const actionTypeList = [
+    { title: 'Cards', value: 'cards' },
+    { title: 'Links', value: 'links' },
+    { title: 'Buttons', value: 'buttons' }
+];
+export const linksTypeList = [
+    { title: 'List', value: 'list' },
+    { title: 'Buttons', value: 'buttons' }
+];
+export type LinksLayout = 'list' | 'buttons' | 'links';
+export type HeroActionType = LinksLayout | 'cards';

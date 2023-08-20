@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { ActionType, actionTypeList } from '../values';
+import { actionTypeList, HeroActionType } from '../values';
 import { MediaBlock } from '../objects/mediaArray';
 import { LocaleString } from '../objects/localeString';
 import { CardManual } from '../objects/cardManual';
@@ -10,7 +10,7 @@ export interface Hero {
     _type: 'hero';
     covers?: MediaBlock[];
     lead?: LocaleString;
-    actionType: ActionType;
+    actionType: HeroActionType;
     cards?: CardManual[];
     links?: LinkCaptioned[];
     theme?: Theme;
