@@ -1,3 +1,5 @@
+import { ImageObject, VideoObject } from 'globals';
+
 export const useMediaList = [
     { title: 'Desktop', value: 'desktop' },
     { title: 'Mobile', value: 'mobile' }
@@ -22,3 +24,6 @@ export const mediaArrays: Record<MediaParent, MediaBlockFormat[]> = {
     cover: ['mediaImage', 'mediaVideo'],
     block: ['mediaImage', 'mediaVideo', 'mediaEmbed']
 };
+
+export type ImageSources = Partial<Record<UseMedia, ImageObject>>;
+export type VideoSources = Partial<Record<UseMedia, VideoObject>>;

@@ -5,7 +5,8 @@ import { purgeEmptyStrings } from 'weresk/utils';
 export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: ''
+    container: 'flex data-[trim=x]:flex-row data-[trim=y]:flex-col justify-center items-stretch overflow-hidden',
+    video: 'object-cover'
 };
 
 export const createStyles = ({ className }: styleProps) => {

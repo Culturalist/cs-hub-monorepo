@@ -15,7 +15,7 @@ const defaultStyles = {
     title: 'typo-title-sm md:typo-title trim-line break-words md:break-normal hyphens-auto sm:hyphens-none line-clamp-4 sm:line-clamp-5 lg:line-clamp-6',
     subtitleWrapper: '',
     subtitle: 'typo-short trim-line min-w-0 whitespace-nowrap overflow-hidden text-ellipsis',
-    cover: '',
+    cover: 'w-full h-full',
     onHover: 'invisible group-hover:visible'
 };
 

@@ -1,7 +1,7 @@
 import { DefaultProps, ImageObject } from 'globals';
 import { createStyles } from './PageImage.styles';
 import { LocaleString, UseMedia } from 'data';
-import { AdaptiveDimentions, box } from '../../../../utils';
+import { AdaptiveDimentions, box, boxPx } from '../../../../utils';
 import { getImageUrl } from 'globals/lib/sanity';
 import Image from '../../Image';
 
@@ -29,10 +29,10 @@ export default function PageImage(props: PageImageProps) {
 
     const coverUrls = desktop &&
         mobile && {
-            xs: getImageUrl(mobile, ...sizes.xs.map(s => s * 2)),
-            sm: getImageUrl(mobile, ...sizes.sm.map(s => s * 2)),
-            md: getImageUrl(desktop, ...sizes.md.map(s => s * 2)),
-            lg: getImageUrl(desktop, ...sizes.lg.map(s => s * 2))
+            xs: getImageUrl(mobile, ...boxPx(sizes, 'xs')),
+            sm: getImageUrl(mobile, ...boxPx(sizes, 'sm')),
+            md: getImageUrl(desktop, ...boxPx(sizes, 'md')),
+            lg: getImageUrl(desktop, ...boxPx(sizes, 'lg'))
         };
 
     return (

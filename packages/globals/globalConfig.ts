@@ -83,6 +83,12 @@ const globalConfig: GlobalConfig = {
         md: 984,
         lg: 1268
     },
+    pd: {
+        xs: 3,
+        sm: 2,
+        md: 2,
+        lg: 2
+    },
     metrics: {
         unit: 4,
         offset: 20,

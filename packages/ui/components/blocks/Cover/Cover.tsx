@@ -1,8 +1,8 @@
-import { CoverBlock, CoverParent, LocaleString, UseMedia } from 'data/schemas';
-import { DefaultProps, ImageObject } from 'globals';
-import { localizeString } from 'weresk/utils';
+import { CoverBlock, CoverParent, ImageSources, LocaleString, VideoSources } from 'data/schemas';
+import { DefaultProps } from 'globals';
 import { createStyles } from './Cover.styles';
 import HeroImage from './HeroImage';
+import HeroVideo from './HeroVideo';
 import PageImage from './PageImage';
 
 interface CoverProps extends DefaultProps {
@@ -14,8 +14,8 @@ interface CoverProps extends DefaultProps {
 
 export default function Cover(props: CoverProps) {
     const { array, caption, alt, parent = 'page', lang, className } = props;
-    let images: Partial<Record<UseMedia, ImageObject>> = {};
-    let video: Partial<Record<UseMedia, string>> = {};
+    let images: ImageSources = {};
+    let video: VideoSources = {};
     const styles = createStyles({ className, parent });
 
     array &&
@@ -30,13 +30,17 @@ export default function Cover(props: CoverProps) {
                 cover.url &&
                     cover.useMedia &&
                     cover.useMedia.length > 0 &&
-                    cover.useMedia.forEach(use => (video[use] = cover.url));
+                    cover.useMedia.forEach(use => (video[use] = cover));
             }
         });
 
-    // if (Object.keys(images).length == 0 && Object.keys(video).length == 0) return null;
-
-    if (true) {
+    if (Object.keys(video).length > 0) {
+        if (parent == 'hero')
+            return <HeroVideo sources={video} posters={images} lang={lang} className={styles.container} />;
+        else if (parent == 'page') {
+        }
+        // return <PageImage sources={images} alt={alt || caption} lang={lang} className={styles.container} />;
+    } else if (Object.keys(images).length > 0) {
         if (parent == 'hero')
             return <HeroImage sources={images} alt={alt || caption} lang={lang} className={styles.container} />;
         else if (parent == 'page')

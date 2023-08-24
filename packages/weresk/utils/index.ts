@@ -8,3 +8,4 @@ export { objectMap } from './objectMap';
 export { safeId } from './safeId';
 export { purgeEmptyStrings } from './purgeEmptyStrings';
 export { setCSSVariable } from './setCSSVariable';
+export { mapKeys } from './mapKeys';

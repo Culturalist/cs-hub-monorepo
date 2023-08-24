@@ -31,6 +31,7 @@ export interface GlobalConfig {
     apps: Record<string, AppConfig>;
     routes: Record<DocumentApp, string>;
     breakpoints: Record<Breakpoint, number>;
+    pd: Record<Breakpoint, number>;
     metrics: {
         unit: number;
         offset: number;

@@ -1,11 +1,11 @@
-import { DefaultProps, ImageObject } from 'globals';
+import { Breakpoint, DefaultProps } from 'globals';
 import { createStyles } from './HeroImage.styles';
-import { LocaleString, UseMedia } from 'data';
-import { AdaptiveDimentions, imageBoxToFill, imageWidthToFill } from '../../../../utils';
+import { ImageSources, LocaleString } from 'data/schemas';
+import { AdaptiveDimentions, BoxDimentions, boxFromWidthRatio, boxPx, breakpoints } from '../../../../utils';
 import { getImageUrl } from 'globals/lib/sanity';
 import Image from '../../Image';
-
-export type ImageSources = Partial<Record<UseMedia, ImageObject>>;
+import globalConfig from 'globals/globalConfig';
+import { mapKeys } from 'weresk/utils';
 
 interface HeroImageProps extends DefaultProps {
     sources: ImageSources;
@@ -20,10 +20,6 @@ export default function HeroImage(props: HeroImageProps) {
     const desktop = sources.desktop || sources.mobile;
     const mobile = sources.mobile || sources.desktop;
 
-    const aspectRatio = {
-        desktop: desktop?.asset?.metadata?.dimensions?.aspectRatio,
-        mobile: mobile?.asset?.metadata?.dimensions?.aspectRatio
-    };
     const container = {
         xs: 2 / 3,
         sm: 1,
@@ -31,19 +27,16 @@ export default function HeroImage(props: HeroImageProps) {
         lg: 16 / 9
     };
 
-    const sizes: AdaptiveDimentions = {
-        xs: imageBoxToFill(aspectRatio.mobile, container.xs, 'xs'),
-        sm: imageBoxToFill(aspectRatio.mobile, container.sm, 'sm'),
-        md: imageBoxToFill(aspectRatio.desktop, container.md, 'md'),
-        lg: imageBoxToFill(aspectRatio.desktop, container.lg, 'lg')
-    };
+    const sizes: AdaptiveDimentions = mapKeys<Breakpoint, BoxDimentions>(breakpoints, (br: Breakpoint) =>
+        boxFromWidthRatio(globalConfig.breakpoints[br], container[br])
+    );
 
     const coverUrls = desktop &&
         mobile && {
-            xs: getImageUrl(mobile, ...sizes.xs.map(s => s * 2)),
-            sm: getImageUrl(mobile, ...sizes.sm.map(s => s * 2)),
-            md: getImageUrl(desktop, ...sizes.md.map(s => s * 2)),
-            lg: getImageUrl(desktop, ...sizes.lg.map(s => s * 2))
+            xs: getImageUrl(mobile, ...boxPx(sizes, 'xs')),
+            sm: getImageUrl(mobile, ...boxPx(sizes, 'sm')),
+            md: getImageUrl(desktop, ...boxPx(sizes, 'md')),
+            lg: getImageUrl(desktop, ...boxPx(sizes, 'lg'))
         };
 
     return (

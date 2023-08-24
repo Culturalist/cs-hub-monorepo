@@ -1,11 +1,10 @@
-import { AdaptiveDimentions, box } from '../../../../utils/dimentions';
+import { AdaptiveDimentions, box, boxPx, breakpoints } from '../../../../utils/dimentions';
 import { CardManual } from 'data/schemas';
-import { DefaultProps } from 'globals';
+import { Breakpoint, DefaultProps } from 'globals';
 import { getImageUrl } from 'globals/lib/sanity';
-import { localizeString, neatTextBreaks } from 'weresk/utils';
+import { localizeString, mapKeys, neatTextBreaks } from 'weresk/utils';
 import { createStyles } from './CardHero.styles';
 import LinkWrapper from '../../LinkWrapper';
-import globalConfig from 'globals/globalConfig';
 import Image from '../../Image';
 
 interface CardManualProps extends DefaultProps {
@@ -26,12 +25,8 @@ export default function CardManual(props: CardManualProps) {
         lg: box([8, 5], 'lg')
     };
 
-    const coverUrls = cover && {
-        xs: getImageUrl(cover, ...sizes.xs.map(s => s * 2)),
-        sm: getImageUrl(cover, ...sizes.sm.map(s => s * 2)),
-        md: getImageUrl(cover, ...sizes.md.map(s => s * 2)),
-        lg: getImageUrl(cover, ...sizes.lg.map(s => s * 2))
-    };
+    const coverUrls =
+        cover && mapKeys<Breakpoint, string>(breakpoints, (br: Breakpoint) => getImageUrl(cover, ...boxPx(sizes, br)));
 
     const styles = createStyles({ className, cardSurface, coverOnHover });
 
