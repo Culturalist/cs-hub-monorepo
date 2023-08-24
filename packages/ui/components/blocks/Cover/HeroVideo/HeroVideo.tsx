@@ -25,35 +25,25 @@ export default function HeroVideo(props: HeroVideoProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [device, setDevice] = useState<UseMedia>('desktop');
     const [trim, setTrim] = useState<'x' | 'y'>('x');
-    // const [source, setSource] = useState(sources[device]);
-    // const [poster, setPoster] = useState(posters[device]);
-    // const videoId = `video-${sources[device]?.asset?._id || ''}`;
+    const videoId = sources[device]?.asset?._id;
 
     const styles = createStyles({ className });
 
     function validateSize() {
         setDevice(window.innerWidth > window.innerHeight ? 'desktop' : 'mobile');
         if (videoRef.current) {
-            setTrim(
-                videoRef.current.videoWidth / videoRef.current.videoHeight > window.innerWidth / window.innerHeight
-                    ? 'x'
-                    : 'y'
-            );
-            console.log(
-                videoRef.current.videoWidth / videoRef.current.videoHeight,
-                window.innerWidth / window.innerHeight
-            );
+            if (videoRef.current?.videoHeight) {
+                setTrim(
+                    videoRef.current.videoWidth / videoRef.current.videoHeight > window.innerWidth / window.innerHeight
+                        ? 'x'
+                        : 'y'
+                );
+            } else {
+                setTimeout(validateSize, 500);
+            }
         }
+        console.log(videoRef.current?.videoHeight);
     }
-
-    // useEffect(() => {
-    //     setSource(sources[device]);
-    //     setPoster(posters[device]);
-    // }, [device]);
-
-    // useEffect(() => {
-    //     validateSize();
-    // }, [videoRef.current]);
 
     useEffect(() => {
         validateSize();
@@ -62,22 +52,22 @@ export default function HeroVideo(props: HeroVideoProps) {
             window.addEventListener('resize', validateSize);
             return () => window.removeEventListener('resize', validateSize);
         }
-    }, []);
+    }, [videoRef]);
 
     if (!sources[device]) return null;
 
     return (
         <div data-trim={trim} className={styles.container}>
             <video
-                // id={videoId}
+                id={videoId}
                 ref={videoRef}
-                // poster={
-                //     posters[device] &&
-                //     getImageUrl(
-                //         posters[device]!,
-                //         device == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
-                //     )
-                // }
+                poster={
+                    posters[device] &&
+                    getImageUrl(
+                        posters[device]!,
+                        device == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
+                    )
+                }
                 className={styles.video}
                 playsInline={true}
                 autoPlay={true}
