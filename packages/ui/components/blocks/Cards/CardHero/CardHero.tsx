@@ -6,6 +6,7 @@ import { localizeString, neatTextBreaks } from 'weresk/utils';
 import { createStyles } from './CardHero.styles';
 import LinkWrapper from '../../LinkWrapper';
 import globalConfig from 'globals/globalConfig';
+import Image from '../../Image';
 
 interface CardManualProps extends DefaultProps {
     data: CardManual;
@@ -48,29 +49,7 @@ export default function CardManual(props: CardManualProps) {
                     </p>
                 )}
             </div>
-            {coverUrls && (
-                <picture className={styles.cover}>
-                    <source
-                        srcSet={coverUrls.xs}
-                        media={`(max-width: ${globalConfig.breakpoints.sm - 1})`}
-                        width={sizes.xs[0]}
-                        height={sizes.xs[1]}
-                    />
-                    <source
-                        srcSet={coverUrls.sm}
-                        media={`(max-width: ${globalConfig.breakpoints.md - 1})`}
-                        width={sizes.sm[0]}
-                        height={sizes.sm[1]}
-                    />
-                    <source
-                        srcSet={coverUrls.md}
-                        media={`(max-width: ${globalConfig.breakpoints.lg - 1})`}
-                        width={sizes.md[0]}
-                        height={sizes.md[1]}
-                    />
-                    <img role="img" src={coverUrls.lg} width={sizes.lg[0]} height={sizes.lg[1]} alt={title} />
-                </picture>
-            )}
+            <Image sources={coverUrls} sizes={sizes} alt={data.title} lang={lang} className={styles.cover} />
         </LinkWrapper>
     );
 }

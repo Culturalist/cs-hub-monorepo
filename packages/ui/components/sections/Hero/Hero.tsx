@@ -3,6 +3,7 @@ import { DefaultProps } from 'globals';
 import { localizeString, neatTextBreaks } from 'weresk/utils';
 import { getHeroVariables } from '../../../utils';
 import { Cards } from '../../blocks';
+import { Cover } from '../../blocks/Cover';
 import Links from '../../blocks/Links';
 import { createStyles } from './Hero.styles';
 
@@ -36,9 +37,10 @@ export default function Hero(props: HeroProps) {
                     <Links links={links} layout={actionType} lang={lang} className={styles.links} />
                 )}
             </div>
-            <div className={styles.bg}></div>
-            {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
-            <style>{getHeroVariables(theme)}</style>
+            <div className={styles.bg}>
+                <Cover array={covers} parent="hero" lang={lang} className={styles.cover} />
+            </div>
+            {theme && <style>{getHeroVariables(theme)}</style>}
         </div>
     );
 }

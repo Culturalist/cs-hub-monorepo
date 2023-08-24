@@ -4,8 +4,7 @@ import { InlineElementIcon } from '@sanity/icons';
 import { LocaleString } from './localeString';
 import { LinkTyped } from './linkTyped';
 import { themeColors } from '../values';
-import { SanityImageObject } from '@sanity/image-url/lib/types/types';
-import { Color } from 'globals';
+import { Color, ImageObject } from 'globals';
 
 export interface CardManual {
     _type: 'cardManual';
@@ -13,7 +12,7 @@ export interface CardManual {
     title?: LocaleString;
     subtitle?: LocaleString;
     link?: LinkTyped;
-    cover?: SanityImageObject;
+    cover?: ImageObject;
     cardSurface?: Color;
     // coverOnHover?: boolean;
 }

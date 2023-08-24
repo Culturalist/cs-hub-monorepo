@@ -21,7 +21,11 @@ import {
     mediaEmbed,
     cardManual,
     elementLineup,
-    elementDate
+    elementDate,
+    coverImage,
+    coverVideo,
+    coverArray,
+    captonAlt
 } from './objects';
 import { page, person, post, project, event, note } from './documents';
 import { header, footer, hero, metadataApp, metadataPage } from './sections';
@@ -33,6 +37,7 @@ export default function schemaTypes(appName: string = 'hub') {
         ...portableTextParents.map(blockParent => localePortableText(blockParent)),
         ...bodyParents.map(bodyParent => body(bodyParent)),
         ...mediaParents.map(mediaParent => mediaArray(mediaParent)),
+        coverArray(),
         localeString(),
         localeText(),
         linkContact(),
@@ -41,7 +46,8 @@ export default function schemaTypes(appName: string = 'hub') {
         metadataPage(),
         blockId(),
         hero(),
-        elementDate()
+        elementDate(),
+        captonAlt()
     ];
 
     const appObjects = [
@@ -52,6 +58,8 @@ export default function schemaTypes(appName: string = 'hub') {
         mediaImage,
         mediaVideo,
         mediaEmbed,
+        coverImage,
+        coverVideo,
         cardManual,
         blockSection,
         blockCards,

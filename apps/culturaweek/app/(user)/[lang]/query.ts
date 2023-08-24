@@ -68,6 +68,14 @@ export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
     },
     hero {
         ...,
+        covers[] {
+            ...,
+            "url": asset->url,
+            asset->{
+                ...,
+                metadata
+            }
+        },
         cards[] {
             ...,
             link {

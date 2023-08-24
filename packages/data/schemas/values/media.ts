@@ -15,6 +15,8 @@ export interface MediaElement {
 export type MediaParent = 'hero' | 'cover' | 'block';
 export const mediaParents: MediaParent[] = ['hero', 'cover', 'block'];
 
+export type CoverParent = 'hero' | 'page';
+
 export const mediaArrays: Record<MediaParent, MediaBlockFormat[]> = {
     hero: ['mediaImage', 'mediaVideo'],
     cover: ['mediaImage', 'mediaVideo'],

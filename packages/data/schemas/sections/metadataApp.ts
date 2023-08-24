@@ -1,10 +1,10 @@
 import { defineType, defineField } from 'sanity';
-import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { LocaleString } from '../objects/localeString';
+import { ImageObject } from 'globals';
 
 export interface MetadataApp {
     _type: 'metadataHome';
-    sharedImage?: SanityImageObject;
+    sharedImage?: ImageObject;
     title?: LocaleString;
     template?: LocaleString;
     description?: LocaleString;

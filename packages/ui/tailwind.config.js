@@ -101,6 +101,8 @@ module.exports = {
             m11: 'var(--c-module-11)',
             m12: 'var(--c-module-12)',
             m16: 'var(--c-module-16)',
+            m20: 'var(--c-module-20)',
+            m24: 'var(--c-module-24)',
             'bar-height': 'var(--c-bar-height)',
             'logo-height': 'var(--c-logo-height)',
             'header-height': 'var(--c-header-height)',
@@ -123,7 +125,9 @@ module.exports = {
                 m10: 'var(--c-module-10)',
                 m11: 'var(--c-module-11)',
                 m12: 'var(--c-module-12)',
-                m16: 'var(--c-module-16)'
+                m16: 'var(--c-module-16)',
+                m20: 'var(--c-module-20)',
+                m24: 'var(--c-module-24)'
             }
         }
     },

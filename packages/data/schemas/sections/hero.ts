@@ -1,20 +1,21 @@
 import { defineField, defineType } from 'sanity';
 import { actionTypeList, HeroActionType } from '../values';
-import { MediaBlock } from '../objects/mediaArray';
 import { LocaleString } from '../objects/localeString';
 import { CardManual } from '../objects/cardManual';
 import { LinkCaptioned } from '../objects/linkCaptioned';
 import { Theme } from '../system/theme';
+import { CoverBlock } from '../objects';
 
 export interface Hero {
     _type: 'hero';
-    covers?: MediaBlock[];
+    covers?: CoverBlock[];
     lead?: LocaleString;
     actionType: HeroActionType;
     cards?: CardManual[];
     links?: LinkCaptioned[];
     theme?: Theme;
     coverOnHover?: boolean;
+    hideFooter?: boolean;
 }
 
 export default function hero() {
@@ -36,7 +37,7 @@ export default function hero() {
             defineField({
                 name: 'covers',
                 title: 'Covers',
-                type: 'mediaArrayHero'
+                type: 'coverArray'
             }),
             defineField({
                 name: 'lead',
@@ -84,6 +85,13 @@ export default function hero() {
             defineField({
                 name: 'coverOnHover',
                 title: 'Show cards cover only on hover',
+                type: 'boolean',
+                initialValue: false,
+                fieldset: 'style'
+            }),
+            defineField({
+                name: 'hideFooter',
+                title: 'Hide footer on main page',
                 type: 'boolean',
                 initialValue: false,
                 fieldset: 'style'

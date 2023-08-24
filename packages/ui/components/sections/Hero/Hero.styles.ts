@@ -11,15 +11,16 @@ type LeadSize = 'short' | 'medium' | 'long';
 
 const defaultStyles = {
     container: 'hero',
-    wrapper: 'h-hero-height px-offset pb-offset flex flex-col gap-module justify-between transition-transform',
-    bg: 'absolute -z-50 inset-0 w-full h-[100svh] bg-theme-surface transition-transform',
+    wrapper: 'h-hero-height px-offset pb-offset flex flex-col gap-module justify-between',
     leadWrapper: '',
     lead: 'trim-line text-outline break-words sm:break-normal hyphens-auto sm:hyphens-none text-theme-text',
     short: 'typo-caps-huge',
     medium: 'typo-caps-3xl',
     long: 'typo-caps-2xl',
     cards: '',
-    links: 'mb-gutter'
+    links: 'mb-gutter',
+    bg: 'absolute -z-50 inset-0 w-full h-[100svh] bg-theme-surface',
+    cover: 'w-full h-full'
 };
 
 export const createStyles = ({ className, leadLength }: styleProps) => {

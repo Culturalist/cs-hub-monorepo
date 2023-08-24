@@ -1,4 +1,4 @@
-import { SanityImageObject } from '@sanity/image-url/lib/types/types';
+import { ImageObject } from 'globals';
 import globalConfig from 'globals/globalConfig';
 import { defineField, defineType } from 'sanity';
 import { filterByDocumentApp } from '../../utils';
@@ -8,7 +8,7 @@ import { PageDocument } from '../values';
 
 export interface Footer {
     _type: 'footer';
-    logo?: SanityImageObject;
+    logo?: ImageObject;
     links?: PageDocument[];
     contacts?: LocalePortableText;
     social?: LinkContact[];

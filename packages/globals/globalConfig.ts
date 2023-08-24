@@ -87,7 +87,7 @@ const globalConfig: GlobalConfig = {
         unit: 4,
         offset: 20,
         xs: {
-            module: 12,
+            module: 32,
             gutter: 8
         },
         sm: {

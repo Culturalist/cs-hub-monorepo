@@ -14,8 +14,10 @@ export default async function Home({ params: { lang } }: DefaultPageProps) {
 
     return (
         <>
-            <Hero data={data.hero} lang={lang} />
-            {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+            <main>
+                <Hero data={data.hero} lang={lang} />
+                {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+            </main>
             <style>{getPageVariables(data.theme)}</style>
         </>
     );

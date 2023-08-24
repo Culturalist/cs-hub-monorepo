@@ -22,6 +22,8 @@ export default async function RootLayout({ children, params: { lang } }: Default
             </html>
         );
 
+    const showFooter = !data?.hero?.hideFooter;
+
     return (
         <html lang={lang} data-useragent="hhea">
             <body>
@@ -29,8 +31,8 @@ export default async function RootLayout({ children, params: { lang } }: Default
                     <ThemeInit />
                 </Suspense>
                 <Header data={data.header} title={data.title} lang={lang} />
-                <main>{children}</main>
-                <Footer data={data.footer} lang={lang} />
+                {children}
+                {showFooter && <Footer data={data.footer} lang={lang} />}
             </body>
         </html>
     );

@@ -1,4 +1,4 @@
-import { SanityImageObject } from '@sanity/image-url/lib/types/types';
+import { ImageObject } from 'globals';
 import globalConfig from 'globals/globalConfig';
 import { defineField, defineType } from 'sanity';
 import { filterByDocumentApp, getAppLanguageList } from '../../utils';
@@ -7,7 +7,7 @@ import { PageDocument } from '../values';
 
 export interface Header {
     _type: 'header';
-    logo?: SanityImageObject;
+    logo?: ImageObject;
     marker?: LinkCaptioned;
     links?: PageDocument[];
     languages?: string[];

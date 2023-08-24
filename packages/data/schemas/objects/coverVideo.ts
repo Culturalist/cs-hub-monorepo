@@ -2,23 +2,20 @@ import { defineType, defineField } from 'sanity';
 import { PlayIcon } from '@sanity/icons';
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { UseMedia, useMediaInitialValue, useMediaList } from '../values';
-import { LocaleString } from './localeString';
 import { selectDefaultLocale } from '../../utils';
 import { caseTransform } from 'weresk/utils';
 
-export interface MediaVideo {
-    _type: 'mediaVideo';
+export interface CoverVideo {
+    _type: 'coverVideo';
     _key: string;
     asset?: SanityAsset;
     url?: string;
     useMedia: UseMedia[];
-    alt?: LocaleString;
-    caption?: LocaleString;
 }
 
-export default function mediaVideo(appName: string = 'hub') {
+export default function coverVideo(appName: string = 'hub') {
     return defineType({
-        name: 'mediaVideo',
+        name: 'coverVideo',
         title: 'Video',
         type: 'file',
         description: 'Accepted formats: .mp4',
@@ -37,36 +34,15 @@ export default function mediaVideo(appName: string = 'hub') {
                     // layout: 'grid'
                 },
                 validation: Rule => Rule.required()
-            }),
-            defineField({
-                name: 'alt',
-                title: 'Alternative text',
-                type: 'localeString',
-                options: {
-                    collapsible: true,
-                    collapsed: true
-                }
-            }),
-            defineField({
-                name: 'caption',
-                title: 'Caption',
-                type: 'localeString',
-                options: {
-                    collapsible: true,
-                    collapsed: true
-                }
             })
         ],
         preview: {
             select: {
-                alt: 'alt',
-                caption: 'caption',
                 use: 'useMedia'
             },
-            prepare({ alt, caption, use }) {
-                const title = selectDefaultLocale(alt, appName) || selectDefaultLocale(caption, appName);
+            prepare({ use }) {
                 return {
-                    title: title || 'Video',
+                    title: 'Video',
                     subtitle: use && use.length > 0 ? caseTransform(use.join(' | '), 'title') : ''
                 };
             }

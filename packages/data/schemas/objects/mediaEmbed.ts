@@ -50,12 +50,20 @@ export default function mediaEmbed(appName: string = 'hub') {
             defineField({
                 name: 'alt',
                 title: 'Alternative text',
-                type: 'localeString'
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                }
             }),
             defineField({
                 name: 'caption',
                 title: 'Caption',
-                type: 'localeString'
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                }
             })
         ],
         preview: {

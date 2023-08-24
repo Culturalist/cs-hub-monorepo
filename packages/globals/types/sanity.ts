@@ -1,4 +1,4 @@
-import { SanityAsset } from '@sanity/image-url/lib/types/types';
+import { SanityAsset, SanityImageDimensions, SanityImageObject } from '@sanity/image-url/lib/types/types';
 
 export interface Span {
     _type: 'span';
@@ -56,4 +56,12 @@ export interface Color {
 export interface VideoObject {
     asset?: SanityAsset;
     url?: string;
+}
+
+export interface ImageObject extends SanityImageObject {
+    asset: {
+        metadata?: {
+            dimensions?: SanityImageDimensions;
+        };
+    };
 }

@@ -82,6 +82,8 @@
         --c-module-11: calc(11 * var(--metrics-module) + 10 * var(--metrics-gutter));
         --c-module-12: calc(12 * var(--metrics-module) + 11 * var(--metrics-gutter));
         --c-module-16: calc(16 * var(--metrics-module) + 15 * var(--metrics-gutter));
+        --c-module-20: calc(20 * var(--metrics-module) + 19 * var(--metrics-gutter));
+        --c-module-24: calc(24 * var(--metrics-module) + 23 * var(--metrics-gutter));
 
         /* Swatches */
         --swatch-white: 255 255 255;
