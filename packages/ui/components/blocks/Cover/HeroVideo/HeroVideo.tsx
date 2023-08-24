@@ -12,7 +12,7 @@ interface HeroVideoProps extends DefaultProps {
 }
 
 export default function HeroVideo(props: HeroVideoProps) {
-    const { lang, className } = props;
+    const { className } = props;
     const sources = {
         mobile: props.sources?.mobile || props.sources?.desktop,
         desktop: props.sources?.desktop || props.sources?.mobile
@@ -25,9 +25,9 @@ export default function HeroVideo(props: HeroVideoProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [device, setDevice] = useState<UseMedia>('desktop');
     const [trim, setTrim] = useState<'x' | 'y'>('x');
-    const [source, setSource] = useState(sources[device]);
-    const [poster, setPoster] = useState(posters[device]);
-    const videoId = source && `video-${source.asset?._id}`;
+    // const [source, setSource] = useState(sources[device]);
+    // const [poster, setPoster] = useState(posters[device]);
+    // const videoId = `video-${sources[device]?.asset?._id || ''}`;
 
     const styles = createStyles({ className });
 
@@ -46,17 +46,17 @@ export default function HeroVideo(props: HeroVideoProps) {
         }
     }
 
-    useEffect(() => {
-        setSource(sources[device]);
-        setPoster(posters[device]);
-    }, [device]);
+    // useEffect(() => {
+    //     setSource(sources[device]);
+    //     setPoster(posters[device]);
+    // }, [device]);
+
+    // useEffect(() => {
+    //     validateSize();
+    // }, [videoRef.current]);
 
     useEffect(() => {
         validateSize();
-    }, [videoRef.current]);
-
-    useEffect(() => {
-        // validateSize();
 
         if (responsive) {
             window.addEventListener('resize', validateSize);
@@ -64,16 +64,19 @@ export default function HeroVideo(props: HeroVideoProps) {
         }
     }, []);
 
-    if (!source) return null;
+    if (!sources[device]) return null;
 
     return (
         <div data-trim={trim} className={styles.container}>
             <video
-                id={videoId}
+                // id={videoId}
                 ref={videoRef}
                 poster={
-                    poster &&
-                    getImageUrl(poster, device == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg)
+                    posters[device] &&
+                    getImageUrl(
+                        posters[device]!,
+                        device == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
+                    )
                 }
                 className={styles.video}
                 playsInline={true}
@@ -82,7 +85,7 @@ export default function HeroVideo(props: HeroVideoProps) {
                 loop={true}
                 controls={false}
             >
-                <source src={source.url} type="video/mp4" />
+                <source src={sources[device]?.url} type="video/mp4" />
             </video>
         </div>
     );
