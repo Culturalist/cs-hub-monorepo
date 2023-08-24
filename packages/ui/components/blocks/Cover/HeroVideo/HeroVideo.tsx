@@ -71,13 +71,13 @@ export default function HeroVideo(props: HeroVideoProps) {
             <video
                 // id={videoId}
                 ref={videoRef}
-                poster={
-                    posters[device] &&
-                    getImageUrl(
-                        posters[device]!,
-                        device == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
-                    )
-                }
+                // poster={
+                //     posters[device] &&
+                //     getImageUrl(
+                //         posters[device]!,
+                //         device == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
+                //     )
+                // }
                 className={styles.video}
                 playsInline={true}
                 autoPlay={true}
