@@ -39,6 +39,10 @@ export default function HeroVideo(props: HeroVideoProps) {
                     ? 'x'
                     : 'y'
             );
+            console.log(
+                videoRef.current.videoWidth / videoRef.current.videoHeight,
+                window.innerWidth / window.innerHeight
+            );
         }
     }
 
@@ -49,6 +53,10 @@ export default function HeroVideo(props: HeroVideoProps) {
 
     useEffect(() => {
         validateSize();
+    }, [videoRef.current]);
+
+    useEffect(() => {
+        // validateSize();
 
         if (responsive) {
             window.addEventListener('resize', validateSize);
