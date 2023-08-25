@@ -70,6 +70,7 @@ const globalConfig: GlobalConfig = {
         }
     },
     routes: {
+        app: '',
         page: '',
         person: 'person',
         post: 'post',

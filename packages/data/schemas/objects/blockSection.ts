@@ -1,44 +1,78 @@
-import { defineField, defineType } from 'sanity';
+import { defineField, defineType, Slug } from 'sanity';
 import { SplitHorizontalIcon } from '@sanity/icons';
 import { selectDefaultLocale } from '../../utils';
-import { BlockWithId } from './body';
 import { LocalePortableText } from './localePortableText';
+import globalConfig from 'globals/globalConfig';
+import { LocaleString } from './localeString';
+import { DocumentApp } from '../values';
+import { capitalize } from 'weresk';
 
-export interface BlockSection extends BlockWithId {
-    _type: 'blockSection';
+export interface BlockSection {
+    _type: `blockSection${Capitalize<DocumentApp>}`;
+    _key: string;
+    title?: LocaleString;
     content?: LocalePortableText;
+    indexTitle?: LocaleString;
+    blockId?: Slug;
 }
 
-export default function blockSection(appName: string) {
+export default function blockSection(parent: DocumentApp, appName: string) {
+    const lang = globalConfig.apps[appName].localization.default;
     return defineType({
-        name: 'blockSection',
+        name: `blockSection${capitalize(parent)}`,
         title: 'Section',
         type: 'object',
+        fieldsets: [
+            {
+                name: 'index',
+                title: 'Index',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                }
+            }
+        ],
         fields: [
+            defineField({
+                name: 'title',
+                title: 'Section title',
+                description: 'Will be visible on the page',
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                }
+            }),
             defineField({
                 name: 'content',
                 title: 'Content',
-                type: 'localePortableTextSection'
+                type: `bodySection${capitalize(parent)}`
             }),
             defineField({
-                name: 'title',
+                name: 'indexTitle',
                 title: 'Index title',
-                description: 'Will be used only for page index',
-                type: 'blockId'
+                description: 'Manual override for title used in page index',
+                type: 'localeString',
+                fieldset: 'index'
             }),
             defineField({
                 name: 'blockId',
                 title: 'Block ID',
-                type: 'blockId'
+                type: 'blockId',
+                options: {
+                    source: `indexTitle.${lang}`
+                },
+                fieldset: 'index'
             })
         ],
         preview: {
             select: {
                 title: 'title',
+                indexTitle: 'indexTitle',
                 id: 'blockId.current'
             },
-            prepare({ title, id }) {
-                const localeTitle = selectDefaultLocale(title, appName);
+            prepare({ title, indexTitle, id }) {
+                const localeTitle = selectDefaultLocale(indexTitle, appName) || selectDefaultLocale(title, appName);
                 const subtitle = `${localeTitle ? 'Section ' : ''}${id || ''}`;
                 return {
                     title: localeTitle || 'Section',

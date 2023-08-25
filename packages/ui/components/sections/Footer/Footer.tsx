@@ -4,7 +4,7 @@ import { DefaultProps, Locale } from 'globals';
 import globalConfig from 'globals/globalConfig';
 import { getImageUrl } from 'globals/lib/sanity';
 import { capitalize, localizeString } from 'weresk/utils';
-import { LinkWrapper, PortableText } from '../../blocks';
+import { LinkWrapper, PortableText, LinkContact } from '../../blocks';
 import { createStyles } from './Footer.styles';
 
 interface FooterProps extends DefaultProps {
@@ -49,9 +49,7 @@ export default function Footer(props: FooterProps) {
                     {social && social.length > 0 && (
                         <div className={styles.social}>
                             {social.map((link, i) => (
-                                <LinkWrapper href={link.url} className={styles.socialLink} key={i}>
-                                    <span className={styles.socialCaption}>{capitalize(link.type)}</span>
-                                </LinkWrapper>
+                                <LinkContact link={link} lang={lang} className={styles.socialLink} key={i} />
                             ))}
                         </div>
                     )}

@@ -1,6 +1,8 @@
 export * from './Cards';
 export * from './Cover';
+export { default as Links } from './Links';
 export { default as LinkWrapper } from './LinkWrapper';
+export { default as LinkContact } from './LinkContact';
 export { default as Menu } from './Menu';
 export { default as Languages } from './Languages';
 export { default as PortableText } from './PortableText';

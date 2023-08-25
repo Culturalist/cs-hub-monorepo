@@ -26,7 +26,7 @@ export { default as captonAlt } from './captionAlt';
 export type { BlockCards } from './blockCards';
 export type { BlockSection } from './blockSection';
 export type { BlockLinks } from './blockLinks';
-export type { BodyBlock, BlockWithId } from './body';
+export type { BodyBlock } from './body';
 export type { CardManual } from './cardManual';
 export type { ElementDate } from './elementDate';
 export type { ElementLineup } from './elementLineup';

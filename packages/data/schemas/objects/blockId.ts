@@ -6,7 +6,7 @@ export default function blockId() {
         name: 'blockId',
         title: 'Block ID',
         type: 'slug',
-        description: 'Can be used as an anchor link',
+        description: 'Can be used as an anchor link. Must be set to include block in page index.',
         options: {
             // source: (doc: any, options: any) =>
             // options?.parent?.title[globalConfig.apps[doc?.app?._ref || 'hub'].localization.default],

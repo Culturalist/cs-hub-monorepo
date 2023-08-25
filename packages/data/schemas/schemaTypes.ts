@@ -30,17 +30,19 @@ import {
 import { page, person, post, project, event, note } from './documents';
 import { header, footer, hero, metadataApp, metadataPage } from './sections';
 import { app, theme, label } from './system';
+import bodySection from './objects/bodySection';
 
 export default function schemaTypes(appName: string = 'hub') {
     const globalObjects = [
         ...portableTextParents.map(blockParent => portableText(blockParent)),
         ...portableTextParents.map(blockParent => localePortableText(blockParent)),
         ...bodyParents.map(bodyParent => body(bodyParent)),
+        ...bodyParents.map(bodyParent => bodySection(bodyParent)),
+        ...bodyParents.map(bodyParent => blockSection(bodyParent, appName)),
         ...mediaParents.map(mediaParent => mediaArray(mediaParent)),
         coverArray(),
         localeString(),
         localeText(),
-        linkContact(),
         normalizedSlug(),
         metadataApp(),
         metadataPage(),
@@ -51,8 +53,11 @@ export default function schemaTypes(appName: string = 'hub') {
     ];
 
     const appObjects = [
+        blockCards,
+        blockLinks,
         linkTyped,
         linkCaptioned,
+        linkContact,
         header,
         footer,
         mediaImage,
@@ -61,15 +66,12 @@ export default function schemaTypes(appName: string = 'hub') {
         coverImage,
         coverVideo,
         cardManual,
-        blockSection,
-        blockCards,
-        blockLinks,
         elementLineup
     ].map(typeClass => typeClass(appName));
 
     const systemDocuments = [app(), theme(), label(appName)];
 
-    const allDocuments: Partial<Record<DocumentAny, Function>> = {
+    const allDocuments: Partial<Record<DocumentApp, Function>> = {
         page,
         project,
         event,

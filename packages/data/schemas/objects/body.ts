@@ -1,23 +1,15 @@
-import { defineType, Slug } from 'sanity';
+import { defineType } from 'sanity';
 import { capitalize } from 'weresk/utils';
-import { DocumentAny } from '../values';
-import { BlockCards } from './blockCards';
+import { DocumentApp } from '../values';
 import { BlockSection } from './blockSection';
-import { LocaleString } from './localeString';
 
-export interface BlockWithId {
-    _key: string;
-    title?: LocaleString;
-    blockId?: Slug;
-}
+export type BodyBlock = BlockSection;
 
-export type BodyBlock = BlockSection | BlockCards;
-
-export default function body(parent: DocumentAny) {
+export default function body(parent: DocumentApp) {
     return defineType({
         name: `body${capitalize(parent)}`,
         title: 'Body',
         type: 'array',
-        of: [{ type: 'blockSection' }, { type: 'blockCards' }, { type: 'blockLinks' }]
+        of: [{ type: `blockSection${capitalize(parent)}` }]
     });
 }

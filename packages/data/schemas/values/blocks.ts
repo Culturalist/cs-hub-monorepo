@@ -1,5 +1,5 @@
 import { CardManual } from '../objects';
-import { DocumentAny } from './documents';
+import { DocumentAny, DocumentApp } from './documents';
 
 export const linkTypeList = [
     { title: 'Reference', value: 'reference' },
@@ -22,7 +22,7 @@ export type ContactType = 'website' | 'email' | 'facebook' | 'instagram' | 'twit
 
 export type BlockParent = 'body' | 'section' | 'column' | 'field';
 export const portableTextParents: BlockParent[] = ['section', 'field'];
-export const bodyParents: DocumentAny[] = ['page', 'person', 'post', 'project', 'event', 'note', 'app'];
+export const bodyParents: DocumentApp[] = ['page', 'person', 'post', 'project', 'event', 'note', 'app'];
 
 export type PortableTextDefinition = 'styles' | 'lists' | 'annotations' | 'blocks';
 export type PortableTextElements = Record<PortableTextDefinition, Record<BlockParent, string[]>>;

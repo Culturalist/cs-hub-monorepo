@@ -1,16 +1,19 @@
-import { defineType } from 'sanity';
+import { defineType, defineField } from 'sanity';
 import { ContactType, contactTypeList } from '../values';
 import { LinkIcon } from '@sanity/icons';
 import { capitalize } from 'weresk/utils';
+import { LocaleString } from './localeString';
+import { selectDefaultLocale } from '../../utils';
 
 export interface LinkContact {
     _type: 'linkContact';
     _key: string;
     type: ContactType;
+    caption?: LocaleString;
     url?: string;
 }
 
-export default function linkContact() {
+export default function linkContact(appName: string) {
     return defineType({
         name: 'linkContact',
         title: 'Contact',
@@ -20,12 +23,18 @@ export default function linkContact() {
                 name: 'type',
                 title: 'Type',
                 type: 'string',
-                initialValue: 'website',
+                initialValue: 'facebook',
                 options: {
                     list: contactTypeList
                 },
                 validation: Rule => Rule.required()
             },
+            defineField({
+                name: 'caption',
+                title: 'Caption',
+                type: 'localeString',
+                hidden: ({ parent }) => parent?.type !== 'website'
+            }),
             {
                 name: 'url',
                 title: 'URL',
@@ -40,11 +49,13 @@ export default function linkContact() {
         preview: {
             select: {
                 type: 'type',
+                caption: 'caption',
                 url: 'url'
             },
-            prepare({ type, url }) {
+            prepare({ type, caption, url }) {
+                const localeCaption = selectDefaultLocale(caption, appName);
                 return {
-                    title: type ? capitalize(type) : 'Contact',
+                    title: type == 'website' && localeCaption ? localeCaption : capitalize(type) || 'Contact',
                     subtitle: url
                 };
             }

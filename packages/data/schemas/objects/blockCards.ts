@@ -2,9 +2,8 @@ import { defineField, defineType } from 'sanity';
 import { ThLargeIcon } from '@sanity/icons';
 import { selectDefaultLocale } from '../../utils';
 import { CardsType, cardsTypeList } from '../values';
-import { BlockWithId } from './body';
 
-export interface BlockCards extends BlockWithId {
+export interface BlockCards {
     _type: 'blockCards';
     type: CardsType;
 }

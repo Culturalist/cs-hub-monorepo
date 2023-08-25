@@ -1,12 +1,9 @@
-import 'ui/globals.css';
 import { App } from 'data/schemas';
 import { DefaultLayoutProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { homeQuery } from '../query';
 import app from '../../../../app.json';
-import { Header, Footer, ThemeInit } from 'ui';
-import { Suspense } from 'react';
-import globalConfig from 'globals/globalConfig';
+import { Footer } from 'ui';
 
 const { appName } = app;
 

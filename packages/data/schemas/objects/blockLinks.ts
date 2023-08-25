@@ -2,10 +2,9 @@ import { defineField, defineType } from 'sanity';
 import { LinkIcon } from '@sanity/icons';
 import { joinLocaleStrings } from '../../utils';
 import { LinksLayout, linksTypeList } from '../values';
-import { BlockWithId } from './body';
 import { LinkCaptioned } from './linkCaptioned';
 
-export interface BlockLinks extends BlockWithId {
+export interface BlockLinks {
     _type: 'blockLinks';
     layout: LinksLayout;
     links?: LinkCaptioned[];

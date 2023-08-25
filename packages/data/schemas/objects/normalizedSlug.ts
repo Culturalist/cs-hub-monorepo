@@ -1,5 +1,6 @@
 import globalConfig from 'globals/globalConfig';
 import { defineType } from 'sanity';
+import { isUniqueSlug } from '../../utils';
 
 export default function normalizedSlug() {
     return defineType({
@@ -11,6 +12,7 @@ export default function normalizedSlug() {
             source: (doc: any, options: any) =>
                 options?.parent?.title?.[globalConfig.apps[doc?.app?._ref || 'hub'].localization.default],
             maxLength: 60,
+            isUnique: isUniqueSlug,
             slugify: (input: any) =>
                 input
                     .toLowerCase()
