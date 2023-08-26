@@ -21,16 +21,29 @@ export default function HeroVideo(props: HeroVideoProps) {
         mobile: props.posters?.mobile || props.posters?.desktop,
         desktop: props.posters?.desktop || props.posters?.mobile
     };
-    const responsive = !!props.sources.desktop && !!props.sources.mobile;
+    const responsive = sources.desktop?.url !== sources.mobile?.url;
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [device, setDevice] = useState<UseMedia>('desktop');
+    const device = useRef<UseMedia>('desktop');
+    const [source, setSource] = useState(sources[device.current]);
     const [trim, setTrim] = useState<'x' | 'y'>('x');
-    const videoId = sources[device]?.asset?._id;
+    const videoId = sources[device.current]?.asset?._id;
 
     const styles = createStyles({ className });
 
+    function changeSource(use: UseMedia) {
+        device.current = use;
+        setSource(sources[device.current]);
+    }
+
     function validateSize() {
-        setDevice(window.innerWidth > window.innerHeight ? 'desktop' : 'mobile');
+        if (responsive) {
+            if (window.innerWidth > window.innerHeight && device.current == 'mobile') {
+                changeSource('desktop');
+            } else if (window.innerWidth <= window.innerHeight && device.current == 'desktop') {
+                changeSource('mobile');
+            }
+        }
+
         if (videoRef.current) {
             if (videoRef.current?.videoHeight) {
                 setTrim(
@@ -42,32 +55,34 @@ export default function HeroVideo(props: HeroVideoProps) {
                 setTimeout(validateSize, 500);
             }
         }
-        console.log(videoRef.current?.videoHeight);
     }
 
     useEffect(() => {
-        validateSize();
-
-        if (responsive) {
-            window.addEventListener('resize', validateSize);
-            return () => window.removeEventListener('resize', validateSize);
+        if (videoRef.current) {
+            videoRef.current.load();
         }
+    }, [source]);
+
+    useEffect(() => {
+        validateSize();
+        window.addEventListener('resize', validateSize);
+        return () => window.removeEventListener('resize', validateSize);
     }, [videoRef]);
 
-    if (!sources[device]) return null;
+    if (!source) return null;
 
     return (
         <div data-trim={trim} className={styles.container}>
             <video
                 id={videoId}
                 ref={videoRef}
-                poster={
-                    posters[device] &&
-                    getImageUrl(
-                        posters[device]!,
-                        device == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
-                    )
-                }
+                // poster={
+                //     posters[device.current] &&
+                //     getImageUrl(
+                //         posters[device.current]!,
+                //         device.current == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
+                //     )
+                // }
                 className={styles.video}
                 playsInline={true}
                 autoPlay={true}
@@ -75,7 +90,7 @@ export default function HeroVideo(props: HeroVideoProps) {
                 loop={true}
                 controls={false}
             >
-                <source src={sources[device]?.url} type="video/mp4" />
+                <source src={source.url} type="video/mp4" />
             </video>
         </div>
     );

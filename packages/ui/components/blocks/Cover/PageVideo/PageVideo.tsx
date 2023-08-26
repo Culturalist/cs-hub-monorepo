@@ -21,19 +21,37 @@ export default function PageVideo(props: PageVideoProps) {
         mobile: props.posters?.mobile || props.posters?.desktop,
         desktop: props.posters?.desktop || props.posters?.mobile
     };
-    const responsive = !!props.sources.desktop && !!props.sources.mobile;
+    const responsive = sources.desktop?.url !== sources.mobile?.url;
     const containerRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [device, setDevice] = useState<UseMedia>('desktop');
+    const device = useRef<UseMedia>('desktop');
+    const [source, setSource] = useState(sources[device.current]);
     const [trim, setTrim] = useState<'x' | 'y'>('y');
-    const videoId = sources[device]?.asset?._id;
+    const videoId = sources[device.current]?.asset?._id;
 
     const styles = createStyles({ className });
 
+    function changeSource(use: UseMedia) {
+        device.current = use;
+        setSource(sources[device.current]);
+    }
+
     function validateSize() {
-        console.log(containerRef.current?.clientWidth, containerRef.current?.clientHeight);
         if (videoRef.current && containerRef.current) {
-            setDevice(containerRef.current.clientWidth > containerRef.current.clientHeight ? 'desktop' : 'mobile');
+            if (responsive) {
+                if (
+                    containerRef.current.clientWidth > containerRef.current.clientHeight &&
+                    device.current == 'mobile'
+                ) {
+                    changeSource('desktop');
+                } else if (
+                    containerRef.current.clientWidth <= containerRef.current.clientHeight &&
+                    device.current == 'desktop'
+                ) {
+                    changeSource('mobile');
+                }
+            }
+
             if (videoRef.current?.videoHeight && containerRef.current?.clientHeight) {
                 setTrim(
                     videoRef.current.videoWidth / videoRef.current.videoHeight >
@@ -48,28 +66,31 @@ export default function PageVideo(props: PageVideoProps) {
     }
 
     useEffect(() => {
-        validateSize();
-
-        if (responsive) {
-            window.addEventListener('resize', validateSize);
-            return () => window.removeEventListener('resize', validateSize);
+        if (videoRef.current) {
+            videoRef.current.load();
         }
+    }, [source]);
+
+    useEffect(() => {
+        validateSize();
+        window.addEventListener('resize', validateSize);
+        return () => window.removeEventListener('resize', validateSize);
     }, [videoRef, containerRef]);
 
-    if (!sources[device]) return null;
+    if (!source) return null;
 
     return (
         <div ref={containerRef} data-trim={trim} className={styles.container}>
             <video
                 id={videoId}
                 ref={videoRef}
-                poster={
-                    posters[device] &&
-                    getImageUrl(
-                        posters[device]!,
-                        device == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
-                    )
-                }
+                // poster={
+                //     posters[device.current] &&
+                //     getImageUrl(
+                //         posters[device.current]!,
+                //         device.current == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
+                //     )
+                // }
                 className={styles.video}
                 playsInline={true}
                 autoPlay={true}
@@ -77,7 +98,7 @@ export default function PageVideo(props: PageVideoProps) {
                 loop={true}
                 controls={false}
             >
-                <source src={sources[device]?.url} type="video/mp4" />
+                <source src={source.url} type="video/mp4" />
             </video>
         </div>
     );
