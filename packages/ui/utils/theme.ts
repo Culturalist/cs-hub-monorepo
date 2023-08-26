@@ -28,7 +28,7 @@ export function getHeroVariables(theme?: Theme): string {
             ${
                 theme.text
                     ? `
-                :root {
+                header {
                     --theme-header-text: ${colorToRGB(theme.text)};
                     --theme-header-logo: ${theme.text.hsl.l};
                 }
