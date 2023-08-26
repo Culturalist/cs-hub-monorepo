@@ -49,6 +49,8 @@ export function getPageVariables(theme?: Theme): string {
                 theme.textLight
                     ? `
                 :root {
+                    --theme-header-text: ${colorToRGB(theme.text)};
+                    --theme-header-logo: ${theme.text.hsl.l};
                     --theme-footer-logo: ${theme.textLight.hsl.l};
                 }
             `

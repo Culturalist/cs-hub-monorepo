@@ -4,6 +4,7 @@ import { createStyles } from './Cover.styles';
 import HeroImage from './HeroImage';
 import HeroVideo from './HeroVideo';
 import PageImage from './PageImage';
+import PageVideo from './PageVideo';
 
 interface CoverProps extends DefaultProps {
     array?: CoverBlock[];
@@ -38,8 +39,8 @@ export default function Cover(props: CoverProps) {
         if (parent == 'hero')
             return <HeroVideo sources={video} posters={images} lang={lang} className={styles.container} />;
         else if (parent == 'page') {
+            return <PageVideo sources={video} posters={images} lang={lang} className={styles.container} />;
         }
-        // return <PageImage sources={images} alt={alt || caption} lang={lang} className={styles.container} />;
     } else if (Object.keys(images).length > 0) {
         if (parent == 'hero')
             return <HeroImage sources={images} alt={alt || caption} lang={lang} className={styles.container} />;

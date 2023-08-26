@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { DocumentIcon } from '@sanity/icons';
-import { BodyBlock, LocaleString, MediaBlock } from '../objects';
+import { BodyBlock, CoverBlock, LocaleString } from '../objects';
 import { App } from '../system/app';
 import { MetadataPage } from '../sections';
 import { getMediaCover, selectDefaultLocale } from '../../utils';
@@ -13,7 +13,7 @@ export interface Page extends SanityDocument {
     title?: LocaleString;
     slug: Slug;
     app?: App;
-    covers?: MediaBlock[];
+    covers?: CoverBlock[];
     index?: boolean;
     body?: BodyBlock[];
     theme?: Theme;
@@ -68,7 +68,7 @@ export default function page(appName: string = 'hub') {
             defineField({
                 name: 'covers',
                 title: 'Covers',
-                type: 'mediaArrayCover',
+                type: 'coverArray',
                 group: 'card'
             }),
             defineField({

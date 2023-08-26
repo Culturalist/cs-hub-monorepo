@@ -1,18 +1,18 @@
-import { Person as Data } from 'data/schemas';
+import { Event as Data } from 'data/schemas';
 import { getStaticParams } from 'data/utils';
 import { DefaultPageProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { notFound } from 'next/navigation';
-import { personQuery } from './query';
-import app from '../../../../../../app.json';
+import { eventQuery } from 'data/queries';
+import app from '../../../../../../../app.json';
 
 const { appName } = app;
 
 export const revalidate = 60;
 
-export default async function Person({ params }: DefaultPageProps) {
+export default async function Event({ params }: DefaultPageProps) {
     const { slug, lang } = params;
-    const data: Data = await clientNext.fetch(personQuery, { slug, appName });
+    const data: Data = await clientNext.fetch(eventQuery, { slug, appName });
 
     if (!data) {
         notFound();
@@ -20,7 +20,7 @@ export default async function Person({ params }: DefaultPageProps) {
 
     return (
         <main>
-            <h1>Person</h1>
+            <h1>Event</h1>
             <p>{lang}</p>
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </main>
@@ -28,7 +28,7 @@ export default async function Person({ params }: DefaultPageProps) {
 }
 
 export async function generateStaticParams() {
-    return getStaticParams('person', appName);
+    return getStaticParams('event', appName);
 }
 
 // export async function generateMetadata({ params }: DefaultPageProps): Promise<MetadataPage> {

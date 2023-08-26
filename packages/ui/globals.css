@@ -131,12 +131,18 @@
     }
 
     main {
-        @apply static xs:container mx-auto;
+        @apply static xs:container mx-auto px-offset min-h-hero-height;
     }
 
     body.lock-scroll {
         height: -webkit-fill-available;
         overflow: hidden;
+    }
+
+    /* TEXT ELEMENTS */
+
+    h1 {
+        @apply typo-caps-3xl trim-line text-outline;
     }
 }
 
@@ -208,6 +214,41 @@
     }
 
     /* Typography styles */
+
+    .typo-lead {
+        @apply calc-fontsize;
+        --font-size: 36;
+        --line-height: 40;
+        font-weight: 300;
+    }
+    @media (min-width: theme('screens.sm')) {
+        .typo-lead {
+            --font-size: 48;
+            --line-height: 56;
+        }
+    }
+
+    .typo-paragraph {
+        @apply calc-fontsize;
+        --font-size: 24;
+        --line-height: 36;
+        letter-spacing: -0.02em;
+        font-weight: 300;
+    }
+    @media (min-width: theme('screens.sm')) {
+        .typo-paragraph {
+            --font-size: 28;
+            --line-height: 40;
+        }
+    }
+
+    .typo-paragraph-sm {
+        @apply calc-fontsize;
+        --font-size: 20;
+        --line-height: 24;
+        letter-spacing: -0.03em;
+        font-weight: 300;
+    }
 
     .typo-title-lg {
         @apply calc-fontsize;

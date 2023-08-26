@@ -1,17 +1,16 @@
 import { Locale } from 'globals';
 import globalConfig from 'globals/globalConfig';
-import { LinkTyped, PageDocument } from '../schemas';
+import { DocumentApp, LinkTyped, PageDocument } from '../schemas';
 
 export function prepareLink(input: LinkTyped, lang?: Locale): string {
-    const { type, anchor, external, internal, reference, file } = input;
+    const { type, anchor, href, internal, reference, file } = input;
     let link = '';
-
-    if (type == 'external' && external) {
-        link = external;
+    if ((type == 'external' || !type) && href) {
+        link = href;
     } else if (type == 'anchor' && anchor) {
         link = anchor.startsWith('#') ? anchor : `#${anchor}`;
-    } else if (type == 'file' && file?.url) {
-        link = file.url;
+    } else if (type == 'file') {
+        link = file?.url || file?.asset?.url || link;
     } else if (type == 'internal' && internal) {
         link =
             internal.startsWith('/') || internal.startsWith('?') || internal.startsWith('#')
@@ -42,4 +41,11 @@ export function wrapReference(doc: PageDocument): LinkTyped {
         type: 'reference',
         reference: doc
     };
+}
+
+export function linkPreview(link: LinkTyped): string {
+    const route = link.reference?._type ? globalConfig.routes[link.reference._type as DocumentApp] : '';
+    return link.type == 'reference'
+        ? `/${route ? route + '/' : ''}${link.reference?.slug?.current || ''}`
+        : prepareLink(link);
 }

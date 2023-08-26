@@ -72,11 +72,11 @@ const globalConfig: GlobalConfig = {
     routes: {
         app: '',
         page: '',
-        person: 'person',
-        post: 'post',
-        project: 'project',
-        event: 'event',
-        note: 'note'
+        person: 'ihmiset',
+        post: 'blogit',
+        project: 'projektit',
+        event: 'tapahtumat',
+        note: 'sivut'
     },
     breakpoints: {
         xs: 512,

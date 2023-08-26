@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { selectDefaultLocale } from '../../utils';
+import { selectDefaultLocale, linkPreview } from '../../utils';
 import { LinkIcon } from '@sanity/icons';
 import { LocaleString } from './localeString';
 import { LinkTyped } from './linkTyped';
@@ -37,14 +37,17 @@ export default function linkCaptioned(appName: string) {
         preview: {
             select: {
                 caption: 'caption',
-                link: 'link'
+                link: 'link',
+                referenceSlug: 'link.reference.slug.current',
+                referenceType: 'link.reference._type',
+                fileUrl: 'link.file.asset.url'
             },
             prepare({ caption, link }) {
                 const localeCaption = selectDefaultLocale(caption, appName);
-                const url = '';
+                const url = linkPreview(link);
                 return {
                     title: localeCaption || 'Link',
-                    subtitle: localeCaption ? url : ''
+                    subtitle: url
                 };
             }
         },

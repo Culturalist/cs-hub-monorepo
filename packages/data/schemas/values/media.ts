@@ -1,4 +1,4 @@
-import { ImageObject, VideoObject } from 'globals';
+import { ImageObject, FileObject } from 'globals';
 
 export const useMediaList = [
     { title: 'Desktop', value: 'desktop' },
@@ -26,4 +26,4 @@ export const mediaArrays: Record<MediaParent, MediaBlockFormat[]> = {
 };
 
 export type ImageSources = Partial<Record<UseMedia, ImageObject>>;
-export type VideoSources = Partial<Record<UseMedia, VideoObject>>;
+export type VideoSources = Partial<Record<UseMedia, FileObject>>;

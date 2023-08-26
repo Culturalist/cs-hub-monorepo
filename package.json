@@ -8,11 +8,11 @@
     },
     "devDependencies": {
         "@turbo/gen": "^1.9.7",
+        "dotenv-cli": "latest",
         "eslint": "^7.32.0",
         "eslint-config-custom": "*",
         "prettier": "^3.0.0",
-        "turbo": "latest",
-        "dotenv-cli": "latest"
+        "turbo": "^1.10.13"
     },
     "name": "cs-hub-monorepo",
     "packageManager": "yarn@1.22.19",

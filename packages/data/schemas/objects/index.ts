@@ -1,5 +1,6 @@
 export { default as blockId } from './blockId';
 export { default as blockSection } from './blockSection';
+export { default as blockColumns } from './blockColumns';
 export { default as blockCards } from './blockCards';
 export { default as blockLinks } from './blockLinks';
 export { default as elementDate } from './elementDate';
@@ -20,13 +21,16 @@ export { default as coverVideo } from './coverVideo';
 export { default as normalizedSlug } from './normalizedSlug';
 export { default as portableText } from './portableText';
 export { default as body } from './body';
+export { default as bodySection } from './bodySection';
 export { default as cardManual } from './cardManual';
 export { default as captonAlt } from './captionAlt';
 
 export type { BlockCards } from './blockCards';
 export type { BlockSection } from './blockSection';
+export type { BlockColumns } from './blockColumns';
 export type { BlockLinks } from './blockLinks';
 export type { BodyBlock } from './body';
+export type { BodySectionBlock } from './bodySection';
 export type { CardManual } from './cardManual';
 export type { ElementDate } from './elementDate';
 export type { ElementLineup } from './elementLineup';

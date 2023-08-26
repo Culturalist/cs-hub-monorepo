@@ -6,17 +6,19 @@ import globalConfig from 'globals/globalConfig';
 import { LocaleString } from './localeString';
 import { DocumentApp } from '../values';
 import { capitalize } from 'weresk';
+import { BodySectionBlock } from './bodySection';
 
 export interface BlockSection {
     _type: `blockSection${Capitalize<DocumentApp>}`;
+    typeClass: 'blockSection';
     _key: string;
     title?: LocaleString;
-    content?: LocalePortableText;
+    content?: BodySectionBlock[];
     indexTitle?: LocaleString;
     blockId?: Slug;
 }
 
-export default function blockSection(parent: DocumentApp, appName: string) {
+export default function blockSection(parent: DocumentApp, appName: string = 'hub') {
     const lang = globalConfig.apps[appName].localization.default;
     return defineType({
         name: `blockSection${capitalize(parent)}`,
@@ -34,13 +36,20 @@ export default function blockSection(parent: DocumentApp, appName: string) {
         ],
         fields: [
             defineField({
+                name: 'typeClass',
+                title: 'Class',
+                type: 'string',
+                initialValue: 'blockSection',
+                readOnly: true,
+                hidden: true
+            }),
+            defineField({
                 name: 'title',
                 title: 'Section title',
                 description: 'Will be visible on the page',
                 type: 'localeString',
                 options: {
-                    collapsible: true,
-                    collapsed: true
+                    columns: 2
                 }
             }),
             defineField({
@@ -51,17 +60,17 @@ export default function blockSection(parent: DocumentApp, appName: string) {
             defineField({
                 name: 'indexTitle',
                 title: 'Index title',
-                description: 'Manual override for title used in page index',
+                description: 'Manual override for title used in page index, if not set – section title will be used',
                 type: 'localeString',
+                options: {
+                    columns: 2
+                },
                 fieldset: 'index'
             }),
             defineField({
                 name: 'blockId',
                 title: 'Block ID',
                 type: 'blockId',
-                options: {
-                    source: `indexTitle.${lang}`
-                },
                 fieldset: 'index'
             })
         ],
@@ -73,10 +82,10 @@ export default function blockSection(parent: DocumentApp, appName: string) {
             },
             prepare({ title, indexTitle, id }) {
                 const localeTitle = selectDefaultLocale(indexTitle, appName) || selectDefaultLocale(title, appName);
-                const subtitle = `${localeTitle ? 'Section ' : ''}${id || ''}`;
+                const subtitle = `${localeTitle ? 'Section ' : ''}${id ? `#${id}` : ''}`;
                 return {
                     title: localeTitle || 'Section',
-                    subtitle: ''
+                    subtitle: subtitle
                 };
             }
         },

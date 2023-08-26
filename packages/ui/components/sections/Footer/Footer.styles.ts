@@ -13,7 +13,7 @@ const defaultStyles = {
     logoImage: 'h-32 invert-footer-logo',
     contactsWrapper: 'typo-short grow shrink self-stretch flex justify-between gap-gutter pt-[6px]',
     contacts: 'flex flex-col md:flex-row flex-wrap gap-y-4 gap-x-gutter',
-    social: 'flex flex-col md:flex-row justify-end items-end gap-y-4 gap-x-gutter flex-nowrap',
+    social: 'flex flex-col md:flex-row justify-end items-end md:items-start gap-y-4 gap-x-gutter flex-nowrap',
     socialLink: 'underline hover:no-underline hover:text-theme-text [&_span]:text-right'
 };
 

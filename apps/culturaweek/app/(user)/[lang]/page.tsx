@@ -3,7 +3,7 @@ import { DefaultPageProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { getPageVariables, Hero } from 'ui';
 import app from '../../../app.json';
-import { homeQuery } from './query';
+import { homeQuery } from 'data/queries';
 
 const { appName } = app;
 

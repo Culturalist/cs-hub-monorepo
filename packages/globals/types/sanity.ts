@@ -53,7 +53,7 @@ export interface Color {
     };
 }
 
-export interface VideoObject {
+export interface FileObject {
     asset?: SanityAsset;
     url?: string;
 }

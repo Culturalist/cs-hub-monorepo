@@ -22,7 +22,7 @@ export default function PortableText(props: PortableTextBlockProps) {
             'strike-through': ({ children }) => <span className={styles.strikethrough}>{children}</span>,
             // em: ({ children }) => <em>{children}</em>,
             link: ({ value, children }) => (
-                <LinkWrapper link={value?.link} lang={lang} className={styles.link}>
+                <LinkWrapper link={value} lang={lang} className={styles.link}>
                     {children}
                 </LinkWrapper>
             )
@@ -33,29 +33,29 @@ export default function PortableText(props: PortableTextBlockProps) {
         },
         block: {
             normal: ({ children }) => (
-                <div className={styles.normalWrapper}>
-                    <p className={styles.normal}>{neatChildrenBreaks(children, 2)}</p>
-                </div>
+                <p className={styles.normalWrapper}>
+                    <span className={styles.normal}>{neatChildrenBreaks(children, 2)}</span>
+                </p>
             ),
             lead: ({ children }) => (
-                <div className={styles.leadWrapper}>
-                    <p className={styles.lead}>{neatChildrenBreaks(children, 2)}</p>
-                </div>
+                <p className={styles.leadWrapper}>
+                    <span className={styles.lead}>{neatChildrenBreaks(children, 2)}</span>
+                </p>
             ),
             small: ({ children }) => (
-                <div className={styles.smallWrapper}>
-                    <p className={styles.small}>{neatChildrenBreaks(children, 2)}</p>
-                </div>
-            ),
-            h2: ({ children }) => (
-                <div className={styles.h2Wrapper}>
-                    <p className={styles.h2}>{neatChildrenBreaks(children, 2)}</p>
-                </div>
+                <p className={styles.smallWrapper}>
+                    <span className={styles.small}>{neatChildrenBreaks(children, 2)}</span>
+                </p>
             ),
             h3: ({ children }) => (
-                <div className={styles.h3Wrapper}>
-                    <p className={styles.h3}>{neatChildrenBreaks(children, 2)}</p>
-                </div>
+                <h3 className={styles.h3Wrapper}>
+                    <span className={styles.h3}>{neatChildrenBreaks(children, 2)}</span>
+                </h3>
+            ),
+            h4: ({ children }) => (
+                <h4 className={styles.h4Wrapper}>
+                    <span className={styles.h4}>{neatChildrenBreaks(children, 2)}</span>
+                </h4>
             )
         },
         types: {

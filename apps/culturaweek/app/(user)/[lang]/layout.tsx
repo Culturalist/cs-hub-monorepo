@@ -2,7 +2,7 @@ import 'ui/globals.css';
 import { App } from 'data/schemas';
 import { DefaultLayoutProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
-import { homeQuery } from './query';
+import { layoutQuery } from 'data/queries';
 import app from '../../../app.json';
 import { Header, Footer, ThemeInit } from 'ui';
 import { Suspense } from 'react';
@@ -11,7 +11,7 @@ import globalConfig from 'globals/globalConfig';
 const { appName } = app;
 
 export default async function RootLayout({ children, params: { lang } }: DefaultLayoutProps) {
-    const data: App = await clientNext.fetch(homeQuery, { appName });
+    const data: App = await clientNext.fetch(layoutQuery, { appName });
 
     if (!data)
         return (

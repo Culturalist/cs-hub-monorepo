@@ -8,8 +8,10 @@ export default function blockId() {
         type: 'slug',
         description: 'Can be used as an anchor link. Must be set to include block in page index.',
         options: {
-            // source: (doc: any, options: any) =>
-            // options?.parent?.title[globalConfig.apps[doc?.app?._ref || 'hub'].localization.default],
+            source: (doc: any, options: any) => {
+                const lang = globalConfig.apps[doc?.app?._ref || 'hub'].localization.default;
+                return options?.parent?.indexTitle?.[lang] || options?.parent?.title?.[lang];
+            },
             maxLength: 20,
             slugify: (input: any) =>
                 input

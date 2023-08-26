@@ -5,8 +5,8 @@ import { purgeEmptyStrings } from 'weresk/utils';
 export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: '',
-    box: 'h-m12 xs:w-m12 sm:w-m24 sm:h-m16 lg:h-m12 flex justify-center items-center overflow-hidden',
+    container: 'flex justify-center items-center overflow-hidden',
+    box: 'h-m12 xs:w-m12 sm:w-m24 sm:h-m16 md:h-m12',
     image: 'w-full h-full'
 };
 

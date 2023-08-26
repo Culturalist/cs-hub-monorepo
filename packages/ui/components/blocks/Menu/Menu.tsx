@@ -1,11 +1,12 @@
 'use client';
+import { usePathname } from 'next/navigation';
 import { LinkCaptioned, PageDocument } from 'data/schemas';
 import { wrapReference } from 'data/utils';
 import { DefaultProps } from 'globals';
 import { localizeString } from 'weresk/utils';
 import { createStyles } from './Menu.styles';
 import LinkWrapper from '../LinkWrapper';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Languages from '../Languages';
 
 interface MenuProps extends DefaultProps {
@@ -15,6 +16,7 @@ interface MenuProps extends DefaultProps {
 }
 
 export default function Menu(props: MenuProps) {
+    const pathname = usePathname();
     const { links, marker, languages, lang, className } = props;
     const markerCaption = marker && localizeString(marker.caption, lang);
     const [open, setOpen] = useState(false);
@@ -27,6 +29,12 @@ export default function Menu(props: MenuProps) {
         }
         setOpen(prev => !prev);
     }
+
+    useEffect(() => {
+        const body = document.querySelector('body');
+        body && body.classList.remove('lock-scroll');
+        setOpen(false);
+    }, [pathname]);
 
     return (
         <>

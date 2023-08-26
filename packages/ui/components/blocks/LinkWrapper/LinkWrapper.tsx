@@ -20,10 +20,10 @@ export default function LinkWrapper(props: LinkWrapperProps) {
                     {children}
                 </a>
             );
-        return <div {...commonProps}>{children}</div>;
+        return <span {...commonProps}>{children}</span>;
     }
 
-    const linkType = link.type;
+    const linkType = link.type || 'external';
     const url = prepareLink(link, lang);
 
     if (url) {

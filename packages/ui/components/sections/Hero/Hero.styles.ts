@@ -11,7 +11,7 @@ type LeadSize = 'short' | 'medium' | 'long';
 
 const defaultStyles = {
     container: 'hero',
-    wrapper: 'h-hero-height px-offset pb-offset flex flex-col gap-module justify-between',
+    wrapper: 'h-hero-height pb-offset flex flex-col gap-module justify-between',
     leadWrapper: '',
     lead: 'trim-line text-outline break-words sm:break-normal hyphens-auto sm:hyphens-none text-theme-text',
     short: 'typo-caps-huge',

@@ -2,17 +2,17 @@ import globalConfig from 'globals/globalConfig';
 import { defineField, defineType } from 'sanity';
 import { filterByDocumentApp } from '../../utils';
 import { LinkType, linkTypeList, PageDocument } from '../values';
-import { SanityAsset } from '@sanity/image-url/lib/types/types';
+import { FileObject } from 'globals';
 
 export interface LinkTyped {
     _type: 'linkTyped';
     _key?: string;
     type: LinkType;
     reference?: PageDocument;
-    external?: string;
+    href?: string;
     internal?: string;
     anchor?: string;
-    file?: SanityAsset;
+    file?: FileObject;
 }
 
 export default function linkTyped(appName: string) {
@@ -46,7 +46,7 @@ export default function linkTyped(appName: string) {
                 hidden: ({ parent }) => parent?.type !== 'reference'
             }),
             defineField({
-                name: 'external',
+                name: 'href',
                 title: 'URL',
                 type: 'url',
                 description: `URL starts with "http://" or "https://" and email with "mailto"`,

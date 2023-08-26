@@ -34,7 +34,7 @@ export default function HeroImage(props: HeroImageProps) {
     const coverUrls = desktop &&
         mobile && {
             xs: getImageUrl(mobile, ...boxPx(sizes, 'xs')),
-            sm: getImageUrl(mobile, ...boxPx(sizes, 'sm')),
+            sm: getImageUrl(desktop, ...boxPx(sizes, 'sm')),
             md: getImageUrl(desktop, ...boxPx(sizes, 'md')),
             lg: getImageUrl(desktop, ...boxPx(sizes, 'lg'))
         };

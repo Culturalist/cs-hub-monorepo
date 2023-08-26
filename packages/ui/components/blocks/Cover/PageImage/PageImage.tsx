@@ -23,14 +23,14 @@ export default function PageImage(props: PageImageProps) {
     const sizes: AdaptiveDimentions = {
         xs: box([12, 12], 'xs'),
         sm: box([24, 16], 'sm'),
-        md: box([24, 16], 'md'),
+        md: box([24, 12], 'md'),
         lg: box([24, 12], 'lg')
     };
 
     const coverUrls = desktop &&
         mobile && {
             xs: getImageUrl(mobile, ...boxPx(sizes, 'xs')),
-            sm: getImageUrl(mobile, ...boxPx(sizes, 'sm')),
+            sm: getImageUrl(desktop, ...boxPx(sizes, 'sm')),
             md: getImageUrl(desktop, ...boxPx(sizes, 'md')),
             lg: getImageUrl(desktop, ...boxPx(sizes, 'lg'))
         };

@@ -8,7 +8,7 @@ export interface styleProps extends DefaultStyleProps {
 }
 
 const defaultStyles = {
-    container: 'flex',
+    container: 'flex mt-40',
     link: '',
     caption: '',
     icon: '',

@@ -20,8 +20,8 @@ export const contactTypeList = [
 ];
 export type ContactType = 'website' | 'email' | 'facebook' | 'instagram' | 'twitter' | 'linkedin';
 
-export type BlockParent = 'body' | 'section' | 'column' | 'field';
-export const portableTextParents: BlockParent[] = ['section', 'field'];
+export type BlockParent = 'body' | 'column' | 'field';
+export const portableTextParents: BlockParent[] = ['body', 'column', 'field'];
 export const bodyParents: DocumentApp[] = ['page', 'person', 'post', 'project', 'event', 'note', 'app'];
 
 export type PortableTextDefinition = 'styles' | 'lists' | 'annotations' | 'blocks';
@@ -29,26 +29,22 @@ export type PortableTextElements = Record<PortableTextDefinition, Record<BlockPa
 
 export const portableTextDefinitions: PortableTextElements = {
     styles: {
-        body: ['normal', 'H2', 'H3', 'lead', 'small'],
-        section: ['normal', 'H2', 'H3', 'lead', 'small'],
-        column: ['normal', 'H3', 'small'],
+        body: ['normal', 'h3', 'h4', 'lead', 'small'],
+        column: ['normal', 'h3', 'h4', 'small'],
         field: ['normal']
     },
     lists: {
         body: ['bullet', 'number'],
-        section: ['bullet', 'number'],
         column: ['bullet', 'number'],
         field: []
     },
     annotations: {
         body: ['link'],
-        section: ['link'],
         column: ['link'],
         field: ['link']
     },
     blocks: {
         body: ['blockMedia'],
-        section: ['blockMedia'],
         column: ['blockMedia'],
         field: []
     }
@@ -79,7 +75,7 @@ export const actionTypeList = [
     { title: 'Links', value: 'links' },
     { title: 'Buttons', value: 'buttons' }
 ];
-export const linksTypeList = [
+export const linksLayoutList = [
     { title: 'List', value: 'list' },
     { title: 'Buttons', value: 'buttons' }
 ];

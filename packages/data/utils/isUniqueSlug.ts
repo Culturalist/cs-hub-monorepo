@@ -13,6 +13,5 @@ export async function isUniqueSlug(slug: string, context: any): Promise<boolean>
     };
     const query = `!defined(*[!(_id in [$draft, $published]) && slug.current == $slug && app._ref == $appName][0]._id)`;
     const result = await client.fetch(query, params);
-    console.log(result, context);
     return result;
 }
