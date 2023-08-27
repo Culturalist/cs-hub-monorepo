@@ -1,11 +1,11 @@
 import { LocaleString } from '../schemas';
 import selectDefaultLocale from './selectDefaultLocale';
 
-export function joinLocaleStrings(input: LocaleString[], appName: string = 'hub'): string {
+export function joinLocaleStrings(input: LocaleString[]): string {
     if (input.length == 0) return '';
-    let output = selectDefaultLocale(input[0], appName);
+    let output = selectDefaultLocale(input[0]);
     for (let i = 1; i < input.length; i++) {
-        !!selectDefaultLocale(input[i], appName) && (output += ', ' + selectDefaultLocale(input[i], appName));
+        !!selectDefaultLocale(input[i]) && (output += ', ' + selectDefaultLocale(input[i]));
     }
     return output;
 }

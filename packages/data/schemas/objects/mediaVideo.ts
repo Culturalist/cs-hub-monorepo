@@ -64,7 +64,7 @@ export default function mediaVideo(appName: string = 'hub') {
                 use: 'useMedia'
             },
             prepare({ alt, caption, use }) {
-                const title = selectDefaultLocale(alt, appName) || selectDefaultLocale(caption, appName);
+                const title = selectDefaultLocale(alt) || selectDefaultLocale(caption);
                 return {
                     title: title || 'Video',
                     subtitle: use && use.length > 0 ? caseTransform(use.join(' | '), 'title') : ''

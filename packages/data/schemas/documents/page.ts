@@ -105,13 +105,12 @@ export default function page(appName: string = 'hub') {
         ],
         preview: {
             select: {
-                appName: 'app._ref',
                 title: 'title',
                 covers: 'covers',
                 metaCover: 'metadata.sharedImage'
             },
-            prepare({ appName, title, covers, metaCover }) {
-                const localeTitle = selectDefaultLocale(title, appName);
+            prepare({ title, covers, metaCover }) {
+                const localeTitle = selectDefaultLocale(title);
                 const cover = getMediaCover(covers) || metaCover;
                 return {
                     title: localeTitle || 'Page',
@@ -125,7 +124,7 @@ export default function page(appName: string = 'hub') {
             {
                 title: 'Title',
                 name: 'titleAsc',
-                by: [{ field: 'slug.current', direction: 'asc' }]
+                by: [{ field: `title.${globalConfig.localization.default}`, direction: 'asc' }]
             }
         ]
     });

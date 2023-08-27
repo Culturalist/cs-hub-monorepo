@@ -327,6 +327,7 @@
         }
     }
     @media (min-width: theme('screens.md')) {
+        .typo-caps-3xl,
         .typo-caps-2xl {
             --font-size: 72;
             --line-height: 72;

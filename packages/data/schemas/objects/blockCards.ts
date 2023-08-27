@@ -44,7 +44,7 @@ export default function blockCards(appName: string) {
                 id: 'blockId.current'
             },
             prepare({ title, id }) {
-                const localeTitle = selectDefaultLocale(title, appName);
+                const localeTitle = selectDefaultLocale(title);
                 const subtitle = `${localeTitle ? 'Cards ' : ''}${id || ''}`;
                 return {
                     title: localeTitle || 'Cards',

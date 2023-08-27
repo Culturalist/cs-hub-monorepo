@@ -10,6 +10,7 @@ export interface LinkContact {
     _key: string;
     type: ContactType;
     caption?: LocaleString;
+    phone?: string;
     url?: string;
 }
 
@@ -23,7 +24,7 @@ export default function linkContact(appName: string) {
                 name: 'type',
                 title: 'Type',
                 type: 'string',
-                initialValue: 'facebook',
+                initialValue: 'email',
                 options: {
                     list: contactTypeList
                 },
@@ -35,6 +36,12 @@ export default function linkContact(appName: string) {
                 type: 'localeString',
                 hidden: ({ parent }) => parent?.type !== 'website'
             }),
+            defineField({
+                name: 'phone',
+                title: 'Phone number',
+                type: 'string',
+                hidden: ({ parent }) => parent?.type !== 'phone'
+            }),
             {
                 name: 'url',
                 title: 'URL',
@@ -43,20 +50,22 @@ export default function linkContact(appName: string) {
                 validation: Rule =>
                     Rule.uri({
                         scheme: ['http', 'https', 'mailto']
-                    })
+                    }),
+                hidden: ({ parent }) => parent?.type == 'phone'
             }
         ],
         preview: {
             select: {
                 type: 'type',
                 caption: 'caption',
-                url: 'url'
+                url: 'url',
+                phone: 'phone'
             },
-            prepare({ type, caption, url }) {
-                const localeCaption = selectDefaultLocale(caption, appName);
+            prepare({ type, caption, url, phone }) {
+                const localeCaption = selectDefaultLocale(caption);
                 return {
                     title: type == 'website' && localeCaption ? localeCaption : capitalize(type) || 'Contact',
-                    subtitle: url
+                    subtitle: type == 'phone' ? phone : url
                 };
             }
         },

@@ -81,7 +81,7 @@ export default function cardManual(appName: string) {
                 cover: 'cover'
             },
             prepare({ title, cover }) {
-                const localeTitle = selectDefaultLocale(title, appName);
+                const localeTitle = selectDefaultLocale(title);
                 const url = '';
                 return {
                     title: localeTitle || 'Card',

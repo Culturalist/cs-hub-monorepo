@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { PresentationIcon } from '@sanity/icons';
-import { BodyBlock, LocaleString, MediaBlock } from '../objects';
+import { BodyBlock, CoverBlock, LocaleString } from '../objects';
 import { App } from '../system/app';
 import { MetadataPage } from '../sections';
 import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../utils';
@@ -16,7 +16,7 @@ export interface Project extends SanityDocument {
     slug: Slug;
     app?: App;
     date: string;
-    covers?: MediaBlock[];
+    covers?: CoverBlock[];
     body?: BodyBlock[];
     parent?: Page;
     label?: Label;
@@ -80,7 +80,7 @@ export default function project(appName: string = 'hub') {
             defineField({
                 name: 'covers',
                 title: 'Covers',
-                type: 'mediaArrayCover',
+                type: 'coverArray',
                 group: 'card'
             }),
             defineField({
@@ -93,7 +93,7 @@ export default function project(appName: string = 'hub') {
                 name: 'label',
                 title: 'Label',
                 type: 'reference',
-                description: 'Use labels for grouping the projects, if necessarily',
+                description: 'Use labels for grouping, if necessarily',
                 to: [{ type: 'label' }],
                 group: 'connections'
             }),
@@ -122,13 +122,12 @@ export default function project(appName: string = 'hub') {
         ],
         preview: {
             select: {
-                appName: 'app._ref',
                 title: 'title',
                 covers: 'covers',
                 metaCover: 'metadata.sharedImage'
             },
-            prepare({ appName, title, covers, metaCover }) {
-                const localeTitle = selectDefaultLocale(title, appName);
+            prepare({ title, covers, metaCover }) {
+                const localeTitle = selectDefaultLocale(title);
                 const cover = getMediaCover(covers) || metaCover;
                 return {
                     title: localeTitle || 'Project',

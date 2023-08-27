@@ -13,6 +13,7 @@ export interface AppConfig {
         create: DocumentAny[];
     };
     parentDocuments?: Partial<Record<DocumentApp, string>>;
+    externalLinks?: Record<string, string>;
 }
 
 export interface GlobalConfig {

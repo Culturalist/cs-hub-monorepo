@@ -11,14 +11,15 @@ export const linkTypeList = [
 export type LinkType = 'reference' | 'anchor' | 'external' | 'internal' | 'file';
 
 export const contactTypeList = [
-    { title: 'Website', value: 'website' },
     { title: 'Email', value: 'email' },
+    { title: 'Phone', value: 'phone' },
+    { title: 'Website', value: 'website' },
     { title: 'Facebook', value: 'facebook' },
     { title: 'Instagram', value: 'instagram' },
     { title: 'Twitter', value: 'twitter' },
     { title: 'Linkedin', value: 'linkedin' }
 ];
-export type ContactType = 'website' | 'email' | 'facebook' | 'instagram' | 'twitter' | 'linkedin';
+export type ContactType = 'website' | 'email' | 'phone' | 'facebook' | 'instagram' | 'twitter' | 'linkedin';
 
 export type BlockParent = 'body' | 'column' | 'field';
 export const portableTextParents: BlockParent[] = ['body', 'column', 'field'];

@@ -2,7 +2,6 @@ import { defineType, defineField } from 'sanity';
 import { PlayIcon } from '@sanity/icons';
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { UseMedia, useMediaInitialValue, useMediaList } from '../values';
-import { selectDefaultLocale } from '../../utils';
 import { caseTransform } from 'weresk/utils';
 
 export interface CoverVideo {

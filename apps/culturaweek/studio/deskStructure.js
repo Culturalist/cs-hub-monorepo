@@ -57,7 +57,15 @@ export default {
                             .params({ type: 'event', appName: appName })
                             .initialValueTemplates([S.initialValueTemplateItem('event-by-app', { appName: appName })])
                     ),
-                S.divider(),
-                S.listItem().title('People').icon(UsersIcon).child(S.documentTypeList('person').title('People'))
+                S.listItem()
+                    .title('People')
+                    .icon(UsersIcon)
+                    .child(
+                        S.documentTypeList('person')
+                            .title('People')
+                            .filter('_type == $type && app._ref == $appName')
+                            .params({ type: 'person', appName: appName })
+                            .initialValueTemplates([S.initialValueTemplateItem('person-by-app', { appName: appName })])
+                    )
             ])
 };

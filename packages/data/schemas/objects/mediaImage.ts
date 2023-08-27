@@ -62,7 +62,7 @@ export default function mediaImage(appName: string = 'hub') {
                 use: 'useMedia'
             },
             prepare({ alt, caption, media, use }) {
-                const title = selectDefaultLocale(alt, appName) || selectDefaultLocale(caption, appName);
+                const title = selectDefaultLocale(alt) || selectDefaultLocale(caption);
                 return {
                     title: title || 'Image',
                     subtitle: use && use.length > 0 ? caseTransform(use.join(' | '), 'title') : '',

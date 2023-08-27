@@ -44,7 +44,7 @@ export default function blockLinks(appName: string = 'hub') {
                 layout: 'layout'
             },
             prepare({ link1, link2, link3, layout }) {
-                const names = joinLocaleStrings([link1, link2, link3], appName);
+                const names = joinLocaleStrings([link1, link2, link3]);
                 const subtitle = layout == 'list' ? 'Links list' : capitalize(layout);
                 return {
                     title: names || subtitle,

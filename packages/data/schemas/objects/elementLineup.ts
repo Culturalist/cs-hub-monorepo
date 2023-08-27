@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { joinLocaleStrings, selectDefaultLocale } from '../../utils';
+import { filterByDocumentApp, joinLocaleStrings, selectDefaultLocale } from '../../utils';
 import { UsersIcon } from '@sanity/icons';
 import { Label } from '../system';
 import { Person } from '../documents';
@@ -21,6 +21,7 @@ export default function elementLineup(appName: string = 'hub') {
                 name: 'label',
                 title: 'Label',
                 type: 'reference',
+                description: 'Use label for grouping, if necessarily',
                 to: [{ type: 'label' }]
             }),
             defineField({
@@ -32,8 +33,8 @@ export default function elementLineup(appName: string = 'hub') {
                         type: 'reference',
                         to: [{ type: 'person' }],
                         options: {
-                            disableNew: true
-                            // filter: ({ document }: any) => filterByDocumentApp(document)
+                            disableNew: true,
+                            filter: ({ document }: any) => filterByDocumentApp(document)
                         }
                     }
                 ]
@@ -42,16 +43,16 @@ export default function elementLineup(appName: string = 'hub') {
         preview: {
             select: {
                 label: 'label.title',
-                person1: 'list.0.name',
-                person2: 'list.1.name',
-                person3: 'list.2.name'
+                person1: 'list.0.title',
+                person2: 'list.1.title',
+                person3: 'list.2.title'
             },
             prepare({ label, person1, person2, person3 }) {
-                const localeLabel = selectDefaultLocale(label, appName);
-                const names = joinLocaleStrings([person1, person2, person3], appName);
+                const localeLabel = selectDefaultLocale(label);
+                const names = joinLocaleStrings([person1, person2, person3]);
                 return {
-                    title: localeLabel || 'Lineup',
-                    subtitle: names || ''
+                    title: names || 'Lineup',
+                    subtitle: localeLabel
                 };
             }
         },

@@ -40,6 +40,9 @@ const globalConfig: GlobalConfig = {
                 links: ['page', 'person', 'event'],
                 navigation: ['page', 'event'],
                 create: ['page', 'person', 'event', 'theme', 'label']
+            },
+            externalLinks: {
+                registration: 'https://culturaweekconference.rsvpify.com/'
             }
         },
         template: {

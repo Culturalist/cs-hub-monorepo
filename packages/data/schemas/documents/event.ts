@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { PresentationIcon } from '@sanity/icons';
-import { BodyBlock, ElementDate, ElementLineup, LinkCaptioned, LocaleString, MediaBlock } from '../objects';
+import { BodyBlock, CoverBlock, ElementDate, ElementLineup, LinkCaptioned, LocaleString } from '../objects';
 import { App } from '../system/app';
 import { MetadataPage } from '../sections';
 import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../utils';
@@ -18,7 +18,7 @@ export interface Event extends SanityDocument {
     lineup?: ElementLineup[];
     dates?: ElementDate[];
     action?: LinkCaptioned;
-    covers?: MediaBlock[];
+    covers?: CoverBlock[];
     body?: BodyBlock[];
     parent?: Page;
     label?: Label;
@@ -107,8 +107,8 @@ export default function event(appName: string = 'hub') {
             defineField({
                 name: 'covers',
                 title: 'Covers',
-                type: 'mediaArrayCover',
-                group: 'card'
+                type: 'coverArray',
+                group: 'page'
             }),
             defineField({
                 name: 'body',
@@ -133,7 +133,7 @@ export default function event(appName: string = 'hub') {
                 name: 'label',
                 title: 'Label',
                 type: 'reference',
-                description: 'Use labels for grouping the events, if necessarily',
+                description: 'Use labels for grouping, if necessarily',
                 to: [{ type: 'label' }],
                 group: 'connections'
             }),
@@ -149,17 +149,21 @@ export default function event(appName: string = 'hub') {
         ],
         preview: {
             select: {
-                appName: 'app._ref',
                 title: 'title',
                 covers: 'covers',
+                parent: 'parent.title',
+                label: 'label.title',
                 metaCover: 'metadata.sharedImage'
             },
-            prepare({ appName, title, covers, metaCover }) {
-                const localeTitle = selectDefaultLocale(title, appName);
+            prepare({ title, covers, parent, label, metaCover }) {
+                const localeTitle = selectDefaultLocale(title);
                 const cover = getMediaCover(covers) || metaCover;
+                let subtitle = 'Event';
+                subtitle += selectDefaultLocale(parent) ? ' / ' + selectDefaultLocale(parent) : '';
+                subtitle += selectDefaultLocale(label) ? ' / ' + selectDefaultLocale(label) : '';
                 return {
                     title: localeTitle || 'Event',
-                    subtitle: localeTitle ? 'Event' : '',
+                    subtitle: localeTitle ? subtitle : '',
                     media: cover
                 };
             }

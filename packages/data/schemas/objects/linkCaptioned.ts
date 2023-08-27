@@ -43,7 +43,7 @@ export default function linkCaptioned(appName: string) {
                 fileUrl: 'link.file.asset.url'
             },
             prepare({ caption, link }) {
-                const localeCaption = selectDefaultLocale(caption, appName);
+                const localeCaption = selectDefaultLocale(caption);
                 const url = linkPreview(link);
                 return {
                     title: localeCaption || 'Link',

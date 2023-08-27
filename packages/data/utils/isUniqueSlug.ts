@@ -2,7 +2,7 @@ import globalConfig from 'globals/globalConfig';
 
 export async function isUniqueSlug(slug: string, context: any): Promise<boolean> {
     const { document, getClient } = context;
-    const appName = document.app?._ref;
+    const appName = document.app?._ref || '';
     const client = getClient({ apiVersion: globalConfig.latestUpdate });
     const id = document._id.replace(/^drafts\./, '');
     const params = {
@@ -11,7 +11,7 @@ export async function isUniqueSlug(slug: string, context: any): Promise<boolean>
         slug,
         appName
     };
-    const query = `!defined(*[!(_id in [$draft, $published]) && slug.current == $slug && app._ref == $appName][0]._id)`;
+    const query = `!defined(*[!(_id in [$draft, $published]) && slug.current == $slug && (!defined(app) || app._ref == $appName)][0]._id)`;
     const result = await client.fetch(query, params);
     return result;
 }

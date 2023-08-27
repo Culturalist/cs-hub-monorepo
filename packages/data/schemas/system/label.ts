@@ -32,7 +32,7 @@ export default function label(appName: string = 'hub') {
                 title: 'title'
             },
             prepare({ title }) {
-                const localeTitle = selectDefaultLocale(title, appName);
+                const localeTitle = selectDefaultLocale(title);
                 return {
                     title: localeTitle || 'Label',
                     subtitle: localeTitle ? 'Label' : ''

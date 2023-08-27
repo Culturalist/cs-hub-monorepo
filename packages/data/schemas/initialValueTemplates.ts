@@ -57,8 +57,21 @@ const initialValueTemplates = [
             action: {
                 _type: 'linkCaptioned',
                 caption: dictionary.registration,
-                link: { _type: 'linkTyped', type: 'external' }
+                link: {
+                    _type: 'linkTyped',
+                    type: 'external',
+                    href: globalConfig.apps[params.appName]?.externalLinks?.registration || ''
+                }
             }
+        })
+    },
+    {
+        id: 'person-by-app',
+        title: 'Person in app',
+        schemaType: 'person',
+        parameters: [{ name: 'appName', type: 'string' }],
+        value: (params: any) => ({
+            app: { _type: 'reference', _ref: params.appName }
         })
     }
 ];

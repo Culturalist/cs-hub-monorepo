@@ -81,7 +81,7 @@ export default function blockSection(parent: DocumentApp, appName: string = 'hub
                 id: 'blockId.current'
             },
             prepare({ title, indexTitle, id }) {
-                const localeTitle = selectDefaultLocale(indexTitle, appName) || selectDefaultLocale(title, appName);
+                const localeTitle = selectDefaultLocale(indexTitle) || selectDefaultLocale(title);
                 const subtitle = `${localeTitle ? 'Section ' : ''}${id ? `#${id}` : ''}`;
                 return {
                     title: localeTitle || 'Section',

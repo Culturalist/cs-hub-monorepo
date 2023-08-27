@@ -96,11 +96,10 @@ export default function app() {
         ],
         preview: {
             select: {
-                id: '_id',
                 title: 'title'
             },
-            prepare({ id, title }) {
-                const localeTitle = selectDefaultLocale(title, id);
+            prepare({ title }) {
+                const localeTitle = selectDefaultLocale(title);
                 return {
                     title: localeTitle || 'App',
                     subtitle: localeTitle ? 'App' : ''

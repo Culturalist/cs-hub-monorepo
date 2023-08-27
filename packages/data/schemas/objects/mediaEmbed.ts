@@ -74,7 +74,7 @@ export default function mediaEmbed(appName: string = 'hub') {
                 link: 'link'
             },
             prepare({ alt, caption, use, link }) {
-                const title = selectDefaultLocale(alt, appName) || selectDefaultLocale(caption, appName);
+                const title = selectDefaultLocale(alt) || selectDefaultLocale(caption);
                 return {
                     title: title || 'Embedded',
                     subtitle: use && use.length > 0 ? caseTransform(use.join(' | '), 'title') : ''
