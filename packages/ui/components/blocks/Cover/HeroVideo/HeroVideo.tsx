@@ -31,8 +31,12 @@ export default function HeroVideo(props: HeroVideoProps) {
     const styles = createStyles({ className });
 
     function changeSource(use: UseMedia) {
+        const current = device.current;
         device.current = use;
         setSource(sources[device.current]);
+        if (device.current !== current && videoRef.current) {
+            videoRef.current.load();
+        }
     }
 
     function validateSize() {
@@ -58,12 +62,6 @@ export default function HeroVideo(props: HeroVideoProps) {
     }
 
     useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.load();
-        }
-    }, [source]);
-
-    useEffect(() => {
         validateSize();
         window.addEventListener('resize', validateSize);
         return () => window.removeEventListener('resize', validateSize);
@@ -76,13 +74,13 @@ export default function HeroVideo(props: HeroVideoProps) {
             <video
                 id={videoId}
                 ref={videoRef}
-                // poster={
-                //     posters[device.current] &&
-                //     getImageUrl(
-                //         posters[device.current]!,
-                //         device.current == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
-                //     )
-                // }
+                poster={
+                    posters[device.current] &&
+                    getImageUrl(
+                        posters[device.current]!,
+                        device.current == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
+                    )
+                }
                 className={styles.video}
                 playsInline={true}
                 autoPlay={true}

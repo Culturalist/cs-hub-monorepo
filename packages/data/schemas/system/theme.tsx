@@ -102,7 +102,8 @@ export default function theme() {
                 };
             }
         },
-        icon: SunIcon
+        icon: SunIcon,
+        __experimental_omnisearch_visibility: false
     });
 }
 

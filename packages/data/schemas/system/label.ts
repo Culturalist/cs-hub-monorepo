@@ -39,6 +39,7 @@ export default function label(appName: string = 'hub') {
                 };
             }
         },
-        icon: TagIcon
+        icon: TagIcon,
+        __experimental_omnisearch_visibility: false
     });
 }

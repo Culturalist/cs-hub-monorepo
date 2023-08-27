@@ -105,6 +105,7 @@ export default function app() {
                 };
             }
         },
-        icon: ComponentIcon
+        icon: ComponentIcon,
+        __experimental_omnisearch_visibility: false
     });
 }
