@@ -7,11 +7,13 @@ import app from '../../../app.json';
 import { Header, Footer, ThemeInit } from 'ui';
 import { Suspense } from 'react';
 import globalConfig from 'globals/globalConfig';
+import NotFound from './not-found';
 
 const { appName } = app;
 
-export default async function RootLayout({ children, params: { lang } }: DefaultLayoutProps) {
+export default async function RootLayout({ children, params }: DefaultLayoutProps) {
     const data: App = await clientNext.fetch(layoutQuery, { appName });
+    const lang = data.languages?.includes(params.lang) ? params.lang : globalConfig.localization.default;
 
     if (!data)
         return (
@@ -30,17 +32,17 @@ export default async function RootLayout({ children, params: { lang } }: Default
                 <Suspense fallback={<></>}>
                     <ThemeInit />
                 </Suspense>
-                <Header data={data.header} title={data.title} lang={lang} />
-                {children}
+                <Header data={data.header} languages={data.languages} title={data.title} lang={lang} />
+                {data.languages?.includes(params.lang) ? children : <NotFound />}
                 {showFooter && <Footer data={data.footer} lang={lang} />}
             </body>
         </html>
     );
 }
 
-export const metadata = {
-    viewport: {
-        width: globalConfig.breakpoints.xs,
-        userScalable: false
-    }
-};
+// export const metadata = {
+//     viewport: {
+//         width: globalConfig.breakpoints.xs,
+//         userScalable: false
+//     }
+// };

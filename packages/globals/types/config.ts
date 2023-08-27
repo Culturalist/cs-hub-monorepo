@@ -6,10 +6,6 @@ export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg';
 export interface AppConfig {
     title: string;
     domain: string;
-    localization: {
-        languages: Locale[];
-        default: Locale;
-    };
     schemas: {
         documents: DocumentApp[];
         links: DocumentApp[];

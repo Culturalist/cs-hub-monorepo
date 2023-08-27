@@ -9,8 +9,7 @@ export default function normalizedSlug() {
         type: 'slug',
         description: 'Unique part of the link to the page. Max length: 60 characters.',
         options: {
-            source: (doc: any, options: any) =>
-                options?.parent?.title?.[globalConfig.apps[doc?.app?._ref || 'hub'].localization.default],
+            source: (doc: any, options: any) => options?.parent?.title?.[globalConfig.localization.default],
             maxLength: 60,
             isUnique: isUniqueSlug,
             slugify: (input: any) =>

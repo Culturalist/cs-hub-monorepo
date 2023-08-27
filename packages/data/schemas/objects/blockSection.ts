@@ -19,7 +19,7 @@ export interface BlockSection {
 }
 
 export default function blockSection(parent: DocumentApp, appName: string = 'hub') {
-    const lang = globalConfig.apps[appName].localization.default;
+    const lang = globalConfig.localization.default;
     return defineType({
         name: `blockSection${capitalize(parent)}`,
         title: 'Section',

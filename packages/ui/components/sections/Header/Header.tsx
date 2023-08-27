@@ -9,14 +9,15 @@ import globalConfig from 'globals/globalConfig';
 
 interface HeaderProps extends DefaultProps {
     data?: Header;
+    languages?: string[];
     title?: LocaleString;
 }
 
 export default function Header(props: HeaderProps) {
-    const { data, lang, className } = props;
+    const { data, languages, lang, className } = props;
     if (!data) return null;
 
-    const { marker, links, languages } = data;
+    const { marker, links } = data;
     const logoUrl = data.logo && getImageUrl(data.logo);
     const title = localizeString(props.title, lang);
     const markerCaption = marker && localizeString(marker.caption, lang);

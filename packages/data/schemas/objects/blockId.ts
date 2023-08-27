@@ -9,7 +9,7 @@ export default function blockId() {
         description: 'Can be used as an anchor link. Must be set to include block in page index.',
         options: {
             source: (doc: any, options: any) => {
-                const lang = globalConfig.apps[doc?.app?._ref || 'hub'].localization.default;
+                const lang = globalConfig.localization.default;
                 return options?.parent?.indexTitle?.[lang] || options?.parent?.title?.[lang];
             },
             maxLength: 20,

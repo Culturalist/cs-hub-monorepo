@@ -1,6 +1,5 @@
 import { defineField, defineType } from 'sanity';
 import globalConfig from 'globals/globalConfig';
-import { hideLanguageField } from '../../utils';
 
 export default function localeText() {
     return defineType({
@@ -11,8 +10,7 @@ export default function localeText() {
             defineField({
                 title: lang.title,
                 name: lang.id,
-                type: 'text',
-                hidden: ({ document }: any) => hideLanguageField(lang.id, document)
+                type: 'text'
             })
         )
     });

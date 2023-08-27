@@ -19,16 +19,12 @@ const globalConfig: GlobalConfig = {
                 abbr: 'en'
             }
         ],
-        default: 'en'
+        default: 'fi'
     },
     apps: {
         hub: {
             title: 'Cultura-säätiö Hub',
-            domain: 'https://hub.culturas.fi',
-            localization: {
-                languages: ['fi', 'en', 'ru'],
-                default: 'fi'
-            },
+            domain: 'https://hub.culturas.fi/',
             schemas: {
                 documents: ['page', 'person', 'post', 'project', 'event', 'note'],
                 links: ['page', 'person', 'post', 'project', 'event', 'note'],
@@ -38,11 +34,7 @@ const globalConfig: GlobalConfig = {
         },
         culturaweek: {
             title: 'CulturaWeek',
-            domain: 'https://culturaweek.fi',
-            localization: {
-                languages: ['fi', 'ru', 'en'],
-                default: 'fi'
-            },
+            domain: 'https://culturaweek.fi/',
             schemas: {
                 documents: ['page', 'person', 'event'],
                 links: ['page', 'person', 'event'],
@@ -52,11 +44,7 @@ const globalConfig: GlobalConfig = {
         },
         template: {
             title: 'Cultura-säätiö Website',
-            domain: 'https://template.culturas.fi',
-            localization: {
-                languages: ['fi', 'ru', 'en'],
-                default: 'fi'
-            },
+            domain: 'https://template.culturas.fi/',
             schemas: {
                 documents: ['page', 'person', 'post', 'project', 'event', 'note'],
                 links: ['page', 'person', 'post', 'project', 'event', 'note'],

@@ -4,24 +4,32 @@ import { match as matchLocale } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
 import globalConfig from 'globals/globalConfig';
 import app from './app.json';
+import { clientNext } from 'globals/lib/sanity';
+import { langQuery } from 'data/queries';
 
 const { appName } = app;
 
 // @ts-ignore locales are readonly
-const locales: string[] = globalConfig.apps[appName].localization.languages;
-const defaultLocale: string = globalConfig.apps[appName].localization.default;
+const locales: string[] = globalConfig.localization.languages.map(l => l.id);
+const defaultLocale: string = globalConfig.localization.default;
 
-function getLocale(request: NextRequest): string | undefined {
+async function filterActive(input: string[]): Promise<string[]> {
+    const data: { languages?: string[] } = await clientNext.fetch(langQuery, { appName });
+    return data?.languages || input;
+}
+
+async function getLocale(request: NextRequest): Promise<string | undefined> {
     // Negotiator expects plain object so we need to transform headers
     const negotiatorHeaders: Record<string, string> = {};
     request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
     // Use negotiator and intl-localematcher to get best locale
     let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
+    const active = await filterActive(locales);
 
-    return matchLocale(languages, locales, defaultLocale);
+    return matchLocale(languages, active, defaultLocale);
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     // Check if there is any supported locale in the pathname
@@ -31,7 +39,7 @@ export function middleware(request: NextRequest) {
 
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
-        const locale = getLocale(request);
+        const locale = await getLocale(request);
         return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
     }
 }

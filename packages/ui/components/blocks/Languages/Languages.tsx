@@ -18,7 +18,7 @@ export default function Languages({ lang, active, className }: LanguagesProps) {
     const pathName = usePathname();
     const slug = pathName ? '/' + pathName.split('/').splice(2).join('/') : '/';
 
-    if (!languages) return null;
+    if (!languages || languages.length <= 1) return <div></div>;
 
     return (
         <ul className={styles.container}>

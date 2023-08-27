@@ -1,11 +1,12 @@
 import { Page as Data } from 'data/schemas';
-import { getStaticParams } from 'data/utils';
+import { getStaticParams, prepareMetadata } from 'data/utils';
 import { DefaultPageProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { notFound } from 'next/navigation';
 import { pageQuery } from 'data/queries';
 import app from '../../../../../../app.json';
 import { PageLayout } from 'ui';
+import { Metadata } from 'next';
 
 const { appName } = app;
 
@@ -26,6 +27,6 @@ export async function generateStaticParams() {
     return getStaticParams('page', appName);
 }
 
-// export async function generateMetadata({ params }: DefaultPageProps): Promise<MetadataPage> {
-//     return prepareMetadata({ type: 'page', params });
-// }
+export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
+    return prepareMetadata({ type: 'page', params, appName });
+}

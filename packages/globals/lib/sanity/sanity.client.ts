@@ -3,6 +3,7 @@ import { createClient } from '@sanity/client';
 import createImageUrlBuilder from '@sanity/image-url';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import globalConfig from '../../globalConfig';
+import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 
 //Sanity project variables
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
@@ -26,6 +27,11 @@ export const clientNext = createClientNext({
 });
 
 //Image URL Builder
+export const getImageUrlBuilder = (source: SanityImageSource): ImageUrlBuilder => {
+    return createImageUrlBuilder({ projectId, dataset }).image(source);
+};
+
+//Image URL
 export const getImageUrl = (source: SanityImageSource, width?: number, height?: number): string => {
     let urlBuilder = createImageUrlBuilder({ projectId, dataset }).image(source).auto('format').fit('max');
     urlBuilder = width ? urlBuilder.width(width) : urlBuilder;

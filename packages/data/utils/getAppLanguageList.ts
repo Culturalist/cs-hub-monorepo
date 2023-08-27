@@ -1,10 +1,9 @@
 import globalConfig from 'globals/globalConfig';
 import { ListItem } from 'globals';
 
-export default function getAppLanguageList(appName: string): ListItem[] {
+export default function getAppLanguageList(): ListItem[] {
     let languageList: ListItem[] = [];
-    globalConfig.apps[appName].localization.languages.forEach(langId => {
-        const languageItem = globalConfig.localization.languages.find(({ id }) => id === langId);
+    globalConfig.localization.languages.forEach(languageItem => {
         if (languageItem) {
             languageList.push({
                 value: languageItem.id,

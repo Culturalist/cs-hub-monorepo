@@ -1,6 +1,7 @@
 import { groq } from 'next-sanity';
 
 export const layoutQuery = groq`*[_type == 'app' && _id == $appName][0]{
+    languages[],
     header {
         ...,
         links[]->,

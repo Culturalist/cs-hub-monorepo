@@ -16,7 +16,7 @@ const defaultStyles = {
     wrapper: 'w-full h-full pt-16 pb-32 flex flex-col items-center justify-between gap-offset',
     markerWrapper: 'visible sm:invisible',
     marker: 'typo-caps-lg trim-line font-light text-center whitespace-nowrap',
-    navigation: 'flex flex-col items-center gap-12 sm:gap-20',
+    navigation: 'flex flex-col items-center gap-12 sm:gap-20 pb-header-height',
     link: '',
     linkCaption: 'typo-caps-3xl trim-line hover:text-outline',
     languages: '',

@@ -28,7 +28,7 @@ export default function blockColumns(appName: string = 'hub') {
         ],
         preview: {
             select: {
-                content: `content.0.${globalConfig.apps[appName].localization.default}`
+                content: `content.0.${globalConfig.localization.default}`
             },
             prepare({ content }) {
                 const title = content && content[0]._type === 'block' ? content[0].children[0].text : null;

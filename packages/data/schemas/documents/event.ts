@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { PresentationIcon } from '@sanity/icons';
-import { BodyBlock, LocaleString, MediaBlock } from '../objects';
+import { BodyBlock, ElementDate, ElementLineup, LinkCaptioned, LocaleString, MediaBlock } from '../objects';
 import { App } from '../system/app';
 import { MetadataPage } from '../sections';
 import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../utils';
@@ -12,9 +12,12 @@ export interface Event extends SanityDocument {
     _type: 'event' | 'reference';
     _ref?: string;
     title?: LocaleString;
+    subtitle?: LocaleString;
     slug: Slug;
     app?: App;
-    date: string;
+    lineup?: ElementLineup[];
+    dates?: ElementDate[];
+    action?: LinkCaptioned;
     covers?: MediaBlock[];
     body?: BodyBlock[];
     parent?: Page;
@@ -82,19 +85,6 @@ export default function event(appName: string = 'hub') {
                 readOnly: !globalConfig.debug
             }),
             defineField({
-                name: 'parent',
-                title: 'Parent page',
-                type: 'reference',
-                description: 'Set a page relavent to event',
-                to: [{ type: 'page' }],
-                options: {
-                    disableNew: true,
-                    filter: ({ document }: any) => filterByDocumentApp(document)
-                },
-                readOnly: false, //!globalConfig.debug,
-                group: 'event'
-            }),
-            defineField({
                 name: 'lineup',
                 title: 'Lineup',
                 type: 'array',
@@ -115,14 +105,6 @@ export default function event(appName: string = 'hub') {
                 group: 'event'
             }),
             defineField({
-                name: 'label',
-                title: 'Label',
-                type: 'reference',
-                description: 'Use labels for grouping the events, if necessarily',
-                to: [{ type: 'label' }],
-                group: 'event'
-            }),
-            defineField({
                 name: 'covers',
                 title: 'Covers',
                 type: 'mediaArrayCover',
@@ -133,6 +115,27 @@ export default function event(appName: string = 'hub') {
                 type: 'bodyEvent',
                 title: 'Body',
                 group: 'page'
+            }),
+            defineField({
+                name: 'parent',
+                title: 'Parent page',
+                type: 'reference',
+                description: 'Set a page relavent to event',
+                to: [{ type: 'page' }],
+                options: {
+                    disableNew: true,
+                    filter: ({ document }: any) => filterByDocumentApp(document)
+                },
+                readOnly: false, //!globalConfig.debug,
+                group: 'connections'
+            }),
+            defineField({
+                name: 'label',
+                title: 'Label',
+                type: 'reference',
+                description: 'Use labels for grouping the events, if necessarily',
+                to: [{ type: 'label' }],
+                group: 'connections'
             }),
             defineField({
                 name: 'metadata',
