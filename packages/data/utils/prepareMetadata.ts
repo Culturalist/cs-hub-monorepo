@@ -41,6 +41,7 @@ export async function prepareMetadata({
     //Title ------
     const template = localizeString(global?.template, lang) || '%s';
     let title = localizeString(global?.title, lang) || localizeString(app.title, lang) || '';
+    const websiteName = localizeString(app.title, lang) || title;
     if (type !== 'app' && document) {
         //Event
         if (type == 'event') {
@@ -76,6 +77,13 @@ export async function prepareMetadata({
     }
     output.keywords = formatKeywords(keywords);
 
+    //Video
+    let videoUrl: string | undefined = global?.sharedVideo?.url;
+    if (type !== 'app' && metadata?.sharedVideo?.url) {
+        videoUrl = metadata.sharedVideo.url;
+    }
+    let videoCover = !!videoUrl;
+
     //Image
     let image: ImageObject | undefined = global?.sharedImage;
     if (type !== 'app' && document) {
@@ -85,6 +93,7 @@ export async function prepareMetadata({
                 if (cover._type == 'coverImage' && cover.asset) {
                     image = cover;
                     if (cover.useMedia?.includes('desktop')) {
+                        videoCover = false;
                         return false;
                     }
                 }
@@ -99,12 +108,6 @@ export async function prepareMetadata({
     const imageUrl: string | undefined = image
         ? getImageUrlBuilder(image).fit('max').width(1200).height(630).url()
         : undefined;
-
-    //Video
-    let videoUrl: string | undefined = global?.sharedVideo?.url;
-    if (type !== 'app' && metadata?.sharedVideo?.url) {
-        videoUrl = metadata.sharedVideo.url;
-    }
 
     //URL
     let path: string | undefined;
@@ -130,11 +133,11 @@ export async function prepareMetadata({
 
     //Opengraph
     output.openGraph = {
-        type: videoUrl ? 'video.other' : 'website',
+        type: videoCover ? 'video.other' : 'website',
         title: title,
         description: description,
         url: url,
-        siteName: organization,
+        siteName: websiteName,
         images: imageUrl
             ? [
                   {
@@ -145,15 +148,18 @@ export async function prepareMetadata({
                   }
               ]
             : undefined,
-        videos: videoUrl
-            ? [
-                  {
-                      url: videoUrl,
-                      width: 800,
-                      height: 420
-                  }
-              ]
-            : undefined,
+        videos:
+            videoCover && videoUrl
+                ? [
+                      {
+                          url: videoUrl,
+                          secureUrl: videoUrl,
+                          type: 'video/mp4',
+                          width: 800,
+                          height: 420
+                      }
+                  ]
+                : undefined,
         locale: lang
     };
 
