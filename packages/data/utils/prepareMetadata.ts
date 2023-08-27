@@ -1,20 +1,11 @@
-import { DefaultPageProps, ImageObject } from 'globals';
+import { DefaultPageProps, FileObject, ImageObject } from 'globals';
 import globalConfig from 'globals/globalConfig';
 import { clientNext, getImageUrlBuilder } from 'globals/lib/sanity';
 import { Metadata } from 'next';
 import { SanityDocument } from 'sanity';
 import { formatKeywords, localizeString } from 'weresk';
 import { metadataAppQuery, metadataPageQuery } from '../queries';
-import {
-    App,
-    CoverBlock,
-    DocumentApp,
-    ElementDate,
-    ElementLineup,
-    LocaleString,
-    MetadataApp,
-    MetadataPage
-} from '../schemas';
+import { App, CoverBlock, DocumentApp, ElementDate, ElementLineup, LocaleString, MetadataPage } from '../schemas';
 
 export interface MetadataAny extends SanityDocument {
     _type: DocumentApp;
@@ -109,6 +100,12 @@ export async function prepareMetadata({
         ? getImageUrlBuilder(image).fit('max').width(1200).height(630).url()
         : undefined;
 
+    //Video
+    let videoUrl: string | undefined = global?.sharedVideo?.url;
+    if (type !== 'app' && metadata?.sharedVideo?.url) {
+        videoUrl = metadata.sharedVideo.url;
+    }
+
     //URL
     let path: string | undefined;
     if (type !== 'app' && slug) {
@@ -133,7 +130,7 @@ export async function prepareMetadata({
 
     //Opengraph
     output.openGraph = {
-        type: 'website',
+        type: videoUrl ? 'video.other' : 'website',
         title: title,
         description: description,
         url: url,
@@ -145,6 +142,15 @@ export async function prepareMetadata({
                       width: 1200,
                       height: 630,
                       alt: title
+                  }
+              ]
+            : undefined,
+        videos: videoUrl
+            ? [
+                  {
+                      url: videoUrl,
+                      width: 800,
+                      height: 420
                   }
               ]
             : undefined,

@@ -1,10 +1,11 @@
 import { defineType, defineField } from 'sanity';
 import { LocaleString } from '../objects/localeString';
-import { ImageObject } from 'globals';
+import { FileObject, ImageObject } from 'globals';
 
 export interface MetadataPage {
     _type: 'metadataPage';
     sharedImage?: ImageObject;
+    sharedVideo?: FileObject;
     title?: LocaleString;
     description?: LocaleString;
     keywords?: LocaleString;
@@ -26,6 +27,15 @@ export default function metadataPage() {
                 title: 'SharedImage',
                 description: 'Image for Opengraph covers',
                 type: 'image'
+            }),
+            defineField({
+                name: 'sharedVideo',
+                title: 'OpenGraph Video',
+                type: 'file',
+                description: 'Accepted formats: .mp4',
+                options: {
+                    accept: '.mp4'
+                }
             }),
             defineField({
                 name: 'title',

@@ -321,19 +321,11 @@
         .typo-caps-3xl,
         .typo-caps-2xl {
             @apply calc-fontsize uppercase;
-            --font-size: 64;
-            --line-height: 64;
+            --font-size: 72;
+            --line-height: 72;
             letter-spacing: -0.03em;
         }
     }
-    @media (min-width: theme('screens.md')) {
-        .typo-caps-3xl,
-        .typo-caps-2xl {
-            --font-size: 72;
-            --line-height: 72;
-        }
-    }
-
     @media (min-width: theme('screens.lg')) {
         .typo-caps-3xl {
             --font-size: 88;
