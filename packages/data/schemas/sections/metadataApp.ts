@@ -1,15 +1,15 @@
 import { defineType, defineField } from 'sanity';
 import { LocaleString } from '../objects/localeString';
-import { ImageObject } from 'globals';
+import { ImageObject, FileObject } from 'globals';
 
 export interface MetadataApp {
     _type: 'metadataHome';
-    sharedImage?: ImageObject;
     title?: LocaleString;
     template?: LocaleString;
     description?: LocaleString;
     keywords?: LocaleString;
-    // organization?: LocaleString;
+    sharedImage?: ImageObject;
+    sharedVideo?: FileObject;
 }
 
 export default function metadataApp() {
@@ -39,16 +39,20 @@ export default function metadataApp() {
                 title: 'Keywords',
                 type: 'localeText'
             }),
-            // defineField({
-            //     name: 'organization',
-            //     title: 'Organization',
-            //     type: 'localeString'
-            // }),
             defineField({
                 name: 'sharedImage',
-                title: 'SharedImage',
+                title: 'OpenGraph Image',
                 description: 'Default image for Opengraph covers',
                 type: 'image'
+            }),
+            defineField({
+                name: 'sharedVideo',
+                title: 'OpenGraph Video',
+                type: 'file',
+                description: 'Accepted formats: .mp4',
+                options: {
+                    accept: '.mp4'
+                }
             })
         ]
     });
