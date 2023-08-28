@@ -1,6 +1,7 @@
 import { BlockSection } from 'data/schemas';
 import { DefaultProps } from 'globals';
-import { localizeString, neatTextBreaks } from 'weresk';
+import { neatTextBreaks } from 'weresk';
+import { localizeString } from 'data/utils';
 import Body from '../Body';
 import { createStyles } from './BlockSection.styles';
 

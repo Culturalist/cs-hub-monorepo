@@ -1,6 +1,6 @@
 import { ReferenceFilterSearchOptions } from 'sanity';
 
-export default function filterByDocumentApp(document: any): ReferenceFilterSearchOptions {
+export function filterByDocumentApp(document: any): ReferenceFilterSearchOptions {
     if (document.app?._ref) {
         const appRef = document.app._ref.replace('drafts.', '');
         return {

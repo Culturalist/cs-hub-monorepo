@@ -1,9 +1,9 @@
 import { wrapReference } from 'data/utils';
 import { Footer } from 'data/schemas';
-import { DefaultProps, Locale } from 'globals';
+import { DefaultProps } from 'globals';
 import globalConfig from 'globals/globalConfig';
 import { getImageUrl } from 'globals/lib/sanity';
-import { capitalize, localizeString } from 'weresk/utils';
+import { localizeString } from 'data/utils';
 import { LinkWrapper, PortableText, LinkContact } from '../../blocks';
 import { createStyles } from './Footer.styles';
 

@@ -142,7 +142,11 @@
     /* TEXT ELEMENTS */
 
     h1 {
-        @apply typo-caps-3xl trim-line text-outline;
+        @apply typo-caps-3xl text-outline;
+    }
+
+    h1 > span {
+        @apply trim-line;
     }
 }
 
@@ -231,7 +235,7 @@
     .typo-paragraph {
         @apply calc-fontsize;
         --font-size: 24;
-        --line-height: 36;
+        --line-height: 32;
         letter-spacing: -0.02em;
         font-weight: 300;
     }
@@ -284,7 +288,7 @@
         --line-height: 16;
         letter-spacing: -0.01em;
     }
-    @media (min-width: theme('screens.md')) {
+    @media (min-width: theme('screens.sm')) {
         .typo-short-sm {
             --font-size: 12;
             --line-height: 16;

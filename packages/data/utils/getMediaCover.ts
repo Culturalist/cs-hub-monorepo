@@ -1,6 +1,6 @@
 import { CoverBlock, CoverImage, MediaBlock, MediaImage } from '../schemas';
 
-export default function getMediaCover(covers: (MediaBlock | CoverBlock)[]): MediaImage | CoverImage | undefined {
+export function getMediaCover(covers: (MediaBlock | CoverBlock)[]): MediaImage | CoverImage | undefined {
     let output: MediaImage | CoverImage | undefined;
     covers &&
         covers.every(mediaBlock => {

@@ -25,7 +25,9 @@ export default function Body(props: BodyProps) {
                 };
                 if (block._type == 'blockColumns') return <BlockColumns data={block} key={i} {...blockProps} />;
                 else if (block._type == 'blockLinks')
-                    return <Links links={block.links} layout={block.layout} key={i} {...blockProps} />;
+                    return (
+                        <Links links={block.links} layout={block.layout} key={i} lang={lang} className={styles.links} />
+                    );
                 else if (block._type == 'blockCards') return <div key={i}>Cards</div>;
                 else if (block.typeClass == 'blockSection')
                     return <BlockSection data={block} key={i} lang={lang} className={styles.section} />;

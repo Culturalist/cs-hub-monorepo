@@ -19,7 +19,8 @@ const globalConfig: GlobalConfig = {
                 abbr: 'en'
             }
         ],
-        default: 'fi'
+        default: 'fi',
+        safeReplace: true
     },
     apps: {
         hub: {

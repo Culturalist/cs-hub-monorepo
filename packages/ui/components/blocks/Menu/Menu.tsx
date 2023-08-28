@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 import { LinkCaptioned, PageDocument } from 'data/schemas';
 import { wrapReference } from 'data/utils';
 import { DefaultProps } from 'globals';
-import { localizeString } from 'weresk/utils';
+import { localizeString } from 'data/utils';
 import { createStyles } from './Menu.styles';
 import LinkWrapper from '../LinkWrapper';
 import { useEffect, useState } from 'react';

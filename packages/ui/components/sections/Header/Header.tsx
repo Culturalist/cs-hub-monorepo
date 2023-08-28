@@ -4,7 +4,7 @@ import { DefaultProps, Locale } from 'globals';
 import { createStyles, Styles } from './Header.styles';
 import { getImageUrl } from 'globals/lib/sanity';
 import { LinkWrapper, Menu } from '../../blocks';
-import { localizeString } from 'weresk/utils';
+import { localizeString } from 'data/utils';
 import globalConfig from 'globals/globalConfig';
 
 interface HeaderProps extends DefaultProps {

@@ -24,6 +24,7 @@ export interface GlobalConfig {
             abbr: string;
         }[];
         default: Locale;
+        safeReplace?: boolean;
     };
     apps: Record<string, AppConfig>;
     routes: Record<DocumentApp, string>;

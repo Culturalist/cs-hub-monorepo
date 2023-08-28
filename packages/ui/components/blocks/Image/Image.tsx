@@ -1,7 +1,7 @@
 import { LocaleString } from 'data/schemas';
 import { Breakpoint, DefaultProps } from 'globals';
 import globalConfig from 'globals/globalConfig';
-import { localizeString } from 'weresk/utils';
+import { localizeString } from 'data/utils';
 import { AdaptiveDimentions } from '../../../utils';
 import { createStyles } from './Image.styles';
 

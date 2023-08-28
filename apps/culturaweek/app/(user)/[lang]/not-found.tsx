@@ -1,6 +1,6 @@
 import dictionary from 'data/schemas/dictionary';
 import globalConfig from 'globals/globalConfig';
-import { localizeString } from 'weresk/utils';
+import { localizeString } from 'data/utils';
 import app from '../../../app.json';
 
 const { appName } = app;

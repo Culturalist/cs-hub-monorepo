@@ -1,9 +1,10 @@
-import { DefaultPageProps, FileObject, ImageObject } from 'globals';
+import { DefaultPageProps, ImageObject } from 'globals';
 import globalConfig from 'globals/globalConfig';
 import { clientNext, getImageUrlBuilder } from 'globals/lib/sanity';
 import { Metadata } from 'next';
 import { SanityDocument } from 'sanity';
-import { formatKeywords, localizeString } from 'weresk';
+import { localizeString } from 'data/utils';
+import { formatKeywords } from 'weresk';
 import { metadataAppQuery, metadataPageQuery } from '../queries';
 import { App, CoverBlock, DocumentApp, ElementDate, ElementLineup, LocaleString, MetadataPage } from '../schemas';
 
@@ -43,16 +44,8 @@ export async function prepareMetadata({
     let title = localizeString(global?.title, lang) || localizeString(app.title, lang) || '';
     const websiteName = localizeString(app.title, lang) || title;
     if (type !== 'app' && document) {
-        //Event
-        if (type == 'event') {
-            title =
-                `${localizeString(document.title, lang)}${
-                    localizeString(document.subtitle, lang) ? ' – ' + localizeString(document.subtitle, lang) : ''
-                }` || title;
-        } else {
-            // Page
-            title = localizeString(document.title, lang) || title;
-        }
+        // Page
+        title = localizeString(document.title, lang) || title;
 
         //Metadata title
         title = localizeString(metadata?.title, lang) || title;

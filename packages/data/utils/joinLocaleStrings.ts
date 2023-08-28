@@ -1,5 +1,5 @@
 import { LocaleString } from '../schemas';
-import selectDefaultLocale from './selectDefaultLocale';
+import { selectDefaultLocale } from './selectDefaultLocale';
 
 export function joinLocaleStrings(input: LocaleString[]): string {
     if (input.length == 0) return '';

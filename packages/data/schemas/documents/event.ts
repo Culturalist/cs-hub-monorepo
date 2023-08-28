@@ -6,7 +6,7 @@ import { MetadataPage } from '../sections';
 import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../utils';
 import globalConfig from 'globals/globalConfig';
 import { Page } from './page';
-import { Label } from '../system';
+import { Label, Theme } from '../system';
 
 export interface Event extends SanityDocument {
     _type: 'event' | 'reference';
@@ -22,6 +22,7 @@ export interface Event extends SanityDocument {
     body?: BodyBlock[];
     parent?: Page;
     label?: Label;
+    theme?: Theme;
     metadata?: MetadataPage;
 }
 
@@ -46,6 +47,10 @@ export default function event(appName: string = 'hub') {
             {
                 name: 'connections',
                 title: 'Connections'
+            },
+            {
+                name: 'style',
+                title: 'Style'
             },
             {
                 name: 'seo',
@@ -136,6 +141,14 @@ export default function event(appName: string = 'hub') {
                 description: 'Use labels for grouping, if necessarily',
                 to: [{ type: 'label' }],
                 group: 'connections'
+            }),
+            defineField({
+                name: 'theme',
+                title: 'Page theme',
+                type: 'reference',
+                description: 'If not set – default website theme will be used',
+                to: [{ type: 'theme' }],
+                group: 'style'
             }),
             defineField({
                 name: 'metadata',

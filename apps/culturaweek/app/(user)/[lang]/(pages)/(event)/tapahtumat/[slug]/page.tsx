@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { eventQuery } from 'data/queries';
 import app from '../../../../../../../app.json';
 import { Metadata } from 'next';
+import { EventLayout } from 'ui';
 
 const { appName } = app;
 
@@ -19,13 +20,7 @@ export default async function Event({ params }: DefaultPageProps) {
         notFound();
     }
 
-    return (
-        <main>
-            <h1>Event</h1>
-            <p>{lang}</p>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-        </main>
-    );
+    return <EventLayout data={data} lang={lang} />;
 }
 
 export async function generateStaticParams() {

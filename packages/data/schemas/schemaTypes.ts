@@ -24,10 +24,12 @@ import {
     cardManual,
     elementLineup,
     elementDate,
+    elementSchedule,
     coverImage,
     coverVideo,
     coverArray,
-    captonAlt
+    captonAlt,
+    blockSchedule
 } from './objects';
 import { page, person, post, project, event, note } from './documents';
 import { header, footer, hero, metadataApp, metadataPage } from './sections';
@@ -50,12 +52,14 @@ export default function schemaTypes(appName: string = 'hub') {
         blockId(),
         hero(),
         elementDate(),
+        elementSchedule(),
         captonAlt()
     ];
 
     const appObjects = [
         blockCards,
         blockColumns,
+        blockSchedule,
         blockLinks,
         linkTyped,
         linkCaptioned,

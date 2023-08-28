@@ -1,7 +1,7 @@
 import { DocumentArrowDownIcon } from '@heroicons/react/24/outline';
 import { LinksLayout, LinkCaptioned } from 'data/schemas';
 import { DefaultProps } from 'globals';
-import { localizeString } from 'weresk/utils';
+import { localizeString } from 'data/utils';
 import LinkWrapper from '../LinkWrapper';
 import { createStyles } from './Links.styles';
 

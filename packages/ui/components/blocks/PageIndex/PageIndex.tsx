@@ -1,6 +1,6 @@
 import { BodyBlock } from 'data/schemas';
 import { DefaultProps } from 'globals';
-import { localizeString } from 'weresk';
+import { localizeString } from 'data/utils';
 import LinkWrapper from '../LinkWrapper';
 import { createStyles } from './PageIndex.styles';
 

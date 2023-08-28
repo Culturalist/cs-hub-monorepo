@@ -1,6 +1,6 @@
 import { Page } from 'data/schemas';
 import { DefaultProps } from 'globals';
-import { localizeString } from 'weresk';
+import { localizeString } from 'data/utils';
 import { getPageVariables } from '../../../utils';
 import { Body, Cover, PageIndex } from '../../blocks';
 import { createStyles } from './PageLayout.styles';
@@ -18,7 +18,9 @@ export default function PageLayout(props: PageLayoutProps) {
     return (
         <>
             <main className={styles.container}>
-                <h1 className={styles.title}>{title}</h1>
+                <h1 className={styles.title}>
+                    <span>{title}</span>
+                </h1>
                 {/* INDEX */}
                 {index && <PageIndex body={body} lang={lang} className={styles.index} />}
                 {/* COVER */}
@@ -30,13 +32,3 @@ export default function PageLayout(props: PageLayoutProps) {
         </>
     );
 }
-
-// _ref?: string;
-// title?: LocaleString;
-// slug: Slug;
-// app?: App;
-// covers?: MediaBlock[];
-// index?: boolean;
-// body?: BodyBlock[];
-// theme?: Theme;
-// metadata?: MetadataPage;

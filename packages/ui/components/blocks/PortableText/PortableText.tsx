@@ -5,6 +5,7 @@ import { DefaultProps } from 'globals';
 import { BlockParent, LocalePortableText } from 'data/schemas';
 import LinkWrapper from '../LinkWrapper';
 import { neatChildrenBreaks } from 'weresk/utils';
+import globalConfig from 'globals/globalConfig';
 
 interface PortableTextBlockProps extends DefaultProps {
     data?: LocalePortableText;
@@ -12,8 +13,11 @@ interface PortableTextBlockProps extends DefaultProps {
 }
 
 export default function PortableText(props: PortableTextBlockProps) {
-    const { data, lang, parent, id, className } = props;
+    const { lang, parent, id, className } = props;
     const styles = createStyles({ parent, className });
+    const data =
+        props.data?.[lang] ||
+        (globalConfig.localization.safeReplace ? props.data?.[globalConfig.localization.default] : undefined);
 
     const components: PortableTextComponents = {
         marks: {
@@ -63,12 +67,12 @@ export default function PortableText(props: PortableTextBlockProps) {
             // blockVideo: ({ value }) => <BlockVideo data={value} lang={lang} className={styles.block} />
         }
     };
-    if (!data || !data[lang]) {
+    if (!data) {
         return null;
     }
     return (
         <div id={id} className={styles.container}>
-            <PortableTextRender value={data[lang]} components={components} />
+            <PortableTextRender value={data} components={components} />
         </div>
     );
 }

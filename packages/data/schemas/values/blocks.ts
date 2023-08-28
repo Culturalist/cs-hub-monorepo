@@ -1,5 +1,5 @@
 import { CardManual } from '../objects';
-import { DocumentAny, DocumentApp } from './documents';
+import { DocumentApp } from './documents';
 
 export const linkTypeList = [
     { title: 'Reference', value: 'reference' },
@@ -82,3 +82,12 @@ export const linksLayoutList = [
 ];
 export type LinksLayout = 'list' | 'buttons' | 'links';
 export type HeroActionType = LinksLayout | 'cards';
+
+export type BodyBlockDefinition = Partial<Record<DocumentApp, string[]>>;
+
+export const bodyBlockDefinitions: BodyBlockDefinition = {
+    app: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockCards'],
+    page: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockCards', 'blockSchedule'],
+    event: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockSchedule'],
+    project: ['localePortableTextBody', 'blockColumns', 'blockLinks']
+};

@@ -1,10 +1,12 @@
 export { default as blockId } from './blockId';
 export { default as blockSection } from './blockSection';
 export { default as blockColumns } from './blockColumns';
+export { default as blockSchedule } from './blockSchedule';
 export { default as blockCards } from './blockCards';
 export { default as blockLinks } from './blockLinks';
 export { default as elementDate } from './elementDate';
 export { default as elementLineup } from './elementLineup';
+export { default as elementSchedule } from './elementSchedule';
 export { default as linkContact } from './linkContact';
 export { default as linkTyped } from './linkTyped';
 export { default as linkCaptioned } from './linkCaptioned';

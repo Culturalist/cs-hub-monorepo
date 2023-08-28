@@ -2,7 +2,8 @@ import { AdaptiveDimentions, box, boxPx, breakpoints } from '../../../../utils/d
 import { CardManual } from 'data/schemas';
 import { Breakpoint, DefaultProps } from 'globals';
 import { getImageUrl } from 'globals/lib/sanity';
-import { localizeString, mapKeys, neatTextBreaks } from 'weresk/utils';
+import { localizeString } from 'data/utils';
+import { mapKeys, neatTextBreaks } from 'weresk/utils';
 import { createStyles } from './CardHero.styles';
 import LinkWrapper from '../../LinkWrapper';
 import Image from '../../Image';

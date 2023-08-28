@@ -9,6 +9,7 @@ export interface ElementLineup {
     _key: string;
     label?: Label;
     list?: Person[];
+    includePosition?: boolean;
 }
 
 export default function elementLineup(appName: string = 'hub') {
@@ -38,6 +39,13 @@ export default function elementLineup(appName: string = 'hub') {
                         }
                     }
                 ]
+            }),
+            defineField({
+                name: 'includePosition',
+                title: 'Include position',
+                description: 'Show person position next to a name',
+                type: 'boolean',
+                initialValue: false
             })
         ],
         preview: {
