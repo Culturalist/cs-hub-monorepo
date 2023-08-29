@@ -21,7 +21,7 @@ export interface Event extends SanityDocument {
     covers?: CoverBlock[];
     body?: BodyBlock[];
     parent?: Page;
-    label?: Label;
+    labels?: Label[];
     theme?: Theme;
     metadata?: MetadataPage;
 }
@@ -135,11 +135,17 @@ export default function event(appName: string = 'hub') {
                 group: 'connections'
             }),
             defineField({
-                name: 'label',
-                title: 'Label',
-                type: 'reference',
+                name: 'labels',
+                title: 'Labels',
+                type: 'array',
                 description: 'Use labels for grouping, if necessarily',
-                to: [{ type: 'label' }],
+                of: [
+                    {
+                        type: 'reference',
+                        title: 'Label',
+                        to: [{ type: 'label' }]
+                    }
+                ],
                 group: 'connections'
             }),
             defineField({
@@ -165,7 +171,7 @@ export default function event(appName: string = 'hub') {
                 title: 'title',
                 covers: 'covers',
                 parent: 'parent.title',
-                label: 'label.title',
+                label: 'labels.0.title',
                 metaCover: 'metadata.sharedImage'
             },
             prepare({ title, covers, parent, label, metaCover }) {

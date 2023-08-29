@@ -20,7 +20,7 @@ export interface Post extends SanityDocument {
     body?: BodyBlock[];
     author?: Person;
     parent?: Page;
-    label?: Label;
+    labels?: Label[];
     metadata?: MetadataPage;
 }
 
@@ -98,11 +98,17 @@ export default function post(appName: string = 'hub') {
                 group: 'connections'
             }),
             defineField({
-                name: 'label',
-                title: 'Label',
-                type: 'reference',
+                name: 'labels',
+                title: 'Labels',
+                type: 'array',
                 description: 'Use labels for grouping, if necessarily',
-                to: [{ type: 'label' }],
+                of: [
+                    {
+                        type: 'reference',
+                        title: 'Label',
+                        to: [{ type: 'label' }]
+                    }
+                ],
                 group: 'connections'
             }),
             defineField({

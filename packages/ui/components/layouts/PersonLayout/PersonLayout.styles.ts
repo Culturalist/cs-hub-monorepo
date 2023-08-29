@@ -13,9 +13,9 @@ const defaultStyles = {
     photo: 'xs:w-m12 xs:h-m12 sm:mr-module',
     info: '',
     contacts:
-        'typo-paragraph-sm flex flex-col gap-4 mb-16 [&_span]:trim-line [&_a]:underline [&_a:hover]:no-underline [&_a:hover]:text-theme-card-surface',
+        'typo-paragraph-sm flex flex-col gap-4 [&_span]:trim-line [&_a]:underline [&_a:hover]:no-underline [&_a:hover]:text-theme-card-surface',
     description:
-        'typo-paragraph-sm [&_p:not(:first-child)]:pt-16 [&_p]:trim-line text-theme-text-light [&_a:hover]:text-theme-card-surface'
+        'typo-paragraph-sm mb-16 [&_p:not(:first-child)]:pt-16 [&_p]:trim-line text-theme-text-light [&_a:hover]:text-theme-card-surface'
 };
 
 export const createStyles = ({ className }: styleProps) => {

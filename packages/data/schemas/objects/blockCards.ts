@@ -8,7 +8,8 @@ import { CardManual } from './cardManual';
 import { Person, Post, Project, Event } from '../documents';
 import { Label } from '../system';
 
-export type Card = CardManual | Project | Post | Person | Event;
+export type CardSource = Project | Post | Person | Event;
+export type Card = CardManual | CardSource;
 
 export interface BlockCards {
     _type: 'blockCards';

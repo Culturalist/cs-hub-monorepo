@@ -1,13 +1,19 @@
 import { groq } from 'next-sanity';
 import { clientNext } from 'globals/lib/sanity';
-import { Card } from '../schemas';
+import { CardSource } from '../schemas';
 
-const query = groq`*[_type == $docType && label._ref in $labels]{
+const query = groq`*[_type == $docType]{
     ...
 }`;
 
-export async function fetchCardsDataByLabels(docType: string, labels: string[]): Promise<Card[]> {
-    const data: Card[] = await clientNext.fetch(query, { docType, labels });
+export async function fetchCardsDataByLabels(docType: string, labels: string[]): Promise<CardSource[]> {
+    const data: CardSource[] = await clientNext.fetch(query, { docType });
     if (!data) return [];
-    return data;
+    let filtered: CardSource[] = [];
+    labels.forEach(labelId => {
+        data.forEach(card => {
+            card.labels?.map(label => label._ref || label._id).includes(labelId) && filtered.push(card);
+        });
+    });
+    return filtered;
 }

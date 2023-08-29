@@ -34,6 +34,8 @@ export default function PersonLayout(props: PersonLayoutProps) {
                 {/* PHOTO */}
                 {photoUrl && <img src={photoUrl} alt={name} className={styles.photo} />}
                 <div className={styles.info}>
+                    {/* DESCRIPTION */}
+                    <PortableText data={description} parent="field" lang={lang} className={styles.description} />
                     {/* CONTACTS */}
                     {contacts && contacts.length > 0 && (
                         <div className={styles.contacts}>
@@ -42,8 +44,6 @@ export default function PersonLayout(props: PersonLayoutProps) {
                             ))}
                         </div>
                     )}
-                    {/* DESCRIPTION */}
-                    <PortableText data={description} parent="field" lang={lang} className={styles.description} />
                 </div>
             </div>
         </main>

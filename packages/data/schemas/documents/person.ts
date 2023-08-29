@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { UserIcon } from '@sanity/icons';
-import { selectDefaultLocale } from '../../utils';
+import { joinLocaleStrings, selectDefaultLocale } from '../../utils';
 import { LinkContact, LocalePortableText, LocaleString } from '../objects';
 import globalConfig from 'globals/globalConfig';
 import { App, Label } from '../system';
@@ -16,7 +16,7 @@ export interface Person extends SanityDocument {
     position?: LocaleString;
     contacts?: LinkContact[];
     description?: LocalePortableText;
-    label?: Label;
+    labels?: Label[];
 }
 
 export default function person(appName: string = 'hub') {
@@ -68,25 +68,33 @@ export default function person(appName: string = 'hub') {
                 type: 'localePortableTextField'
             }),
             defineField({
-                name: 'label',
-                title: 'Label',
-                type: 'reference',
+                name: 'labels',
+                title: 'Labels',
+                type: 'array',
                 description: 'Use labels for grouping, if necessarily',
-                to: [{ type: 'label' }]
+                of: [
+                    {
+                        type: 'reference',
+                        title: 'Label',
+                        to: [{ type: 'label' }]
+                    }
+                ]
             })
         ],
         preview: {
             select: {
                 name: 'title',
                 photo: 'photo',
-                label: 'label.title'
+                label1: 'labels.0.title',
+                label2: 'labels.1.title',
+                label3: 'labels.2.title'
             },
-            prepare({ name, photo, label }) {
+            prepare({ name, photo, label1, label2, label3 }) {
                 const localeName = selectDefaultLocale(name);
-                const localeLabel = selectDefaultLocale(label);
+                const labels = joinLocaleStrings([label1, label2, label3]);
                 return {
                     title: localeName || 'Person',
-                    subtitle: localeName ? localeLabel : '',
+                    subtitle: localeName ? labels : '',
                     media: photo
                 };
             }
@@ -97,11 +105,6 @@ export default function person(appName: string = 'hub') {
                 title: 'Name',
                 name: 'titleAsc',
                 by: [{ field: `title.${globalConfig.localization.default}`, direction: 'asc' }]
-            },
-            {
-                title: 'Label',
-                name: 'labelAsc',
-                by: [{ field: `label.title.${globalConfig.localization.default}`, direction: 'asc' }]
             }
         ]
     });

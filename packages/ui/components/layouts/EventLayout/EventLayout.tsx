@@ -15,7 +15,7 @@ export default function EventLayout(props: EventLayoutProps) {
     const { covers, lineup, dates, action, parent, body, theme } = data;
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
-    const label = localizeString(data.label?.title, lang);
+    const label = localizeString(data.labels?.[0]?.title, lang);
     const styles = createStyles({ className });
 
     return (

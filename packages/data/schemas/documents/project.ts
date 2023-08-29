@@ -19,7 +19,7 @@ export interface Project extends SanityDocument {
     covers?: CoverBlock[];
     body?: BodyBlock[];
     parent?: Page;
-    label?: Label;
+    labels?: Label[];
     metadata?: MetadataPage;
 }
 
@@ -90,11 +90,17 @@ export default function project(appName: string = 'hub') {
                 group: 'page'
             }),
             defineField({
-                name: 'label',
-                title: 'Label',
-                type: 'reference',
+                name: 'labels',
+                title: 'Labels',
+                type: 'array',
                 description: 'Use labels for grouping, if necessarily',
-                to: [{ type: 'label' }],
+                of: [
+                    {
+                        type: 'reference',
+                        title: 'Label',
+                        to: [{ type: 'label' }]
+                    }
+                ],
                 group: 'connections'
             }),
             defineField({
