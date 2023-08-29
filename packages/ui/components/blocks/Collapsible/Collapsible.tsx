@@ -4,7 +4,7 @@ import { createStyles } from './Collapsible.styles';
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { localizeString } from 'data/utils';
-import gsap from 'gsap';
+// import gsap from 'gsap';
 import { DefaultProps } from 'globals';
 
 interface CollapsibleProps extends DefaultProps {
@@ -22,55 +22,57 @@ export default function Collapsible(props: CollapsibleProps) {
     let height = useRef<number | string>(0);
     const styles = createStyles({ className });
 
-    function toggleState() {
-        setOpen(prev => !prev);
-    }
+    return null;
 
-    const animateOpen = useCallback(
-        (toggleState: boolean) => {
-            gsap.to(`#${target}`, {
-                // opacity: toggleState ? 1 : 0,
-                height: toggleState ? height.current : minHeight,
-                // translateY: toggleState ? 0 : -20,
-                duration: 0.75,
-                ease: 'sine.inOut'
-            });
-        },
-        [target]
-    );
+    // function toggleState() {
+    //     setOpen(prev => !prev);
+    // }
 
-    const initCollapsible = useCallback(() => {
-        height.current = gsap.getProperty(`#${target}`, 'height') || height.current;
-        if (height.current !== 0) {
-            gsap.to(`#${target}`, {
-                overflow: 'hidden',
-                // opacity: initial ? 1 : 0,
-                height: initial ? height.current : minHeight
-                // translateY: initial ? 0 : -20
-            });
-            setInit(true);
-        }
-    }, [initial]);
+    // const animateOpen = useCallback(
+    //     (toggleState: boolean) => {
+    //         gsap.to(`#${target}`, {
+    //             // opacity: toggleState ? 1 : 0,
+    //             height: toggleState ? height.current : minHeight,
+    //             // translateY: toggleState ? 0 : -20,
+    //             duration: 0.75,
+    //             ease: 'sine.inOut'
+    //         });
+    //     },
+    //     [target]
+    // );
 
-    useEffect(() => {
-        if (init) {
-            animateOpen(open);
-        }
-    }, [open, init]);
+    // const initCollapsible = useCallback(() => {
+    //     height.current = gsap.getProperty(`#${target}`, 'height') || height.current;
+    //     if (height.current !== 0) {
+    //         gsap.to(`#${target}`, {
+    //             overflow: 'hidden',
+    //             // opacity: initial ? 1 : 0,
+    //             height: initial ? height.current : minHeight
+    //             // translateY: initial ? 0 : -20
+    //         });
+    //         setInit(true);
+    //     }
+    // }, [initial]);
 
-    useEffect(() => {
-        initCollapsible();
-    }, []);
+    // useEffect(() => {
+    //     if (init) {
+    //         animateOpen(open);
+    //     }
+    // }, [open, init]);
 
-    if (!init) return null;
+    // useEffect(() => {
+    //     initCollapsible();
+    // }, []);
 
-    return (
-        <button onClick={toggleState} className={styles.button}>
-            {title && <span className={styles.title}>{title}</span>}
-            <div className={styles.icon}>
-                <PlusIcon className={styles.plus} />
-                <MinusIcon className={styles.minus} />
-            </div>
-        </button>
-    );
+    // if (!init) return null;
+
+    // return (
+    //     <button onClick={toggleState} className={styles.button}>
+    //         {title && <span className={styles.title}>{title}</span>}
+    //         <div className={styles.icon}>
+    //             <PlusIcon className={styles.plus} />
+    //             <MinusIcon className={styles.minus} />
+    //         </div>
+    //     </button>
+    // );
 }
