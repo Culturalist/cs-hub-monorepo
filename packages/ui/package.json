@@ -12,6 +12,7 @@
         "class-variance-authority": "^0.7.0",
         "data": "*",
         "globals": "*",
+        "gsap": "file:../weresk/lib/gsap/gsap-bonus.tgz",
         "react-hotkeys-hook": "^4.4.1"
     },
     "devDependencies": {
