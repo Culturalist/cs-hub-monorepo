@@ -18,13 +18,8 @@ export default async function BlockCards(props: BlockCardsProps) {
 
     const unsorted = await prepareCardsData(cardsType, cards);
 
-    // if (groupByLabel) {
-
-    // }
+    if (groupByLabel) {
+    }
 
     return <Cards data={unsorted} type={cardsType} lang={lang} className={styles.container} />;
 }
-
-// type: CardsType | 'hero';
-// data?: Card[];
-// coverOnHover?: boolean;
