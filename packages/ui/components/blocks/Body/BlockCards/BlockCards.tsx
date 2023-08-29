@@ -10,8 +10,9 @@ interface BlockCardsProps extends DefaultProps {
 
 export default async function BlockCards(props: BlockCardsProps) {
     const { data, lang, className } = props;
-    const { type: cardsType, groupByLabel } = data;
+    const { type: cardsType, groupByLabel, includePerson } = data;
     const cards = cardsType && data[cardsType];
+    const include = cardsType == 'people' ? includePerson : undefined;
     if (!cards || cards.length == 0) return null;
 
     const styles = createStyles({ className, cardsType });
@@ -21,5 +22,5 @@ export default async function BlockCards(props: BlockCardsProps) {
     if (groupByLabel) {
     }
 
-    return <Cards data={unsorted} type={cardsType} lang={lang} className={styles.container} />;
+    return <Cards data={unsorted} type={cardsType} include={include} lang={lang} className={styles.container} />;
 }

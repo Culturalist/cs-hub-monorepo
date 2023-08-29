@@ -1,5 +1,5 @@
 import { localizeString, wrapReference } from 'data/utils';
-import { Person } from 'data/schemas';
+import { CardPart, Person } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import globalConfig from 'globals/globalConfig';
 import { getImageUrl } from 'globals/lib/sanity';
@@ -10,10 +10,11 @@ import LinkWrapper from '../../LinkWrapper';
 
 interface CardPersonProps extends DefaultProps {
     data: Person;
+    include?: CardPart[];
 }
 
 export default function CardPerson(props: CardPersonProps) {
-    const { data, lang, className } = props;
+    const { data, include, lang, className } = props;
     const { photo, contacts, description } = data;
     const name = localizeString(data.title, lang);
     const position = localizeString(data.position, lang);
@@ -24,7 +25,11 @@ export default function CardPerson(props: CardPersonProps) {
 
     return (
         <div className={styles.container}>
-            <LinkWrapper link={wrapReference(data)} lang={lang} className={styles.linkWrapper}>
+            <LinkWrapper
+                link={include?.includes('link') ? wrapReference(data) : undefined}
+                lang={lang}
+                className={styles.linkWrapper}
+            >
                 {/* PHOTO */}
                 {photoUrl ? (
                     <img src={photoUrl} alt={name} className={styles.photo} />
@@ -37,15 +42,17 @@ export default function CardPerson(props: CardPersonProps) {
                 </p>
             </LinkWrapper>
             {/* POSITION */}
-            {position && (
+            {include?.includes('subtitle') && position && (
                 <p className={styles.positionWrapper}>
                     <span className={styles.position}>{position}</span>
                 </p>
             )}
             {/* DESCRIPTION */}
-            <PortableText data={description} parent="field" lang={lang} className={styles.description} />
+            {include?.includes('description') && (
+                <PortableText data={description} parent="field" lang={lang} className={styles.description} />
+            )}
             {/* CONTACTS */}
-            {contacts && contacts.length > 0 && (
+            {include?.includes('contacts') && contacts && contacts.length > 0 && (
                 <div className={styles.contacts}>
                     {contacts.map((link, i) => (
                         <LinkContact link={link} lang={lang} key={i} />

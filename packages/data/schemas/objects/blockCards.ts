@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { ThLargeIcon } from '@sanity/icons';
 import { filterByDocumentApp } from '../../utils';
-import { CardsType, cardsTypeList } from '../values';
+import { CardsType, cardsTypeList, CardPart, personCardParts } from '../values';
 import { capitalize } from 'weresk';
 import globalConfig from 'globals/globalConfig';
 import { CardManual } from './cardManual';
@@ -20,6 +20,7 @@ export interface BlockCards {
     people?: (Person | Label)[];
     events?: (Event | Label)[];
     groupByLabel?: boolean;
+    includePerson?: CardPart[];
 }
 
 export default function blockCards(appName: string = 'hub') {
@@ -93,6 +94,20 @@ export default function blockCards(appName: string = 'hub') {
                         hidden: ({ parent }) => parent?.type !== value
                     });
                 }),
+            // Options
+            defineField({
+                name: 'includePerson',
+                title: 'Include',
+                type: 'array',
+                description: 'Select information to include in card',
+                of: [{ type: 'string' }],
+                initialValue: ['subtitle'],
+                options: {
+                    list: personCardParts,
+                    layout: 'grid'
+                },
+                hidden: ({ parent }) => parent?.type !== 'people'
+            }),
             defineField({
                 name: 'groupByLabel',
                 title: 'Group cards by labels',

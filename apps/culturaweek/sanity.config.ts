@@ -26,9 +26,9 @@ export default defineConfig({
     plugins: [
         deskTool(deskStructure),
         languageFilter(languageFilterConfig(appName)),
-        colorInput(),
+        colorInput()
         // vercelDeployTool()
-        visionTool()
+        // visionTool()
     ],
     schema: {
         types: schemaTypes(appName),

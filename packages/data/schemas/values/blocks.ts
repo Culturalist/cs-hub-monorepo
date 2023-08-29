@@ -89,3 +89,12 @@ export const bodyBlockDefinitions: BodyBlockDefinition = {
     event: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockSchedule', 'blockCards'],
     project: ['localePortableTextBody', 'blockColumns', 'blockLinks']
 };
+
+export const personCardParts = [
+    { title: 'Subtitle', value: 'subtitle' },
+    { title: 'Description', value: 'description' },
+    { title: 'Contacts', value: 'contacts' },
+    { title: 'Link to page', value: 'link' }
+];
+
+export type CardPart = 'subtitle' | 'description' | 'contacts' | 'link';

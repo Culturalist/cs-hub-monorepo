@@ -1,4 +1,4 @@
-import { Card, CardsType } from 'data/schemas';
+import { Card, CardPart, CardsType } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import CardHero from './CardHero';
 import CardManual from './CardManual';
@@ -9,10 +9,11 @@ interface CardsProps extends DefaultProps {
     type: CardsType | 'hero';
     data?: Card[];
     coverOnHover?: boolean;
+    include?: CardPart[];
 }
 
 export default function Cards(props: CardsProps) {
-    const { type, data, coverOnHover, lang, className } = props;
+    const { type, data, coverOnHover, include, lang, className } = props;
     if (!data || data.length == 0) return null;
 
     const styles = createStyles({ className, type });
@@ -25,7 +26,7 @@ export default function Cards(props: CardsProps) {
                 else if (type == 'hero' && card._type == 'cardManual')
                     return <CardHero data={card} coverOnHover={coverOnHover} lang={lang} key={i} />;
                 else if (type == 'people' && card._type == 'person')
-                    return <CardPerson data={card} lang={lang} key={i} />;
+                    return <CardPerson data={card} include={include} lang={lang} key={i} />;
             })}
         </div>
     );
