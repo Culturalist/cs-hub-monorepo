@@ -5,17 +5,17 @@ import { purgeEmptyStrings } from 'weresk/utils';
 export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: 'mb-m3',
-    title: '',
-    index: 'mt-48',
-    cover: 'mt-24',
-    body: ''
+    button: 'flex flex-row items-center gap-8 pb-1 border-b border-dashed',
+    title: 'typo-caps-2xs trim-cap',
+    icon: '',
+    plus: 'w-16',
+    minus: 'hidden w-16'
 };
 
 export const createStyles = ({ className }: styleProps) => {
     const styles = {
         ...defaultStyles,
-        container: cx(defaultStyles.container, className)
+        button: cx(defaultStyles.button, className)
     };
     return purgeEmptyStrings(styles) as Partial<typeof styles>;
 };

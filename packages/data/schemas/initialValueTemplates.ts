@@ -1,5 +1,5 @@
 import globalConfig from 'globals/globalConfig';
-import dictionary from './dictionary';
+import dictionary from '../dictionary';
 
 const initialValueTemplates = [
     {

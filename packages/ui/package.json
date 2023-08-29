@@ -10,9 +10,10 @@
     "dependencies": {
         "@heroicons/react": "^2.0.18",
         "class-variance-authority": "^0.7.0",
+        "data": "*",
         "globals": "*",
-        "react-hotkeys-hook": "^4.4.1",
-        "data": "*"
+        "gsap": "./weresk/lib/gsap/gsap-bonus.tgz",
+        "react-hotkeys-hook": "^4.4.1"
     },
     "devDependencies": {
         "@types/react": "^18.2.0",

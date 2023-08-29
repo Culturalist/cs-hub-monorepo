@@ -11,3 +11,4 @@ export { default as Image } from './Image';
 export { default as PageIndex } from './PageIndex';
 export { default as EventLineup } from './EventLineup';
 export { default as EventDates } from './EventDates';
+export { default as Collapsible } from './Collapsible';

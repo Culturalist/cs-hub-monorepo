@@ -25,13 +25,13 @@ export default function blockSchedule(appName: string = 'hub') {
                         type: 'elementSchedule'
                     }
                 ]
-            }),
-            defineField({
-                name: 'expandDescription',
-                title: 'Expand description by default',
-                type: 'boolean',
-                initialValue: false
             })
+            // defineField({
+            //     name: 'expandDescription',
+            //     title: 'Expand description by default',
+            //     type: 'boolean',
+            //     initialValue: false
+            // })
         ],
         preview: {
             select: {

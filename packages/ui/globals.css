@@ -285,7 +285,7 @@
     .typo-short-sm {
         @apply calc-fontsize;
         --font-size: 16;
-        --line-height: 16;
+        --line-height: 20;
         letter-spacing: -0.01em;
     }
     @media (min-width: theme('screens.sm')) {

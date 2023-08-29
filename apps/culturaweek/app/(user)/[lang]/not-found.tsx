@@ -1,4 +1,4 @@
-import dictionary from 'data/schemas/dictionary';
+import dictionary from 'data/dictionary';
 import globalConfig from 'globals/globalConfig';
 import { localizeString } from 'data/utils';
 import app from '../../../app.json';

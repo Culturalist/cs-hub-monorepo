@@ -16,6 +16,8 @@ export default function LinkContact(props: LinkContactProps) {
         caption = localizeString(link.caption, lang) || caption;
     } else if (link.type == 'email') {
         caption = link.url?.replace('mailto:', '') || caption;
+    } else if (link.type == 'phone' && link.phone) {
+        caption = link.phone;
     }
 
     return (

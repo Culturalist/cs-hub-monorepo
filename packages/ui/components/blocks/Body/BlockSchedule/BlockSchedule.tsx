@@ -18,7 +18,7 @@ export default function BlockSchedule(props: BlockScheduleProps) {
     return (
         <div className={styles.container}>
             {schedule.map((element, i) => {
-                const { time, description } = element;
+                const { time, description, _key } = element;
                 const title = localizeString(element.title, lang);
                 const subtitle = localizeString(element.subtitle, lang);
                 return (
@@ -41,14 +41,27 @@ export default function BlockSchedule(props: BlockScheduleProps) {
                                     <span className={styles.subtitle}>{subtitle}</span>
                                 </p>
                             )}
-                            {description && (
-                                <PortableText
-                                    data={description}
-                                    parent="field"
-                                    lang={lang}
-                                    className={styles.description}
-                                />
-                            )}
+                            <PortableText
+                                data={description}
+                                parent="field"
+                                lang={lang}
+                                className={styles.description}
+                            />
+                            {/* {description && (
+                                <>
+                                    <div id={`collapse-${_key}`} className={styles.descriptionWrapper}>
+                                    </div>
+                                    {!expandDescription && (
+                                        <Collapsible
+                                            target={`collapse-${_key}`}
+                                            lang={lang}
+                                            title={dictionary.readMore}
+                                            initial={false}
+                                            className={styles.readMore}
+                                        />
+                                    )}
+                                </>
+                            )} */}
                         </div>
                     </div>
                 );

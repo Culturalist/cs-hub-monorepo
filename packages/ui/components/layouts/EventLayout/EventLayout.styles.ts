@@ -5,7 +5,7 @@ import { purgeEmptyStrings } from 'weresk/utils';
 export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: '',
+    container: 'mb-m3',
     connections: `typo-caps-xs flex flex-row gap-12 mt-gutter [&_*:not(:first-child)]:before:content-['/'] [&_*:not(:first-child)]:before:trim-line`,
     parentWrapper: '',
     parent: 'trim-line',
@@ -15,11 +15,11 @@ const defaultStyles = {
     subtitleWrapper: 'mt-16 lg:max-w-m20',
     subtitle: 'typo-paragraph trim-line text-theme-text-light',
     lineup: 'mt-32',
-    datesWrapper: 'mt-m2 mb-48 flex flex-col md:flex-row gap-32 md:gap-gutter md:justify-between md:items-end',
+    datesWrapper: 'mt-m2 mb-48 flex flex-col sm:flex-row gap-48 sm:gap-gutter sm:justify-between sm:items-end',
     dates: 'grow',
     action: 'grow-0',
     cover: 'mt-24',
-    body: 'mb-m3'
+    body: ''
 };
 
 export const createStyles = ({ className }: styleProps) => {
