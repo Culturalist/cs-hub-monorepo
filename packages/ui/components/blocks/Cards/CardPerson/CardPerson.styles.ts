@@ -2,7 +2,9 @@ import { cx } from 'class-variance-authority';
 import { DefaultStyleProps } from 'globals';
 import { purgeEmptyStrings } from 'weresk/utils';
 
-export interface styleProps extends DefaultStyleProps {}
+export interface styleProps extends DefaultStyleProps {
+    monochrome?: boolean;
+}
 
 const defaultStyles = {
     container: '',
@@ -19,10 +21,11 @@ const defaultStyles = {
         'typo-paragraph-sm mt-16 [&_span]:trim-line [&_a]:underline [&_a:hover]:no-underline [&_a:hover]:text-theme-card-surface'
 };
 
-export const createStyles = ({ className }: styleProps) => {
+export const createStyles = ({ className, monochrome }: styleProps) => {
     const styles = {
         ...defaultStyles,
-        container: cx(defaultStyles.container, className)
+        container: cx(defaultStyles.container, className),
+        photo: cx(defaultStyles.photo, monochrome ? 'grayscale' : '')
     };
     return purgeEmptyStrings(styles) as Partial<typeof styles>;
 };

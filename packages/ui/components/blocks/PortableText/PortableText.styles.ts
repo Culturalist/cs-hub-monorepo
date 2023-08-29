@@ -27,7 +27,7 @@ const defaultStyles = {
     ol: 'list-decimal pl-[1em] typo-paragraph trim-line flex flex-col mt-20 gap-8',
     field: {
         normalWrapper: '',
-        normal: '',
+        normal: 'trim-line',
         link: 'underline hover:no-underline'
     }
 };

@@ -10,10 +10,11 @@ interface CardsProps extends DefaultProps {
     data?: Card[];
     coverOnHover?: boolean;
     include?: CardPart[];
+    monochrome?: boolean;
 }
 
 export default function Cards(props: CardsProps) {
-    const { type, data, coverOnHover, include, lang, className } = props;
+    const { type, data, coverOnHover, monochrome, include, lang, className } = props;
     if (!data || data.length == 0) return null;
 
     const styles = createStyles({ className, type });
@@ -26,7 +27,7 @@ export default function Cards(props: CardsProps) {
                 else if (type == 'hero' && card._type == 'cardManual')
                     return <CardHero data={card} coverOnHover={coverOnHover} lang={lang} key={i} />;
                 else if (type == 'people' && card._type == 'person')
-                    return <CardPerson data={card} include={include} lang={lang} key={i} />;
+                    return <CardPerson data={card} include={include} monochrome={monochrome} lang={lang} key={i} />;
             })}
         </div>
     );

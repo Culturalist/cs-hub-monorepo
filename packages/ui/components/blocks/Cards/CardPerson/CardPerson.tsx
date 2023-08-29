@@ -11,17 +11,18 @@ import LinkWrapper from '../../LinkWrapper';
 interface CardPersonProps extends DefaultProps {
     data: Person;
     include?: CardPart[];
+    monochrome?: boolean;
 }
 
 export default function CardPerson(props: CardPersonProps) {
-    const { data, include, lang, className } = props;
+    const { data, include, monochrome, lang, className } = props;
     const { photo, contacts, description } = data;
     const name = localizeString(data.title, lang);
     const position = localizeString(data.position, lang);
     const photoUrl =
         photo && getImageUrl(photo, ...new Array(2).fill(globalConfig.breakpoints.xs * globalConfig.pd.xs * 2));
 
-    const styles = createStyles({ className });
+    const styles = createStyles({ className, monochrome });
 
     return (
         <div className={styles.container}>

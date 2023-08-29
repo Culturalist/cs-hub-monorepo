@@ -20,6 +20,7 @@ export interface BlockCards {
     people?: (Person | Label)[];
     events?: (Event | Label)[];
     groupByLabel?: boolean;
+    monochromePhoto?: boolean;
     includePerson?: CardPart[];
 }
 
@@ -109,12 +110,19 @@ export default function blockCards(appName: string = 'hub') {
                 hidden: ({ parent }) => parent?.type !== 'people'
             }),
             defineField({
-                name: 'groupByLabel',
-                title: 'Group cards by labels',
+                name: 'monochromePhoto',
+                title: 'Make photos monochrome',
                 type: 'boolean',
                 initialValue: false,
-                hidden: ({ parent }) => !['people', 'projects', 'events', 'posts'].includes(parent?.type)
+                hidden: ({ parent }) => parent?.type !== 'people'
             })
+            // defineField({
+            //     name: 'groupByLabel',
+            //     title: 'Group cards by labels',
+            //     type: 'boolean',
+            //     initialValue: false,
+            //     hidden: ({ parent }) => !['people', 'projects', 'events', 'posts'].includes(parent?.type)
+            // })
         ],
         preview: {
             select: {
