@@ -2,10 +2,12 @@ import { defineField, defineType } from 'sanity';
 import { CalendarIcon } from '@sanity/icons';
 import { LocalePortableText } from './localePortableText';
 import { selectDefaultLocale } from '../../utils';
+import { ElementSchedule } from './elementSchedule';
 
 export interface BlockSchedule {
     _type: 'blockSchedule';
-    content: LocalePortableText[];
+    schedule?: ElementSchedule[];
+    expandDescription?: boolean;
 }
 
 export default function blockSchedule(appName: string = 'hub') {

@@ -1,4 +1,5 @@
 import { groq } from 'next-sanity';
+import { coverSegment, linkSegment, localePortableTextSegment } from './segments';
 
 export const eventQuery = groq`*[_type == 'event' && slug.current == $slug && app._ref == $appName][0]{
     ...,
@@ -16,21 +17,11 @@ export const eventQuery = groq`*[_type == 'event' && slug.current == $slug && ap
     action {
         ...,
         link {
-            ...,
-            file{
-                ...,
-                "url": asset->url
-            },
-            reference->
+            ${linkSegment}
         }
     },
     covers[] {
-        ...,
-        "url": asset->url,
-        asset->{
-            ...,
-            metadata
-        }
+        ${coverSegment}
     },
     body[] {
         ...,
@@ -39,95 +30,21 @@ export const eventQuery = groq`*[_type == 'event' && slug.current == $slug && ap
             links[] {
                 ...,
                 link {
-                    ...,
-                    file{
-                        ...,
-                        "url": asset->url
-                    },
-                    reference->
+                    ${linkSegment}
                 }
             },
-            fi[] {
-                ...,
-                markDefs[] {
-                    ...,
-                    file{
-                        ...,
-                        "url": asset->url
-                    },
-                    reference->
-                }
-            },
-            ru[] {
-                ...,
-                markDefs[] {
-                    ...,
-                    link {
-                        ...,
-                        file{
-                            ...,
-                            "url": asset->url
-                        },
-                        reference->
-                    }
-                }
-            },
-            en[] {
-                ...,
-                markDefs[] {
-                    ...,
-                    link {
-                        ...,
-                        file{
-                            ...,
-                            "url": asset->url
-                        },
-                        reference->
-                    }
-                }
-            },
+            ${localePortableTextSegment},
             content[] {
                 ...,
-                fi[] {
+                ${localePortableTextSegment}
+            },
+            schedule[] {
+                ...,
+                description {
                     ...,
-                    markDefs[] {
-                        ...,
-                        file{
-                            ...,
-                            "url": asset->url
-                        },
-                        reference->
-                    }
-                },
-                ru[] {
-                    ...,
-                    markDefs[] {
-                        ...,
-                        link {
-                            ...,
-                            file{
-                                ...,
-                                "url": asset->url
-                            },
-                            reference->
-                        }
-                    }
-                },
-                en[] {
-                    ...,
-                    markDefs[] {
-                        ...,
-                        link {
-                            ...,
-                            file{
-                                ...,
-                                "url": asset->url
-                            },
-                            reference->
-                        }
-                    }
+                    ${localePortableTextSegment}
                 }
-            }
+            },
         }
     },
     theme->

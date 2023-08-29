@@ -5,7 +5,7 @@ import globalConfig from 'globals/globalConfig';
 
 export interface BlockColumns {
     _type: 'blockColumns';
-    content: LocalePortableText[];
+    content?: LocalePortableText[];
 }
 
 export default function blockColumns(appName: string = 'hub') {

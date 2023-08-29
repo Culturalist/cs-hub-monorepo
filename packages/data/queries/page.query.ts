@@ -1,14 +1,10 @@
 import { groq } from 'next-sanity';
+import { coverSegment, linkSegment, localePortableTextSegment } from './segments';
 
 export const pageQuery = groq`*[_type == 'page' && slug.current == $slug && app._ref == $appName][0]{
     ...,
     covers[] {
-        ...,
-        "url": asset->url,
-        asset->{
-            ...,
-            metadata
-        }
+        ${coverSegment}
     },
     body[] {
         ...,
@@ -17,94 +13,13 @@ export const pageQuery = groq`*[_type == 'page' && slug.current == $slug && app.
             links[] {
                 ...,
                 link {
-                    ...,
-                    file{
-                        ...,
-                        "url": asset->url
-                    },
-                    reference->
+                    ${linkSegment}
                 }
             },
-            fi[] {
-                ...,
-                markDefs[] {
-                    ...,
-                    file{
-                        ...,
-                        "url": asset->url
-                    },
-                    reference->
-                }
-            },
-            ru[] {
-                ...,
-                markDefs[] {
-                    ...,
-                    link {
-                        ...,
-                        file{
-                            ...,
-                            "url": asset->url
-                        },
-                        reference->
-                    }
-                }
-            },
-            en[] {
-                ...,
-                markDefs[] {
-                    ...,
-                    link {
-                        ...,
-                        file{
-                            ...,
-                            "url": asset->url
-                        },
-                        reference->
-                    }
-                }
-            },
+            ${localePortableTextSegment},
             content[] {
                 ...,
-                fi[] {
-                    ...,
-                    markDefs[] {
-                        ...,
-                        file{
-                            ...,
-                            "url": asset->url
-                        },
-                        reference->
-                    }
-                },
-                ru[] {
-                    ...,
-                    markDefs[] {
-                        ...,
-                        link {
-                            ...,
-                            file{
-                                ...,
-                                "url": asset->url
-                            },
-                            reference->
-                        }
-                    }
-                },
-                en[] {
-                    ...,
-                    markDefs[] {
-                        ...,
-                        link {
-                            ...,
-                            file{
-                                ...,
-                                "url": asset->url
-                            },
-                            reference->
-                        }
-                    }
-                }
+                ${localePortableTextSegment}
             }
         }
     },

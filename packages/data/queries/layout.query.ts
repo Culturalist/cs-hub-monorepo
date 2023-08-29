@@ -1,4 +1,5 @@
 import { groq } from 'next-sanity';
+import { linkSegment, localePortableTextSegment } from './segments';
 
 export const layoutQuery = groq`*[_type == 'app' && _id == $appName][0]{
     languages[],
@@ -8,12 +9,7 @@ export const layoutQuery = groq`*[_type == 'app' && _id == $appName][0]{
         marker {
             ...,
             link {
-                ...,
-                file {
-                    ...,
-                    "url": asset->url
-                },
-                reference->
+                ${linkSegment}
             }
         }
     },
@@ -22,45 +18,7 @@ export const layoutQuery = groq`*[_type == 'app' && _id == $appName][0]{
         links[]->,
         contacts {
             ...,
-            fi[] {
-                ...,
-                markDefs[] {
-                    ...,
-                    file{
-                        ...,
-                        "url": asset->url
-                    },
-                    reference->
-                }
-            },
-            ru[] {
-                ...,
-                markDefs[] {
-                    ...,
-                    link {
-                        ...,
-                        file{
-                            ...,
-                            "url": asset->url
-                        },
-                        reference->
-                    }
-                }
-            },
-            en[] {
-                ...,
-                markDefs[] {
-                    ...,
-                    link {
-                        ...,
-                        file{
-                            ...,
-                            "url": asset->url
-                        },
-                        reference->
-                    }
-                }
-            }
+            ${localePortableTextSegment}
         }
     },
     hero {

@@ -4,9 +4,10 @@ import { bodyBlockDefinitions, DocumentApp } from '../values';
 import { BlockCards } from './blockCards';
 import { BlockColumns } from './blockColumns';
 import { BlockLinks } from './blockLinks';
+import { BlockSchedule } from './blockSchedule';
 import { LocalePortableText } from './localePortableText';
 
-export type BodySectionBlock = LocalePortableText | BlockColumns | BlockLinks | BlockCards;
+export type BodySectionBlock = LocalePortableText | BlockColumns | BlockLinks | BlockCards | BlockSchedule;
 
 export default function bodySection(parent: DocumentApp) {
     return defineType({
