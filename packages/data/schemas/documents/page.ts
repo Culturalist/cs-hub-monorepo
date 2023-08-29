@@ -1,4 +1,4 @@
-import { defineType, defineField, SanityDocument, Slug } from 'sanity';
+import { defineField, defineType, SanityDocument, Slug } from 'sanity';
 import { DocumentIcon } from '@sanity/icons';
 import { BodyBlock, CoverBlock, LocaleString } from '../objects';
 import { App } from '../system/app';

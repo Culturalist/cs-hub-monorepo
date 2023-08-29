@@ -27,7 +27,7 @@ export { default as bodySection } from './bodySection';
 export { default as cardManual } from './cardManual';
 export { default as captonAlt } from './captionAlt';
 
-export type { BlockCards } from './blockCards';
+export type { BlockCards, Card } from './blockCards';
 export type { BlockSection } from './blockSection';
 export type { BlockColumns } from './blockColumns';
 export type { BlockSchedule } from './blockSchedule';

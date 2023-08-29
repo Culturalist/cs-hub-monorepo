@@ -2,6 +2,7 @@ import { BodyBlock, BodySectionBlock } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import Links from '../Links';
 import PortableText from '../PortableText';
+import BlockCards from './BlockCards';
 import BlockColumns from './BlockColumns';
 import BlockSchedule from './BlockSchedule';
 import BlockSection from './BlockSection';
@@ -30,7 +31,8 @@ export default function Body(props: BodyProps) {
                         <Links links={block.links} layout={block.layout} key={i} lang={lang} className={styles.links} />
                     );
                 else if (block._type == 'blockSchedule') return <BlockSchedule data={block} key={i} {...blockProps} />;
-                else if (block._type == 'blockCards') return <div key={i}>Cards</div>;
+                // @ts-expect-error Server Component
+                else if (block._type == 'blockCards') return <BlockCards data={block} key={i} {...blockProps} />;
                 else if (block.typeClass == 'blockSection')
                     return <BlockSection data={block} key={i} lang={lang} className={styles.section} />;
                 else if (block.typeClass == 'blockText')

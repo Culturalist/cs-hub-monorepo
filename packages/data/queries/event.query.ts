@@ -45,6 +45,14 @@ export const eventQuery = groq`*[_type == 'event' && slug.current == $slug && ap
                     ${localePortableTextSegment}
                 }
             },
+            people[]-> {
+                ...,
+                description {
+                    ...,
+                    ${localePortableTextSegment}
+                }
+            },
+            events[]->
         }
     },
     theme->

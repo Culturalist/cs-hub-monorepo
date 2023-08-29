@@ -1,9 +1,8 @@
 import { Person } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import { localizeString } from 'data/utils';
-import { Image, LinkContact, PortableText } from '../../blocks';
+import { LinkContact, PortableText } from '../../blocks';
 import { createStyles } from './PersonLayout.styles';
-import { AdaptiveDimentions, box, boxPx } from '../../../utils';
 import { getImageUrl } from 'globals/lib/sanity';
 import globalConfig from 'globals/globalConfig';
 

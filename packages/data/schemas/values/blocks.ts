@@ -61,15 +61,13 @@ export const themeColors: string[] = [
 ];
 
 export const cardsTypeList = [
-    { title: 'Manual', value: 'manual' },
-    { title: 'Projects', value: 'projects' },
-    { title: 'Posts', value: 'posts' },
-    { title: 'People', value: 'people' },
-    { title: 'Events', value: 'events' }
+    { title: 'Manual', value: 'manual', docType: 'manual' },
+    { title: 'Projects', value: 'projects', docType: 'project' },
+    { title: 'Posts', value: 'posts', docType: 'post' },
+    { title: 'People', value: 'people', docType: 'person' },
+    { title: 'Events', value: 'events', docType: 'event' }
 ];
-export type CardsType = 'manual' | 'hero' | 'projects' | 'posts' | 'people' | 'events';
-
-export type Card = CardManual;
+export type CardsType = 'manual' | 'projects' | 'posts' | 'people' | 'events';
 
 export const actionTypeList = [
     { title: 'Cards', value: 'cards' },
@@ -88,6 +86,6 @@ export type BodyBlockDefinition = Partial<Record<DocumentApp, string[]>>;
 export const bodyBlockDefinitions: BodyBlockDefinition = {
     app: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockCards'],
     page: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockCards', 'blockSchedule'],
-    event: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockSchedule'],
+    event: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockSchedule', 'blockCards'],
     project: ['localePortableTextBody', 'blockColumns', 'blockLinks']
 };

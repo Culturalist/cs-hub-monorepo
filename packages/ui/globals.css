@@ -275,6 +275,13 @@
         letter-spacing: -0.02em;
     }
 
+    .typo-short-lg {
+        @apply calc-fontsize;
+        --font-size: 20;
+        --line-height: 24;
+        letter-spacing: -0.01em;
+    }
+
     .typo-short {
         @apply calc-fontsize;
         --font-size: 16;

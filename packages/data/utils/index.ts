@@ -8,3 +8,5 @@ export { getStaticParams } from './getStaticParams';
 export { isUniqueSlug } from './isUniqueSlug';
 export { prepareMetadata } from './prepareMetadata';
 export { localizeString } from './localizeString';
+export { prepareCardsData } from './prepareCardsData';
+export { fetchCardsDataByLabels } from './fetchCardsDataByLabels';

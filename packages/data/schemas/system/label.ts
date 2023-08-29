@@ -4,7 +4,7 @@ import { selectDefaultLocale } from '../../utils';
 import { LocaleString } from '../objects';
 
 export interface Label extends SanityDocument {
-    _type: 'person' | 'reference';
+    _type: 'label' | 'reference';
     _ref?: string;
     title?: LocaleString;
     slug: Slug;

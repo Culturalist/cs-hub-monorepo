@@ -4,7 +4,7 @@ import { DefaultStyleProps } from 'globals';
 import { purgeEmptyStrings } from 'weresk/utils';
 
 export interface styleProps extends DefaultStyleProps {
-    type: CardsType;
+    type: CardsType | 'hero';
 }
 
 const defaultStyles = {
@@ -13,7 +13,7 @@ const defaultStyles = {
     hero: 'grid-cols-1 sm:grid-cols-3 gap-gutter',
     projects: '',
     posts: '',
-    people: '',
+    people: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-gutter gap-y-40',
     events: ''
 };
 

@@ -15,7 +15,7 @@ const defaultStyles = {
     subtitleWrapper: 'mt-16 lg:max-w-m20',
     subtitle: 'typo-paragraph trim-line text-theme-text-light',
     lineup: 'mt-32',
-    datesWrapper: 'mt-m2 mb-48 flex flex-col sm:flex-row gap-48 sm:gap-gutter sm:justify-between sm:items-end',
+    datesWrapper: 'mt-m2 mb-32 flex flex-col sm:flex-row gap-48 sm:gap-gutter sm:justify-between sm:items-end',
     dates: 'grow',
     action: 'grow-0',
     cover: 'mt-24',

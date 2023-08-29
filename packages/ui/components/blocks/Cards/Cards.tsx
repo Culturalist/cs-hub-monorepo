@@ -2,10 +2,11 @@ import { Card, CardsType } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import CardHero from './CardHero';
 import CardManual from './CardManual';
+import CardPerson from './CardPerson';
 import { createStyles } from './Cards.styles';
 
 interface CardsProps extends DefaultProps {
-    type: CardsType;
+    type: CardsType | 'hero';
     data?: Card[];
     coverOnHover?: boolean;
 }
@@ -23,6 +24,8 @@ export default function Cards(props: CardsProps) {
                     return <CardManual data={card} coverOnHover={coverOnHover} lang={lang} key={i} />;
                 else if (type == 'hero' && card._type == 'cardManual')
                     return <CardHero data={card} coverOnHover={coverOnHover} lang={lang} key={i} />;
+                else if (type == 'people' && card._type == 'person')
+                    return <CardPerson data={card} lang={lang} key={i} />;
             })}
         </div>
     );
