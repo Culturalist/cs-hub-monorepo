@@ -31,6 +31,7 @@ async function getLocale(request: NextRequest): Promise<string | undefined> {
 
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
+    const headers = new Headers(request.headers);
 
     //Workaround to fix FB scraper failure
     let isCrawler = false;
@@ -45,7 +46,7 @@ export async function middleware(request: NextRequest) {
         // const headers = new Headers(request.headers);
         // headers.delete('Range');
         // const response = NextResponse.next({ request: { headers } });
-        return NextResponse.next();
+        return NextResponse.next({ request: { headers } });
     }
 
     // Check if there is any supported locale in the pathname
