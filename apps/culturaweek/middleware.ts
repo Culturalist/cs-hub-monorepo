@@ -33,19 +33,19 @@ export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     //Workaround to fix FB scraper failure
-    let isCrawler = false;
-    //@ts-ignore
-    for (const value of request.headers.values()) {
-        if (value.includes('facebook')) {
-            isCrawler = true;
-        }
-    }
-    if (isCrawler && request.headers.has('Range')) {
-        const headers = new Headers(request.headers);
-        headers.delete('Range');
-        const responseWithoutRange = NextResponse.next({ request: { headers } });
-        return responseWithoutRange;
-    }
+    // let isCrawler = false;
+    // //@ts-ignore
+    // for (const value of request.headers.values()) {
+    //     if (value.includes('facebook')) {
+    //         isCrawler = true;
+    //     }
+    // }
+    // if (isCrawler && request.headers.has('Range')) {
+    //     const headers = new Headers(request.headers);
+    //     headers.delete('Range');
+    //     const responseWithoutRange = NextResponse.next({ request: { headers } });
+    //     return responseWithoutRange;
+    // }
 
     // Check if there is any supported locale in the pathname
     const pathnameIsMissingLocale = locales.every(
