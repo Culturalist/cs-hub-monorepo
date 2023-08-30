@@ -18,18 +18,18 @@ async function filterActive(input: string[]): Promise<string[]> {
     return data?.languages || input;
 }
 
-async function getLocale(request: NextRequest): Promise<string | undefined> {
+function getLocale(request: NextRequest): string | undefined {
     // Negotiator expects plain object so we need to transform headers
     const negotiatorHeaders: Record<string, string> = {};
     request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
     // Use negotiator and intl-localematcher to get best locale
     let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-    const active = await filterActive(locales);
+    // const active = await filterActive(locales);
 
     return matchLocale(languages, locales, defaultLocale);
 }
 
-export async function middleware(request: NextRequest) {
+export function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     //Workaround to fix FB scraper failure
@@ -54,7 +54,7 @@ export async function middleware(request: NextRequest) {
 
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
-        const locale = await getLocale(request);
+        const locale = getLocale(request);
         return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
     }
 }
