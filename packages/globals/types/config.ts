@@ -44,5 +44,6 @@ export interface GlobalConfig {
     latestUpdate: string;
     organization: string;
     creator: string;
+    fbAppId?: string;
     debug?: boolean;
 }

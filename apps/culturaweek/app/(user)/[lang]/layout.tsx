@@ -39,10 +39,3 @@ export default async function RootLayout({ children, params }: DefaultLayoutProp
         </html>
     );
 }
-
-// export const metadata = {
-//     viewport: {
-//         width: globalConfig.breakpoints.xs,
-//         userScalable: false
-//     }
-// };

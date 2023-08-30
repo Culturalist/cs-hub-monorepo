@@ -106,6 +106,7 @@ const globalConfig: GlobalConfig = {
     latestUpdate: '2023-08-01',
     organization: 'Cultura-säätiö',
     creator: 'Alexander Kalachev <alexanderkalachev.com>',
+    fbAppId: '1109207817140829',
     debug: false
 };
 

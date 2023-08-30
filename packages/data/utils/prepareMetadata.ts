@@ -178,16 +178,10 @@ export async function prepareMetadata({
             ? 'noindex, nofollow'
             : 'index, follow, max-image-preview:large';
 
-    //Icons
-    // output.icons = {
-    //     icon: '/icon.ico',
-    //     shortcut: '/assets/favicon.png',
-    //     apple: '/apple-icon.png',
-    //     other: {
-    //         rel: 'apple-touch-icon',
-    //         url: '/apple-icon.png'
-    //     }
-    // };
+    //Others
+    output.other = {
+        ['fb:app_id']: globalConfig.fbAppId || ''
+    };
 
     //Viewport no zoom
     output.viewport = {
