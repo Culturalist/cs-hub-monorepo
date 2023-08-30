@@ -33,7 +33,7 @@ export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     //Workaround to fix FB scraper failure
-    if (request.nextUrl.host.includes('facebook') && request.headers.has('Range')) {
+    if (request.headers.has('developers.facebook.com') && request.headers.has('Range')) {
         const headers = new Headers(request.headers);
         headers.delete('Range');
         const responseWithoutRange = NextResponse.next({ request: { headers } });
