@@ -41,10 +41,11 @@ export async function middleware(request: NextRequest) {
         }
     }
     if (isCrawler /* && request.headers.has('Range')*/) {
-        const headers = new Headers(request.headers);
-        // headers.delete('Range');
-        const responseWithoutRange = NextResponse.next({ request: { headers } });
-        return responseWithoutRange;
+        return NextResponse.redirect(request.url);
+        // const headers = new Headers(request.headers);
+        // // headers.delete('Range');
+        // const responseWithoutRange = NextResponse.next({ request: { headers } });
+        // return responseWithoutRange;
     }
 
     // Check if there is any supported locale in the pathname
