@@ -41,7 +41,7 @@ export async function middleware(request: NextRequest) {
         }
     }
     if (isCrawler /* && request.headers.has('Range')*/) {
-        return NextResponse.redirect(request.url);
+        return NextResponse.redirect(new URL(pathname, request.url));
         // const headers = new Headers(request.headers);
         // // headers.delete('Range');
         // const responseWithoutRange = NextResponse.next({ request: { headers } });
