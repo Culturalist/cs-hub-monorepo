@@ -1,3 +1,4 @@
+import 'ui/globals.css';
 import { App } from 'data/schemas';
 import { DefaultLayoutProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
