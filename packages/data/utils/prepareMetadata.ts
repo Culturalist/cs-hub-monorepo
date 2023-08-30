@@ -179,9 +179,15 @@ export async function prepareMetadata({
             : 'index, follow, max-image-preview:large';
 
     //Icons
-    output.icons = {
-        icon: '/favicon.ico'
-    };
+    // output.icons = {
+    //     icon: '/icon.ico',
+    //     shortcut: '/assets/favicon.png',
+    //     apple: '/apple-icon.png',
+    //     other: {
+    //         rel: 'apple-touch-icon',
+    //         url: '/apple-icon.png'
+    //     }
+    // };
 
     //Viewport no zoom
     output.viewport = {
