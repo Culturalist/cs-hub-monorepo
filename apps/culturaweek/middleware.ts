@@ -26,20 +26,20 @@ async function getLocale(request: NextRequest): Promise<string | undefined> {
     let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
     const active = await filterActive(locales);
 
-    return matchLocale(languages, active, defaultLocale);
+    return matchLocale(languages, locales, defaultLocale);
 }
 
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     //Workaround to fix FB scraper failure
-    // let isCrawler = false;
-    // //@ts-ignore
-    // for (const value of request.headers.values()) {
-    //     if (value.includes('facebook')) {
-    //         isCrawler = true;
-    //     }
-    // }
+    let isCrawler = false;
+    //@ts-ignore
+    for (const value of request.headers.values()) {
+        if (value.includes('facebook')) {
+            isCrawler = true;
+        }
+    }
     // if (isCrawler && request.headers.has('Range')) {
     //     const headers = new Headers(request.headers);
     //     headers.delete('Range');
