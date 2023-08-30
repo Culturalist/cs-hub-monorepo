@@ -179,9 +179,9 @@ export async function prepareMetadata({
             : 'index, follow, max-image-preview:large';
 
     //Others
-    output.other = {
-        ['fb:app_id']: globalConfig.fbAppId || ''
-    };
+    // output.other = {
+    //     ['fb:app_id']: globalConfig.fbAppId || ''
+    // };
 
     //Viewport no zoom
     output.viewport = {

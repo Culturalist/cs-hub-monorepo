@@ -19,6 +19,9 @@ export default async function Home() {
 
     return (
         <html lang={lang} data-useragent="hhea">
+            <head>
+                <meta property="fb:app_id" content={globalConfig.fbAppId} />
+            </head>
             <body>
                 <Suspense fallback={<></>}>
                     <GoogleTag appName={appName} />
