@@ -78,7 +78,9 @@ export default function HeroVideo(props: HeroVideoProps) {
                     posters[device.current] &&
                     getImageUrl(
                         posters[device.current]!,
-                        device.current == 'mobile' ? globalConfig.breakpoints.sm : globalConfig.breakpoints.lg
+                        device.current == 'mobile'
+                            ? globalConfig.breakpoints.sm * globalConfig.pd.xs
+                            : globalConfig.breakpoints.lg * globalConfig.pd.lg
                     )
                 }
                 className={styles.video}
