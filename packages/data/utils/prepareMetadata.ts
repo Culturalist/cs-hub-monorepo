@@ -73,8 +73,8 @@ export async function prepareMetadata({
 
     //Video
     let videoUrl: string | undefined = global?.sharedVideo?.url;
-    if (type !== 'app' && metadata?.sharedVideo?.url) {
-        videoUrl = metadata.sharedVideo.url;
+    if (type !== 'app') {
+        videoUrl = metadata?.sharedVideo?.url;
     }
     let videoCover = !!videoUrl;
 

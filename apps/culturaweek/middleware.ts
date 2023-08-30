@@ -31,7 +31,6 @@ async function getLocale(request: NextRequest): Promise<string | undefined> {
 
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
-    const headers = new Headers(request.headers);
 
     //Workaround to fix FB scraper failure
     let isCrawler = false;
@@ -55,7 +54,7 @@ export async function middleware(request: NextRequest) {
     );
 
     // Redirect if there is no locale
-    if (pathnameIsMissingLocale) {
+    if (!isCrawler && pathnameIsMissingLocale) {
         const locale = await getLocale(request);
         return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
     }
