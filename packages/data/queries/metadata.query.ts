@@ -17,6 +17,7 @@ export const metadataPageQuery = groq`*[_type == $type && slug.current == $slug 
     title,
     subtitle,
     position,
+    photo,
     covers[] {
         ...,
         asset->

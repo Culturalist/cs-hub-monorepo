@@ -13,6 +13,7 @@ export interface MetadataAny extends SanityDocument {
     title?: LocaleString;
     subtitle?: LocaleString;
     position?: LocaleString;
+    photo?: ImageObject;
     covers?: CoverBlock[];
     lineup?: ElementLineup[];
     dates?: ElementDate[];
@@ -80,6 +81,11 @@ export async function prepareMetadata({
     //Image
     let image: ImageObject | undefined = global?.sharedImage;
     if (type !== 'app' && document) {
+        // Photo
+        if (document.photo?.asset) {
+            image = document.photo;
+        }
+
         //Covers
         if (document.covers && document.covers.length > 0) {
             document.covers.every(cover => {
@@ -93,8 +99,9 @@ export async function prepareMetadata({
                 return true;
             });
         }
-        //Metadata sharedImage
+
         if (metadata && metadata.sharedImage?.asset) {
+            //Metadata sharedImage
             image = metadata?.sharedImage.asset ? metadata.sharedImage : image;
         }
     }
@@ -105,7 +112,7 @@ export async function prepareMetadata({
     //URL
     let path: string | undefined;
     if (type !== 'app' && slug) {
-        path = `${globalConfig.routes[type] ? globalConfig.routes[type] : ''}${slug}/`;
+        path = `${globalConfig.routes[type] ? globalConfig.routes[type] + '/' : ''}${slug}/`;
     }
     const url = path ? globalConfig.apps[appName].domain + path : globalConfig.apps[appName].domain;
     output.alternates = {
