@@ -40,13 +40,13 @@ export async function middleware(request: NextRequest) {
             isCrawler = true;
         }
     }
-    if (isCrawler /* && request.headers.has('Range')*/) {
-        return NextResponse.redirect(new URL(pathname, request.url));
-        // const headers = new Headers(request.headers);
-        // // headers.delete('Range');
-        // const responseWithoutRange = NextResponse.next({ request: { headers } });
-        // return responseWithoutRange;
-    }
+    // if (isCrawler /* && request.headers.has('Range')*/) {
+    //     return NextResponse.redirect(new URL(pathname, request.url));
+    //     // const headers = new Headers(request.headers);
+    //     // // headers.delete('Range');
+    //     // const responseWithoutRange = NextResponse.next({ request: { headers } });
+    //     // return responseWithoutRange;
+    // }
 
     // Check if there is any supported locale in the pathname
     const pathnameIsMissingLocale = locales.every(
@@ -54,7 +54,7 @@ export async function middleware(request: NextRequest) {
     );
 
     // Redirect if there is no locale
-    if (pathnameIsMissingLocale) {
+    if (!isCrawler && pathnameIsMissingLocale) {
         const locale = await getLocale(request);
         return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
     }
