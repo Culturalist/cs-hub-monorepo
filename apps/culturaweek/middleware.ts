@@ -41,12 +41,12 @@ export async function middleware(request: NextRequest) {
             isCrawler = true;
         }
     }
-    if (isCrawler /* && request.headers.has('Range')*/) {
+    if (isCrawler && request.headers.has('Range')) {
         // return NextResponse.redirect(new URL(pathname, request.url));
-        // const headers = new Headers(request.headers);
-        // headers.delete('Range');
-        // const response = NextResponse.next({ request: { headers } });
-        return NextResponse.next({ request: { headers } });
+        const headers = new Headers(request.headers);
+        headers.delete('Range');
+        const response = NextResponse.next({ request: { headers } });
+        return response; //NextResponse.next({ request: { headers } });
     }
 
     // Check if there is any supported locale in the pathname
