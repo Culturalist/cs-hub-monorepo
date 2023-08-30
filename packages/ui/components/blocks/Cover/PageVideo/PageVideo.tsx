@@ -26,7 +26,7 @@ export default function PageVideo(props: PageVideoProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const device = useRef<UseMedia>('desktop');
     const [source, setSource] = useState(sources[device.current]);
-    const [trim, setTrim] = useState<'x' | 'y'>('y');
+    const [trim, setTrim] = useState<'x' | 'y' | 'load'>('load');
     const videoId = sources[device.current]?.asset?._id;
 
     const styles = createStyles({ className });
