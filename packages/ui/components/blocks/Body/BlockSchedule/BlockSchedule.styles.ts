@@ -6,7 +6,7 @@ export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
     container: 'mt-40',
-    element: 'border-t pt-16 pb-24 flex flex-col sm:flex-row gap-gutter',
+    element: 'border-t pt-12 pb-24 flex flex-col sm:flex-row gap-gutter',
     timeCol: 'basis-48 sm:basis-m8 md:basis-m6 shrink-0',
     timeWrapper: '',
     time: 'typo-title-lg trim-line font-light',
@@ -16,7 +16,7 @@ const defaultStyles = {
     subtitleWrapper: 'mt-12',
     subtitle: 'typo-paragraph-sm trim-line text-theme-text-light',
     descriptionWrapper: '',
-    description: 'typo-paragraph-sm pt-16 pb-16 [&_p]:pt-16',
+    description: 'typo-paragraph-sm pt-12 pb-12 [&_p]:pt-12',
     readMore: 'mt-16'
 };
 

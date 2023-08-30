@@ -2,6 +2,7 @@
 import { useHotkeys } from 'react-hotkeys-hook';
 import Grid from '../Grid';
 import { useEffect, useState } from 'react';
+import globalConfig from 'globals/globalConfig';
 // import { useSearchParams } from 'next/navigation';
 
 interface ThemeInitProps {}
@@ -22,7 +23,7 @@ export default function ThemeInit(props: ThemeInitProps) {
         }
     }, []);
 
-    if (showGrid) {
+    if (showGrid && globalConfig.debug) {
         return <Grid />;
     }
     return null;

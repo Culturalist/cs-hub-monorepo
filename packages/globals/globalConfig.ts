@@ -105,7 +105,7 @@ const globalConfig: GlobalConfig = {
     latestUpdate: '2023-08-01',
     organization: 'Cultura-säätiö',
     creator: 'Alexander Kalachev <alexanderkalachev.com>',
-    debug: true
+    debug: false
 };
 
 export default globalConfig;
