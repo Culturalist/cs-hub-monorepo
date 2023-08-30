@@ -44,7 +44,8 @@ const globalConfig: GlobalConfig = {
             },
             externalLinks: {
                 registration: 'https://culturaweekconference.rsvpify.com/'
-            }
+            },
+            googleTag: 'G-L5CP6G9TYB'
         },
         template: {
             title: 'Cultura-säätiö Website',

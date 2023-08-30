@@ -4,7 +4,7 @@ import { DefaultLayoutProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { layoutQuery } from 'data/queries';
 import app from '../../../app.json';
-import { Header, Footer, ThemeInit } from 'ui';
+import { Header, Footer, ThemeInit, GoogleTag } from 'ui';
 import { Suspense } from 'react';
 import globalConfig from 'globals/globalConfig';
 import NotFound from './not-found';
@@ -28,6 +28,7 @@ export default async function RootLayout({ children, params }: DefaultLayoutProp
 
     return (
         <html lang={lang} data-useragent="hhea">
+            <GoogleTag appName={appName} />
             <body>
                 <Suspense fallback={<></>}>
                     <ThemeInit />

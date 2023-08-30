@@ -14,6 +14,7 @@ export interface AppConfig {
     };
     parentDocuments?: Partial<Record<DocumentApp, string>>;
     externalLinks?: Record<string, string>;
+    googleTag?: string;
 }
 
 export interface GlobalConfig {
