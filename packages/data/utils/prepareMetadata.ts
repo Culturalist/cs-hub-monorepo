@@ -178,11 +178,6 @@ export async function prepareMetadata({
             ? 'noindex, nofollow'
             : 'index, follow, max-image-preview:large';
 
-    //Others
-    // output.other = {
-    //     ['fb:app_id']: globalConfig.fbAppId || ''
-    // };
-
     //Viewport no zoom
     output.viewport = {
         width: globalConfig.breakpoints.xs,
