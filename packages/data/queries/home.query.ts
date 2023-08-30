@@ -40,5 +40,23 @@ export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
             }
         }
     },
+    header {
+        ...,
+        links[]->,
+        marker {
+            ...,
+            link {
+                ${linkSegment}
+            }
+        }
+    },
+    footer {
+        ...,
+        links[]->,
+        contacts {
+            ...,
+            ${localePortableTextSegment}
+        }
+    },
     theme->
 }`;

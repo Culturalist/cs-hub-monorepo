@@ -28,10 +28,10 @@ export default async function RootLayout({ children, params }: DefaultLayoutProp
 
     return (
         <html lang={lang} data-useragent="hhea">
-            <GoogleTag appName={appName} />
             <body>
                 <Suspense fallback={<></>}>
                     <ThemeInit />
+                    <GoogleTag appName={appName} />
                 </Suspense>
                 <Header data={data.header} languages={data.languages} title={data.title} lang={lang} />
                 {data.languages?.includes(params.lang) ? children : <NotFound />}

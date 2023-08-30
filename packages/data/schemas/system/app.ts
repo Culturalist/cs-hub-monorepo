@@ -54,7 +54,8 @@ export default function app() {
                 of: [{ type: 'string' }],
                 options: {
                     list: getAppLanguageList()
-                }
+                },
+                validation: Rule => Rule.required().min(1)
             }),
             defineField({
                 name: 'header',

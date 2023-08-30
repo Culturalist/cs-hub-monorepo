@@ -9,7 +9,6 @@ export default function GoogleTag(props: GoogleTagProps) {
     const { appName } = props;
     const id = globalConfig.apps[appName]?.googleTag;
     if (!id) return null;
-    console.log(id);
 
     return (
         <>
