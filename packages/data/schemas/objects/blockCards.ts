@@ -20,9 +20,10 @@ export interface BlockCards {
     people?: (Person | Label)[];
     events?: (Event | Label)[];
     organisations?: (Organisation | Label)[];
-    groupByLabel?: boolean;
     monochromePhoto?: boolean;
     includePerson?: CardPart[];
+    coverOnHover?: boolean;
+    displayDates?: boolean;
 }
 
 export default function blockCards(appName: string = 'hub') {
@@ -116,6 +117,20 @@ export default function blockCards(appName: string = 'hub') {
                 type: 'boolean',
                 initialValue: false,
                 hidden: ({ parent }) => parent?.type !== 'people'
+            }),
+            defineField({
+                name: 'coverOnHover',
+                title: 'Show cards cover only on hover',
+                type: 'boolean',
+                initialValue: false,
+                hidden: ({ parent }) => parent?.type !== 'manual'
+            }),
+            defineField({
+                name: 'displayDates',
+                title: 'Display each date as separate card',
+                type: 'boolean',
+                initialValue: false,
+                hidden: ({ parent }) => parent?.type !== 'events'
             })
             // defineField({
             //     name: 'groupByLabel',

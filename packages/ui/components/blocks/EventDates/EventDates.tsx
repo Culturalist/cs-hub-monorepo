@@ -1,6 +1,6 @@
 import { ElementDate } from 'data/schemas';
 import { DefaultProps } from 'globals';
-import { localizeString } from 'data/utils';
+import { formatLocaleDate, localizeString } from 'data/utils';
 import LinkWrapper from '../LinkWrapper';
 import { createStyles } from './EventDates.styles';
 
@@ -18,9 +18,7 @@ export default function EventDates(props: EventDatesProps) {
         <div className={styles.container}>
             {data.map((event, i) => {
                 const { start, end, mapUrl } = event;
-                const date = event.date
-                    ? new Date(event.date).toLocaleString('fi-FI', { month: 'numeric', day: 'numeric' })
-                    : undefined;
+                const date = formatLocaleDate(event.date, lang);
                 const time = `${start || ''}${end ? '-' + end : ''}`;
                 const location = localizeString(event.location, lang);
                 return (

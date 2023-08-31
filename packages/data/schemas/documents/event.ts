@@ -7,6 +7,8 @@ import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../u
 import globalConfig from 'globals/globalConfig';
 import { Page } from './page';
 import { Label, Theme } from '../system';
+import { themeColors } from '../values';
+import { Color } from 'globals';
 
 export interface Event extends SanityDocument {
     _type: 'event' | 'reference';
@@ -23,6 +25,7 @@ export interface Event extends SanityDocument {
     parent?: Page;
     labels?: Label[];
     theme?: Theme;
+    cardSurface?: Color;
     metadata?: MetadataPage;
 }
 
@@ -154,6 +157,15 @@ export default function event(appName: string = 'hub') {
                 type: 'reference',
                 description: 'If not set – default website theme will be used',
                 to: [{ type: 'theme' }],
+                group: 'style'
+            }),
+            defineField({
+                name: 'cardSurface',
+                title: 'Custom color',
+                type: 'color',
+                options: {
+                    colorList: themeColors
+                },
                 group: 'style'
             }),
             defineField({

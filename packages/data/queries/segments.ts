@@ -57,3 +57,51 @@ export const localePortableTextSegment = `
         }
     }
     `;
+
+export const bodySegment = `
+    ...,
+    content[] {
+        ...,
+        links[] {
+            ...,
+            link {
+                ${linkSegment}
+            }
+        },
+        ${localePortableTextSegment},
+        content[] {
+            ...,
+            ${localePortableTextSegment}
+        },
+        schedule[] {
+            ...,
+            description {
+                ...,
+                ${localePortableTextSegment}
+            }
+        },
+        manual[] {
+            ...,
+            link {
+                ${linkSegment}
+            }
+        },
+        people[]-> {
+            ...,
+            description {
+                ...,
+                ${localePortableTextSegment}
+            }
+        },
+        events[]-> {
+            ...,
+            lineup[] {
+                ...,
+                list[]-> {
+                    title
+                }
+            }
+        },
+        organisations[]->
+    }
+`;

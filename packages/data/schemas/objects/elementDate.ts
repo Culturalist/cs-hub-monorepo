@@ -6,7 +6,7 @@ import { selectDefaultLocale } from '../../utils';
 export interface ElementDate {
     _type: 'elementDate';
     _key: string;
-    date?: string;
+    date: string;
     start?: string;
     end?: string;
     location?: LocaleString;
@@ -33,7 +33,8 @@ export default function elementDate() {
                 title: 'Date',
                 type: 'date',
                 initialValue: new Date().toISOString().split('T')[0],
-                fieldset: 'date'
+                fieldset: 'date',
+                validation: Rule => Rule.required()
             }),
             defineField({
                 name: 'start',

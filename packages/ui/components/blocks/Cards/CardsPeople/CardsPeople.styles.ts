@@ -7,7 +7,8 @@ export interface styleProps extends DefaultStyleProps {
 }
 
 const defaultStyles = {
-    container: '',
+    container: 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-gutter gap-y-40',
+    card: '',
     linkWrapper: '',
     photo: 'xs:w-m12 xs:h-m12 md:w-m8 md:h-m8 mb-12 object-cover',
     box: 'h-0 pb-[100%] mb-12 bg-theme-text-light/25',

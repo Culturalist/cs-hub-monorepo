@@ -386,6 +386,13 @@
         letter-spacing: -0.03em;
     }
 
+    .typo-caps-3xs {
+        @apply calc-fontsize uppercase;
+        --font-size: 12;
+        --line-height: 12;
+        letter-spacing: -0.03em;
+    }
+
     /* Effects */
     @supports (-webkit-text-stroke-width: 1px) {
         .text-outline {

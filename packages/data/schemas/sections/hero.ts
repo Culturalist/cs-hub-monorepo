@@ -87,7 +87,8 @@ export default function hero() {
                 title: 'Show cards cover only on hover',
                 type: 'boolean',
                 initialValue: false,
-                fieldset: 'style'
+                fieldset: 'style',
+                hidden: ({ parent }) => parent?.actionType !== 'cards'
             }),
             defineField({
                 name: 'hideFooter',

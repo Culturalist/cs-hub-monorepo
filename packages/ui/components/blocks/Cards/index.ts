@@ -1,5 +1,4 @@
-export { default as Cards } from './Cards';
-export { default as CardManual } from './CardManual';
-export { default as CardHero } from './CardHero';
-export { default as CardPerson } from './CardPerson';
-export { default as CardOrganisation } from './CardOrganisation';
+export { default as CardsManual } from './CardsManual';
+export { default as CardsPeople } from './CardsPeople';
+export { default as CardOrganisation } from './CardsOrganisations';
+export { default as CardEvent } from './CardsEvents';

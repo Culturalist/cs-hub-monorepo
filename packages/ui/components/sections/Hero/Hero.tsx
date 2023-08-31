@@ -3,7 +3,7 @@ import { DefaultProps } from 'globals';
 import { localizeString } from 'data/utils';
 import { neatTextBreaks } from 'weresk/utils';
 import { getHeroVariables } from '../../../utils';
-import { Cards } from '../../blocks';
+import { CardsManual } from '../../blocks';
 import { Cover } from '../../blocks/Cover';
 import Links from '../../blocks/Links';
 import { createStyles } from './Hero.styles';
@@ -31,8 +31,14 @@ export default function Hero(props: HeroProps) {
                 )}
                 {/* ACTIONS */}
                 {/* CARDS */}
-                {actionType == 'cards' && (
-                    <Cards data={cards} type="hero" coverOnHover={coverOnHover} lang={lang} className={styles.cards} />
+                {actionType == 'cards' && cards && (
+                    <CardsManual
+                        hero={true}
+                        data={cards}
+                        coverOnHover={coverOnHover}
+                        lang={lang}
+                        className={styles.cards}
+                    />
                 )}
                 {(actionType == 'links' || actionType == 'buttons') && (
                     <Links links={links} layout={actionType} lang={lang} className={styles.links} />

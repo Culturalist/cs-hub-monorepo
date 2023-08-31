@@ -1,5 +1,5 @@
 import { groq } from 'next-sanity';
-import { coverSegment, linkSegment, localePortableTextSegment } from './segments';
+import { bodySegment, coverSegment, linkSegment, localePortableTextSegment } from './segments';
 
 export const pageQuery = groq`*[_type == 'page' && slug.current == $slug && app._ref == $appName][0]{
     ...,
@@ -7,21 +7,7 @@ export const pageQuery = groq`*[_type == 'page' && slug.current == $slug && app.
         ${coverSegment}
     },
     body[] {
-        ...,
-        content[] {
-            ...,
-            links[] {
-                ...,
-                link {
-                    ${linkSegment}
-                }
-            },
-            ${localePortableTextSegment},
-            content[] {
-                ...,
-                ${localePortableTextSegment}
-            }
-        }
+        ${bodySegment}
     },
     theme->
 }`;
