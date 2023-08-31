@@ -73,6 +73,15 @@ const initialValueTemplates = [
         value: (params: any) => ({
             app: { _type: 'reference', _ref: params.appName }
         })
+    },
+    {
+        id: 'organisation-by-app',
+        title: 'Organisation in app',
+        schemaType: 'organisation',
+        parameters: [{ name: 'appName', type: 'string' }],
+        value: (params: any) => ({
+            app: { _type: 'reference', _ref: params.appName }
+        })
     }
 ];
 

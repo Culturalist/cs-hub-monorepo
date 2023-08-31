@@ -5,10 +5,10 @@ import { CardsType, cardsTypeList, CardPart, personCardParts } from '../values';
 import { capitalize } from 'weresk';
 import globalConfig from 'globals/globalConfig';
 import { CardManual } from './cardManual';
-import { Person, Post, Project, Event } from '../documents';
+import { Person, Post, Project, Event, Organisation } from '../documents';
 import { Label } from '../system';
 
-export type CardSource = Project | Post | Person | Event;
+export type CardSource = Project | Post | Person | Event | Organisation;
 export type Card = CardManual | CardSource;
 
 export interface BlockCards {
@@ -19,6 +19,7 @@ export interface BlockCards {
     posts?: (Post | Label)[];
     people?: (Person | Label)[];
     events?: (Event | Label)[];
+    organisations?: (Organisation | Label)[];
     groupByLabel?: boolean;
     monochromePhoto?: boolean;
     includePerson?: CardPart[];

@@ -2,6 +2,7 @@ import { Card, CardPart, CardsType } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import CardHero from './CardHero';
 import CardManual from './CardManual';
+import CardOrganisation from './CardOrganisation';
 import CardPerson from './CardPerson';
 import { createStyles } from './Cards.styles';
 
@@ -28,6 +29,8 @@ export default function Cards(props: CardsProps) {
                     return <CardHero data={card} coverOnHover={coverOnHover} lang={lang} key={i} />;
                 else if (type == 'people' && card._type == 'person')
                     return <CardPerson data={card} include={include} monochrome={monochrome} lang={lang} key={i} />;
+                else if (type == 'organisations' && card._type == 'organisation')
+                    return <CardOrganisation data={card} lang={lang} key={i} />;
             })}
         </div>
     );

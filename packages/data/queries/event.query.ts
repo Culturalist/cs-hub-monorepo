@@ -52,7 +52,8 @@ export const eventQuery = groq`*[_type == 'event' && slug.current == $slug && ap
                     ${localePortableTextSegment}
                 }
             },
-            events[]->
+            events[]->,
+            organisations[]->
         }
     },
     theme->

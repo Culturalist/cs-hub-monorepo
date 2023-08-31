@@ -37,10 +37,10 @@ const globalConfig: GlobalConfig = {
             title: 'CulturaWeek',
             domain: 'https://culturaweek.fi/',
             schemas: {
-                documents: ['page', 'person', 'event'],
+                documents: ['page', 'person', 'event', 'organisation'],
                 links: ['page', 'person', 'event'],
                 navigation: ['page', 'event'],
-                create: ['page', 'person', 'event', 'theme', 'label']
+                create: ['page', 'person', 'event', 'theme', 'label', 'organisation']
             },
             externalLinks: {
                 registration: 'https://culturaweekconference.rsvpify.com/'
@@ -69,7 +69,8 @@ const globalConfig: GlobalConfig = {
         post: 'blogit',
         project: 'projektit',
         event: 'tapahtumat',
-        note: 'sivut'
+        note: 'sivut',
+        organisation: 'yritykset'
     },
     breakpoints: {
         xs: 512,
@@ -107,7 +108,7 @@ const globalConfig: GlobalConfig = {
     organization: 'Cultura-säätiö',
     creator: 'Alexander Kalachev <alexanderkalachev.com>',
     fbAppId: '1109207817140829',
-    debug: false
+    debug: true
 };
 
 export default globalConfig;

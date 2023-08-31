@@ -1,5 +1,5 @@
 import globalConfig from 'globals/globalConfig';
-import { bodyParents, DocumentAny, DocumentApp, mediaParents, portableTextParents } from './values';
+import { bodyParents, DocumentApp, mediaParents, portableTextParents } from './values';
 
 import {
     blockId,
@@ -31,7 +31,7 @@ import {
     captonAlt,
     blockSchedule
 } from './objects';
-import { page, person, post, project, event, note } from './documents';
+import { page, person, post, project, event, note, organisation } from './documents';
 import { header, footer, hero, metadataApp, metadataPage } from './sections';
 import { app, theme, label } from './system';
 
@@ -83,7 +83,8 @@ export default function schemaTypes(appName: string = 'hub') {
         event,
         post,
         person,
-        note
+        note,
+        organisation
     };
 
     const appDocuments = globalConfig.apps[appName].schemas.documents.map(documentType => {

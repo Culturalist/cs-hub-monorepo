@@ -20,7 +20,8 @@ import {
     UnknownIcon,
     SearchIcon,
     TerminalIcon,
-    CalendarIcon
+    CalendarIcon,
+    CaseIcon
 } from '@sanity/icons';
 import app from '../app.json';
 // import { defaultDocumentNode } from './defaultDocumentNode';
@@ -66,6 +67,18 @@ export default {
                             .filter('_type == $type && app._ref == $appName')
                             .params({ type: 'person', appName: appName })
                             .initialValueTemplates([S.initialValueTemplateItem('person-by-app', { appName: appName })])
+                    ),
+                S.listItem()
+                    .title('Organizations')
+                    .icon(CaseIcon)
+                    .child(
+                        S.documentTypeList('organisation')
+                            .title('Organizations')
+                            .filter('_type == $type && app._ref == $appName')
+                            .params({ type: 'organisation', appName: appName })
+                            .initialValueTemplates([
+                                S.initialValueTemplateItem('organisation-by-app', { appName: appName })
+                            ])
                     )
             ])
 };

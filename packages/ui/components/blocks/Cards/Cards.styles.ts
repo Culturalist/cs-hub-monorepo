@@ -14,7 +14,8 @@ const defaultStyles = {
     projects: '',
     posts: '',
     people: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-gutter gap-y-40',
-    events: ''
+    events: '',
+    organisations: 'grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-gutter'
 };
 
 export const createStyles = ({ className, type }: styleProps) => {

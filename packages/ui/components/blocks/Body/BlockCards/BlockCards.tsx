@@ -18,15 +18,6 @@ export default async function BlockCards(props: BlockCardsProps) {
     const styles = createStyles({ className, cardsType });
 
     const unsorted = await prepareCardsData(cardsType, cards);
-    const sorted = unsorted.sort((a, b) => {
-        if (a.title?.[lang] && b.title?.[lang]) {
-            return a.title[lang].localeCompare(b.title[lang]);
-        }
-        return 1;
-    });
-
-    if (groupByLabel) {
-    }
 
     return (
         <Cards

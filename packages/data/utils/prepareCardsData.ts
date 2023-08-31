@@ -1,28 +1,31 @@
-import { Card } from '../schemas/objects';
+import { groq } from 'next-sanity';
+import { clientNext } from 'globals/lib/sanity';
+import { Card, CardSource } from '../schemas/objects';
 import { Label } from '../schemas/system';
 import { CardsType, cardsTypeList } from '../schemas/values';
-import { fetchCardsDataByLabels } from './fetchCardsDataByLabels';
+import globalConfig from 'globals/globalConfig';
+
+const query = groq`*[_type == $docType] | order(title.${globalConfig.localization.default} asc)`;
 
 export async function prepareCardsData(cardsType: CardsType, input: (Card | Label)[]): Promise<Card[]> {
-    if (cardsType == 'manual') {
+    const hasLabels = input.some(entry => entry._type == 'label');
+    if (cardsType == 'manual' || !hasLabels) {
         return input as Card[];
     }
     const docType = cardsTypeList.find(({ value }) => value == cardsType)?.docType;
+    const data: CardSource[] = await clientNext.fetch(query, { docType });
     let output: Card[] = [];
-    let labels: string[] = [];
 
     input.forEach(entry => {
         if (entry._type == 'label') {
-            labels.push(entry._ref || entry._id);
-        } else if (entry._type == docType) {
+            data.forEach(card => {
+                card.labels?.map(label => label._ref || label._id).includes(entry._ref || entry._id) &&
+                    output.push(card);
+            });
+        } else {
             output.push(entry as Card);
         }
     });
-
-    if (labels.length > 0 && docType) {
-        const cardsByLabels: Card[] = await fetchCardsDataByLabels(docType, labels);
-        output = [...output, ...cardsByLabels];
-    }
 
     return output;
 }

@@ -65,9 +65,10 @@ export const cardsTypeList = [
     { title: 'Projects', value: 'projects', docType: 'project' },
     { title: 'Posts', value: 'posts', docType: 'post' },
     { title: 'People', value: 'people', docType: 'person' },
-    { title: 'Events', value: 'events', docType: 'event' }
+    { title: 'Events', value: 'events', docType: 'event' },
+    { title: 'Organisations', value: 'organisations', docType: 'organisation' }
 ];
-export type CardsType = 'manual' | 'projects' | 'posts' | 'people' | 'events';
+export type CardsType = 'manual' | 'projects' | 'posts' | 'people' | 'events' | 'organisations';
 
 export const actionTypeList = [
     { title: 'Cards', value: 'cards' },
