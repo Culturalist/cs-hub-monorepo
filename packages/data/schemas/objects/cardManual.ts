@@ -66,14 +66,6 @@ export default function cardManual(appName: string) {
                 },
                 fieldset: 'style'
             })
-            // defineField({
-            //     name: 'coverOnHover',
-            //     title: 'Show cover only on hover',
-            //     type: 'boolean',
-            //     initialValue: false,
-            //     hidden: ({ parent }) => !parent?.cover,
-            //     fieldset: 'style'
-            // })
         ],
         preview: {
             select: {

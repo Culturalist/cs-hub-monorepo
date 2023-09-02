@@ -33,20 +33,20 @@ export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     //Workaround to fix FB scraper failure
-    let isCrawler = false;
-    //@ts-ignore
-    for (const value of request.headers.values()) {
-        if (value.includes('facebook')) {
-            isCrawler = true;
-        }
-    }
-    if (isCrawler && request.headers.has('Range')) {
-        // return NextResponse.redirect(new URL(pathname, request.url));
-        const headers = new Headers(request.headers);
-        headers.delete('Range');
-        const response = NextResponse.next({ request: { headers } });
-        return response; //NextResponse.next({ request: { headers } });
-    }
+    // let isCrawler = false;
+    // //@ts-ignore
+    // for (const value of request.headers.values()) {
+    //     if (value.includes('facebook')) {
+    //         isCrawler = true;
+    //     }
+    // }
+    // if (isCrawler && request.headers.has('Range')) {
+    //     // return NextResponse.redirect(new URL(pathname, request.url));
+    //     const headers = new Headers(request.headers);
+    //     headers.delete('Range');
+    //     const response = NextResponse.next({ request: { headers } });
+    //     return response; //NextResponse.next({ request: { headers } });
+    // }
 
     // Check if there is any supported locale in the pathname
     const pathnameIsMissingLocale = locales.every(
@@ -54,7 +54,7 @@ export async function middleware(request: NextRequest) {
     );
 
     // Redirect if there is no locale
-    if (!isCrawler && pathnameIsMissingLocale) {
+    if (pathnameIsMissingLocale) {
         const locale = await getLocale(request);
         return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
     }
