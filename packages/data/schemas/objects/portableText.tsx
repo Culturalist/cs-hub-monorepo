@@ -2,7 +2,7 @@ import React from 'react';
 import { defineField, defineType } from 'sanity';
 import { TransferIcon, EqualIcon } from '@sanity/icons';
 import { Block } from 'globals';
-import { capitalize } from 'weresk/utils';
+import { capitalize } from 'globals/utils';
 import { BlockParent, linkTypeList, portableTextDefinitions } from '../values';
 import globalConfig from 'globals/globalConfig';
 import { filterByDocumentApp } from '../../utils';

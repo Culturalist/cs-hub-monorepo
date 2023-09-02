@@ -3,7 +3,7 @@ import { ImageIcon } from '@sanity/icons';
 import { useMediaList, useMediaInitialValue, UseMedia } from '../values';
 import { LocaleString } from './localeString';
 import { selectDefaultLocale } from '../../utils';
-import { caseTransform } from 'weresk/utils';
+import { caseTransform } from 'globals/utils';
 import { ImageObject } from 'globals';
 
 export interface MediaImage extends ImageObject {

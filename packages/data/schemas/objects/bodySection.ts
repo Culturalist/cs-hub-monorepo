@@ -1,5 +1,5 @@
 import { defineType } from 'sanity';
-import { capitalize } from 'weresk/utils';
+import { capitalize } from 'globals/utils';
 import { bodyBlockDefinitions, DocumentApp } from '../values';
 import { BlockCards } from './blockCards';
 import { BlockColumns } from './blockColumns';

@@ -1,7 +1,7 @@
 import { cx } from 'class-variance-authority';
 import { LinksLayout } from 'data/schemas';
 import { DefaultStyleProps } from 'globals';
-import { purgeEmptyStrings } from 'weresk/utils';
+import { purgeEmptyStrings } from 'globals/utils';
 
 export interface styleProps extends DefaultStyleProps {
     layout?: LinksLayout;

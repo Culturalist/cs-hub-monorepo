@@ -3,7 +3,7 @@ import { LinkIcon } from '@sanity/icons';
 import { joinLocaleStrings } from '../../utils';
 import { LinksLayout, linksLayoutList } from '../values';
 import { LinkCaptioned } from './linkCaptioned';
-import { capitalize } from 'weresk';
+import { capitalize } from 'globals/utils';
 
 export interface BlockLinks {
     _type: 'blockLinks';

@@ -1,5 +1,5 @@
 import { Breakpoint } from 'globals';
-import globalConfig from 'globals/globalConfig';
+import metrics from '../metrics';
 
 export type BoxDimentions = [number, number];
 export type AdaptiveDimentions = Record<Breakpoint, BoxDimentions>;
@@ -8,7 +8,7 @@ export type AdaptiveValue = Record<Breakpoint, number>;
 export const breakpoints: Breakpoint[] = ['xs', 'sm', 'md', 'lg'];
 
 export function moduleToPx(m: number, br: Breakpoint, pd: number = 1): number {
-    return pd * (m * globalConfig.metrics[br].module + (m - 1) * globalConfig.metrics[br].gutter);
+    return pd * (m * metrics.grid[br].module + (m - 1) * metrics.grid[br].gutter);
 }
 
 export function box(d: BoxDimentions, br: Breakpoint, pd?: number): BoxDimentions {
@@ -20,7 +20,7 @@ export function boxFromWidthRatio(width: number, ratio: number): BoxDimentions {
 }
 
 export function boxPx(dimensions: AdaptiveDimentions, breakpoint: Breakpoint): BoxDimentions {
-    return dimensions[breakpoint].map(d => Math.floor(d * globalConfig.pd[breakpoint])) as BoxDimentions;
+    return dimensions[breakpoint].map(d => Math.floor(d * metrics.pd[breakpoint])) as BoxDimentions;
 }
 
 export function imageWidthToFill(
@@ -30,9 +30,9 @@ export function imageWidthToFill(
     pd: number = 1
 ): number {
     if (imageAspectRatio)
-        return Math.floor((globalConfig.breakpoints[breakpoint] / containerAspectRatio) * imageAspectRatio * pd);
+        return Math.floor((metrics.breakpoints[breakpoint] / containerAspectRatio) * imageAspectRatio * pd);
 
-    return globalConfig.breakpoints[breakpoint] * pd;
+    return metrics.breakpoints[breakpoint] * pd;
 }
 
 export function imageBoxToFill(

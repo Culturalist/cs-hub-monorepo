@@ -1,4 +1,4 @@
-import { LocaleString } from './schemas/objects';
+import { LocaleString } from '../schemas/objects';
 
 const dictionary: Record<string, LocaleString> = {
     registration: { fi: 'Ilmoittautuminen', ru: 'Регистрация', en: 'Registration' },

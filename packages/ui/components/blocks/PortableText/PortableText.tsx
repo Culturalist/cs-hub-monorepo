@@ -4,7 +4,7 @@ import { createStyles } from './PortableText.styles';
 import { DefaultProps } from 'globals';
 import { BlockParent, LocalePortableText } from 'data/schemas';
 import LinkWrapper from '../LinkWrapper';
-import { neatChildrenBreaks } from 'weresk/utils';
+import { neatChildrenBreaks } from 'globals/utils';
 import globalConfig from 'globals/globalConfig';
 
 interface PortableTextBlockProps extends DefaultProps {

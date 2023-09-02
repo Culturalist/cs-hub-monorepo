@@ -1,7 +1,7 @@
 import { Hero } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import { localizeString } from 'data/utils';
-import { neatTextBreaks } from 'weresk/utils';
+import { neatTextBreaks } from 'globals/utils';
 import { getHeroVariables } from '../../../utils';
 import { CardsManual } from '../../blocks';
 import { Cover } from '../../blocks/Cover';

@@ -4,7 +4,7 @@ import { createStyles } from './PageVideo.styles';
 import { ImageSources, UseMedia, VideoSources } from 'data/schemas';
 import { useEffect, useRef, useState } from 'react';
 import { getImageUrl } from 'globals/lib/sanity';
-import globalConfig from 'globals/globalConfig';
+import metrics from '../../../../metrics';
 
 interface PageVideoProps extends DefaultProps {
     sources: VideoSources;
@@ -87,8 +87,8 @@ export default function PageVideo(props: PageVideoProps) {
                     getImageUrl(
                         posters[device.current]!,
                         device.current == 'mobile'
-                            ? globalConfig.breakpoints.sm * globalConfig.pd.xs
-                            : globalConfig.breakpoints.lg * globalConfig.pd.lg
+                            ? metrics.breakpoints.sm * metrics.pd.xs
+                            : metrics.breakpoints.lg * metrics.pd.lg
                     )
                 }
                 className={styles.video}

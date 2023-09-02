@@ -1,7 +1,7 @@
 import { defineType, defineField } from 'sanity';
 import { ContactType, contactTypeList } from '../values';
 import { LinkIcon } from '@sanity/icons';
-import { capitalize } from 'weresk/utils';
+import { capitalize } from 'globals/utils';
 import { LocaleString } from './localeString';
 import { selectDefaultLocale } from '../../utils';
 

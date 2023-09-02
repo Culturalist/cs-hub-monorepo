@@ -40,11 +40,9 @@ export async function middleware(request: NextRequest) {
     }
 
     if (isCrawler && request.headers.has('Range')) {
-        // return NextResponse.redirect(new URL(pathname, request.url));
-        const headers = new Headers(request.headers);
         headers.delete('Range');
         const response = NextResponse.next({ request: { headers } });
-        return response; //NextResponse.next({ request: { headers } });
+        return response;
     }
 
     // Check if there is any supported locale in the pathname
@@ -60,15 +58,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
-    // // If you have one
-    // if (
-    //   [
-    //     '/manifest.json',
-    //     '/favicon.ico',
-    //     // Your other files in `public`
-    //   ].includes(pathname)
-    // )
-    //   return
     matcher: ['/((?!api|admin|fonts|assets|_next/static|_ipx|_next/image|favicon.ico|apple-icon.png|icon.png).*)']
 };

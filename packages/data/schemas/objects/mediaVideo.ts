@@ -4,7 +4,7 @@ import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { UseMedia, useMediaInitialValue, useMediaList } from '../values';
 import { LocaleString } from './localeString';
 import { selectDefaultLocale } from '../../utils';
-import { caseTransform } from 'weresk/utils';
+import { caseTransform } from 'globals/utils';
 
 export interface MediaVideo {
     _type: 'mediaVideo';

@@ -1,10 +1,11 @@
-import { Flex, Button, Inline } from '@sanity/ui';
-import { EyeOpenIcon } from '@sanity/icons';
-import { DeployWidget } from 'globals/lib/sanity';
+'use client';
+import { Flex, Inline } from '@sanity/ui';
+// import { EyeOpenIcon } from '@sanity/icons';
+import DeployWidget from '../DeployWidget';
 
-const previewToken = process.env.NEXT_PUBLIC_PREVIEW_TOKEN || '';
+// const previewToken = process.env.NEXT_PUBLIC_PREVIEW_TOKEN || '';
 
-export default function ToolMenu(props) {
+export default function ToolMenuApp(props: any) {
     return (
         <Flex justify="space-between" align="center">
             <Inline space={2}>

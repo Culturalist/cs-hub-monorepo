@@ -3,7 +3,7 @@ import { CardManual } from 'data/schemas';
 import { Breakpoint, DefaultProps } from 'globals';
 import { getImageUrl } from 'globals/lib/sanity';
 import { localizeString } from 'data/utils';
-import { mapKeys, neatTextBreaks } from 'weresk/utils';
+import { mapKeys, neatTextBreaks } from 'globals/utils';
 import { createStyles } from './CardManual.styles';
 import LinkWrapper from '../../LinkWrapper';
 import Image from '../../Image';

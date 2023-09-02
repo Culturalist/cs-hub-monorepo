@@ -20,7 +20,7 @@ export default async function Home() {
     return (
         <html lang={lang} data-useragent="hhea">
             <head>
-                <meta property="fb:app_id" content={globalConfig.fbAppId} />
+                <meta property="fb:app_id" content={globalConfig.tokens.fbAppId || ''} />
             </head>
             <body>
                 <Suspense fallback={<></>}>

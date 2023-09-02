@@ -1,6 +1,6 @@
 import { LinkContact } from 'data/schemas';
 import { DefaultProps } from 'globals';
-import { capitalize } from 'weresk/utils';
+import { capitalize } from 'globals/utils';
 import { localizeString } from 'data/utils';
 import LinkWrapper from '../LinkWrapper';
 

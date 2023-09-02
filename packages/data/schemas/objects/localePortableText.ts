@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import globalConfig from 'globals/globalConfig';
-import { capitalize } from 'weresk/utils';
+import { capitalize } from 'globals/utils';
 import { BlockParent } from '../values';
 import { PortableTextBlock } from './portableText';
 import { Locale } from 'globals';

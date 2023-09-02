@@ -1,7 +1,7 @@
 import { defineType, defineField } from 'sanity';
 import { ImageIcon } from '@sanity/icons';
 import { useMediaList, useMediaInitialValue, UseMedia } from '../values';
-import { caseTransform } from 'weresk/utils';
+import { caseTransform } from 'globals/utils';
 import { ImageObject } from 'globals';
 
 export interface CoverImage extends ImageObject {

@@ -5,7 +5,7 @@ import { createStyles } from './CardsEvents.styles';
 import LinkWrapper from '../../LinkWrapper';
 import { box, BoxDimentions } from '../../../../utils';
 import { getImageUrl } from 'globals/lib/sanity';
-import globalConfig from 'globals/globalConfig';
+import metrics from '../../../../metrics';
 
 interface CardsEventsProps extends DefaultProps {
     data: Event[];
@@ -17,7 +17,7 @@ export default function CardsEvents(props: CardsEventsProps) {
     let data = props.data;
     const styles = createStyles({ className });
 
-    const coverSize = box([12, 8], 'lg').map(s => s * globalConfig.pd.lg) as BoxDimentions;
+    const coverSize = box([12, 8], 'lg').map(s => s * metrics.pd.lg) as BoxDimentions;
 
     //If display separate dates, duplicate events with multiple dates and add single date in each copy
     if (displayDates) {

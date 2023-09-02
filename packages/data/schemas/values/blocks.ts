@@ -1,4 +1,3 @@
-import { CardManual } from '../objects';
 import { DocumentApp } from './documents';
 
 export const linkTypeList = [

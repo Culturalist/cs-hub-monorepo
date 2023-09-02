@@ -4,8 +4,8 @@ import { ImageSources, LocaleString } from 'data/schemas';
 import { AdaptiveDimentions, BoxDimentions, boxFromWidthRatio, boxPx, breakpoints } from '../../../../utils';
 import { getImageUrl } from 'globals/lib/sanity';
 import Image from '../../Image';
-import globalConfig from 'globals/globalConfig';
-import { mapKeys } from 'weresk/utils';
+import { mapKeys } from 'globals/utils';
+import metrics from '../../../../metrics';
 
 interface HeroImageProps extends DefaultProps {
     sources: ImageSources;
@@ -28,7 +28,7 @@ export default function HeroImage(props: HeroImageProps) {
     };
 
     const sizes: AdaptiveDimentions = mapKeys<Breakpoint, BoxDimentions>(breakpoints, (br: Breakpoint) =>
-        boxFromWidthRatio(globalConfig.breakpoints[br], container[br])
+        boxFromWidthRatio(metrics.breakpoints[br], container[br])
     );
 
     const coverUrls = desktop &&

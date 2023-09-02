@@ -1,17 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme');
+const metrics = require('./metrics');
 
 module.exports = {
     theme: {
         screens: {
-            xs: '512px',
-            sm: '796px',
-            md: '984px',
-            lg: '1268px',
-            'max-xs': { max: '511px' },
-            'max-sm': { max: '795px' },
-            'max-md': { max: '983px' },
-            'max-lg': { max: '1267px' }
+            xs: `${metrics.breakpoints.xs}px`,
+            sm: `${metrics.breakpoints.sm}px`,
+            md: `${metrics.breakpoints.md}px`,
+            lg: `${metrics.breakpoints.lg}px`,
+            'max-xs': { max: `${metrics.breakpoints.xs - 1}px` },
+            'max-sm': { max: `${metrics.breakpoints.sm - 1}px` },
+            'max-md': { max: `${metrics.breakpoints.md - 1}px` },
+            'max-lg': { max: `${metrics.breakpoints.lg - 1}px` }
         },
         fontFamily: {
             sans: ['Mabry Pro', ...defaultTheme.fontFamily.sans]

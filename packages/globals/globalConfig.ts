@@ -37,15 +37,15 @@ const globalConfig: GlobalConfig = {
             title: 'CulturaWeek',
             domain: 'https://culturaweek.fi/',
             schemas: {
-                documents: ['page', 'person', 'event', 'organisation'],
+                documents: ['page', 'event', 'person', 'organisation'],
                 links: ['page', 'person', 'event'],
                 navigation: ['page', 'event'],
                 create: ['page', 'person', 'event', 'theme', 'label', 'organisation']
             },
-            externalLinks: {
-                registration: 'https://culturaweekconference.rsvpify.com/'
-            },
-            googleTag: 'G-L5CP6G9TYB'
+            tokens: {
+                registration: 'https://culturaweekconference.rsvpify.com/',
+                googleTag: 'G-L5CP6G9TYB'
+            }
         },
         template: {
             title: 'Cultura-säätiö Website',
@@ -72,43 +72,13 @@ const globalConfig: GlobalConfig = {
         note: 'sivut',
         organisation: 'yritykset'
     },
-    breakpoints: {
-        xs: 512,
-        sm: 796,
-        md: 984,
-        lg: 1268
-    },
-    pd: {
-        xs: 3,
-        sm: 2,
-        md: 2,
-        lg: 2
-    },
-    metrics: {
-        unit: 4,
-        offset: 20,
-        xs: {
-            module: 32,
-            gutter: 8
-        },
-        sm: {
-            module: 20,
-            gutter: 12
-        },
-        md: {
-            module: 24,
-            gutter: 16
-        },
-        lg: {
-            module: 32,
-            gutter: 20
-        }
-    },
-    latestUpdate: '2023-08-01',
+    latestUpdate: '2023-09-01',
     organization: 'Cultura-säätiö',
     creator: 'Alexander Kalachev <alexanderkalachev.com>',
-    fbAppId: '1109207817140829',
-    debug: true
+    tokens: {
+        fbAppId: '1109207817140829'
+    },
+    debug: false
 };
 
 export default globalConfig;

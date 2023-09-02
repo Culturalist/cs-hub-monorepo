@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 import { ThLargeIcon } from '@sanity/icons';
 import { filterByDocumentApp } from '../../utils';
 import { CardsType, cardsTypeList, CardPart, personCardParts } from '../values';
-import { capitalize } from 'weresk';
+import { capitalize } from 'globals/utils';
 import globalConfig from 'globals/globalConfig';
 import { CardManual } from './cardManual';
 import { Person, Post, Project, Event, Organisation } from '../documents';

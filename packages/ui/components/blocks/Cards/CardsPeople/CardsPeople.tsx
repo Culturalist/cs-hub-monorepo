@@ -1,12 +1,12 @@
 import { localizeString, wrapReference } from 'data/utils';
 import { CardPart, Person } from 'data/schemas';
 import { DefaultProps } from 'globals';
-import globalConfig from 'globals/globalConfig';
 import { getImageUrl } from 'globals/lib/sanity';
 import LinkContact from '../../LinkContact';
 import PortableText from '../../PortableText';
 import { createStyles } from './CardsPeople.styles';
 import LinkWrapper from '../../LinkWrapper';
+import metrics from '../../../../metrics';
 
 interface CardsPeopleProps extends DefaultProps {
     data: Person[];
@@ -25,8 +25,7 @@ export default function CardsPeople(props: CardsPeopleProps) {
                 const name = localizeString(card.title, lang);
                 const position = localizeString(card.position, lang);
                 const photoUrl =
-                    photo &&
-                    getImageUrl(photo, ...new Array(2).fill(globalConfig.breakpoints.xs * globalConfig.pd.xs * 2));
+                    photo && getImageUrl(photo, ...new Array(2).fill(metrics.breakpoints.xs * metrics.pd.xs * 2));
                 return (
                     <div className={styles.card} key={i}>
                         <LinkWrapper

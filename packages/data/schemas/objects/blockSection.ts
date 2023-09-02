@@ -5,7 +5,7 @@ import { LocalePortableText } from './localePortableText';
 import globalConfig from 'globals/globalConfig';
 import { LocaleString } from './localeString';
 import { DocumentApp } from '../values';
-import { capitalize } from 'weresk';
+import { capitalize } from 'globals/utils';
 import { BodySectionBlock } from './bodySection';
 
 export interface BlockSection {

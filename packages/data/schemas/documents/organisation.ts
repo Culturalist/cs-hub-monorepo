@@ -21,7 +21,7 @@ export interface Organisation extends SanityDocument {
 export default function organisation(appName: string = 'hub') {
     return defineType({
         name: 'organisation',
-        title: 'organisation',
+        title: 'Organisation',
         type: 'document',
         fields: [
             defineField({

@@ -13,8 +13,7 @@ export interface AppConfig {
         create: DocumentAny[];
     };
     parentDocuments?: Partial<Record<DocumentApp, string>>;
-    externalLinks?: Record<string, string>;
-    googleTag?: string;
+    tokens?: Record<string, string>;
 }
 
 export interface GlobalConfig {
@@ -29,21 +28,9 @@ export interface GlobalConfig {
     };
     apps: Record<string, AppConfig>;
     routes: Record<DocumentApp, string>;
-    breakpoints: Record<Breakpoint, number>;
-    pd: Record<Breakpoint, number>;
-    metrics: {
-        unit: number;
-        offset: number;
-    } & Record<
-        Breakpoint,
-        {
-            module: number;
-            gutter: number;
-        }
-    >;
     latestUpdate: string;
     organization: string;
     creator: string;
-    fbAppId?: string;
+    tokens?: Record<string, string>;
     debug?: boolean;
 }

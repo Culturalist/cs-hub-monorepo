@@ -1,5 +1,5 @@
 import globalConfig from 'globals/globalConfig';
-import dictionary from '../dictionary';
+import dictionary from '../values/dictionary';
 
 const initialValueTemplates = [
     {
@@ -60,7 +60,7 @@ const initialValueTemplates = [
                 link: {
                     _type: 'linkTyped',
                     type: 'external',
-                    href: globalConfig.apps[params.appName]?.externalLinks?.registration || ''
+                    href: globalConfig.apps[params.appName]?.tokens?.registration || ''
                 }
             }
         })

@@ -1,9 +1,9 @@
 import { LocaleString } from 'data/schemas';
 import { Breakpoint, DefaultProps } from 'globals';
-import globalConfig from 'globals/globalConfig';
 import { localizeString } from 'data/utils';
 import { AdaptiveDimentions } from '../../../utils';
 import { createStyles } from './Image.styles';
+import metrics from '../../../metrics';
 
 interface ImageProps extends DefaultProps {
     sources?: Record<Breakpoint, string>;
@@ -21,19 +21,19 @@ export default function Image(props: ImageProps) {
         <picture className={styles.container}>
             <source
                 srcSet={sources.xs}
-                media={`(max-width: ${globalConfig.breakpoints.sm - 1}px)`}
+                media={`(max-width: ${metrics.breakpoints.sm - 1}px)`}
                 width={sizes?.xs[0] || undefined}
                 height={sizes?.xs[1] || undefined}
             />
             <source
                 srcSet={sources.sm}
-                media={`(max-width: ${globalConfig.breakpoints.md - 1}px)`}
+                media={`(max-width: ${metrics.breakpoints.md - 1}px)`}
                 width={sizes?.sm[0] || undefined}
                 height={sizes?.sm[1] || undefined}
             />
             <source
                 srcSet={sources.md}
-                media={`(max-width: ${globalConfig.breakpoints.lg - 1}px)`}
+                media={`(max-width: ${metrics.breakpoints.lg - 1}px)`}
                 width={sizes?.md[0] || undefined}
                 height={sizes?.md[1] || undefined}
             />

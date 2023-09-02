@@ -1,5 +1,5 @@
 import { defineType } from 'sanity';
-import { capitalize } from 'weresk/utils';
+import { capitalize } from 'globals/utils';
 import { mediaArrays, MediaParent, MediaBlockFormat } from '../values';
 import { MediaEmbed } from './mediaEmbed';
 import { MediaImage } from './mediaImage';

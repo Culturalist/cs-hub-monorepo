@@ -4,7 +4,7 @@ import { localizeString } from 'data/utils';
 import { LinkContact, PortableText } from '../../blocks';
 import { createStyles } from './PersonLayout.styles';
 import { getImageUrl } from 'globals/lib/sanity';
-import globalConfig from 'globals/globalConfig';
+import metrics from '../../../metrics';
 
 interface PersonLayoutProps extends DefaultProps {
     data: Person;
@@ -15,8 +15,7 @@ export default function PersonLayout(props: PersonLayoutProps) {
     const { photo, contacts, description } = data;
     const name = localizeString(data.title, lang);
     const position = localizeString(data.position, lang);
-    const photoUrl =
-        photo && getImageUrl(photo, ...new Array(2).fill(globalConfig.breakpoints.xs * globalConfig.pd.xs * 2));
+    const photoUrl = photo && getImageUrl(photo, ...new Array(2).fill(metrics.breakpoints.xs * metrics.pd.xs * 2));
     const styles = createStyles({ className });
 
     return (

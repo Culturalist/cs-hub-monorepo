@@ -4,7 +4,7 @@ import { clientNext, getImageUrlBuilder } from 'globals/lib/sanity';
 import { Metadata } from 'next';
 import { SanityDocument } from 'sanity';
 import { localizeString } from 'data/utils';
-import { formatKeywords } from 'weresk';
+import { formatKeywords } from 'globals/utils';
 import { metadataAppQuery, metadataPageQuery } from '../queries';
 import { App, CoverBlock, DocumentApp, ElementDate, ElementLineup, LocaleString, MetadataPage } from '../schemas';
 
@@ -32,7 +32,6 @@ export async function prepareMetadata({
     appName = 'hub'
 }: prepareMetadataProps): Promise<Metadata> {
     const output: Metadata = {};
-    // const dictionary: Dictionary = await client.fetch(dictionaryQuery);
     const app: App = await clientNext.fetch(metadataAppQuery, { appName });
     const languages = app?.languages || globalConfig.localization.languages.map(lang => lang.id);
     const global = app ? app.metadata : undefined;
@@ -180,7 +179,7 @@ export async function prepareMetadata({
 
     //Viewport no zoom
     output.viewport = {
-        width: globalConfig.breakpoints.xs,
+        width: 512,
         userScalable: false
     };
 

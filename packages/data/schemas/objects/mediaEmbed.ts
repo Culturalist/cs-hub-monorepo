@@ -3,7 +3,7 @@ import { CodeBlockIcon } from '@sanity/icons';
 import { UseMedia, useMediaInitialValue, useMediaList } from '../values';
 import { LocaleString } from './localeString';
 import { selectDefaultLocale } from '../../utils';
-import { caseTransform } from 'weresk/utils';
+import { caseTransform } from 'globals/utils';
 
 export interface MediaEmbed {
     _type: 'mediEmbed';

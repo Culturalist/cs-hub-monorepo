@@ -2,7 +2,7 @@ import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
 import deskStructure from './studio/deskStructure';
-import ToolMenu from './studio/ToolMenu';
+import { ToolMenuApp } from 'ui';
 import StudioLogo from './studio/StudioLogo';
 import globalConfig from 'globals/globalConfig';
 import { languageFilterConfig } from 'globals/lib/language-filter';
@@ -35,7 +35,7 @@ export default defineConfig({
     studio: {
         components: {
             logo: StudioLogo,
-            toolMenu: ToolMenu
+            toolMenu: ToolMenuApp
         }
     }
 });
