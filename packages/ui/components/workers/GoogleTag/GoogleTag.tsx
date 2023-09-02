@@ -7,7 +7,7 @@ interface GoogleTagProps {
 
 export default function GoogleTag(props: GoogleTagProps) {
     const { appName } = props;
-    const id = globalConfig.apps[appName]?.googleTag;
+    const id = globalConfig.apps[appName]?.tokens?.googleTag;
     if (!id) return null;
 
     return (
