@@ -2277,6 +2277,30 @@
     json5 "^2.2.3"
     lodash "^4.17.21"
 
+"@sanity/vision@^3.16.2":
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/@sanity/vision/-/vision-3.16.2.tgz#c61873c62a5cf48f6632547056c4690c3176c486"
+  integrity sha512-umDv/gQGOhQJH4ptJYgVIE4rvYZaFpNZAuw0L+JUH9vravJjZyHqIfao61jFXTzswb9c0NDTd7U4OFeojXgRGA==
+  dependencies:
+    "@codemirror/autocomplete" "^6.1.0"
+    "@codemirror/commands" "^6.0.1"
+    "@codemirror/lang-javascript" "^6.0.2"
+    "@codemirror/language" "^6.2.1"
+    "@codemirror/search" "^6.0.1"
+    "@codemirror/view" "^6.1.1"
+    "@juggle/resize-observer" "^3.3.1"
+    "@lezer/highlight" "^1.0.0"
+    "@rexxars/react-json-inspector" "^8.0.1"
+    "@rexxars/react-split-pane" "^0.1.93"
+    "@sanity/color" "^2.1.20"
+    "@sanity/icons" "^2.4.0"
+    "@sanity/ui" "^1.7.2"
+    "@uiw/react-codemirror" "^4.11.4"
+    hashlru "^2.3.0"
+    is-hotkey "^0.1.6"
+    json5 "^2.2.3"
+    lodash "^4.17.21"
+
 "@sanity/webhook@2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@sanity/webhook/-/webhook-2.0.0.tgz#22e5916fd6ea616625b4105a68f2858408de8eee"

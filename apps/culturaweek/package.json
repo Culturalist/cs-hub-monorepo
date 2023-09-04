@@ -16,7 +16,7 @@
         "@sanity/eslint-config-studio": "^3.0.1",
         "@sanity/image-url": "^1.0.2",
         "@sanity/language-filter": "^3.2.1",
-        "@sanity/vision": "^3.0.0",
+        "@sanity/vision": "^3.16.2",
         "data": "*",
         "globals": "*",
         "negotiator": "^0.6.3",
