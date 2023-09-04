@@ -6,7 +6,7 @@ import { SanityDocument } from 'sanity';
 import { localizeString } from 'data/utils';
 import { formatKeywords } from 'globals/utils';
 import { metadataAppQuery, metadataPageQuery } from '../queries';
-import { App, CoverBlock, DocumentApp, ElementDate, ElementLineup, LocaleString, MetadataPage } from '../schemas';
+import { App, CoverBlock, DocumentApp, ElementDate, LineupPeople, LocaleString, MetadataPage } from '../schemas';
 
 export interface MetadataAny extends SanityDocument {
     _type: DocumentApp;
@@ -15,7 +15,7 @@ export interface MetadataAny extends SanityDocument {
     position?: LocaleString;
     photo?: ImageObject;
     covers?: CoverBlock[];
-    lineup?: ElementLineup[];
+    lineup?: LineupPeople[];
     dates?: ElementDate[];
     metadata?: MetadataPage;
 }
