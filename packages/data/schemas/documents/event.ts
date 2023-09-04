@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { PresentationIcon } from '@sanity/icons';
-import { BodyBlock, CoverBlock, ElementDate, ElementLineup, LinkCaptioned, LocaleString } from '../objects';
+import { BodyBlock, CoverBlock, ElementDate, LineupPeople, LinkCaptioned, LocaleString } from '../objects';
 import { App } from '../system/app';
 import { MetadataPage } from '../sections';
 import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../utils';
@@ -17,7 +17,7 @@ export interface Event extends SanityDocument {
     subtitle?: LocaleString;
     slug: Slug;
     app?: App;
-    lineup?: ElementLineup[];
+    lineup?: LineupPeople[];
     dates?: ElementDate[];
     action?: LinkCaptioned;
     covers?: CoverBlock[];
@@ -96,7 +96,7 @@ export default function event(appName: string = 'hub') {
                 name: 'lineup',
                 title: 'Lineup',
                 type: 'array',
-                of: [{ type: 'elementLineup' }],
+                of: [{ type: 'lineupPeople' }],
                 group: 'event'
             }),
             defineField({

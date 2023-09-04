@@ -95,6 +95,10 @@ export default function post(appName: string = 'hub') {
                 title: 'Author',
                 type: 'reference',
                 to: [{ type: 'person' }],
+                options: {
+                    disableNew: true,
+                    filter: ({ document }: any) => filterByDocumentApp(document)
+                },
                 group: 'connections'
             }),
             defineField({

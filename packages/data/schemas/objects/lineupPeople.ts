@@ -2,19 +2,20 @@ import { defineField, defineType } from 'sanity';
 import { filterByDocumentApp, joinLocaleStrings, selectDefaultLocale } from '../../utils';
 import { UsersIcon } from '@sanity/icons';
 import { Label } from '../system';
-import { Organisation } from '../documents';
+import { Person } from '../documents';
 
-export interface ElementOrganisations {
-    _type: 'elementOrganisations';
+export interface LineupPeople {
+    _type: 'lineupPeople';
     _key: string;
     label?: Label;
-    list?: Organisation[];
+    list?: Person[];
+    includeSubtitle?: boolean;
 }
 
-export default function elementOrganisations(appName: string = 'hub') {
+export default function lineupPeople(appName: string = 'hub') {
     return defineType({
-        name: 'elementOrganisations',
-        title: 'Ogranisations',
+        name: 'lineupPeople',
+        title: 'Lineup',
         type: 'object',
         fields: [
             defineField({
@@ -31,13 +32,19 @@ export default function elementOrganisations(appName: string = 'hub') {
                 of: [
                     {
                         type: 'reference',
-                        to: [{ type: 'organisation' }],
+                        to: [{ type: 'person' }],
                         options: {
                             disableNew: true,
                             filter: ({ document }: any) => filterByDocumentApp(document)
                         }
                     }
                 ]
+            }),
+            defineField({
+                name: 'includeSubtitle',
+                title: 'Include subtitle',
+                type: 'boolean',
+                initialValue: false
             })
         ],
         preview: {
@@ -51,7 +58,7 @@ export default function elementOrganisations(appName: string = 'hub') {
                 const localeLabel = selectDefaultLocale(label);
                 const names = joinLocaleStrings([person1, person2, person3]);
                 return {
-                    title: names || 'Ogranisations',
+                    title: names || 'Lineup',
                     subtitle: localeLabel
                 };
             }

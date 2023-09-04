@@ -2,7 +2,7 @@ import { wrapReference } from 'data/utils';
 import { Project } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import { localizeString } from 'data/utils';
-import { Body, Cover, LinkWrapper } from '../../blocks';
+import { Body, Cover, Lineup, LinkWrapper } from '../../blocks';
 import { createStyles } from './ProjectLayout.styles';
 
 interface ProjectLayoutProps extends DefaultProps {
@@ -11,13 +11,11 @@ interface ProjectLayoutProps extends DefaultProps {
 
 export default function ProjectLayout(props: ProjectLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, parent, body } = data;
+    const { covers, parent, body, organisations } = data;
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const label = localizeString(data.labels?.[0]?.title, lang);
     const styles = createStyles({ className });
-
-    console.log(parent);
 
     return (
         <>
@@ -48,7 +46,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                     </h2>
                 )}
                 {/* LINEUP */}
-                {/* <EventLineup data={lineup} lang={lang} className={styles.lineup} /> */}
+                <Lineup data={organisations} lang={lang} className={styles.organisations} />
                 {/* COVER */}
                 <Cover array={covers} parent="page" lang={lang} className={styles.cover} />
                 {/* BODY */}

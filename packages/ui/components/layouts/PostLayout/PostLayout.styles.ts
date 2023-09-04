@@ -6,15 +6,18 @@ export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
     container: 'pb-m3',
-    connections: `typo-caps-xs flex flex-row gap-12 mt-gutter [&_*:not(:first-child)]:before:content-['/'] [&_*:not(:first-child)]:before:trim-line`,
+    connectionsWrapper: 'mt-gutter flex flex-row flex-wrap items-end justify-between gap-x-gutter gap-y-32',
+    connections: `typo-caps-xs flex flex-row gap-12 [&_*:not(:first-child)]:before:content-['/'] [&_*:not(:first-child)]:before:trim-line`,
     parentWrapper: '',
     parent: 'trim-line',
     labelWrapper: 'flex gap-12',
     label: 'trim-line',
+    details: 'max-sm:grow flex sm:flex-row justify-between gap-module text-theme-text-light',
+    authorWrapper: '',
+    author: 'typo-caps-2xs trim-line',
+    dateWrapper: '',
+    date: 'typo-caps-2xs trim-line',
     title: '',
-    subtitleWrapper: 'mt-16 lg:max-w-m20',
-    subtitle: 'typo-paragraph trim-line text-theme-text-light',
-    organisations: 'mt-32',
     cover: 'mt-24',
     body: ''
 };

@@ -2,7 +2,7 @@ import { wrapReference } from 'data/utils';
 import { Event } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import { localizeString } from 'data/utils';
-import { Body, Cover, Links, LinkWrapper, EventDates, EventLineup } from '../../blocks';
+import { Body, Cover, Links, LinkWrapper, EventDates, Lineup } from '../../blocks';
 import { createStyles } from './EventLayout.styles';
 import { getPageVariables } from '../../../utils';
 
@@ -47,7 +47,7 @@ export default function EventLayout(props: EventLayoutProps) {
                     </h2>
                 )}
                 {/* LINEUP */}
-                <EventLineup data={lineup} lang={lang} className={styles.lineup} />
+                <Lineup data={lineup} lang={lang} className={styles.lineup} />
                 {/* DATES & ACTION */}
                 <div className={styles.datesWrapper}>
                     <EventDates data={dates} lang={lang} className={styles.dates} />

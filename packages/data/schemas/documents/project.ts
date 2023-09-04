@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { PresentationIcon } from '@sanity/icons';
-import { BodyBlock, CoverBlock, ElementOrganisations, LocaleString } from '../objects';
+import { BodyBlock, CoverBlock, LineupOrganisations, LocaleString } from '../objects';
 import { App } from '../system/app';
 import { MetadataPage } from '../sections';
 import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../utils';
@@ -18,7 +18,7 @@ export interface Project extends SanityDocument {
     date: string;
     covers?: CoverBlock[];
     body?: BodyBlock[];
-    organisations?: ElementOrganisations[];
+    organisations?: LineupOrganisations[];
     parent?: Page;
     labels?: Label[];
     metadata?: MetadataPage;
@@ -101,10 +101,10 @@ export default function project(appName: string = 'hub') {
                 group: 'page'
             }),
             defineField({
-                name: 'ogranisations',
-                title: 'Ogranisations',
+                name: 'organisations',
+                title: 'Organisations',
                 type: 'array',
-                of: [{ type: 'elementOrganisations' }],
+                of: [{ type: 'lineupOrganisations' }],
                 group: 'connections'
             }),
             defineField({

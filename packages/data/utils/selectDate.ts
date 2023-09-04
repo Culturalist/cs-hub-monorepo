@@ -5,9 +5,13 @@ export function elementToDate(element: ElementDate): Date {
     return new Date(`${element.date}T${element.start?.padStart(5, '0')}:00`);
 }
 
-export function formatLocaleDate(input?: string, locale: Locale = 'fi'): string {
+export function formatLocaleDate(input?: string, locale: Locale = 'fi', full: boolean = false): string {
     if (!input) return '';
-    return new Date(input).toLocaleString(`${locale}-${locale.toUpperCase()}`, { month: 'numeric', day: 'numeric' });
+    return new Date(input).toLocaleString(`${locale}-${locale.toUpperCase()}`, {
+        month: 'numeric',
+        day: 'numeric',
+        year: full ? 'numeric' : undefined
+    });
 }
 
 export function selectDate(input: ElementDate[], mode: 'min' | 'max'): ElementDate | undefined {

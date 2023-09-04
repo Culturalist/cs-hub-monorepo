@@ -5,7 +5,7 @@ import { purgeEmptyStrings } from 'globals/utils';
 export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: 'mb-m3',
+    container: 'pb-m3',
     connections: `typo-caps-xs flex flex-row gap-12 mt-gutter [&_*:not(:first-child)]:before:content-['/'] [&_*:not(:first-child)]:before:trim-line`,
     parentWrapper: '',
     parent: 'trim-line',

@@ -1,21 +1,21 @@
 import { defineField, defineType } from 'sanity';
 import { filterByDocumentApp, joinLocaleStrings, selectDefaultLocale } from '../../utils';
-import { UsersIcon } from '@sanity/icons';
+import { CaseIcon } from '@sanity/icons';
 import { Label } from '../system';
-import { Person } from '../documents';
+import { Organisation } from '../documents';
 
-export interface ElementLineup {
-    _type: 'elementLineup';
+export interface LineupOrganisations {
+    _type: 'lineupOrganisations';
     _key: string;
     label?: Label;
-    list?: Person[];
+    list?: Organisation[];
     includeSubtitle?: boolean;
 }
 
-export default function elementLineup(appName: string = 'hub') {
+export default function lineupOrganisations(appName: string = 'hub') {
     return defineType({
-        name: 'elementLineup',
-        title: 'Lineup',
+        name: 'lineupOrganisations',
+        title: 'Organisations',
         type: 'object',
         fields: [
             defineField({
@@ -32,7 +32,7 @@ export default function elementLineup(appName: string = 'hub') {
                 of: [
                     {
                         type: 'reference',
-                        to: [{ type: 'person' }],
+                        to: [{ type: 'organisation' }],
                         options: {
                             disableNew: true,
                             filter: ({ document }: any) => filterByDocumentApp(document)
@@ -58,11 +58,11 @@ export default function elementLineup(appName: string = 'hub') {
                 const localeLabel = selectDefaultLocale(label);
                 const names = joinLocaleStrings([person1, person2, person3]);
                 return {
-                    title: names || 'Lineup',
+                    title: names || 'Ogranisations',
                     subtitle: localeLabel
                 };
             }
         },
-        icon: UsersIcon
+        icon: CaseIcon
     });
 }

@@ -9,14 +9,14 @@ const globalConfig: GlobalConfig = {
                 abbr: 'su'
             },
             {
-                id: 'ru',
-                title: 'Русский',
-                abbr: 'ru'
-            },
-            {
                 id: 'en',
                 title: 'English',
                 abbr: 'en'
+            },
+            {
+                id: 'ru',
+                title: 'Русский',
+                abbr: 'ru'
             }
         ],
         default: 'fi',
@@ -51,10 +51,10 @@ const globalConfig: GlobalConfig = {
             title: 'Juhlarahasto',
             domain: 'https://juhlarahasto.fi/',
             schemas: {
-                documents: ['page', 'project', 'person', 'organisation'],
-                links: ['page', 'person', 'project'],
+                documents: ['page', 'project', 'post', 'person', 'organisation', 'note'],
+                links: ['page', 'person', 'project', 'post'],
                 navigation: ['page', 'project'],
-                create: ['page', 'person', 'project', 'theme', 'label', 'organisation']
+                create: ['page', 'person', 'project', 'post', 'theme', 'label', 'organisation', 'note']
             },
             parentDocuments: {
                 project: 'projektit',

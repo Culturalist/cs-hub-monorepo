@@ -1,13 +1,13 @@
-import { ElementLineup } from 'data/schemas';
+import { LineupOrganisations, LineupPeople } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import { localizeString } from 'data/utils';
-import { createStyles } from './EventLineup.styles';
+import { createStyles } from './Lineup.styles';
 
-interface EventLineupProps extends DefaultProps {
-    data?: ElementLineup[];
+interface LineupProps extends DefaultProps {
+    data?: (LineupPeople | LineupOrganisations)[];
 }
 
-export default function EventLineup(props: EventLineupProps) {
+export default function Lineup(props: LineupProps) {
     const { data, lang, className } = props;
     if (!data || data.length == 0) return null;
 
