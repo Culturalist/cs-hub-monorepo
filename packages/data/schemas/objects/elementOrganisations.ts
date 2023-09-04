@@ -2,20 +2,19 @@ import { defineField, defineType } from 'sanity';
 import { filterByDocumentApp, joinLocaleStrings, selectDefaultLocale } from '../../utils';
 import { UsersIcon } from '@sanity/icons';
 import { Label } from '../system';
-import { Person } from '../documents';
+import { Organisation } from '../documents';
 
-export interface ElementLineup {
-    _type: 'elementLineup';
+export interface ElementOrganisations {
+    _type: 'elementOrganisations';
     _key: string;
     label?: Label;
-    list?: Person[];
-    includeSubtitle?: boolean;
+    list?: Organisation[];
 }
 
-export default function elementLineup(appName: string = 'hub') {
+export default function elementOrganisations(appName: string = 'hub') {
     return defineType({
-        name: 'elementLineup',
-        title: 'Lineup',
+        name: 'elementOrganisations',
+        title: 'Ogranisations',
         type: 'object',
         fields: [
             defineField({
@@ -32,19 +31,13 @@ export default function elementLineup(appName: string = 'hub') {
                 of: [
                     {
                         type: 'reference',
-                        to: [{ type: 'person' }],
+                        to: [{ type: 'organisation' }],
                         options: {
                             disableNew: true,
                             filter: ({ document }: any) => filterByDocumentApp(document)
                         }
                     }
                 ]
-            }),
-            defineField({
-                name: 'includeSubtitle',
-                title: 'Include subtitle',
-                type: 'boolean',
-                initialValue: false
             })
         ],
         preview: {
@@ -58,7 +51,7 @@ export default function elementLineup(appName: string = 'hub') {
                 const localeLabel = selectDefaultLocale(label);
                 const names = joinLocaleStrings([person1, person2, person3]);
                 return {
-                    title: names || 'Lineup',
+                    title: names || 'Ogranisations',
                     subtitle: localeLabel
                 };
             }

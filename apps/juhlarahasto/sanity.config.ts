@@ -53,7 +53,11 @@ export default defineConfig({
             }
             return prev;
         },
-        newDocumentOptions: () => []
+        newDocumentOptions: prev => {
+            return prev.filter(action =>
+                globalConfig.apps[appName].schemas.create.includes(action.templateId as DocumentAny)
+            );
+        }
 
         // {
         //     return globalConfig.apps[appName].schemas.documents.map(docType => ({

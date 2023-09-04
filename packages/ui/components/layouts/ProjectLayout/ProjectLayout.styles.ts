@@ -6,16 +6,16 @@ export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
     container: 'mb-m3',
-    name: '',
-    subtitleWrapper: 'mt-8',
+    connections: `typo-caps-xs flex flex-row gap-12 mt-gutter [&_*:not(:first-child)]:before:content-['/'] [&_*:not(:first-child)]:before:trim-line`,
+    parentWrapper: '',
+    parent: 'trim-line',
+    labelWrapper: 'flex gap-12',
+    label: 'trim-line',
+    title: '',
+    subtitleWrapper: 'mt-16 lg:max-w-m20',
     subtitle: 'typo-paragraph trim-line text-theme-text-light',
-    wrapper: 'flex flex-col sm:flex-row gap-24 sm:gap-gutter mt-32',
-    photo: 'xs:w-m12 xs:h-m12 sm:mr-module',
-    info: '',
-    contacts:
-        'typo-paragraph-sm flex flex-col gap-4 [&_span]:trim-line [&_a]:underline [&_a:hover]:no-underline [&_a:hover]:text-theme-card-surface',
-    description:
-        'typo-paragraph-sm mb-16 [&_p:not(:first-child)]:pt-16 [&_p]:trim-line [&_a:hover]:text-theme-card-surface'
+    cover: 'mt-24',
+    body: ''
 };
 
 export const createStyles = ({ className }: styleProps) => {

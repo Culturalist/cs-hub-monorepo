@@ -14,7 +14,7 @@ export default function PersonLayout(props: PersonLayoutProps) {
     const { data, lang, className } = props;
     const { photo, contacts, description } = data;
     const name = localizeString(data.title, lang);
-    const position = localizeString(data.position, lang);
+    const subtitle = localizeString(data.subtitle, lang);
     const photoUrl = photo && getImageUrl(photo, ...new Array(2).fill(metrics.breakpoints.xs * metrics.pd.xs * 2));
     const styles = createStyles({ className });
 
@@ -24,9 +24,9 @@ export default function PersonLayout(props: PersonLayoutProps) {
             <h1 className={styles.name}>
                 <span>{name}</span>
             </h1>
-            {position && (
-                <p className={styles.positionWrapper}>
-                    <span className={styles.position}>{position}</span>
+            {subtitle && (
+                <p className={styles.subtitleWrapper}>
+                    <span className={styles.subtitle}>{subtitle}</span>
                 </p>
             )}
             <div className={styles.wrapper}>

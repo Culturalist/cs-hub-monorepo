@@ -23,7 +23,7 @@ export default function CardsPeople(props: CardsPeopleProps) {
             {data.map((card, i) => {
                 const { photo, contacts, description } = card;
                 const name = localizeString(card.title, lang);
-                const position = localizeString(card.position, lang);
+                const subtitle = localizeString(card.subtitle, lang);
                 const photoUrl =
                     photo && getImageUrl(photo, ...new Array(2).fill(metrics.breakpoints.xs * metrics.pd.xs * 2));
                 return (
@@ -44,10 +44,10 @@ export default function CardsPeople(props: CardsPeopleProps) {
                                 <span className={styles.name}>{name}</span>
                             </p>
                         </LinkWrapper>
-                        {/* POSITION */}
-                        {include?.includes('subtitle') && position && (
-                            <p className={styles.positionWrapper}>
-                                <span className={styles.position}>{position}</span>
+                        {/* subtitle */}
+                        {include?.includes('subtitle') && subtitle && (
+                            <p className={styles.subtitleWrapper}>
+                                <span className={styles.subtitle}>{subtitle}</span>
                             </p>
                         )}
                         {/* DESCRIPTION */}

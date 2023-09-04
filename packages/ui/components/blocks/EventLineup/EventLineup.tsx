@@ -16,7 +16,7 @@ export default function EventLineup(props: EventLineupProps) {
     return (
         <div className={styles.container}>
             {data.map((group, i) => {
-                const { list, includePosition } = group;
+                const { list, includeSubtitle } = group;
                 const label = localizeString(group.label?.title, lang);
                 if (!list || list.length == 0) return null;
                 return (
@@ -29,17 +29,17 @@ export default function EventLineup(props: EventLineupProps) {
                         <div className={styles.list}>
                             {list.map((person, j) => {
                                 const name = localizeString(person.title, lang);
-                                const subtitle = localizeString(person.position, lang);
+                                const subtitle = localizeString(person.subtitle, lang);
                                 if (!name) return null;
                                 return (
                                     <div className={styles.person} key={j}>
                                         <p
-                                            title={!includePosition ? subtitle : undefined}
+                                            title={!includeSubtitle ? subtitle : undefined}
                                             className={styles.nameWrapper}
                                         >
                                             <span className={styles.name}>{name}</span>
                                         </p>
-                                        {includePosition && (
+                                        {includeSubtitle && (
                                             <p className={styles.subtitleWrapper}>
                                                 <span className={styles.subtitle}>{subtitle}</span>
                                             </p>

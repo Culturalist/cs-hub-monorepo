@@ -1,11 +1,10 @@
 import { defineType, defineField, SanityDocument, Slug } from 'sanity';
 import { PresentationIcon } from '@sanity/icons';
-import { BodyBlock, CoverBlock, LocaleString } from '../objects';
+import { BodyBlock, CoverBlock, ElementOrganisations, LocaleString } from '../objects';
 import { App } from '../system/app';
 import { MetadataPage } from '../sections';
 import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../utils';
 import globalConfig from 'globals/globalConfig';
-import { Person } from './person';
 import { Page } from './page';
 import { Label } from '../system';
 
@@ -13,11 +12,13 @@ export interface Project extends SanityDocument {
     _type: 'project' | 'reference';
     _ref?: string;
     title?: LocaleString;
+    subtitle?: LocaleString;
     slug: Slug;
     app?: App;
     date: string;
     covers?: CoverBlock[];
     body?: BodyBlock[];
+    organisations?: ElementOrganisations[];
     parent?: Page;
     labels?: Label[];
     metadata?: MetadataPage;
@@ -51,6 +52,16 @@ export default function project(appName: string = 'hub') {
                 name: 'title',
                 title: 'Title',
                 type: 'localeString',
+                group: 'card'
+            }),
+            defineField({
+                name: 'subtitle',
+                title: 'Subtitle',
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                },
                 group: 'card'
             }),
             defineField({
@@ -90,6 +101,13 @@ export default function project(appName: string = 'hub') {
                 group: 'page'
             }),
             defineField({
+                name: 'ogranisations',
+                title: 'Ogranisations',
+                type: 'array',
+                of: [{ type: 'elementOrganisations' }],
+                group: 'connections'
+            }),
+            defineField({
                 name: 'labels',
                 title: 'Labels',
                 type: 'array',
@@ -98,7 +116,10 @@ export default function project(appName: string = 'hub') {
                     {
                         type: 'reference',
                         title: 'Label',
-                        to: [{ type: 'label' }]
+                        to: [{ type: 'label' }],
+                        options: {
+                            disableNew: false
+                        }
                     }
                 ],
                 group: 'connections'

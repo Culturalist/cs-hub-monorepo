@@ -8,7 +8,7 @@ export const eventQuery = groq`*[_type == 'event' && slug.current == $slug && ap
         title,
         slug
     },
-    label->,
+    labels[]->,
     lineup[] {
         ...,
         label->,

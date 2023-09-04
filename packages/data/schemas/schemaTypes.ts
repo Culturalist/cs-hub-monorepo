@@ -29,7 +29,8 @@ import {
     coverVideo,
     coverArray,
     captonAlt,
-    blockSchedule
+    blockSchedule,
+    elementOrganisations
 } from './objects';
 import { page, person, post, project, event, note, organisation } from './documents';
 import { header, footer, hero, metadataApp, metadataPage } from './sections';
@@ -72,7 +73,8 @@ export default function schemaTypes(appName: string = 'hub') {
         coverImage,
         coverVideo,
         cardManual,
-        elementLineup
+        elementLineup,
+        elementOrganisations
     ].map(typeClass => typeClass(appName));
 
     const systemDocuments = [app(), theme(), label(appName)];

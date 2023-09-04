@@ -51,10 +51,14 @@ const globalConfig: GlobalConfig = {
             title: 'Juhlarahasto',
             domain: 'https://juhlarahasto.fi/',
             schemas: {
-                documents: ['page', 'event', 'person', 'organisation'],
-                links: ['page', 'person', 'event'],
-                navigation: ['page', 'event'],
-                create: ['page', 'person', 'event', 'theme', 'label', 'organisation']
+                documents: ['page', 'project', 'person', 'organisation'],
+                links: ['page', 'person', 'project'],
+                navigation: ['page', 'project'],
+                create: ['page', 'person', 'project', 'theme', 'label', 'organisation']
+            },
+            parentDocuments: {
+                project: 'projektit',
+                post: 'tarinat'
             },
             tokens: {
                 googleTag: ''
@@ -91,7 +95,7 @@ const globalConfig: GlobalConfig = {
     tokens: {
         fbAppId: '1109207817140829'
     },
-    debug: false
+    debug: true
 };
 
 export default globalConfig;

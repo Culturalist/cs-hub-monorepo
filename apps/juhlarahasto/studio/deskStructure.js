@@ -26,6 +26,7 @@ export default {
                         .child(
                             S.documentTypeList(docType)
                                 .title(desk[docType].title)
+                                .apiVersion(`v${globalConfig.latestUpdate}`)
                                 .filter('_type == $type && app._ref == $appName')
                                 .params({ type: docType, appName: appName })
                                 .initialValueTemplates([

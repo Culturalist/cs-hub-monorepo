@@ -13,7 +13,7 @@ export interface Person extends SanityDocument {
     slug: Slug;
     app?: App;
     photo?: ImageObject;
-    position?: LocaleString;
+    subtitle?: LocaleString;
     contacts?: LinkContact[];
     description?: LocalePortableText;
     labels?: Label[];
@@ -52,8 +52,8 @@ export default function person(appName: string = 'hub') {
                 }
             }),
             defineField({
-                name: 'position',
-                title: 'Position',
+                name: 'subtitle',
+                title: 'Subtitle',
                 type: 'localeString'
             }),
             defineField({
