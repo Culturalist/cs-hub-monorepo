@@ -24,6 +24,7 @@ export interface BlockCards {
     includePerson?: CardPart[];
     coverOnHover?: boolean;
     displayDates?: boolean;
+    showLabels?: boolean;
 }
 
 export default function blockCards(appName: string = 'hub') {
@@ -131,6 +132,13 @@ export default function blockCards(appName: string = 'hub') {
                 type: 'boolean',
                 initialValue: false,
                 hidden: ({ parent }) => parent?.type !== 'events'
+            }),
+            defineField({
+                name: 'showLabels',
+                title: 'Show labels',
+                type: 'boolean',
+                initialValue: false,
+                hidden: ({ parent }) => parent?.type !== 'projects'
             })
             // defineField({
             //     name: 'groupByLabel',

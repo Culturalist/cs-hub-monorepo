@@ -1,8 +1,8 @@
 import { prepareCardsData } from 'data/utils';
-import { BlockCards, CardManual, Event, Organisation, Person } from 'data/schemas';
+import { BlockCards, CardManual, Event, Organisation, Person, Project } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import { createStyles } from './BlockCards.styles';
-import { CardsManual, CardsPeople } from '../../Cards';
+import { CardsManual, CardsPeople, CardsProjects } from '../../Cards';
 import CardsEvents from '../../Cards/CardsEvents';
 import CardsOrganisations from '../../Cards/CardsOrganisations';
 
@@ -12,7 +12,7 @@ interface BlockCardsProps extends DefaultProps {
 
 export default async function BlockCards(props: BlockCardsProps) {
     const { lang, className } = props;
-    const { type: cardsType, includePerson, monochromePhoto, coverOnHover, displayDates } = props.data;
+    const { type: cardsType, includePerson, monochromePhoto, coverOnHover, displayDates, showLabels } = props.data;
     const cards = cardsType && props.data[cardsType];
     const include = cardsType == 'people' ? includePerson : undefined;
     if (!cards || cards.length == 0) return null;
@@ -36,6 +36,9 @@ export default async function BlockCards(props: BlockCardsProps) {
     // EVENTS
     else if (cardsType == 'events')
         return <CardsEvents data={data as Event[]} displayDates={displayDates} {...containerProps} />;
+    // PROJECTS
+    else if (cardsType == 'projects')
+        return <CardsProjects data={data as Project[]} showLabels={showLabels} {...containerProps} />;
     // ORGANISATIONS
     else if (cardsType == 'organisations')
         return <CardsOrganisations data={data as Organisation[]} {...containerProps} />;

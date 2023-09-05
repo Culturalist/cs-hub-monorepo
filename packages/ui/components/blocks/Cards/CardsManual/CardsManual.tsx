@@ -4,17 +4,17 @@ import { Breakpoint, DefaultProps } from 'globals';
 import { getImageUrl } from 'globals/lib/sanity';
 import { localizeString } from 'data/utils';
 import { mapKeys, neatTextBreaks } from 'globals/utils';
-import { createStyles } from './CardManual.styles';
+import { createStyles } from './CardsManual.styles';
 import LinkWrapper from '../../LinkWrapper';
 import Image from '../../Image';
 
-interface CardManualProps extends DefaultProps {
+interface CardsManualProps extends DefaultProps {
     data: CardManual[];
     coverOnHover?: boolean;
     hero?: boolean;
 }
 
-export default function CardManual(props: CardManualProps) {
+export default function CardsManual(props: CardsManualProps) {
     const { data, coverOnHover, hero, lang, className } = props;
     const styles = createStyles({ className, coverOnHover, hero });
 

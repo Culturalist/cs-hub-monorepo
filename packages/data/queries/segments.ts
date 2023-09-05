@@ -102,6 +102,12 @@ export const bodySegment = `
                 }
             }
         },
+        projects[]-> {
+            ...,
+            labels[]-> {
+                title
+            }
+        },
         organisations[]->
     }
 `;

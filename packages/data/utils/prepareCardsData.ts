@@ -5,7 +5,10 @@ import { Label } from '../schemas/system';
 import { CardsType, cardsTypeList } from '../schemas/values';
 import globalConfig from 'globals/globalConfig';
 
-const query = groq`*[_type == $docType] | order(title.${globalConfig.localization.default} asc)`;
+const query = groq`*[_type == $docType] | order(date desc, title.${globalConfig.localization.default} asc){
+    ...,
+    labels[]->
+}`;
 
 export async function prepareCardsData(cardsType: CardsType, input: (Card | Label)[]): Promise<Card[]> {
     const hasLabels = input.some(entry => entry._type == 'label');
