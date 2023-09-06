@@ -64,7 +64,7 @@ export default function CardsEvents(props: CardsEventsProps) {
                         if (nextCover._type == 'coverImage') {
                             cover = nextCover;
                         }
-                        return !nextCover.useMedia?.includes('desktop');
+                        return !(cover && nextCover.useMedia?.includes('desktop'));
                     });
 
                 const coverUrl = cover && getImageUrl(cover, ...coverSize);

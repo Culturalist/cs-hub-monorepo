@@ -29,7 +29,7 @@ export async function prepareCardsData(cardsType: CardsType, input: (Card | Labe
             });
         } else if (entry._type == 'page') {
             data.forEach(card => {
-                [entry._id, entry._ref].includes(card.parent?._ref || card.parent?._id) && output.push(card);
+                [card.parent?._ref || card.parent?._id].includes(entry._ref || entry._id) && output.push(card);
             });
         } else {
             output.push(entry as Card);

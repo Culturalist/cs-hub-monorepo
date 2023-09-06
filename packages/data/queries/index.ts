@@ -8,3 +8,4 @@ export { personQuery } from './person.query';
 export { postQuery } from './post.query';
 export { noteQuery } from './note.query';
 export { metadataAppQuery, metadataPageQuery } from './metadata.query';
+export * from './segments';
