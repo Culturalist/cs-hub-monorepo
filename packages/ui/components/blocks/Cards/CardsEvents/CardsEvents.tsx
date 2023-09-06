@@ -52,10 +52,12 @@ export default function CardsEvents(props: CardsEventsProps) {
             {data.map((card, i) => {
                 const { dates, covers, cardSurface } = card;
                 const title = localizeString(card.title, lang);
+                const subtitle = localizeString(card.subtitle, lang);
                 const minDate = dates && selectDate(dates, 'min');
                 const time = minDate ? `${minDate.start || ''}${minDate.end ? '-' + minDate.end : ''}` : '';
                 const maxDate = dates && dates.length > 1 && selectDate(dates, 'max');
                 const lineup = card.lineup?.[0]?.list;
+                const showLineup = lineup && lineup.length > 0;
                 let cover: CoverBlock | undefined;
 
                 covers &&
@@ -105,7 +107,7 @@ export default function CardsEvents(props: CardsEventsProps) {
                                     </h4>
                                 )}
                                 {/* LINEUP */}
-                                {lineup && lineup.length > 0 && (
+                                {showLineup && (
                                     <div className={styles.lineup}>
                                         {lineup.map((person, i) => {
                                             const name = localizeString(person.title, lang);
@@ -116,6 +118,12 @@ export default function CardsEvents(props: CardsEventsProps) {
                                             ) : null;
                                         })}
                                     </div>
+                                )}
+                                {/* SUBTITLE */}
+                                {subtitle && !showLineup && (
+                                    <h4 className={styles.subtitleWrapper}>
+                                        <span className={styles.subtitle}>{subtitle}</span>
+                                    </h4>
                                 )}
                             </div>
                         </div>

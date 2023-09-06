@@ -20,6 +20,8 @@ const defaultStyles = {
     info: 'flex flex-col justify-between',
     titleWrapper: '',
     title: 'typo-title-lg sm:max-md:typo-title trim-line hyphens-auto xs:hyphens-none',
+    subtitleWrapper: '',
+    subtitle: 'typo-short sm:max-md:typo-short-sm trim-line',
     lineup: 'flex flex-row flex-wrap gap-x-12 gap-y-4',
     nameWrapper: '',
     name: 'typo-caps-2xs sm:max-md:typo-caps-3xs trim-line xs:whitespace-nowrap',
