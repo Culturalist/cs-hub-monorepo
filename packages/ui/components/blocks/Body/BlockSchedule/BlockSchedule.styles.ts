@@ -13,7 +13,7 @@ const defaultStyles = {
     contentCol: 'lg:pr-m2',
     titleWrapper: '',
     title: 'typo-title-lg trim-line',
-    subtitleWrapper: 'mt-12',
+    subtitleWrapper: 'mt-8',
     subtitle: 'typo-paragraph-sm trim-line text-theme-text-light',
     descriptionWrapper: '',
     description: 'typo-paragraph-sm pt-12 pb-12 [&_p]:pt-12',

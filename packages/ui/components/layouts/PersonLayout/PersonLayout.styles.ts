@@ -5,7 +5,7 @@ import { purgeEmptyStrings } from 'globals/utils';
 export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: 'pb-m3',
+    container: 'mb-m3',
     name: '',
     subtitleWrapper: 'mt-8',
     subtitle: 'typo-paragraph trim-line text-theme-text-light',

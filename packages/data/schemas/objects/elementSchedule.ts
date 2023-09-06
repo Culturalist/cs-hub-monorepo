@@ -32,7 +32,11 @@ export default function elementSchedule() {
             defineField({
                 name: 'subtitle',
                 title: 'Subtitle',
-                type: 'localeString'
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                }
             }),
             defineField({
                 name: 'description',

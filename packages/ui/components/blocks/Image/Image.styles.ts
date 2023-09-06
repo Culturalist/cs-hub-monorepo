@@ -5,7 +5,7 @@ import { purgeEmptyStrings } from 'globals/utils';
 export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: '',
+    container: 'block',
     image: 'w-full h-full object-cover'
 };
 

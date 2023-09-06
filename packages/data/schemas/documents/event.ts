@@ -134,7 +134,7 @@ export default function event(appName: string = 'hub') {
                     disableNew: true,
                     filter: ({ document }: any) => filterByDocumentApp(document)
                 },
-                readOnly: false, //!globalConfig.debug,
+                readOnly: false,
                 group: 'connections'
             }),
             defineField({

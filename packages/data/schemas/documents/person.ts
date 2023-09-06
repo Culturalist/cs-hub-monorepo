@@ -5,6 +5,7 @@ import { LinkContact, LocalePortableText, LocaleString } from '../objects';
 import globalConfig from 'globals/globalConfig';
 import { App, Label } from '../system';
 import { ImageObject } from 'globals';
+import { Page } from './page';
 
 export interface Person extends SanityDocument {
     _type: 'person' | 'reference';
@@ -17,6 +18,7 @@ export interface Person extends SanityDocument {
     contacts?: LinkContact[];
     description?: LocalePortableText;
     labels?: Label[];
+    parent?: Page;
 }
 
 export default function person(appName: string = 'hub') {

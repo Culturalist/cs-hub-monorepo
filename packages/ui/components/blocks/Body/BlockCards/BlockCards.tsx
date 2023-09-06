@@ -1,8 +1,8 @@
 import { prepareCardsData } from 'data/utils';
-import { BlockCards, CardManual, Event, Organisation, Person, Project } from 'data/schemas';
+import { BlockCards, CardManual, Event, Organisation, Person, Post, Project } from 'data/schemas';
 import { DefaultProps } from 'globals';
 import { createStyles } from './BlockCards.styles';
-import { CardsManual, CardsPeople, CardsProjects } from '../../Cards';
+import { CardsManual, CardsPeople, CardsPosts, CardsProjects } from '../../Cards';
 import CardsEvents from '../../Cards/CardsEvents';
 import CardsOrganisations from '../../Cards/CardsOrganisations';
 
@@ -39,6 +39,8 @@ export default async function BlockCards(props: BlockCardsProps) {
     // PROJECTS
     else if (cardsType == 'projects')
         return <CardsProjects data={data as Project[]} showLabels={showLabels} {...containerProps} />;
+    // PROJECTS
+    else if (cardsType == 'posts') return <CardsPosts data={data as Post[]} {...containerProps} />;
     // ORGANISATIONS
     else if (cardsType == 'organisations')
         return <CardsOrganisations data={data as Organisation[]} {...containerProps} />;

@@ -5,6 +5,7 @@ import { LocaleString } from '../objects';
 import globalConfig from 'globals/globalConfig';
 import { App, Label } from '../system';
 import { ImageObject } from 'globals';
+import { Page } from './page';
 
 export interface Organisation extends SanityDocument {
     _type: 'organisation' | 'reference';
@@ -16,6 +17,7 @@ export interface Organisation extends SanityDocument {
     logo?: ImageObject;
     url?: string;
     labels?: Label[];
+    parent?: Page;
 }
 
 export default function organisation(appName: string = 'hub') {

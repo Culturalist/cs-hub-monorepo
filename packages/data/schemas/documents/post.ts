@@ -13,6 +13,7 @@ export interface Post extends SanityDocument {
     _type: 'post' | 'reference';
     _ref?: string;
     title?: LocaleString;
+    subtitle?: LocaleString;
     slug: Slug;
     app?: App;
     date: string;
@@ -52,6 +53,16 @@ export default function post(appName: string = 'hub') {
                 name: 'title',
                 title: 'Title',
                 type: 'localeString',
+                group: 'card'
+            }),
+            defineField({
+                name: 'subtitle',
+                title: 'Subtitle',
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                },
                 group: 'card'
             }),
             defineField({
@@ -125,7 +136,7 @@ export default function post(appName: string = 'hub') {
                     disableNew: true,
                     filter: ({ document }: any) => filterByDocumentApp(document)
                 },
-                readOnly: !globalConfig.debug,
+                readOnly: false,
                 group: 'connections'
             }),
             defineField({

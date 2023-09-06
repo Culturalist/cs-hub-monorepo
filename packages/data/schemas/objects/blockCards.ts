@@ -1,11 +1,11 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 import { ThLargeIcon } from '@sanity/icons';
 import { filterByDocumentApp } from '../../utils';
 import { CardsType, cardsTypeList, CardPart, personCardParts } from '../values';
 import { capitalize } from 'globals/utils';
 import globalConfig from 'globals/globalConfig';
 import { CardManual } from './cardManual';
-import { Person, Post, Project, Event, Organisation } from '../documents';
+import { Person, Post, Project, Event, Organisation, Page } from '../documents';
 import { Label } from '../system';
 
 export type CardSource = Project | Post | Person | Event | Organisation;
@@ -15,10 +15,10 @@ export interface BlockCards {
     _type: 'blockCards';
     type: CardsType;
     manual?: CardManual[];
-    projects?: (Project | Label)[];
-    posts?: (Post | Label)[];
-    people?: (Person | Label)[];
-    events?: (Event | Label)[];
+    projects?: (Project | Label | Page)[];
+    posts?: (Post | Label | Page)[];
+    people?: (Person | Label | Page)[];
+    events?: (Event | Label | Page)[];
     organisations?: (Organisation | Label)[];
     monochromePhoto?: boolean;
     includePerson?: CardPart[];
@@ -73,9 +73,11 @@ export default function blockCards(appName: string = 'hub') {
                         name: value,
                         title: title,
                         type: 'array',
-                        description: `Select ${value} individually or by label`,
+                        description: `Select ${value} individually or filter by label${
+                            !(value == 'organisations' || value == 'people') ? ' / parent page' : ''
+                        }`,
                         of: [
-                            {
+                            defineArrayMember({
                                 name: value,
                                 title: capitalize(docType),
                                 type: 'reference',
@@ -84,8 +86,8 @@ export default function blockCards(appName: string = 'hub') {
                                     disableNew: true,
                                     filter: ({ document }: any) => filterByDocumentApp(document)
                                 }
-                            },
-                            {
+                            }),
+                            defineArrayMember({
                                 name: 'label',
                                 title: 'Label',
                                 type: 'reference',
@@ -93,7 +95,21 @@ export default function blockCards(appName: string = 'hub') {
                                 options: {
                                     disableNew: true
                                 }
-                            }
+                            }),
+                            ...(!(value == 'organisations' || value == 'people')
+                                ? [
+                                      defineArrayMember({
+                                          name: 'page',
+                                          title: 'Parent page',
+                                          type: 'reference',
+                                          to: [{ type: 'page' }],
+                                          options: {
+                                              disableNew: true,
+                                              filter: ({ document }: any) => filterByDocumentApp(document)
+                                          }
+                                      })
+                                  ]
+                                : [])
                         ],
                         hidden: ({ parent }) => parent?.type !== value
                     });
@@ -140,13 +156,6 @@ export default function blockCards(appName: string = 'hub') {
                 initialValue: false,
                 hidden: ({ parent }) => parent?.type !== 'projects'
             })
-            // defineField({
-            //     name: 'groupByLabel',
-            //     title: 'Group cards by labels',
-            //     type: 'boolean',
-            //     initialValue: false,
-            //     hidden: ({ parent }) => !['people', 'projects', 'events', 'posts'].includes(parent?.type)
-            // })
         ],
         preview: {
             select: {

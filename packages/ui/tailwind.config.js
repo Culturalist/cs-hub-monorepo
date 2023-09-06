@@ -145,7 +145,8 @@ module.exports = {
                 m16: 'var(--c-module-16)',
                 m20: 'var(--c-module-20)',
                 m24: 'var(--c-module-24)',
-                'hero-height': 'var(--c-hero-height)'
+                'hero-height': 'var(--c-hero-height)',
+                'page-height': 'var(--c-page-min-height)'
             }
         }
     },

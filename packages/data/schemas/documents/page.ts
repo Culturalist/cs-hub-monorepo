@@ -10,6 +10,7 @@ import { Theme } from '../system';
 export interface Page extends SanityDocument {
     _type: 'page' | 'reference';
     _ref?: string;
+    _key?: string;
     title?: LocaleString;
     slug: Slug;
     app?: App;

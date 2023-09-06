@@ -5,7 +5,7 @@ import { purgeEmptyStrings } from 'globals/utils';
 export interface styleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: 'pb-m3',
+    container: 'mb-m3',
     dateWrapper: 'mt-gutter',
     date: 'typo-caps-2xs trim-line',
     title: '',

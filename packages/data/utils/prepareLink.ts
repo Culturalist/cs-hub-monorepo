@@ -20,7 +20,7 @@ export function prepareLink(input: LinkTyped, lang?: Locale): string {
     } else if (type == 'reference' && reference) {
         if (reference._type !== 'reference') {
             link = `${globalConfig.routes[reference._type] ? '/' + globalConfig.routes[reference._type] : ''}/${
-                reference.slug.current
+                reference.slug?.current || ''
             }`;
             link = lang ? `/${lang}${link}` : link;
         }
