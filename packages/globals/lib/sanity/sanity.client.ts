@@ -6,7 +6,8 @@ import globalConfig from '../../globalConfig';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 
 //Sanity project variables
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID || '';
+
 const apiVersion = globalConfig.latestUpdate;
 const dataset = 'production';
 
