@@ -32,28 +32,22 @@ export const localePortableTextSegment = `
         ...,
         markDefs[] {
             ...,
-            link {
+            file{
                 ...,
-                file{
-                    ...,
-                    "url": asset->url
-                },
-                reference->
-            }
+                "url": asset->url
+            },
+            reference->
         }
     },
     en[] {
         ...,
         markDefs[] {
             ...,
-            link {
+            file{
                 ...,
-                file{
-                    ...,
-                    "url": asset->url
-                },
-                reference->
-            }
+                "url": asset->url
+            },
+            reference->
         }
     }
     `;
