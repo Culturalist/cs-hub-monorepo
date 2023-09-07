@@ -4,7 +4,7 @@ const fs = require('fs');
 const baseDir = process.cwd();
 
 const prebuildScripts = async () => {
-    const file = path.join(baseDir, '/node_modules', 'next/dist/server/require-hook.js');
+    const file = path.join(baseDir, '/apps/culturaweek', '/node_modules', 'next/dist/server/require-hook.js');
 
     const content = await fs.promises.readFile(file, 'utf-8');
     await fs.promises.writeFile(
