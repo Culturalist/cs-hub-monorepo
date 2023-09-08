@@ -4,6 +4,7 @@ import Links from '../Links';
 import PortableText from '../PortableText';
 import BlockCards from './BlockCards';
 import BlockColumns from './BlockColumns';
+import BlockMedia from './BlockMedia';
 import BlockSchedule from './BlockSchedule';
 import BlockSection from './BlockSection';
 import { createStyles } from './Body.styles';
@@ -31,6 +32,7 @@ export default function Body(props: BodyProps) {
                         <Links links={block.links} layout={block.layout} key={i} lang={lang} className={styles.links} />
                     );
                 else if (block._type == 'blockSchedule') return <BlockSchedule data={block} key={i} {...blockProps} />;
+                else if (block._type == 'blockMedia') return <BlockMedia data={block} key={i} {...blockProps} />;
                 // @ts-expect-error Server Component
                 else if (block._type == 'blockCards') return <BlockCards data={block} key={i} {...blockProps} />;
                 else if (block.typeClass == 'blockSection')

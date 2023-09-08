@@ -21,6 +21,7 @@ export interface Event extends SanityDocument {
     dates?: ElementDate[];
     action?: LinkCaptioned;
     covers?: CoverBlock[];
+    coverCaption?: LocaleString;
     body?: BodyBlock[];
     parent?: Page;
     labels?: Label[];
@@ -116,6 +117,16 @@ export default function event(appName: string = 'hub') {
                 name: 'covers',
                 title: 'Covers',
                 type: 'coverArray',
+                group: 'page'
+            }),
+            defineField({
+                name: 'coverCaption',
+                title: 'Cover caption',
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                },
                 group: 'page'
             }),
             defineField({

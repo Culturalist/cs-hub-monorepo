@@ -15,6 +15,7 @@ export interface Page extends SanityDocument {
     slug: Slug;
     app?: App;
     covers?: CoverBlock[];
+    coverCaption?: LocaleString;
     index?: boolean;
     body?: BodyBlock[];
     theme?: Theme;
@@ -70,7 +71,17 @@ export default function page(appName: string = 'hub') {
                 name: 'covers',
                 title: 'Covers',
                 type: 'coverArray',
-                group: 'card'
+                group: 'page'
+            }),
+            defineField({
+                name: 'coverCaption',
+                title: 'Cover caption',
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                },
+                group: 'page'
             }),
             defineField({
                 name: 'index',

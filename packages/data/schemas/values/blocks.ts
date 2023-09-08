@@ -84,10 +84,10 @@ export type HeroActionType = LinksLayout | 'cards';
 export type BodyBlockDefinition = Partial<Record<DocumentApp, string[]>>;
 
 export const bodyBlockDefinitions: BodyBlockDefinition = {
-    app: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockCards'],
-    page: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockCards', 'blockSchedule'],
-    event: ['localePortableTextBody', 'blockColumns', 'blockLinks', 'blockSchedule', 'blockCards'],
-    project: ['localePortableTextBody', 'blockColumns', 'blockLinks']
+    app: ['localePortableTextBody', 'blockColumns', 'blockMedia', 'blockLinks', 'blockCards'],
+    page: ['localePortableTextBody', 'blockColumns', 'blockMedia', 'blockLinks', 'blockCards'],
+    event: ['localePortableTextBody', 'blockColumns', 'blockMedia', 'blockLinks', 'blockCards', 'blockSchedule'],
+    project: ['localePortableTextBody', 'blockColumns', 'blockMedia', 'blockLinks', 'blockCards']
 };
 
 export const personCardParts = [
@@ -98,3 +98,10 @@ export const personCardParts = [
 ];
 
 export type CardPart = 'subtitle' | 'description' | 'contacts' | 'link';
+
+export const mediaLayoutList = [
+    { title: 'Full width', value: 'full' },
+    { title: '2 columns', value: '2-columns' },
+    { title: '3 columns', value: '3-columns' }
+];
+export type MediaLayout = 'full' | '2-columns' | '3-columns';

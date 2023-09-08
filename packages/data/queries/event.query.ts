@@ -1,5 +1,5 @@
 import { groq } from 'next-sanity';
-import { bodySegment, coverSegment, linkSegment, localePortableTextSegment } from './segments';
+import { bodySegment, mediaSegment, linkSegment, localePortableTextSegment } from './segments';
 
 export const eventQuery = groq`*[_type == 'event' && slug.current == $slug && app._ref == $appName][0]{
     ...,
@@ -21,7 +21,7 @@ export const eventQuery = groq`*[_type == 'event' && slug.current == $slug && ap
         }
     },
     covers[] {
-        ${coverSegment}
+        ${mediaSegment}
     },
     body[] {
         ${bodySegment}

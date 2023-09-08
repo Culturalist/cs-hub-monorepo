@@ -10,7 +10,7 @@ interface PostLayoutProps extends DefaultProps {
 
 export default function PostLayout(props: PostLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, parent, body } = data;
+    const { covers, coverCaption, parent, body } = data;
     const title = localizeString(data.title, lang);
     const label = localizeString(data.labels?.[0]?.title, lang);
     const date = formatLocaleDate(data.date, lang, true);
@@ -56,7 +56,7 @@ export default function PostLayout(props: PostLayoutProps) {
                     <span>{title}</span>
                 </h1>
                 {/* COVER */}
-                <Cover array={covers} parent="page" lang={lang} className={styles.cover} />
+                <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
                 {/* BODY */}
                 <Body data={body} lang={lang} className={styles.body} />
             </main>

@@ -1,6 +1,7 @@
 import { DefaultProps, ImageObject } from 'globals';
 import { createStyles } from './PageImage.styles';
-import { LocaleString, UseMedia } from 'data';
+import { LocaleString, UseMedia } from 'data/schemas';
+import { localizeString } from 'data/utils';
 import { AdaptiveDimentions, box, boxPx } from '../../../../utils';
 import { getImageUrl } from 'globals/lib/sanity';
 import Image from '../../Image';
@@ -9,6 +10,7 @@ export type ImageSources = Partial<Record<UseMedia, ImageObject>>;
 
 interface PageImageProps extends DefaultProps {
     sources: ImageSources;
+    caption?: LocaleString;
     alt?: LocaleString;
 }
 
@@ -19,6 +21,7 @@ export default function PageImage(props: PageImageProps) {
     const styles = createStyles({ className });
     const desktop = sources.desktop || sources.mobile;
     const mobile = sources.mobile || sources.desktop;
+    const caption = localizeString(props.caption, lang);
 
     const sizes: AdaptiveDimentions = {
         xs: box([12, 12], 'xs'),
@@ -36,8 +39,15 @@ export default function PageImage(props: PageImageProps) {
         };
 
     return (
-        <div className={styles.container}>
-            <Image sources={coverUrls} sizes={sizes} alt={alt} lang={lang} className={styles.image} />
-        </div>
+        <figure className={styles.container}>
+            <div className={styles.wrapper}>
+                <Image sources={coverUrls} sizes={sizes} alt={alt} lang={lang} className={styles.image} />
+            </div>
+            {caption && (
+                <figcaption className={styles.captionWrapper}>
+                    <span className={styles.caption}>{caption}</span>
+                </figcaption>
+            )}
+        </figure>
     );
 }

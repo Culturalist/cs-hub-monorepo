@@ -18,6 +18,10 @@ export default function Cover(props: CoverProps) {
     let images: ImageSources = {};
     let video: VideoSources = {};
     const styles = createStyles({ className, parent });
+    const commonProps = {
+        lang: lang,
+        className: styles.container
+    };
 
     array &&
         array.length > 0 &&
@@ -36,16 +40,14 @@ export default function Cover(props: CoverProps) {
         });
 
     if (Object.keys(video).length > 0) {
-        if (parent == 'hero')
-            return <HeroVideo sources={video} posters={images} lang={lang} className={styles.container} />;
+        if (parent == 'hero') return <HeroVideo sources={video} posters={images} {...commonProps} />;
         else if (parent == 'page') {
-            return <PageVideo sources={video} posters={images} lang={lang} className={styles.container} />;
+            return <PageVideo sources={video} posters={images} caption={caption} {...commonProps} />;
         }
     } else if (Object.keys(images).length > 0) {
-        if (parent == 'hero')
-            return <HeroImage sources={images} alt={alt || caption} lang={lang} className={styles.container} />;
+        if (parent == 'hero') return <HeroImage sources={images} alt={alt || caption} {...commonProps} />;
         else if (parent == 'page')
-            return <PageImage sources={images} alt={alt || caption} lang={lang} className={styles.container} />;
+            return <PageImage sources={images} caption={caption} alt={alt || caption} {...commonProps} />;
     }
 
     return null;

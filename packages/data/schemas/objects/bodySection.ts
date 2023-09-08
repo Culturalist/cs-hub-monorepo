@@ -6,8 +6,9 @@ import { BlockColumns } from './blockColumns';
 import { BlockLinks } from './blockLinks';
 import { BlockSchedule } from './blockSchedule';
 import { LocalePortableText } from './localePortableText';
+import { BlockMedia } from './blockMedia';
 
-export type BodySectionBlock = LocalePortableText | BlockColumns | BlockLinks | BlockCards | BlockSchedule;
+export type BodySectionBlock = LocalePortableText | BlockColumns | BlockMedia | BlockLinks | BlockCards | BlockSchedule;
 
 export default function bodySection(parent: DocumentApp) {
     return defineType({
@@ -17,6 +18,7 @@ export default function bodySection(parent: DocumentApp) {
         of: [
             { type: 'localePortableTextBody' },
             { type: 'blockColumns' },
+            { type: 'blockMedia' },
             { type: 'blockLinks' },
             { type: 'blockCards' },
             { type: 'blockSchedule' }

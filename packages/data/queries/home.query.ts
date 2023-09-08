@@ -1,5 +1,5 @@
 import { groq } from 'next-sanity';
-import { bodySegment, coverSegment, linkSegment, localePortableTextSegment } from './segments';
+import { bodySegment, mediaSegment, linkSegment, localePortableTextSegment } from './segments';
 
 export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
     ...,
@@ -7,7 +7,7 @@ export const homeQuery = groq`*[_type == 'app' && _id == $appName][0]{
         ...,
         covers[] {
             ...,
-            ${coverSegment}
+            ${mediaSegment}
         },
         cards[] {
             ...,

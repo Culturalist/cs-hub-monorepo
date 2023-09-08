@@ -18,6 +18,7 @@ export interface Post extends SanityDocument {
     app?: App;
     date: string;
     covers?: CoverBlock[];
+    coverCaption?: LocaleString;
     body?: BodyBlock[];
     author?: Person;
     parent?: Page;
@@ -93,7 +94,17 @@ export default function post(appName: string = 'hub') {
                 name: 'covers',
                 title: 'Covers',
                 type: 'coverArray',
-                group: 'card'
+                group: 'page'
+            }),
+            defineField({
+                name: 'coverCaption',
+                title: 'Cover caption',
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                },
+                group: 'page'
             }),
             defineField({
                 name: 'body',

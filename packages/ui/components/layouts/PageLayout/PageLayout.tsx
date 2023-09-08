@@ -11,7 +11,7 @@ interface PageLayoutProps extends DefaultProps {
 
 export default function PageLayout(props: PageLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, index, body, theme } = data;
+    const { covers, coverCaption, index, body, theme } = data;
     const title = localizeString(data.title, lang);
     const styles = createStyles({ className });
 
@@ -24,7 +24,7 @@ export default function PageLayout(props: PageLayoutProps) {
                 {/* INDEX */}
                 {index && <PageIndex body={body} lang={lang} className={styles.index} />}
                 {/* COVER */}
-                <Cover array={covers} parent="page" lang={lang} className={styles.cover} />
+                <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
                 {/* BODY */}
                 <Body data={body} lang={lang} className={styles.body} />
             </main>

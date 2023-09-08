@@ -95,7 +95,7 @@ const globalConfig: GlobalConfig = {
     tokens: {
         fbAppId: '1109207817140829'
     },
-    debug: false
+    debug: true
 };
 
 export default globalConfig;

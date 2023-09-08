@@ -14,6 +14,7 @@ export interface Note extends SanityDocument {
     app?: App;
     date: string;
     covers?: CoverBlock[];
+    coverCaption?: LocaleString;
     body?: BodyBlock[];
     metadata?: MetadataPage;
 }
@@ -75,7 +76,17 @@ export default function note(appName: string = 'hub') {
                 name: 'covers',
                 title: 'Covers',
                 type: 'coverArray',
-                group: 'card'
+                group: 'page'
+            }),
+            defineField({
+                name: 'coverCaption',
+                title: 'Cover caption',
+                type: 'localeString',
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                },
+                group: 'page'
             }),
             defineField({
                 name: 'body',

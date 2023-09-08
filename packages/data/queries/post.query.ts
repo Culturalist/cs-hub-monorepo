@@ -1,5 +1,5 @@
 import { groq } from 'next-sanity';
-import { bodySegment, coverSegment } from './segments';
+import { bodySegment, mediaSegment } from './segments';
 
 export const postQuery = groq`*[_type == 'post' && slug.current == $slug && app._ref == $appName][0]{
     ...,
@@ -11,7 +11,7 @@ export const postQuery = groq`*[_type == 'post' && slug.current == $slug && app.
     author->,
     labels[]->,
     covers[] {
-        ${coverSegment}
+        ${mediaSegment}
     },
     body[] {
         ${bodySegment}

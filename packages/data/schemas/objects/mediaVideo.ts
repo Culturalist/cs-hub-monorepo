@@ -1,19 +1,16 @@
 import { defineType, defineField } from 'sanity';
 import { PlayIcon } from '@sanity/icons';
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
-import { UseMedia, useMediaInitialValue, useMediaList } from '../values';
 import { LocaleString } from './localeString';
 import { selectDefaultLocale } from '../../utils';
-import { caseTransform } from 'globals/utils';
 
 export interface MediaVideo {
     _type: 'mediaVideo';
     _key: string;
     asset?: SanityAsset;
     url?: string;
-    useMedia: UseMedia[];
-    alt?: LocaleString;
     caption?: LocaleString;
+    autoplay?: boolean;
 }
 
 export default function mediaVideo(appName: string = 'hub') {
@@ -27,25 +24,11 @@ export default function mediaVideo(appName: string = 'hub') {
         },
         fields: [
             defineField({
-                name: 'useMedia',
-                title: 'Can be used',
-                type: 'array',
-                of: [{ type: 'string' }],
-                initialValue: useMediaInitialValue,
-                options: {
-                    list: useMediaList
-                    // layout: 'grid'
-                },
-                validation: Rule => Rule.required()
-            }),
-            defineField({
-                name: 'alt',
-                title: 'Alternative text',
-                type: 'localeString',
-                options: {
-                    collapsible: true,
-                    collapsed: true
-                }
+                name: 'autoplay',
+                title: 'Autoplay',
+                type: 'boolean',
+                description: 'With autoplay audio will be muted by default',
+                initialValue: false
             }),
             defineField({
                 name: 'caption',
@@ -59,15 +42,13 @@ export default function mediaVideo(appName: string = 'hub') {
         ],
         preview: {
             select: {
-                alt: 'alt',
-                caption: 'caption',
-                use: 'useMedia'
+                caption: 'caption'
             },
-            prepare({ alt, caption, use }) {
-                const title = selectDefaultLocale(alt) || selectDefaultLocale(caption);
+            prepare({ caption }) {
+                const title = selectDefaultLocale(caption);
                 return {
                     title: title || 'Video',
-                    subtitle: use && use.length > 0 ? caseTransform(use.join(' | '), 'title') : ''
+                    subtitle: title ? 'Video' : ''
                 };
             }
         },

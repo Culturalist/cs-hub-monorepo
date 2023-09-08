@@ -10,7 +10,7 @@ interface NoteLayoutProps extends DefaultProps {
 
 export default function NoteLayout(props: NoteLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, body } = data;
+    const { covers, coverCaption, body } = data;
     const title = localizeString(data.title, lang);
     const date = formatLocaleDate(data.date, lang, true);
     const styles = createStyles({ className });
@@ -29,7 +29,7 @@ export default function NoteLayout(props: NoteLayoutProps) {
                     <span>{title}</span>
                 </h1>
                 {/* COVER */}
-                <Cover array={covers} parent="page" lang={lang} className={styles.cover} />
+                <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
                 {/* BODY */}
                 <Body data={body} lang={lang} className={styles.body} />
             </main>

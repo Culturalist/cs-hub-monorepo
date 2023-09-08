@@ -11,7 +11,7 @@ interface ProjectLayoutProps extends DefaultProps {
 
 export default function ProjectLayout(props: ProjectLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, parent, body, organisations } = data;
+    const { covers, coverCaption, parent, body, organisations } = data;
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const label = localizeString(data.labels?.[0]?.title, lang);
@@ -48,7 +48,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                 {/* LINEUP */}
                 <Lineup data={organisations} lang={lang} className={styles.organisations} />
                 {/* COVER */}
-                <Cover array={covers} parent="page" lang={lang} className={styles.cover} />
+                <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
                 {/* BODY */}
                 <Body data={body} lang={lang} className={styles.body} />
             </main>

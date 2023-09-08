@@ -1,5 +1,5 @@
 import globalConfig from 'globals/globalConfig';
-import { bodyParents, DocumentApp, mediaParents, portableTextParents } from './values';
+import { bodyParents, DocumentApp, portableTextParents } from './values';
 
 import {
     blockId,
@@ -17,7 +17,6 @@ import {
     linkCaptioned,
     body,
     bodySection,
-    mediaArray,
     mediaImage,
     mediaVideo,
     mediaEmbed,
@@ -30,7 +29,8 @@ import {
     captonAlt,
     blockSchedule,
     lineupPeople,
-    lineupOrganisations
+    lineupOrganisations,
+    blockMedia
 } from './objects';
 import { page, person, post, project, event, note, organisation } from './documents';
 import { header, footer, hero, metadataApp, metadataPage } from './sections';
@@ -43,7 +43,6 @@ export default function schemaTypes(appName: string = 'hub') {
         ...bodyParents.map(bodyParent => body(bodyParent)),
         ...bodyParents.map(bodyParent => bodySection(bodyParent)),
         ...bodyParents.map(bodyParent => blockSection(bodyParent, appName)),
-        ...mediaParents.map(mediaParent => mediaArray(mediaParent)),
         coverArray(),
         localeString(),
         localeText(),
@@ -62,6 +61,7 @@ export default function schemaTypes(appName: string = 'hub') {
         blockColumns,
         blockSchedule,
         blockLinks,
+        blockMedia,
         linkTyped,
         linkCaptioned,
         linkContact,

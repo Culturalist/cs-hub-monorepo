@@ -12,7 +12,7 @@ interface EventLayoutProps extends DefaultProps {
 
 export default function EventLayout(props: EventLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, lineup, dates, action, parent, body, theme } = data;
+    const { covers, coverCaption, lineup, dates, action, parent, body, theme } = data;
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const label = localizeString(data.labels?.[0]?.title, lang);
@@ -54,7 +54,7 @@ export default function EventLayout(props: EventLayoutProps) {
                     {action && <Links links={[action]} layout="buttons" lang={lang} className={styles.action} />}
                 </div>
                 {/* COVER */}
-                <Cover array={covers} parent="page" lang={lang} className={styles.cover} />
+                <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
                 {/* BODY */}
                 <Body data={body} lang={lang} className={styles.body} />
             </main>

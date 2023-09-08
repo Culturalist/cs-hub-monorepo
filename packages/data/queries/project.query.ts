@@ -1,5 +1,5 @@
 import { groq } from 'next-sanity';
-import { bodySegment, coverSegment } from './segments';
+import { bodySegment, mediaSegment } from './segments';
 
 export const projectQuery = groq`*[_type == 'project' && slug.current == $slug && app._ref == $appName][0]{
     ...,
@@ -15,7 +15,7 @@ export const projectQuery = groq`*[_type == 'project' && slug.current == $slug &
     },
     labels[]->,
     covers[] {
-        ${coverSegment}
+        ${mediaSegment}
     },
     body[] {
         ${bodySegment}

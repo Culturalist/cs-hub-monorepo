@@ -7,7 +7,7 @@ export const linkSegment = `
     reference->
 `;
 
-export const coverSegment = `
+export const mediaSegment = `
     ...,
     "url": asset->url,
     asset->{
@@ -103,6 +103,10 @@ export const bodySegment = `
             }
         },
         posts[]->,
-        organisations[]->
+        organisations[]->,
+        media[] {
+            ...,
+            ${mediaSegment}
+        }
     }
 `;

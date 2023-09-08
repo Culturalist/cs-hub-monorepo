@@ -12,7 +12,7 @@ interface PersonLayoutProps extends DefaultProps {
 
 export default function PersonLayout(props: PersonLayoutProps) {
     const { data, lang, className } = props;
-    const { photo, contacts, description } = data;
+    const { photo, photoCaption, contacts, description } = data;
     const name = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const photoUrl = photo && getImageUrl(photo, ...new Array(2).fill(metrics.breakpoints.xs * metrics.pd.xs * 2));
