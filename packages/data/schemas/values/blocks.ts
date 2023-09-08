@@ -44,8 +44,8 @@ export const portableTextDefinitions: PortableTextElements = {
         field: ['link']
     },
     blocks: {
-        body: ['blockMedia'],
-        column: ['blockMedia'],
+        body: ['mediaImage'],
+        column: ['mediaImage'],
         field: []
     }
 };

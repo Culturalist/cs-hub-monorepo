@@ -27,9 +27,12 @@ const defaultStyles = {
     ol: 'list-decimal pl-[1em] typo-paragraph trim-line flex flex-col mt-20 gap-8',
     field: {
         normalWrapper: '',
-        normal: 'trim-line',
-        link: 'underline hover:no-underline'
-    }
+        normal: 'trim-line'
+    },
+    imageWrapper: 'mt-40',
+    image: '',
+    captionWrapper: 'mt-4',
+    caption: 'typo-short-sm trim-line text-theme-text-light'
 };
 
 export const createStyles = ({ parent = 'body', className }: styleProps) => {
@@ -37,12 +40,7 @@ export const createStyles = ({ parent = 'body', className }: styleProps) => {
         ...defaultStyles,
         container: cx(defaultStyles.container, className),
         normalWrapper: parent == 'field' ? defaultStyles.field.normalWrapper : defaultStyles.normalWrapper,
-        normal: parent == 'field' ? defaultStyles.field.normal : defaultStyles.normal,
-        link: parent == 'field' ? defaultStyles.field.link : defaultStyles.link
-        // normalWrapper: defaultStyles.normalWrapper[parent],
-        // leadWrapper: defaultStyles.leadWrapper[parent],
-        // leadSmWrapper: defaultStyles.leadSmWrapper[parent],
-        // smallWrapper: defaultStyles.smallWrapper[parent]
+        normal: parent == 'field' ? defaultStyles.field.normal : defaultStyles.normal
     };
     return purgeEmptyStrings(styles) as Partial<typeof styles>;
 };

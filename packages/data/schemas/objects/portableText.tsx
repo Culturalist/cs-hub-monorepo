@@ -117,7 +117,7 @@ export default function portableText(parent: BlockParent, appName: string) {
             },
             ...[
                 {
-                    type: 'string'
+                    type: 'mediaImage'
                 }
             ].filter(field => portableTextDefinitions.blocks[parent].includes(field.type))
         ]

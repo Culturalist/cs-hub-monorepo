@@ -1,11 +1,16 @@
 import React from 'react';
 import { PortableText as PortableTextRender, PortableTextComponents } from '@portabletext/react';
 import { createStyles } from './PortableText.styles';
-import { DefaultProps } from 'globals';
+import { Breakpoint, DefaultProps } from 'globals';
 import { BlockParent, LocalePortableText } from 'data/schemas';
 import LinkWrapper from '../LinkWrapper';
-import { neatChildrenBreaks } from 'globals/utils';
+import { mapKeys, neatChildrenBreaks } from 'globals/utils';
 import globalConfig from 'globals/globalConfig';
+import { AdaptiveDimentions, boxPx, breakpoints } from '../../../utils';
+import metrics from '../../../metrics';
+import { localizeString } from 'data/utils';
+import { getImageUrl } from 'globals/lib/sanity';
+import Image from '../Image';
 
 interface PortableTextBlockProps extends DefaultProps {
     data?: LocalePortableText;
@@ -13,11 +18,26 @@ interface PortableTextBlockProps extends DefaultProps {
 }
 
 export default function PortableText(props: PortableTextBlockProps) {
-    const { lang, parent, id, className } = props;
+    const { lang, parent, className } = props;
     const styles = createStyles({ parent, className });
     const data =
         props.data?.[lang] ||
         (globalConfig.localization.safeReplace ? props.data?.[globalConfig.localization.default] : undefined);
+
+    const imageSizes: Record<'body' | 'column', AdaptiveDimentions> = {
+        body: {
+            xs: [metrics.breakpoints.xs - 2 * metrics.grid.offset, 0],
+            sm: [metrics.breakpoints.sm - 2 * metrics.grid.offset, 0],
+            md: [metrics.breakpoints.md - 2 * metrics.grid.offset, 0],
+            lg: [metrics.breakpoints.lg - 2 * metrics.grid.offset, 0]
+        },
+        column: {
+            xs: [metrics.breakpoints.xs - 2 * metrics.grid.offset, 0],
+            sm: [metrics.breakpoints.sm - 2 * metrics.grid.offset, 0],
+            md: [Math.floor((metrics.breakpoints.md - 2 * metrics.grid.offset - metrics.grid.md.gutter) / 2), 0],
+            lg: [Math.floor((metrics.breakpoints.lg - 2 * metrics.grid.offset - metrics.grid.lg.gutter) / 2), 0]
+        }
+    };
 
     const components: PortableTextComponents = {
         marks: {
@@ -63,15 +83,41 @@ export default function PortableText(props: PortableTextBlockProps) {
             )
         },
         types: {
-            // blockImage: ({ value }) => <BlockImage source={value} lang={lang} className={styles.block} />,
-            // blockVideo: ({ value }) => <BlockVideo data={value} lang={lang} className={styles.block} />
+            mediaImage: ({ value }) => {
+                {
+                    if (parent !== 'field') {
+                        const caption = localizeString(value.caption, lang);
+                        const alt = localizeString(value.alt, lang);
+                        const coverUrls = mapKeys<Breakpoint, string>(breakpoints, (br: Breakpoint) =>
+                            getImageUrl(value, ...boxPx(imageSizes[parent], br))
+                        );
+                        return (
+                            <figure className={styles.imageWrapper}>
+                                <Image
+                                    sources={coverUrls}
+                                    sizes={imageSizes[parent]}
+                                    alt={alt}
+                                    lang={lang}
+                                    className={styles.image}
+                                />
+                                {caption && (
+                                    <figcaption className={styles.captionWrapper}>
+                                        <span className={styles.caption}>{caption}</span>
+                                    </figcaption>
+                                )}
+                            </figure>
+                        );
+                    }
+                    return null;
+                }
+            }
         }
     };
     if (!data) {
-        return null;
+        return <div></div>;
     }
     return (
-        <div id={id} className={styles.container}>
+        <div className={styles.container}>
             <PortableTextRender value={data} components={components} />
         </div>
     );
