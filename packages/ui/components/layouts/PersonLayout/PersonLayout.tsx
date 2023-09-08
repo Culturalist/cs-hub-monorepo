@@ -12,9 +12,10 @@ interface PersonLayoutProps extends DefaultProps {
 
 export default function PersonLayout(props: PersonLayoutProps) {
     const { data, lang, className } = props;
-    const { photo, photoCaption, contacts, description } = data;
+    const { photo, contacts, description } = data;
     const name = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
+    const caption = localizeString(data.photoCaption, lang);
     const photoUrl = photo && getImageUrl(photo, ...new Array(2).fill(metrics.breakpoints.xs * metrics.pd.xs * 2));
     const styles = createStyles({ className });
 
@@ -31,7 +32,16 @@ export default function PersonLayout(props: PersonLayoutProps) {
             )}
             <div className={styles.wrapper}>
                 {/* PHOTO */}
-                {photoUrl && <img src={photoUrl} alt={name} className={styles.photo} />}
+                {photoUrl && (
+                    <figure className={styles.photoWrapper}>
+                        <img src={photoUrl} alt={name} className={styles.photo} />
+                        {caption && (
+                            <figcaption className={styles.captionWrapper}>
+                                <span className={styles.caption}>{caption}</span>
+                            </figcaption>
+                        )}
+                    </figure>
+                )}
                 <div className={styles.info}>
                     {/* DESCRIPTION */}
                     <PortableText data={description} parent="field" lang={lang} className={styles.description} />

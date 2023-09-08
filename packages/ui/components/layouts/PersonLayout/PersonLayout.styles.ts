@@ -10,7 +10,10 @@ const defaultStyles = {
     subtitleWrapper: 'mt-8',
     subtitle: 'typo-paragraph trim-line text-theme-text-light',
     wrapper: 'flex flex-col sm:flex-row gap-24 sm:gap-gutter mt-32',
-    photo: 'xs:w-m12 xs:h-m12 sm:mr-module',
+    photoWrapper: 'shrink-0 sm:pr-module',
+    photo: 'xs:w-m12 xs:h-m12',
+    captionWrapper: 'mt-4',
+    caption: 'typo-short-sm trim-line text-theme-text-light',
     info: '',
     contacts:
         'typo-paragraph-sm flex flex-col gap-4 [&_span]:trim-line [&_a]:underline [&_a:hover]:no-underline [&_a:hover]:text-theme-card-surface',
