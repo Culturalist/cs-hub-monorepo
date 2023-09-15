@@ -1,16 +1,7 @@
-import { groq } from 'next-sanity';
 import { clientNext } from 'globals/lib/sanity';
-import { Card, CardSource } from '../schemas/objects';
+import { blockCardsQuery, Card, CardSource, CardsType, cardsTypeList } from '../schemas/objects';
 import { Label } from '../schemas/system';
-import { CardsType, cardsTypeList } from '../schemas/values';
-import globalConfig from 'globals/globalConfig';
 import { Page } from '../schemas';
-
-const query = groq`*[_type == $docType] | order(date desc, title.${globalConfig.localization.default} asc){
-    ...,
-    labels[]->,
-    author->
-}`;
 
 export async function prepareCardsData(cardsType: CardsType, input: (Card | Label | Page)[]): Promise<Card[]> {
     let output: Card[] = [];
@@ -19,7 +10,7 @@ export async function prepareCardsData(cardsType: CardsType, input: (Card | Labe
     if (cardsType == 'manual' || !needFetch) {
         return input as Card[];
     }
-    const data: CardSource[] = await clientNext.fetch(query, { docType });
+    const data: CardSource[] = await clientNext.fetch(blockCardsQuery, { docType });
 
     input.forEach(entry => {
         if (entry._type == 'label') {

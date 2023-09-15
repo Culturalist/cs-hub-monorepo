@@ -1,5 +1,4 @@
 import globalConfig from 'globals/globalConfig';
-import { bodyParents, DocumentApp, portableTextParents } from './values';
 
 import {
     blockId,
@@ -19,80 +18,70 @@ import {
     bodySection,
     mediaImage,
     mediaVideo,
-    mediaEmbed,
+    blockEmbed,
     cardManual,
     elementDate,
     elementSchedule,
     coverImage,
     coverVideo,
     coverArray,
-    captonAlt,
+    captionAlt,
     blockSchedule,
     lineupPeople,
     lineupOrganisations,
-    blockMedia
+    blockMedia,
+    portableTextParents,
+    bodyParents,
+    mediaArray
 } from './objects';
-import { page, person, post, project, event, note, organisation } from './documents';
+import { page, person, post, project, event, note, organisation, DocumentApp } from './documents';
 import { header, footer, hero, metadataApp, metadataPage } from './sections';
 import { app, theme, label } from './system';
 
 export default function schemaTypes(appName: string = 'hub') {
-    const globalObjects = [
-        ...portableTextParents.map(blockParent => portableText(blockParent, appName)),
-        ...portableTextParents.map(blockParent => localePortableText(blockParent, appName)),
-        ...bodyParents.map(bodyParent => body(bodyParent)),
-        ...bodyParents.map(bodyParent => bodySection(bodyParent)),
-        ...bodyParents.map(bodyParent => blockSection(bodyParent, appName)),
-        coverArray(),
-        localeString(),
-        localeText(),
-        normalizedSlug(),
-        metadataApp(),
-        metadataPage(),
-        blockId(),
-        hero(),
-        elementDate(),
-        elementSchedule(),
-        captonAlt()
+    const variableObjects = [
+        ...portableTextParents.map(blockParent => portableText({ parent: blockParent, appName })),
+        ...portableTextParents.map(blockParent => localePortableText({ parent: blockParent, appName })),
+        ...bodyParents.map(bodyParent => body({ parent: bodyParent, appName })),
+        ...bodyParents.map(bodyParent => bodySection({ parent: bodyParent, appName })),
+        ...bodyParents.map(bodyParent => blockSection({ parent: bodyParent, appName }))
     ];
 
-    const appObjects = [
+    const objects = [
+        coverArray,
+        localeString,
+        localeText,
+        normalizedSlug,
+        elementDate,
+        elementSchedule,
+        captionAlt,
         blockCards,
         blockColumns,
+        blockEmbed,
         blockSchedule,
         blockLinks,
         blockMedia,
+        blockId,
         linkTyped,
         linkCaptioned,
         linkContact,
-        header,
-        footer,
+        mediaArray,
         mediaImage,
         mediaVideo,
-        mediaEmbed,
         coverImage,
         coverVideo,
         cardManual,
         lineupPeople,
         lineupOrganisations
-    ].map(typeClass => typeClass(appName));
+    ].map(typeClass => typeClass({ appName }));
 
-    const systemDocuments = [app(), theme(), label(appName)];
+    const sections = [header, footer, hero, metadataApp, metadataPage].map(typeClass => typeClass({ appName }));
 
-    const allDocuments: Partial<Record<DocumentApp, Function>> = {
-        page,
-        project,
-        event,
-        post,
-        person,
-        note,
-        organisation
-    };
+    const systemDocuments = [app, theme, label].map(typeClass => typeClass({ appName }));
 
-    const appDocuments = globalConfig.apps[appName].schemas.documents.map(documentType => {
-        const typeObject = allDocuments[documentType];
-        if (typeObject) return typeObject(appName);
-    });
+    const appDocuments = [page, project, event, post, person, note, organisation].map(typeClass =>
+        typeClass({ appName })
+    );
 
-    return [...globalObjects, ...appObjects, ...systemDocuments, ...appDocuments];
+    return [...variableObjects, ...objects, ...sections, ...systemDocuments, ...appDocuments];
 }

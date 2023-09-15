@@ -5,7 +5,7 @@ import Negotiator from 'negotiator';
 import globalConfig from 'globals/globalConfig';
 import app from './app.json';
 import { clientNext } from 'globals/lib/sanity';
-import { langQuery } from 'data/queries';
+import { langQuery } from 'data/schemas/system/app/lang.query';
 
 const { appName } = app;
 

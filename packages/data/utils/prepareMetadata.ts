@@ -2,10 +2,10 @@ import { DefaultPageProps, ImageObject } from 'globals';
 import globalConfig from 'globals/globalConfig';
 import { clientNext, getImageUrlBuilder } from 'globals/lib/sanity';
 import { Metadata } from 'next';
-import { SanityDocument } from 'sanity';
+import { SanityDocument } from '@sanity/types';
 import { localizeString } from 'data/utils';
 import { formatKeywords } from 'globals/utils';
-import { metadataAppQuery, metadataPageQuery } from '../queries';
+import { metadataAppQuery, metadataPageQuery } from '../schemas';
 import { App, CoverBlock, DocumentApp, ElementDate, LineupPeople, LocaleString, MetadataPage } from '../schemas';
 
 export interface MetadataAny extends SanityDocument {

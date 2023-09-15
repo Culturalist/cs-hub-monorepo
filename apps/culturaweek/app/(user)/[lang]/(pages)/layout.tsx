@@ -1,7 +1,6 @@
-import { App } from 'data/schemas';
+import { App, layoutQuery } from 'data/schemas';
 import { DefaultLayoutProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
-import { layoutQuery } from 'data/queries';
 import app from '../../../../app.json';
 import { Footer } from 'ui';
 

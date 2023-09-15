@@ -1,9 +1,8 @@
-import { Event as Data } from 'data/schemas';
+import { Event as Data, eventQuery } from 'data/schemas';
 import { getStaticParams, prepareMetadata } from 'data/utils';
 import { DefaultPageProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { notFound } from 'next/navigation';
-import { eventQuery } from 'data/queries';
 import app from '../../../../../../../app.json';
 import { Metadata } from 'next';
 import { EventLayout } from 'ui';

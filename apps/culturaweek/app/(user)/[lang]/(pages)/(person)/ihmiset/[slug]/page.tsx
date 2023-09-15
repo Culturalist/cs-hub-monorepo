@@ -1,9 +1,8 @@
-import { Person as Data } from 'data/schemas';
+import { Person as Data, personQuery } from 'data/schemas';
 import { getStaticParams, prepareMetadata } from 'data/utils';
 import { DefaultPageProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { notFound } from 'next/navigation';
-import { personQuery } from 'data/queries';
 import app from '../../../../../../../app.json';
 import { Metadata } from 'next';
 import { PersonLayout } from 'ui';

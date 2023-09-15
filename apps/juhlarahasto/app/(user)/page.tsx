@@ -1,10 +1,9 @@
-import { App } from 'data/schemas';
+import { App, homeQuery } from 'data/schemas';
 import { prepareMetadata } from 'data/utils';
 import { DefaultPageProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { Hero, Header, GoogleTag } from 'ui';
 import app from '../../app.json';
-import { homeQuery } from 'data/queries';
 import { Metadata } from 'next';
 import globalConfig from 'globals/globalConfig';
 import { Suspense } from 'react';

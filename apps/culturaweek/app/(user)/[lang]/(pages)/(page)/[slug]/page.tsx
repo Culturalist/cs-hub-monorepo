@@ -1,9 +1,8 @@
-import { Page as Data } from 'data/schemas';
+import { Page as Data, pageQuery } from 'data/schemas';
 import { getStaticParams, prepareMetadata } from 'data/utils';
 import { DefaultPageProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { notFound } from 'next/navigation';
-import { pageQuery } from 'data/queries';
 import app from '../../../../../../app.json';
 import { PageLayout } from 'ui';
 import { Metadata } from 'next';
