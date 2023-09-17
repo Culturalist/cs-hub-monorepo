@@ -10,7 +10,7 @@ interface BlockScheduleProps extends DefaultProps {
 
 export default function BlockSchedule(props: BlockScheduleProps) {
     const { data, lang, className } = props;
-    const { schedule, expandDescription } = data;
+    const { schedule } = data;
     if (!schedule || schedule.length == 0) return null;
 
     const styles = createStyles({ className });
