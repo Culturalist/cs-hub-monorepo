@@ -29,6 +29,7 @@ export default defineConfig({
         // visionTool(),
     ],
     schema: {
+        //@ts-ignore
         types: schemaTypes(appName),
         templates: initialValueTemplates
     },

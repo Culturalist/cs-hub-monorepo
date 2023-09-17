@@ -31,6 +31,7 @@ export default defineConfig({
     ],
 
     schema: {
+        //@ts-ignore
         types: schemaTypes(appName),
         templates: initialValueTemplates
     },
