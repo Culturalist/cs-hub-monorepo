@@ -11,7 +11,6 @@ import { languageFilter } from '@sanity/language-filter';
 import { languageFilterConfig } from 'globals/lib/language-filter';
 import { colorInput } from '@sanity/color-input';
 import app from './app.json';
-import { capitalize } from 'globals/utils';
 
 const { appName } = app;
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';

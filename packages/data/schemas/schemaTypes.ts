@@ -37,6 +37,7 @@ import {
 import { page, person, post, project, event, note, organisation, DocumentApp } from './documents';
 import { header, footer, hero, metadataApp, metadataPage } from './sections';
 import { app, theme, label } from './system';
+import { SchemaPluginOptions, SchemaTypeDefinition } from 'sanity';
 
 export default function schemaTypes(appName: string = 'hub') {
     const variableObjects = [

@@ -1,4 +1,4 @@
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { BlockquoteIcon } from '@sanity/icons';
 import globalConfig from 'globals/globalConfig';
 import { capitalize } from 'globals/utils';

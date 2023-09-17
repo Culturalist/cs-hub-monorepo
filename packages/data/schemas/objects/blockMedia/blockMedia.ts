@@ -1,4 +1,4 @@
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { ImagesIcon } from '@sanity/icons';
 import { MediaLayout, mediaLayoutList } from './blockMedia.values';
 import { DefaultSchemaProps } from 'globals';

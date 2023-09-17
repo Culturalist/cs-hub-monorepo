@@ -1,5 +1,5 @@
 import globalConfig from 'globals/globalConfig';
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { filterByDocumentApp } from '../../../utils';
 import { LinkType, linkTypeList } from './linkTyped.values';
 import { DefaultSchemaProps, FileObject } from 'globals';

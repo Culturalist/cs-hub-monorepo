@@ -1,4 +1,4 @@
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { LinkIcon } from '@sanity/icons';
 import { joinLocaleStrings } from '../../../utils';
 import { LinksLayout, linksLayoutList } from './blockLinks.values';

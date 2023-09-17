@@ -1,4 +1,4 @@
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { SplitVerticalIcon } from '@sanity/icons';
 import { LocalePortableText } from '../localePortableText';
 import globalConfig from 'globals/globalConfig';

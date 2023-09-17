@@ -1,4 +1,4 @@
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { UsersIcon } from '@sanity/icons';
 import { filterByDocumentApp, joinLocaleStrings, selectDefaultLocale } from '../../../utils';
 import { DefaultSchemaProps } from 'globals';

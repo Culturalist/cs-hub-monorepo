@@ -1,4 +1,4 @@
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { actionTypeList, HeroActionType } from './hero.values';
 import { LocaleString } from '../../objects/localeString';
 import { CardManual } from '../../objects/cardManual/cardManual';

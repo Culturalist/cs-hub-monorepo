@@ -1,4 +1,4 @@
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { CalendarIcon } from '@sanity/icons';
 import { LocaleString } from '../localeString';
 import { LocalePortableText } from '../localePortableText';

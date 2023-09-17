@@ -1,4 +1,4 @@
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { DefaultSchemaProps, Locale } from 'globals';
 import globalConfig from 'globals/globalConfig';
 

@@ -22,6 +22,7 @@ export default defineConfig({
     apiVersion: globalConfig.latestUpdate,
 
     plugins: [
+        //@ts-ignore
         deskTool(deskStructure),
         languageFilter(languageFilterConfig(appName)),
         vercelDeployTool(),

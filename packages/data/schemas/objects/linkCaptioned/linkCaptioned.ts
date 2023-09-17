@@ -1,4 +1,4 @@
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { LinkIcon } from '@sanity/icons';
 import { DefaultSchemaProps } from 'globals';
 import { selectDefaultLocale, linkPreview } from '../../../utils';

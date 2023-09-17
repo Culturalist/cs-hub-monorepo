@@ -1,4 +1,4 @@
-import { ReferenceFilterSearchOptions } from '@sanity/types';
+import { ReferenceFilterSearchOptions } from 'sanity';
 
 export function filterByDocumentApp(document: any): ReferenceFilterSearchOptions {
     if (document.app?._ref) {

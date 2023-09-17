@@ -1,4 +1,4 @@
-import { defineType } from '@sanity/types';
+import { defineField } from '@sanity/types';
 import { Block, DefaultSchemaProps } from 'globals';
 import { capitalize } from 'globals/utils';
 import { BlockParent, portableTextDefinitions } from './portableText.values';
@@ -12,7 +12,7 @@ interface SchemaProps extends DefaultSchemaProps {
 export type PortableTextBlock = Block;
 
 export default function portableText({ parent, appName = 'hub' }: SchemaProps) {
-    return defineType({
+    return defineField({
         name: `portableText${capitalize(parent)}`,
         title: 'Portable Text',
         type: 'array',

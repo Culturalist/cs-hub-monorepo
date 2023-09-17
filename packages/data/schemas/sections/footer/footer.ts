@@ -1,6 +1,6 @@
 import { DefaultSchemaProps, ImageObject } from 'globals';
 import globalConfig from 'globals/globalConfig';
-import { defineField, defineType } from '@sanity/types';
+import { defineType, defineField } from '@sanity/types';
 import { filterByDocumentApp } from '../../../utils';
 import { PageDocument } from '../../documents';
 import { LinkContact } from '../../objects/linkContact';
