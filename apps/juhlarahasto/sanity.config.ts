@@ -35,8 +35,8 @@ export default defineConfig({
     },
     studio: {
         components: {
-            logo: StudioLogo,
-            toolMenu: ToolMenuApp
+            logo: StudioLogo
+            // toolMenu: ToolMenuApp
         }
     },
     document: {

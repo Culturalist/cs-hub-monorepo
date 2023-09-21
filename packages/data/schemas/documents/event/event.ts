@@ -158,7 +158,7 @@ export default function event() {
             }),
             defineField({
                 name: 'cardSurface',
-                title: 'Custom color',
+                title: 'Custom card color',
                 type: 'color',
                 options: {
                     colorList: themeColors
