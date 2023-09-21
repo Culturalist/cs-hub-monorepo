@@ -1,13 +1,11 @@
 import { defineType, defineField, SanityDocument, Slug } from '@sanity/types';
 import { PresentationIcon } from '@sanity/icons';
-import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../../utils';
-import { Color, DefaultSchemaProps } from 'globals';
+import { getMediaCover, selectDefaultLocale } from '../../../utils';
+import { Color, globalConfig } from 'globals';
 import { BodyBlock, CoverBlock, ElementDate, LineupPeople, LinkCaptioned, LocaleString } from '../../objects';
 import { MetadataPage } from '../../sections';
-import { App, Label, Theme, themeColors } from '../../system';
+import { Label, Theme, themeColors } from '../../system';
 import { Page } from '../page';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface Event extends SanityDocument {
     _type: 'event' | 'reference';
@@ -15,7 +13,6 @@ export interface Event extends SanityDocument {
     title?: LocaleString;
     subtitle?: LocaleString;
     slug: Slug;
-    app?: App;
     lineup?: LineupPeople[];
     dates?: ElementDate[];
     action?: LinkCaptioned;
@@ -29,7 +26,7 @@ export interface Event extends SanityDocument {
     metadata?: MetadataPage;
 }
 
-export default function event({ appName = 'hub' }: SchemaProps) {
+export default function event() {
     return defineType({
         name: 'event',
         title: 'Event',
@@ -84,15 +81,6 @@ export default function event({ appName = 'hub' }: SchemaProps) {
                 group: 'card'
             }),
             defineField({
-                name: 'app',
-                title: 'App',
-                type: 'reference',
-                to: [{ type: 'app' }],
-                group: 'card',
-                hidden: ({ parent }) => !!parent?.app,
-                readOnly: ({ parent }) => !!parent?.app
-            }),
-            defineField({
                 name: 'lineup',
                 title: 'Lineup',
                 type: 'array',
@@ -141,8 +129,7 @@ export default function event({ appName = 'hub' }: SchemaProps) {
                 description: 'Set a page relavent to event',
                 to: [{ type: 'page' }],
                 options: {
-                    disableNew: true,
-                    filter: ({ document }: any) => filterByDocumentApp(document)
+                    disableNew: true
                 },
                 readOnly: false,
                 group: 'connections'
@@ -214,7 +201,7 @@ export default function event({ appName = 'hub' }: SchemaProps) {
             {
                 title: 'Title',
                 name: 'titleAsc',
-                by: [{ field: 'slug.current', direction: 'asc' }]
+                by: [{ field: `title.${globalConfig.localization.default}`, direction: 'asc' }]
             }
         ]
     });

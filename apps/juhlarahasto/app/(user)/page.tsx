@@ -3,12 +3,9 @@ import { prepareMetadata } from 'data/utils';
 import { DefaultPageProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { Hero, Header, GoogleTag } from 'ui';
-import app from '../../app.json';
 import { Metadata } from 'next';
-import globalConfig from 'globals/globalConfig';
+import { globalConfig, appName } from 'globals';
 import { Suspense } from 'react';
-
-const { appName } = app;
 
 export default async function Home() {
     const lang = globalConfig.localization.default;
@@ -23,7 +20,7 @@ export default async function Home() {
             </head>
             <body>
                 <Suspense fallback={<></>}>
-                    <GoogleTag appName={appName} />
+                    <GoogleTag />
                 </Suspense>
                 <Header data={data.header} languages={data.languages} title={data.title} lang={lang} />
                 <main>
@@ -35,5 +32,5 @@ export default async function Home() {
 }
 
 export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
-    return prepareMetadata({ type: 'app', params, appName });
+    return prepareMetadata({ type: 'app', params });
 }

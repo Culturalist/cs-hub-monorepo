@@ -1,16 +1,15 @@
 import { defineType } from '@sanity/types';
 import { capitalize } from 'globals/utils';
 import { BlockSection } from '../blockSection';
-import { DefaultSchemaProps } from 'globals';
-import { DocumentApp } from '../../documents';
+import { DocumentApp } from 'globals';
 
-interface SchemaProps extends DefaultSchemaProps {
+interface SchemaProps {
     parent: DocumentApp;
 }
 
 export type BodyBlock = BlockSection;
 
-export default function body({ parent, appName = 'hub' }: SchemaProps) {
+export default function body({ parent }: SchemaProps) {
     return defineType({
         name: `body${capitalize(parent)}`,
         title: 'Body',

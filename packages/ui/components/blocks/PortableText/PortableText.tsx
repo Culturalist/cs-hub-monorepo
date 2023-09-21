@@ -5,7 +5,7 @@ import { Breakpoint, DefaultProps } from 'globals';
 import { BlockParent, LocalePortableText } from 'data/schemas';
 import LinkWrapper from '../LinkWrapper';
 import { mapKeys, neatChildrenBreaks } from 'globals/utils';
-import globalConfig from 'globals/globalConfig';
+import { globalConfig } from 'globals';
 import { AdaptiveDimentions, boxPx, breakpoints } from '../../../utils';
 import metrics from '../../../metrics';
 import { localizeString } from 'data/utils';

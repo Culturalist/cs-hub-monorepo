@@ -1,11 +1,7 @@
-import { DefaultSchemaProps, ImageObject } from 'globals';
-import globalConfig from 'globals/globalConfig';
+import { appConfig, ImageObject } from 'globals';
 import { defineType, defineField } from '@sanity/types';
-import { filterByDocumentApp } from '../../../utils';
 import { PageDocument } from '../../documents';
 import { LinkCaptioned } from '../../objects';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface Header {
     _type: 'header';
@@ -14,7 +10,7 @@ export interface Header {
     links?: PageDocument[];
 }
 
-export default function header({ appName = 'hub' }: SchemaProps) {
+export default function header() {
     return defineType({
         name: 'header',
         title: 'Header',
@@ -47,10 +43,9 @@ export default function header({ appName = 'hub' }: SchemaProps) {
                 of: [
                     {
                         type: 'reference',
-                        to: globalConfig.apps[appName].schemas.navigation.map(docType => ({ type: docType })),
+                        to: appConfig.schemas.navigation.map(docType => ({ type: docType })),
                         options: {
-                            disableNew: true,
-                            filter: ({ document }: any) => filterByDocumentApp(document)
+                            disableNew: true
                         }
                     }
                 ]

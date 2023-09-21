@@ -1,8 +1,6 @@
 import { defineType, defineField } from '@sanity/types';
-import { LocaleString } from '../../objects/localeString';
-import { ImageObject, FileObject, DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
+import { ImageObject, FileObject } from 'globals';
+import { LocaleString } from '../../objects';
 
 export interface MetadataApp {
     _type: 'metadataHome';
@@ -14,7 +12,7 @@ export interface MetadataApp {
     sharedVideo?: FileObject;
 }
 
-export default function metadataApp({ appName = 'hub' }: SchemaProps) {
+export default function metadataApp() {
     return defineType({
         name: 'metadataApp',
         title: 'Metadata',

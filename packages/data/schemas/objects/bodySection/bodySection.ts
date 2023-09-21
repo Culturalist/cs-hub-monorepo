@@ -1,5 +1,4 @@
 import { defineType } from '@sanity/types';
-import { capitalize } from 'globals/utils';
 import { bodyBlockDefinitions } from './bodySection.values';
 import { BlockCards } from '../blockCards/blockCards';
 import { BlockColumns } from '../blockColumns';
@@ -7,16 +6,15 @@ import { BlockLinks } from '../blockLinks/blockLinks';
 import { BlockSchedule } from '../blockSchedule';
 import { LocalePortableText } from '../localePortableText';
 import { BlockMedia } from '../blockMedia';
-import { DefaultSchemaProps } from 'globals';
-import { DocumentApp } from '../../documents';
+import { DocumentApp, capitalize } from 'globals';
 
-interface SchemaProps extends DefaultSchemaProps {
+interface SchemaProps {
     parent: DocumentApp;
 }
 
 export type BodySectionBlock = LocalePortableText | BlockColumns | BlockMedia | BlockLinks | BlockCards | BlockSchedule;
 
-export default function bodySection({ parent, appName }: SchemaProps) {
+export default function bodySection({ parent }: SchemaProps) {
     return defineType({
         name: `bodySection${capitalize(parent)}`,
         title: 'Content',

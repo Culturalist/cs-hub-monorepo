@@ -3,10 +3,8 @@ import { InlineElementIcon } from '@sanity/icons';
 import { selectDefaultLocale } from '../../../utils';
 import { LocaleString } from '../localeString';
 import { LinkTyped } from '../linkTyped';
-import { themeColors } from '../../system/theme';
-import { Color, DefaultSchemaProps, ImageObject } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
+import { themeColors } from '../../system';
+import { Color, ImageObject } from 'globals';
 
 export interface CardManual {
     _type: 'cardManual';
@@ -18,7 +16,7 @@ export interface CardManual {
     cardSurface?: Color;
 }
 
-export default function cardManual({ appName = 'hub' }: SchemaProps) {
+export default function cardManual() {
     return defineType({
         name: 'cardManual',
         title: 'Card',

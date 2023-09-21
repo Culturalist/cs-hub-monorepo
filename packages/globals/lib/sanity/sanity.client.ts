@@ -2,8 +2,8 @@ import { createClient as createClientNext } from 'next-sanity';
 import { createClient } from '@sanity/client';
 import createImageUrlBuilder from '@sanity/image-url';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import globalConfig from '../../globalConfig';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
+import { globalConfig } from '../../globalConfig';
 
 //Sanity project variables
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID || '';

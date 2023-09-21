@@ -1,7 +1,9 @@
-import { DocumentAny, DocumentApp } from 'data';
-
 export type Locale = 'fi' | 'ru' | 'en';
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg';
+
+export type DocumentApp = 'app' | 'page' | 'person' | 'post' | 'project' | 'event' | 'note' | 'organisation';
+export type DocumentSystem = 'theme' | 'label';
+export type DocumentAny = DocumentApp | DocumentSystem;
 
 export interface AppConfig {
     title: string;
@@ -26,7 +28,6 @@ export interface GlobalConfig {
         default: Locale;
         safeReplace?: boolean;
     };
-    apps: Record<string, AppConfig>;
     routes: Record<DocumentApp, string>;
     latestUpdate: string;
     organization: string;

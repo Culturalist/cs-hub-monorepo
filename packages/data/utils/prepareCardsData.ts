@@ -1,7 +1,6 @@
 import { clientNext } from 'globals/lib/sanity';
 import { blockCardsQuery, Card, CardSource, CardsType, cardsTypeList } from '../schemas/objects';
-import { Label } from '../schemas/system';
-import { Page } from '../schemas';
+import { Label, Page } from '../schemas';
 
 export async function prepareCardsData(cardsType: CardsType, input: (Card | Label | Page)[]): Promise<Card[]> {
     let output: Card[] = [];

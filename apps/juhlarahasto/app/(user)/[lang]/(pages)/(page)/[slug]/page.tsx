@@ -3,17 +3,14 @@ import { getStaticParams, prepareMetadata } from 'data/utils';
 import { DefaultPageProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { notFound } from 'next/navigation';
-import app from '../../../../../../app.json';
 import { PageLayout } from 'ui';
 import { Metadata } from 'next';
-
-const { appName } = app;
 
 export const revalidate = 60;
 
 export default async function Page({ params }: DefaultPageProps) {
     const { slug, lang } = params;
-    const data: Data = await clientNext.fetch(pageQuery, { slug, appName });
+    const data: Data = await clientNext.fetch(pageQuery, { slug });
 
     if (!data) {
         notFound();
@@ -23,9 +20,9 @@ export default async function Page({ params }: DefaultPageProps) {
 }
 
 export async function generateStaticParams() {
-    return getStaticParams('page', appName);
+    return getStaticParams('page');
 }
 
 export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
-    return prepareMetadata({ type: 'page', params, appName });
+    return prepareMetadata({ type: 'page', params });
 }

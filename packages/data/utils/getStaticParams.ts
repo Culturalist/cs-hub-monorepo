@@ -1,17 +1,13 @@
-import { DefaultPageProps } from 'globals';
+import { DefaultPageProps, globalConfig } from 'globals';
 import { groq } from 'next-sanity';
 import { clientNext } from 'globals/lib/sanity';
-import globalConfig from 'globals/globalConfig';
 
 type Param = Partial<DefaultPageProps['params']>;
 
-export async function getStaticParams(docType: string, appName: string): Promise<Param[]> {
+export async function getStaticParams(docType: string): Promise<Param[]> {
     let params: Param[] = [];
 
-    const pages: Param[] = await clientNext.fetch(
-        groq`*[_type == $docType && app._ref == $appName]{'slug': slug.current}`,
-        { docType, appName }
-    );
+    const pages: Param[] = await clientNext.fetch(groq`*[_type == $docType]{'slug': slug.current}`, { docType });
     params = [...pages];
 
     let localeParams: Param[] = [];

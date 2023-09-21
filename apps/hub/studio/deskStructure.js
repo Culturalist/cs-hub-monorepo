@@ -1,6 +1,6 @@
 import { MasterDetailIcon, TerminalIcon } from '@sanity/icons';
-import { desk } from 'data';
-import globalConfig from 'globals/globalConfig';
+import { desk } from 'data/studio/deskStructure';
+import { appsConfig, globalConfig } from 'globals';
 // import { defaultDocumentNode } from './defaultDocumentNode';
 
 export default {
@@ -24,20 +24,15 @@ export default {
                                     .title(desk.app.title)
                                     .icon(desk.app.icon)
                                     .child(S.document().schemaType('app').documentId('culturaweek')),
-                                ...globalConfig.apps['culturaweek'].schemas.documents.map(docType => {
+                                ...appsConfig['culturaweek'].schemas.documents.map(docType => {
                                     return S.listItem()
                                         .title(desk[docType].title)
                                         .icon(desk[docType].icon)
                                         .child(
                                             S.documentTypeList(docType)
                                                 .title(desk[docType].title)
-                                                .apiVersion(`v${globalConfig.latestUpdate}`)
-                                                .filter('_type == $type && app._ref == $appName')
-                                                .params({ type: docType, appName: 'culturaweek' })
                                                 .initialValueTemplates([
-                                                    S.initialValueTemplateItem(`${docType}-by-app`, {
-                                                        appName: 'culturaweek'
-                                                    })
+                                                    S.initialValueTemplateItem(`${docType}-with-initial`)
                                                 ])
                                         );
                                 })
@@ -55,20 +50,15 @@ export default {
                                     .title(desk.app.title)
                                     .icon(desk.app.icon)
                                     .child(S.document().schemaType('app').documentId('juhlarahasto')),
-                                ...globalConfig.apps['juhlarahasto'].schemas.documents.map(docType => {
+                                ...appsConfig['juhlarahasto'].schemas.documents.map(docType => {
                                     return S.listItem()
                                         .title(desk[docType].title)
                                         .icon(desk[docType].icon)
                                         .child(
                                             S.documentTypeList(docType)
                                                 .title(desk[docType].title)
-                                                .apiVersion(`v${globalConfig.latestUpdate}`)
-                                                .filter('_type == $type && app._ref == $appName')
-                                                .params({ type: docType, appName: 'juhlarahasto' })
                                                 .initialValueTemplates([
-                                                    S.initialValueTemplateItem(`${docType}-by-app`, {
-                                                        appName: 'juhlarahasto'
-                                                    })
+                                                    S.initialValueTemplateItem(`${docType}-with-initial`)
                                                 ])
                                         );
                                 })

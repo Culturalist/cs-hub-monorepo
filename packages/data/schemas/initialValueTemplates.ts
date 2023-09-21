@@ -1,58 +1,37 @@
-import globalConfig from 'globals/globalConfig';
+import { appConfig } from 'globals';
 import dictionary from '../values/dictionary';
 
 const initialValueTemplates = [
     {
-        id: 'page-by-app',
-        title: 'Page in app',
-        schemaType: 'page',
-        parameters: [{ name: 'appName', type: 'string' }],
-        value: (params: any) => ({
-            app: { _type: 'reference', _ref: params.appName }
-        })
-    },
-    {
-        id: 'note-by-app',
-        title: 'Notes in app',
-        schemaType: 'note',
-        parameters: [{ name: 'appName', type: 'string' }],
-        value: (params: any) => ({
-            app: { _type: 'reference', _ref: params.appName }
-        })
-    },
-    {
-        id: 'post-by-app',
-        title: 'Post in app',
+        id: 'post-with-initial',
+        title: 'Post',
         schemaType: 'post',
-        parameters: [{ name: 'appName', type: 'string' }],
-        value: (params: any) => ({
-            app: { _type: 'reference', _ref: params.appName },
-            parent: globalConfig.apps[params.appName]?.parentDocuments?.post
-                ? { _type: 'reference', _ref: globalConfig.apps[params.appName]?.parentDocuments?.post }
+        parameters: [],
+        value: () => ({
+            parent: appConfig.parentDocuments?.post
+                ? { _type: 'reference', _ref: appConfig.parentDocuments?.post }
                 : undefined
         })
     },
     {
-        id: 'project-by-app',
-        title: 'Project in app',
+        id: 'project-with-initial',
+        title: 'Project',
         schemaType: 'project',
-        parameters: [{ name: 'appName', type: 'string' }],
-        value: (params: any) => ({
-            app: { _type: 'reference', _ref: params.appName },
-            parent: globalConfig.apps[params.appName]?.parentDocuments?.project
-                ? { _type: 'reference', _ref: globalConfig.apps[params.appName]?.parentDocuments?.project }
+        parameters: [],
+        value: () => ({
+            parent: appConfig.parentDocuments?.project
+                ? { _type: 'reference', _ref: appConfig.parentDocuments?.project }
                 : undefined
         })
     },
     {
-        id: 'event-by-app',
-        title: 'Event in app',
+        id: 'event-with-initial',
+        title: 'Event',
         schemaType: 'event',
-        parameters: [{ name: 'appName', type: 'string' }],
-        value: (params: any) => ({
-            app: { _type: 'reference', _ref: params.appName },
-            parent: globalConfig.apps[params.appName]?.parentDocuments?.event
-                ? { _type: 'reference', _ref: globalConfig.apps[params.appName]?.parentDocuments?.event }
+        parameters: [],
+        value: () => ({
+            parent: appConfig.parentDocuments?.event
+                ? { _type: 'reference', _ref: appConfig.parentDocuments?.event }
                 : undefined,
             action: {
                 _type: 'linkCaptioned',
@@ -60,28 +39,46 @@ const initialValueTemplates = [
                 link: {
                     _type: 'linkTyped',
                     type: 'external',
-                    href: globalConfig.apps[params.appName]?.tokens?.registration || ''
+                    href: appConfig.tokens?.registration || ''
                 }
             }
         })
     },
     {
-        id: 'person-by-app',
-        title: 'Person in app',
-        schemaType: 'person',
-        parameters: [{ name: 'appName', type: 'string' }],
-        value: (params: any) => ({
-            app: { _type: 'reference', _ref: params.appName }
-        })
+        id: 'page-with-initial',
+        title: 'Page',
+        schemaType: 'page',
+        value: () => ({})
     },
     {
-        id: 'organisation-by-app',
-        title: 'Organisation in app',
+        id: 'person-with-initial',
+        title: 'Person',
+        schemaType: 'person',
+        value: () => ({})
+    },
+    {
+        id: 'note-with-initial',
+        title: 'Note',
+        schemaType: 'note',
+        value: () => ({})
+    },
+    {
+        id: 'organisation-with-initial',
+        title: 'Organisation',
         schemaType: 'organisation',
-        parameters: [{ name: 'appName', type: 'string' }],
-        value: (params: any) => ({
-            app: { _type: 'reference', _ref: params.appName }
-        })
+        value: () => ({})
+    },
+    {
+        id: 'theme-with-initial',
+        title: 'Theme',
+        schemaType: 'theme',
+        value: () => ({})
+    },
+    {
+        id: 'label-with-initial',
+        title: 'Label',
+        schemaType: 'label',
+        value: () => ({})
     }
 ];
 

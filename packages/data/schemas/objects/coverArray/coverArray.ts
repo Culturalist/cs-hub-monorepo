@@ -1,13 +1,10 @@
-import { DefaultSchemaProps } from 'globals';
 import { defineType } from '@sanity/types';
 import { CoverImage } from '../coverImage';
 import { CoverVideo } from '../coverVideo';
 
-interface SchemaProps extends DefaultSchemaProps {}
-
 export type CoverBlock = CoverImage | CoverVideo;
 
-export default function coverArray({ appName = 'hub' }: SchemaProps) {
+export default function coverArray() {
     return defineType({
         name: 'coverArray',
         title: 'Covers',

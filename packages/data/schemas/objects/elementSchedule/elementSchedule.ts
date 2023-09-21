@@ -3,9 +3,6 @@ import { CalendarIcon } from '@sanity/icons';
 import { LocaleString } from '../localeString';
 import { LocalePortableText } from '../localePortableText';
 import { selectDefaultLocale } from '../../../utils';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface ElementSchedule {
     _type: 'elementSchedule';
@@ -16,7 +13,7 @@ export interface ElementSchedule {
     description?: LocalePortableText;
 }
 
-export default function elementSchedule({ appName = 'hub' }: SchemaProps) {
+export default function elementSchedule() {
     return defineType({
         name: 'elementSchedule',
         title: 'Event',

@@ -4,9 +4,6 @@ import { LinkIcon } from '@sanity/icons';
 import { capitalize } from 'globals/utils';
 import { LocaleString } from '../localeString';
 import { selectDefaultLocale } from '../../../utils';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface LinkContact {
     _type: 'linkContact';
@@ -17,7 +14,7 @@ export interface LinkContact {
     url?: string;
 }
 
-export default function linkContact({ appName = 'hub' }: SchemaProps) {
+export default function linkContact() {
     return defineType({
         name: 'linkContact',
         title: 'Contact',

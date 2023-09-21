@@ -1,6 +1,6 @@
 import { GlobalConfig } from './types';
 
-const globalConfig: GlobalConfig = {
+export const globalConfig: GlobalConfig = {
     localization: {
         languages: [
             {
@@ -22,63 +22,6 @@ const globalConfig: GlobalConfig = {
         default: 'fi',
         safeReplace: true
     },
-    apps: {
-        hub: {
-            title: 'Cultura-säätiö Hub',
-            domain: 'https://hub.culturas.fi/',
-            schemas: {
-                documents: ['page', 'person', 'post', 'project', 'event', 'note', 'organisation'],
-                links: ['page', 'person', 'post', 'project', 'event', 'note'],
-                navigation: ['page', 'project', 'event'],
-                create: ['page', 'person', 'post', 'project', 'event', 'note', 'theme', 'label', 'organisation']
-            }
-        },
-        culturaweek: {
-            title: 'CulturaWeek',
-            domain: 'https://culturaweek.fi/',
-            schemas: {
-                documents: ['page', 'event', 'person', 'organisation'],
-                links: ['page', 'person', 'event'],
-                navigation: ['page', 'event'],
-                create: ['page', 'person', 'event', 'theme', 'label', 'organisation']
-            },
-            tokens: {
-                registration: 'https://culturaweekconference.rsvpify.com/',
-                googleTag: 'G-L5CP6G9TYB'
-            }
-        },
-        juhlarahasto: {
-            title: 'Juhlarahasto',
-            domain: 'https://juhlarahasto.fi/',
-            schemas: {
-                documents: ['page', 'project', 'post', 'person', 'organisation', 'note'],
-                links: ['page', 'person', 'project', 'post'],
-                navigation: ['page', 'project'],
-                create: ['page', 'person', 'project', 'post', 'theme', 'label', 'organisation', 'note']
-            },
-            parentDocuments: {
-                project: 'projektit',
-                post: 'tarinat'
-            },
-            tokens: {
-                googleTag: ''
-            }
-        },
-        template: {
-            title: 'Cultura-säätiö Website',
-            domain: 'https://template.culturas.fi/',
-            schemas: {
-                documents: ['page', 'person', 'post', 'project', 'event', 'note'],
-                links: ['page', 'person', 'post', 'project', 'event', 'note'],
-                navigation: ['page', 'project', 'event'],
-                create: ['page', 'person', 'post', 'project', 'event', 'note', 'theme', 'label']
-            },
-            parentDocuments: {
-                post: 'a3ea64e2-9845-45e1-a558-872ecd5d43ca',
-                project: '47caba4a-434e-48df-be7b-b548c6be36da'
-            }
-        }
-    },
     routes: {
         app: '',
         page: '',
@@ -97,5 +40,3 @@ const globalConfig: GlobalConfig = {
     },
     debug: true
 };
-
-export default globalConfig;

@@ -31,7 +31,3 @@ export interface DefaultPageProps {
 export interface DefaultLayoutProps extends DefaultPageProps {
     children?: React.ReactNode;
 }
-
-export interface DefaultSchemaProps {
-    appName?: string;
-}

@@ -1,5 +1,4 @@
-import globalConfig from 'globals/globalConfig';
-import { ListItem } from 'globals';
+import { globalConfig, ListItem } from 'globals';
 
 export function getAppLanguageList(): ListItem[] {
     let languageList: ListItem[] = [];

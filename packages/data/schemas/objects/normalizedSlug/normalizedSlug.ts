@@ -1,11 +1,8 @@
 import { defineType } from '@sanity/types';
-import { DefaultSchemaProps } from 'globals';
-import globalConfig from 'globals/globalConfig';
+import { globalConfig } from 'globals';
 import { isUniqueSlug } from '../../../utils';
 
-interface SchemaProps extends DefaultSchemaProps {}
-
-export default function normalizedSlug(props: SchemaProps) {
+export default function normalizedSlug() {
     return defineType({
         name: 'normalizedSlug',
         title: 'Slug',

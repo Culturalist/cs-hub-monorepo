@@ -1,11 +1,8 @@
 import { defineType, defineField } from '@sanity/types';
 import { UsersIcon } from '@sanity/icons';
-import { filterByDocumentApp, joinLocaleStrings, selectDefaultLocale } from '../../../utils';
-import { DefaultSchemaProps } from 'globals';
+import { joinLocaleStrings, selectDefaultLocale } from '../../../utils';
 import { Label } from '../../system';
 import { Person } from '../../documents';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface LineupPeople {
     _type: 'lineupPeople';
@@ -15,7 +12,7 @@ export interface LineupPeople {
     includeSubtitle?: boolean;
 }
 
-export default function lineupPeople({ appName = 'hub' }: SchemaProps) {
+export default function lineupPeople() {
     return defineType({
         name: 'lineupPeople',
         title: 'Lineup',
@@ -37,8 +34,7 @@ export default function lineupPeople({ appName = 'hub' }: SchemaProps) {
                         type: 'reference',
                         to: [{ type: 'person' }],
                         options: {
-                            disableNew: true,
-                            filter: ({ document }: any) => filterByDocumentApp(document)
+                            disableNew: true
                         }
                     }
                 ]

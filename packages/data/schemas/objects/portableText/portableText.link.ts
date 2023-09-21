@@ -1,10 +1,9 @@
-import globalConfig from 'globals/globalConfig';
 import { defineArrayMember, defineField } from '@sanity/types';
-import { filterByDocumentApp } from '../../../utils';
-import { linkTypeList } from '../linkTyped';
 import { LinkIcon } from '@sanity/icons';
+import { appConfig } from 'globals';
+import { linkTypeList } from '../linkTyped';
 
-const portableTextLink = (appName: string) =>
+const portableTextLink = () =>
     defineArrayMember({
         name: 'link',
         type: 'object',
@@ -27,10 +26,9 @@ const portableTextLink = (appName: string) =>
                 title: 'Reference',
                 type: 'reference',
                 description: 'Reference to a page to link to',
-                to: globalConfig.apps[appName].schemas.links.map(docType => ({ type: docType })),
+                to: appConfig.schemas.links.map(docType => ({ type: docType })),
                 options: {
-                    disableNew: true,
-                    filter: ({ document }: any) => filterByDocumentApp(document)
+                    disableNew: true
                 },
                 hidden: ({ parent }) => parent?.type !== 'reference'
             }),

@@ -1,4 +1,4 @@
-import globalConfig from 'globals/globalConfig';
+import { globalConfig } from 'globals';
 
 export async function isUniqueSlug(slug: string, context: any): Promise<boolean> {
     const { document, getClient } = context;
@@ -13,7 +13,7 @@ export async function isUniqueSlug(slug: string, context: any): Promise<boolean>
         type,
         appName
     };
-    const query = `!defined(*[!(_id in [$draft, $published]) && _type == $type && slug.current == $slug && (!defined(app) || app._ref == $appName)][0]._id)`;
+    const query = `!defined(*[!(_id in [$draft, $published]) && _type == $type && slug.current == $slug][0]._id)`;
     const result = await client.fetch(query, params);
     return result;
 }

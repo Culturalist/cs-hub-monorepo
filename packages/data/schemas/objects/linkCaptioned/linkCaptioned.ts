@@ -1,11 +1,8 @@
 import { defineType, defineField } from '@sanity/types';
 import { LinkIcon } from '@sanity/icons';
-import { DefaultSchemaProps } from 'globals';
 import { selectDefaultLocale, linkPreview } from '../../../utils';
 import { LocaleString } from '../localeString';
 import { LinkTyped } from '../linkTyped';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface LinkCaptioned {
     _type: 'linkCaptioned';
@@ -14,7 +11,7 @@ export interface LinkCaptioned {
     link?: LinkTyped;
 }
 
-export default function linkCaptioned({ appName = 'hub' }: SchemaProps) {
+export default function linkCaptioned() {
     return defineType({
         name: 'linkCaptioned',
         title: 'Link',

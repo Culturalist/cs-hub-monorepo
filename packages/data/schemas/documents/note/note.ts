@@ -1,19 +1,15 @@
 import { defineType, defineField, SanityDocument, Slug } from '@sanity/types';
 import { DocumentIcon } from '@sanity/icons';
 import { BodyBlock, CoverBlock, LocaleString } from '../../objects';
-import { App } from '../../system';
 import { MetadataPage } from '../../sections';
 import { getMediaCover, selectDefaultLocale } from '../../../utils';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
+import { globalConfig } from 'globals';
 
 export interface Note extends SanityDocument {
     _type: 'note' | 'reference';
     _ref?: string;
     title?: LocaleString;
     slug: Slug;
-    app?: App;
     date: string;
     covers?: CoverBlock[];
     coverCaption?: LocaleString;
@@ -21,7 +17,7 @@ export interface Note extends SanityDocument {
     metadata?: MetadataPage;
 }
 
-export default function note({ appName = 'hub' }: SchemaProps) {
+export default function note() {
     return defineType({
         name: 'note',
         title: 'Note',
@@ -64,15 +60,6 @@ export default function note({ appName = 'hub' }: SchemaProps) {
                 initialValue: new Date().toISOString(),
                 validation: Rule => Rule.required(),
                 group: 'card'
-            }),
-            defineField({
-                name: 'app',
-                title: 'App',
-                type: 'reference',
-                to: [{ type: 'app' }],
-                group: 'card',
-                hidden: ({ parent }) => !!parent?.app,
-                readOnly: ({ parent }) => !!parent?.app
             }),
             defineField({
                 name: 'covers',
@@ -127,7 +114,7 @@ export default function note({ appName = 'hub' }: SchemaProps) {
             {
                 title: 'Title',
                 name: 'titleAsc',
-                by: [{ field: 'slug.current', direction: 'asc' }]
+                by: [{ field: `title.${globalConfig.localization.default}`, direction: 'asc' }]
             }
         ]
     });

@@ -2,7 +2,7 @@
 import { useHotkeys } from 'react-hotkeys-hook';
 import Grid from '../Grid';
 import { useEffect, useState } from 'react';
-import globalConfig from 'globals/globalConfig';
+import { globalConfig } from 'globals';
 // import { useSearchParams } from 'next/navigation';
 
 interface ThemeInitProps {}

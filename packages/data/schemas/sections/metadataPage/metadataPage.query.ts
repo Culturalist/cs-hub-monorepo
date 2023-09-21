@@ -1,6 +1,6 @@
 import { groq } from 'next-sanity';
 
-export const metadataPageQuery = groq`*[_type == $type && slug.current == $slug && app._ref == $appName][0]{
+export const metadataPageQuery = groq`*[_type == $type && slug.current == $slug][0]{
     _type,
     title,
     subtitle,

@@ -2,12 +2,9 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { match as matchLocale } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
-import globalConfig from 'globals/globalConfig';
-import app from './app.json';
+import { globalConfig, appName } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
 import { langQuery } from 'data/schemas';
-
-const { appName } = app;
 
 // @ts-ignore locales are readonly
 const locales: string[] = globalConfig.localization.languages.map(l => l.id);

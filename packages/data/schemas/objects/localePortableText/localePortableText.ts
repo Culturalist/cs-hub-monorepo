@@ -1,11 +1,9 @@
 import { defineType, defineField } from '@sanity/types';
 import { BlockquoteIcon } from '@sanity/icons';
-import globalConfig from 'globals/globalConfig';
-import { capitalize } from 'globals/utils';
+import { globalConfig, capitalize, Locale } from 'globals';
 import { BlockParent, PortableTextBlock } from '../portableText';
-import { DefaultSchemaProps, Locale } from 'globals';
 
-interface SchemaProps extends DefaultSchemaProps {
+interface SchemaProps {
     parent: BlockParent;
 }
 
@@ -14,7 +12,7 @@ export type LocalePortableText = Record<Locale, PortableTextBlock> & {
     typeClass: 'blockText';
 };
 
-export default function localePortableText({ parent, appName = 'hub' }: SchemaProps) {
+export default function localePortableText({ parent }: SchemaProps) {
     return defineType({
         name: `localePortableText${capitalize(parent)}`,
         title: 'Text',

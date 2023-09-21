@@ -1,14 +1,10 @@
 import 'ui/globals.css';
-import { App, layoutQuery } from 'data/schemas';
-import { DefaultLayoutProps } from 'globals';
-import { clientNext } from 'globals/lib/sanity';
-import app from '../../../app.json';
-import { Header, Footer, ThemeInit, GoogleTag } from 'ui';
 import { Suspense } from 'react';
-import globalConfig from 'globals/globalConfig';
+import { App, layoutQuery } from 'data/schemas';
+import { globalConfig, appName, DefaultLayoutProps } from 'globals';
+import { clientNext } from 'globals/lib/sanity';
+import { Header, Footer, ThemeInit, GoogleTag } from 'ui';
 import NotFound from './not-found';
-
-const { appName } = app;
 
 export default async function RootLayout({ children, params }: DefaultLayoutProps) {
     const data: App = await clientNext.fetch(layoutQuery, { appName });
@@ -33,7 +29,7 @@ export default async function RootLayout({ children, params }: DefaultLayoutProp
             <body>
                 <Suspense fallback={<></>}>
                     <ThemeInit />
-                    <GoogleTag appName={appName} />
+                    <GoogleTag />
                 </Suspense>
                 <Header data={data.header} languages={data.languages} title={data.title} lang={lang} />
                 {data.languages?.includes(params.lang) ? children : <NotFound />}

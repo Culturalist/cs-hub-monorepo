@@ -1,5 +1,5 @@
 import { HomeIcon, DocumentsIcon, PresentationIcon, UsersIcon, CalendarIcon, CaseIcon } from '@sanity/icons';
-import { DocumentApp } from '../schemas';
+import { DocumentApp } from 'globals';
 
 export type DeskValues = Record<DocumentApp, { icon: any; title: string }>;
 

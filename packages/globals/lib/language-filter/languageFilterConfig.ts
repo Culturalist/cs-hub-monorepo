@@ -1,11 +1,12 @@
-import globalConfig from '../../globalConfig';
 import { LanguageFilterConfig } from '@sanity/language-filter';
+import { appConfig } from '../../appsConfig';
+import { globalConfig } from '../../globalConfig';
 
-export default function languageFilterConfig(appName: string): LanguageFilterConfig {
+export default function languageFilterConfig(): LanguageFilterConfig {
     return {
         supportedLanguages: globalConfig.localization.languages,
         defaultLanguages: [],
-        documentTypes: [...globalConfig.apps[appName].schemas.documents, 'app'],
+        documentTypes: [...appConfig.schemas.documents, 'app'],
         filterField: (enclosingType, field, selectedLanguageIds) =>
             !enclosingType.name.startsWith('locale') || selectedLanguageIds.includes(field.name)
     };

@@ -1,7 +1,7 @@
 import { wrapReference } from 'data/utils';
 import { Footer } from 'data/schemas';
 import { DefaultProps } from 'globals';
-import globalConfig from 'globals/globalConfig';
+import { globalConfig } from 'globals';
 import { getImageUrl } from 'globals/lib/sanity';
 import { localizeString } from 'data/utils';
 import { LinkWrapper, PortableText, LinkContact } from '../../blocks';

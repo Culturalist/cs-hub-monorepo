@@ -3,9 +3,6 @@ import { PlayIcon } from '@sanity/icons';
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { LocaleString } from '../localeString';
 import { selectDefaultLocale } from '../../../utils';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface MediaVideo {
     _type: 'mediaVideo';
@@ -16,7 +13,7 @@ export interface MediaVideo {
     autoplay?: boolean;
 }
 
-export default function mediaVideo({ appName = 'hub' }: SchemaProps) {
+export default function mediaVideo() {
     return defineType({
         name: 'mediaVideo',
         title: 'Video',

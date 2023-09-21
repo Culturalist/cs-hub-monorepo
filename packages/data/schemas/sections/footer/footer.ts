@@ -1,12 +1,8 @@
-import { DefaultSchemaProps, ImageObject } from 'globals';
-import globalConfig from 'globals/globalConfig';
+import { appConfig, ImageObject } from 'globals';
 import { defineType, defineField } from '@sanity/types';
-import { filterByDocumentApp } from '../../../utils';
 import { PageDocument } from '../../documents';
 import { LinkContact } from '../../objects/linkContact';
 import { LocalePortableText } from '../../objects/localePortableText';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface Footer {
     _type: 'footer';
@@ -16,7 +12,7 @@ export interface Footer {
     social?: LinkContact[];
 }
 
-export default function footer({ appName = 'hub' }: SchemaProps) {
+export default function footer() {
     return defineType({
         name: 'footer',
         title: 'Footer',
@@ -39,10 +35,9 @@ export default function footer({ appName = 'hub' }: SchemaProps) {
                 of: [
                     {
                         type: 'reference',
-                        to: globalConfig.apps[appName].schemas.navigation.map(docType => ({ type: docType })),
+                        to: appConfig.schemas.navigation.map(docType => ({ type: docType })),
                         options: {
-                            disableNew: true,
-                            filter: ({ document }: any) => filterByDocumentApp(document)
+                            disableNew: true
                         }
                     }
                 ]

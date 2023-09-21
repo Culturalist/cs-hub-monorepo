@@ -2,9 +2,6 @@ import { defineType, defineField } from '@sanity/types';
 import { CalendarIcon } from '@sanity/icons';
 import { LocaleString } from '../localeString';
 import { selectDefaultLocale } from '../../../utils';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface ElementDate {
     _type: 'elementDate';
@@ -16,7 +13,7 @@ export interface ElementDate {
     mapUrl?: string;
 }
 
-export default function elementDate({ appName = 'hub' }: SchemaProps) {
+export default function elementDate() {
     return defineType({
         name: 'elementDate',
         title: 'Date',

@@ -1,4 +1,4 @@
-import { DocumentApp } from '../../documents';
+import { DocumentApp } from 'globals';
 
 export type BodyBlockDefinition = Partial<Record<DocumentApp, string[]>>;
 

@@ -1,10 +1,7 @@
 import { App, layoutQuery } from 'data/schemas';
-import { DefaultLayoutProps } from 'globals';
+import { appName, DefaultLayoutProps } from 'globals';
 import { clientNext } from 'globals/lib/sanity';
-import app from '../../../../app.json';
 import { Footer } from 'ui';
-
-const { appName } = app;
 
 export default async function RootLayout({ children, params: { lang } }: DefaultLayoutProps) {
     const data: App = await clientNext.fetch(layoutQuery, { appName });

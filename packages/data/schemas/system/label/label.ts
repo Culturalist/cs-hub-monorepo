@@ -2,9 +2,6 @@ import { defineType, defineField, SanityDocument, Slug } from '@sanity/types';
 import { TagIcon } from '@sanity/icons';
 import { selectDefaultLocale } from '../../../utils';
 import { LocaleString } from '../../objects';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface Label extends SanityDocument {
     _type: 'label' | 'reference';
@@ -13,7 +10,7 @@ export interface Label extends SanityDocument {
     slug: Slug;
 }
 
-export default function label({ appName = 'hub' }: SchemaProps) {
+export default function label() {
     return defineType({
         name: 'label',
         title: 'Label',

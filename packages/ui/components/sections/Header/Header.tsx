@@ -5,7 +5,7 @@ import { createStyles, Styles } from './Header.styles';
 import { getImageUrl } from 'globals/lib/sanity';
 import { LinkWrapper, Menu } from '../../blocks';
 import { localizeString } from 'data/utils';
-import globalConfig from 'globals/globalConfig';
+import { globalConfig } from 'globals';
 
 interface HeaderProps extends DefaultProps {
     data?: Header;

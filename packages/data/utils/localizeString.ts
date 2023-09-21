@@ -1,4 +1,4 @@
-import globalConfig from 'globals/globalConfig';
+import { globalConfig } from 'globals';
 
 export function localizeString(input: string | Record<string, string> | undefined, lang: string | undefined): string {
     let output: string = '';

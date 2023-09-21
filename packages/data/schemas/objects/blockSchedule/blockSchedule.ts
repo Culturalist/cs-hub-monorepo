@@ -1,10 +1,7 @@
 import { defineType, defineField } from '@sanity/types';
 import { CalendarIcon } from '@sanity/icons';
 import { selectDefaultLocale } from '../../../utils';
-import { ElementSchedule } from '../elementSchedule/elementSchedule';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
+import { ElementSchedule } from '../elementSchedule';
 
 export interface BlockSchedule {
     _type: 'blockSchedule';
@@ -12,7 +9,7 @@ export interface BlockSchedule {
     // expandDescription?: boolean;
 }
 
-export default function blockSchedule({ appName = 'hub' }: SchemaProps) {
+export default function blockSchedule() {
     return defineType({
         name: 'blockSchedule',
         title: 'Schedule',

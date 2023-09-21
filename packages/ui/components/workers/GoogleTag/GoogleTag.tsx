@@ -1,13 +1,10 @@
 import Script from 'next/script';
-import globalConfig from 'globals/globalConfig';
+import { appConfig } from 'globals';
 
-interface GoogleTagProps {
-    appName: string;
-}
+interface GoogleTagProps {}
 
 export default function GoogleTag(props: GoogleTagProps) {
-    const { appName } = props;
-    const id = globalConfig.apps[appName]?.tokens?.googleTag;
+    const id = appConfig.tokens?.googleTag;
     if (!id) return null;
 
     return (

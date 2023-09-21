@@ -1,11 +1,7 @@
-import globalConfig from 'globals/globalConfig';
 import { defineType, defineField } from '@sanity/types';
-import { filterByDocumentApp } from '../../../utils';
 import { LinkType, linkTypeList } from './linkTyped.values';
-import { DefaultSchemaProps, FileObject } from 'globals';
+import { FileObject, appConfig } from 'globals';
 import { PageDocument } from '../../documents';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface LinkTyped {
     _type: 'linkTyped';
@@ -18,7 +14,7 @@ export interface LinkTyped {
     file?: FileObject;
 }
 
-export default function linkTyped({ appName = 'hub' }: SchemaProps) {
+export default function linkTyped() {
     return defineType({
         name: 'linkTyped',
         title: 'Link',
@@ -41,10 +37,9 @@ export default function linkTyped({ appName = 'hub' }: SchemaProps) {
                 title: 'Reference',
                 type: 'reference',
                 description: 'Reference to a page to link to',
-                to: globalConfig.apps[appName].schemas.links.map(docType => ({ type: docType })),
+                to: appConfig.schemas.links.map(docType => ({ type: docType })),
                 options: {
-                    disableNew: true,
-                    filter: ({ document }: any) => filterByDocumentApp(document)
+                    disableNew: true
                 },
                 hidden: ({ parent }) => parent?.type !== 'reference'
             }),

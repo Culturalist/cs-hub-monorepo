@@ -1,13 +1,7 @@
 import { defineType, defineField } from '@sanity/types';
 import { actionTypeList, HeroActionType } from './hero.values';
-import { LocaleString } from '../../objects/localeString';
-import { CardManual } from '../../objects/cardManual/cardManual';
-import { LinkCaptioned } from '../../objects/linkCaptioned';
-import { Theme } from '../../system/theme';
-import { CoverBlock } from '../../objects';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
+import { LocaleString, CardManual, LinkCaptioned, CoverBlock } from '../../objects';
+import { Theme } from '../../system';
 
 export interface Hero {
     _type: 'hero';
@@ -21,7 +15,7 @@ export interface Hero {
     hideFooter?: boolean;
 }
 
-export default function hero({ appName = 'hub' }: SchemaProps) {
+export default function hero() {
     return defineType({
         name: 'hero',
         title: 'Hero',

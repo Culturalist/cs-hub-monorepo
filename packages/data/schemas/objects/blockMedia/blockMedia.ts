@@ -1,10 +1,7 @@
 import { defineType, defineField } from '@sanity/types';
 import { ImagesIcon } from '@sanity/icons';
 import { MediaLayout, mediaLayoutList } from './blockMedia.values';
-import { DefaultSchemaProps } from 'globals';
 import { MediaBlock } from '../mediaArray';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface BlockMedia {
     _type: 'blockMedia';
@@ -12,7 +9,7 @@ export interface BlockMedia {
     media?: MediaBlock[];
 }
 
-export default function blockMedia({ appName = 'hub' }: SchemaProps) {
+export default function blockMedia() {
     return defineType({
         name: 'blockMedia',
         title: 'Media',

@@ -1,10 +1,7 @@
 import { defineType, defineField } from '@sanity/types';
-import globalConfig from 'globals/globalConfig';
-import { DefaultSchemaProps } from 'globals';
+import { globalConfig } from 'globals';
 
-interface SchemaProps extends DefaultSchemaProps {}
-
-export default function localeText({ appName = 'hub' }: SchemaProps) {
+export default function localeText() {
     return defineType({
         name: 'localeText',
         title: 'Locale Text',

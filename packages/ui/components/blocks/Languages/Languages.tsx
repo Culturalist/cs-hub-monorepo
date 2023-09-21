@@ -1,6 +1,6 @@
 'use client';
 import { DefaultProps } from 'globals';
-import globalConfig from 'globals/globalConfig';
+import { globalConfig } from 'globals';
 import { usePathname } from 'next/navigation';
 import LinkWrapper from '../LinkWrapper';
 import { createStyles } from './Languages.styles';

@@ -2,19 +2,15 @@ import { defineType, defineField, SanityDocument, Slug } from '@sanity/types';
 import { UserIcon } from '@sanity/icons';
 import { joinLocaleStrings, selectDefaultLocale } from '../../../utils';
 import { LinkContact, LocalePortableText, LocaleString } from '../../objects';
-import globalConfig from 'globals/globalConfig';
-import { App, Label } from '../../system';
-import { DefaultSchemaProps, ImageObject } from 'globals';
+import { Label } from '../../system';
+import { globalConfig, ImageObject } from 'globals';
 import { Page } from '../page';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface Person extends SanityDocument {
     _type: 'person' | 'reference';
     _ref?: string;
     title?: LocaleString;
     slug: Slug;
-    app?: App;
     photo?: ImageObject;
     photoCaption?: LocaleString;
     subtitle?: LocaleString;
@@ -24,7 +20,7 @@ export interface Person extends SanityDocument {
     parent?: Page;
 }
 
-export default function person({ appName = 'hub' }: SchemaProps) {
+export default function person() {
     return defineType({
         name: 'person',
         title: 'Person',
@@ -39,14 +35,6 @@ export default function person({ appName = 'hub' }: SchemaProps) {
                 name: 'slug',
                 type: 'normalizedSlug',
                 validation: Rule => Rule.required()
-            }),
-            defineField({
-                name: 'app',
-                title: 'App',
-                type: 'reference',
-                to: [{ type: 'app' }],
-                hidden: ({ parent }) => !!parent?.app,
-                readOnly: ({ parent }) => !!parent?.app
             }),
             defineField({
                 name: 'photo',

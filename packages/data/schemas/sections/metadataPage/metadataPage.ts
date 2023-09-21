@@ -1,8 +1,6 @@
 import { defineType, defineField } from '@sanity/types';
-import { LocaleString } from '../../objects/localeString';
-import { DefaultSchemaProps, FileObject, ImageObject } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
+import { FileObject, ImageObject } from 'globals';
+import { LocaleString } from '../../objects';
 
 export interface MetadataPage {
     _type: 'metadataPage';
@@ -14,7 +12,7 @@ export interface MetadataPage {
     preventIndexing?: boolean;
 }
 
-export default function metadataPage({ appName = 'hub' }: SchemaProps) {
+export default function metadataPage() {
     return defineType({
         name: 'metadataPage',
         title: 'Metadata',

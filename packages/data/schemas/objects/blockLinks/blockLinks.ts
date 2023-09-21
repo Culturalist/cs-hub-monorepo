@@ -4,9 +4,6 @@ import { joinLocaleStrings } from '../../../utils';
 import { LinksLayout, linksLayoutList } from './blockLinks.values';
 import { LinkCaptioned } from '../linkCaptioned';
 import { capitalize } from 'globals/utils';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface BlockLinks {
     _type: 'blockLinks';
@@ -14,7 +11,7 @@ export interface BlockLinks {
     links?: LinkCaptioned[];
 }
 
-export default function blockLinks({ appName = 'hub' }: SchemaProps) {
+export default function blockLinks() {
     return defineType({
         name: 'blockLinks',
         title: 'Links',

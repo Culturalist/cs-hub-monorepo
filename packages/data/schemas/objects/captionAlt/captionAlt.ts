@@ -1,8 +1,5 @@
-import { DefaultSchemaProps } from 'globals';
 import { defineType, defineField } from '@sanity/types';
 import { LocaleString } from '../localeString';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface CaptionAlt {
     _type: 'captionAlt';
@@ -10,7 +7,7 @@ export interface CaptionAlt {
     caption?: LocaleString;
 }
 
-export default function captionAlt(props: SchemaProps) {
+export default function captionAlt() {
     return defineType({
         name: 'captionAlt',
         title: 'Caption & Alternative text',

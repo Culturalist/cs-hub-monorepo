@@ -1,14 +1,10 @@
 import { defineType, defineField, SanityDocument, Slug } from '@sanity/types';
 import { DocumentIcon } from '@sanity/icons';
 import { BodyBlock, CoverBlock, LocaleString } from '../../objects';
-import { App } from '../../system';
 import { MetadataPage } from '../../sections';
 import { getMediaCover, selectDefaultLocale } from '../../../utils';
-import globalConfig from 'globals/globalConfig';
+import { globalConfig } from 'globals';
 import { Theme } from '../../system';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface Page extends SanityDocument {
     _type: 'page' | 'reference';
@@ -16,7 +12,6 @@ export interface Page extends SanityDocument {
     _key?: string;
     title?: LocaleString;
     slug: Slug;
-    app?: App;
     covers?: CoverBlock[];
     coverCaption?: LocaleString;
     index?: boolean;
@@ -25,7 +20,7 @@ export interface Page extends SanityDocument {
     metadata?: MetadataPage;
 }
 
-export default function page({ appName = 'hub' }: SchemaProps) {
+export default function page() {
     return defineType({
         name: 'page',
         title: 'Page',
@@ -60,15 +55,6 @@ export default function page({ appName = 'hub' }: SchemaProps) {
                 type: 'normalizedSlug',
                 validation: Rule => Rule.required(),
                 group: 'card'
-            }),
-            defineField({
-                name: 'app',
-                title: 'App',
-                type: 'reference',
-                to: [{ type: 'app' }],
-                group: 'card',
-                hidden: ({ parent }) => !!parent?.app,
-                readOnly: ({ parent }) => !!parent?.app
             }),
             defineField({
                 name: 'covers',

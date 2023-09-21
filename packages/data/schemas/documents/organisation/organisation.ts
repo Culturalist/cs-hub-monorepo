@@ -2,12 +2,10 @@ import { defineType, defineField, SanityDocument, Slug } from '@sanity/types';
 import { CaseIcon } from '@sanity/icons';
 import { joinLocaleStrings, selectDefaultLocale } from '../../../utils';
 import { LocaleString } from '../../objects';
-import globalConfig from 'globals/globalConfig';
-import { App, Label } from '../../system';
-import { DefaultSchemaProps, ImageObject } from 'globals';
+import { globalConfig } from 'globals';
+import { Label } from '../../system';
+import { ImageObject } from 'globals';
 import { Page } from '../page';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface Organisation extends SanityDocument {
     _type: 'organisation' | 'reference';
@@ -15,14 +13,13 @@ export interface Organisation extends SanityDocument {
     title?: LocaleString;
     slug?: Slug;
     subtitle?: LocaleString;
-    app?: App;
     logo?: ImageObject;
     url?: string;
     labels?: Label[];
     parent?: Page;
 }
 
-export default function organisation({ appName = 'hub' }: SchemaProps) {
+export default function organisation() {
     return defineType({
         name: 'organisation',
         title: 'Organisation',
@@ -42,14 +39,6 @@ export default function organisation({ appName = 'hub' }: SchemaProps) {
                 name: 'subtitle',
                 title: 'Subtitle',
                 type: 'localeString'
-            }),
-            defineField({
-                name: 'app',
-                title: 'App',
-                type: 'reference',
-                to: [{ type: 'app' }],
-                hidden: ({ parent }) => !!parent?.app,
-                readOnly: ({ parent }) => !!parent?.app
             }),
             defineField({
                 name: 'logo',

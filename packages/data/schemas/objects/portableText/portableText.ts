@@ -1,17 +1,16 @@
 import { defineField } from '@sanity/types';
-import { Block, DefaultSchemaProps } from 'globals';
-import { capitalize } from 'globals/utils';
+import { capitalize, Block } from 'globals';
 import { BlockParent, portableTextDefinitions } from './portableText.values';
 import { LeadStyle, SmallStyle } from './portableText.styles';
 import portableTextLink from './portableText.link';
 
-interface SchemaProps extends DefaultSchemaProps {
+interface SchemaProps {
     parent: BlockParent;
 }
 
 export type PortableTextBlock = Block;
 
-export default function portableText({ parent, appName = 'hub' }: SchemaProps) {
+export default function portableText({ parent }: SchemaProps) {
     return defineField({
         name: `portableText${capitalize(parent)}`,
         title: 'Portable Text',
@@ -45,7 +44,7 @@ export default function portableText({ parent, appName = 'hub' }: SchemaProps) {
                         { title: 'Underline', value: 'underline' },
                         { title: 'Strikethrough', value: 'strike-through' }
                     ],
-                    annotations: [portableTextLink(appName)].filter(
+                    annotations: [portableTextLink()].filter(
                         field => field.name && portableTextDefinitions.annotations[parent].includes(field.name)
                     )
                 }

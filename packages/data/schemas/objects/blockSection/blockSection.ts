@@ -1,14 +1,11 @@
 import { defineField, defineType, Slug } from '@sanity/types';
 import { SplitHorizontalIcon } from '@sanity/icons';
 import { selectDefaultLocale } from '../../../utils';
-import { DefaultSchemaProps } from 'globals';
-import { capitalize } from 'globals/utils';
-import globalConfig from 'globals/globalConfig';
+import { DocumentApp, capitalize } from 'globals';
 import { LocaleString } from '../localeString';
-import { DocumentApp } from '../../documents';
 import { BodySectionBlock } from '../bodySection';
 
-interface SchemaProps extends DefaultSchemaProps {
+interface SchemaProps {
     parent: DocumentApp;
 }
 
@@ -22,8 +19,7 @@ export interface BlockSection {
     blockId?: Slug;
 }
 
-export default function blockSection({ parent, appName = 'hub' }: SchemaProps) {
-    const lang = globalConfig.localization.default;
+export default function blockSection({ parent }: SchemaProps) {
     return defineType({
         name: `blockSection${capitalize(parent)}`,
         title: 'Section',

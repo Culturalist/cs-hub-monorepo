@@ -1,10 +1,8 @@
 import { defineType, defineField, SanityDocument } from '@sanity/types';
 import { SunIcon } from '@sanity/icons';
-import { Color, DefaultSchemaProps } from 'globals';
+import { Color } from 'globals';
 import { themeColors } from './theme.values';
 import { ThemeIcon } from './theme.icon';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface Theme extends SanityDocument {
     _type: 'theme' | 'reference';
@@ -17,7 +15,7 @@ export interface Theme extends SanityDocument {
     cardText: Color;
 }
 
-export default function theme({ appName = 'hub' }: SchemaProps) {
+export default function theme() {
     return defineType({
         name: 'theme',
         title: 'Theme',

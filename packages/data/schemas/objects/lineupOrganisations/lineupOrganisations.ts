@@ -1,11 +1,8 @@
 import { defineType, defineField } from '@sanity/types';
-import { filterByDocumentApp, joinLocaleStrings, selectDefaultLocale } from '../../../utils';
+import { joinLocaleStrings, selectDefaultLocale } from '../../../utils';
 import { CaseIcon } from '@sanity/icons';
 import { Label } from '../../system';
 import { Organisation } from '../../documents';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface LineupOrganisations {
     _type: 'lineupOrganisations';
@@ -15,20 +12,20 @@ export interface LineupOrganisations {
     includeSubtitle?: boolean;
 }
 
-export default function lineupOrganisations({ appName = 'hub' }: SchemaProps) {
+export default function lineupOrganisations() {
     return defineType({
         name: 'lineupOrganisations',
         title: 'Organisations',
         type: 'object',
         fields: [
-            {
+            defineField({
                 name: 'label',
                 title: 'Label',
                 type: 'reference',
                 description: 'Use label for grouping, if necessarily',
                 to: [{ type: 'label' }]
-            },
-            {
+            }),
+            defineField({
                 name: 'list',
                 title: 'List',
                 type: 'array',
@@ -37,18 +34,17 @@ export default function lineupOrganisations({ appName = 'hub' }: SchemaProps) {
                         type: 'reference',
                         to: [{ type: 'organisation' }],
                         options: {
-                            disableNew: true,
-                            filter: ({ document }: any) => filterByDocumentApp(document)
+                            disableNew: true
                         }
                     }
                 ]
-            },
-            {
+            }),
+            defineField({
                 name: 'includeSubtitle',
                 title: 'Include subtitle',
                 type: 'boolean',
                 initialValue: false
-            }
+            })
         ],
         preview: {
             select: {

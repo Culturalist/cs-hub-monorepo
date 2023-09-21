@@ -1,12 +1,12 @@
-import { DefaultPageProps, ImageObject } from 'globals';
-import globalConfig from 'globals/globalConfig';
+import { DefaultPageProps, DocumentApp, ImageObject, appName, appConfig } from 'globals';
+import { globalConfig } from 'globals';
 import { clientNext, getImageUrlBuilder } from 'globals/lib/sanity';
 import { Metadata } from 'next';
 import { SanityDocument } from 'sanity';
 import { localizeString } from 'data/utils';
 import { formatKeywords } from 'globals/utils';
 import { metadataAppQuery, metadataPageQuery } from '../schemas';
-import { App, CoverBlock, DocumentApp, ElementDate, LineupPeople, LocaleString, MetadataPage } from '../schemas';
+import { App, CoverBlock, ElementDate, LineupPeople, LocaleString, MetadataPage } from '../schemas';
 
 export interface MetadataAny extends SanityDocument {
     _type: DocumentApp;
@@ -23,14 +23,9 @@ export interface MetadataAny extends SanityDocument {
 export interface prepareMetadataProps {
     type: DocumentApp;
     params: DefaultPageProps['params'];
-    appName: string;
 }
 
-export async function prepareMetadata({
-    type,
-    params: { slug, lang },
-    appName = 'hub'
-}: prepareMetadataProps): Promise<Metadata> {
+export async function prepareMetadata({ type, params: { slug, lang } }: prepareMetadataProps): Promise<Metadata> {
     const output: Metadata = {};
     const app: App = await clientNext.fetch(metadataAppQuery, { appName });
     const languages = app?.languages || globalConfig.localization.languages.map(lang => lang.id);
@@ -113,13 +108,13 @@ export async function prepareMetadata({
     if (type !== 'app' && slug) {
         path = `${globalConfig.routes[type] ? globalConfig.routes[type] + '/' : ''}${slug}/`;
     }
-    const url = path ? globalConfig.apps[appName].domain + path : globalConfig.apps[appName].domain;
+    const url = path ? appConfig.domain + path : appConfig.domain;
     output.alternates = {
         canonical: url,
         languages: {
-            'fi-FI': languages.includes('fi') ? `${globalConfig.apps[appName].domain}fi/${path || ''}` : undefined,
-            'en-US': languages.includes('en') ? `${globalConfig.apps[appName].domain}en/${path || ''}` : undefined,
-            'ru-RU': languages.includes('ru') ? `${globalConfig.apps[appName].domain}ru/${path || ''}` : undefined
+            'fi-FI': languages.includes('fi') ? `${appConfig.domain}fi/${path || ''}` : undefined,
+            'en-US': languages.includes('en') ? `${appConfig.domain}en/${path || ''}` : undefined,
+            'ru-RU': languages.includes('ru') ? `${appConfig.domain}ru/${path || ''}` : undefined
         }
     };
 

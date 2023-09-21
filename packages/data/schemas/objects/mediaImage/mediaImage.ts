@@ -2,9 +2,7 @@ import { defineType, defineField } from '@sanity/types';
 import { ImageIcon } from '@sanity/icons';
 import { LocaleString } from '../localeString';
 import { selectDefaultLocale } from '../../../utils';
-import { DefaultSchemaProps, ImageObject } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
+import { ImageObject } from 'globals';
 
 export interface MediaImage extends ImageObject {
     _type: 'mediaImage';
@@ -13,7 +11,7 @@ export interface MediaImage extends ImageObject {
     caption?: LocaleString;
 }
 
-export default function mediaImage({ appName = 'hub' }: SchemaProps) {
+export default function mediaImage() {
     return defineType({
         name: 'mediaImage',
         title: 'Image',

@@ -1,6 +1,5 @@
-import { Locale } from 'globals';
-import globalConfig from 'globals/globalConfig';
-import { DocumentApp, LinkTyped, PageDocument } from '../schemas';
+import { globalConfig, DocumentApp, Locale } from 'globals';
+import { LinkTyped, PageDocument } from '../schemas';
 
 export function prepareLink(input: LinkTyped, lang?: Locale): string {
     const { type, anchor, href, internal, reference, file } = input;

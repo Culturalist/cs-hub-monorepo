@@ -1,17 +1,14 @@
 import { defineType, defineField } from '@sanity/types';
 import { SplitVerticalIcon } from '@sanity/icons';
 import { LocalePortableText } from '../localePortableText';
-import globalConfig from 'globals/globalConfig';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
+import { globalConfig } from 'globals';
 
 export interface BlockColumns {
     _type: 'blockColumns';
     content?: LocalePortableText[];
 }
 
-export default function blockColumns({ appName = 'hub' }: SchemaProps) {
+export default function blockColumns() {
     return defineType({
         name: 'blockColumns',
         title: 'Columns',

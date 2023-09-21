@@ -3,9 +3,6 @@ import { PlayIcon } from '@sanity/icons';
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { useMediaList, useMediaInitialValue, UseMedia } from '../coverArray';
 import { caseTransform } from 'globals/utils';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface CoverVideo {
     _type: 'coverVideo';
@@ -15,7 +12,7 @@ export interface CoverVideo {
     useMedia: UseMedia[];
 }
 
-export default function coverVideo({ appName = 'hub' }: SchemaProps) {
+export default function coverVideo() {
     return defineType({
         name: 'coverVideo',
         title: 'Video',

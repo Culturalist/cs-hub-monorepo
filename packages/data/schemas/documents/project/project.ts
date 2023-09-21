@@ -1,14 +1,11 @@
 import { defineType, defineField, SanityDocument, Slug } from '@sanity/types';
 import { PresentationIcon } from '@sanity/icons';
-import { DefaultSchemaProps } from 'globals';
+import { globalConfig } from 'globals';
 import { BodyBlock, CoverBlock, LineupOrganisations, LocaleString } from '../../objects';
-import { App } from '../../system';
 import { MetadataPage } from '../../sections';
 import { Label } from '../../system';
-import { filterByDocumentApp, getMediaCover, selectDefaultLocale } from '../../../utils';
+import { getMediaCover, selectDefaultLocale } from '../../../utils';
 import { Page } from '../page';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface Project extends SanityDocument {
     _type: 'project' | 'reference';
@@ -16,7 +13,6 @@ export interface Project extends SanityDocument {
     title?: LocaleString;
     subtitle?: LocaleString;
     slug: Slug;
-    app?: App;
     date: string;
     covers?: CoverBlock[];
     coverCaption?: LocaleString;
@@ -27,7 +23,7 @@ export interface Project extends SanityDocument {
     metadata?: MetadataPage;
 }
 
-export default function project({ appName = 'hub' }: SchemaProps) {
+export default function project() {
     return defineType({
         name: 'project',
         title: 'Project',
@@ -83,15 +79,6 @@ export default function project({ appName = 'hub' }: SchemaProps) {
                 group: 'card'
             }),
             defineField({
-                name: 'app',
-                title: 'App',
-                type: 'reference',
-                to: [{ type: 'app' }],
-                group: 'card',
-                hidden: ({ parent }) => !!parent?.app,
-                readOnly: ({ parent }) => !!parent?.app
-            }),
-            defineField({
                 name: 'covers',
                 title: 'Covers',
                 type: 'coverArray',
@@ -144,8 +131,7 @@ export default function project({ appName = 'hub' }: SchemaProps) {
                 description: 'Set a page with all projects for easier navigation',
                 to: [{ type: 'page' }],
                 options: {
-                    disableNew: true,
-                    filter: ({ document }: any) => filterByDocumentApp(document)
+                    disableNew: true
                 },
                 readOnly: false,
                 group: 'connections'
@@ -181,7 +167,7 @@ export default function project({ appName = 'hub' }: SchemaProps) {
             {
                 title: 'Title',
                 name: 'titleAsc',
-                by: [{ field: 'slug.current', direction: 'asc' }]
+                by: [{ field: `title.${globalConfig.localization.default}`, direction: 'asc' }]
             }
         ]
     });

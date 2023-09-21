@@ -1,5 +1,3 @@
-import globalConfig from 'globals/globalConfig';
-
 import {
     blockId,
     blockSection,
@@ -34,18 +32,17 @@ import {
     bodyParents,
     mediaArray
 } from './objects';
-import { page, person, post, project, event, note, organisation, DocumentApp } from './documents';
+import { page, person, post, project, event, note, organisation } from './documents';
 import { header, footer, hero, metadataApp, metadataPage } from './sections';
 import { app, theme, label } from './system';
-import { SchemaPluginOptions, SchemaTypeDefinition } from 'sanity';
 
-export default function schemaTypes(appName: string = 'hub') {
+export default function schemaTypes() {
     const variableObjects = [
-        ...portableTextParents.map(blockParent => portableText({ parent: blockParent, appName })),
-        ...portableTextParents.map(blockParent => localePortableText({ parent: blockParent, appName })),
-        ...bodyParents.map(bodyParent => body({ parent: bodyParent, appName })),
-        ...bodyParents.map(bodyParent => bodySection({ parent: bodyParent, appName })),
-        ...bodyParents.map(bodyParent => blockSection({ parent: bodyParent, appName }))
+        ...portableTextParents.map(blockParent => portableText({ parent: blockParent })),
+        ...portableTextParents.map(blockParent => localePortableText({ parent: blockParent })),
+        ...bodyParents.map(bodyParent => body({ parent: bodyParent })),
+        ...bodyParents.map(bodyParent => bodySection({ parent: bodyParent })),
+        ...bodyParents.map(bodyParent => blockSection({ parent: bodyParent }))
     ];
 
     const objects = [
@@ -74,15 +71,13 @@ export default function schemaTypes(appName: string = 'hub') {
         cardManual,
         lineupPeople,
         lineupOrganisations
-    ].map(typeClass => typeClass({ appName }));
+    ].map(typeClass => typeClass());
 
-    const sections = [header, footer, hero, metadataApp, metadataPage].map(typeClass => typeClass({ appName }));
+    const sections = [header, footer, hero, metadataApp, metadataPage].map(typeClass => typeClass());
 
-    const systemDocuments = [app, theme, label].map(typeClass => typeClass({ appName }));
+    const documents = [page, project, event, post, person, note, organisation].map(typeClass => typeClass());
 
-    const appDocuments = [page, project, event, post, person, note, organisation].map(typeClass =>
-        typeClass({ appName })
-    );
+    const system = [app, theme, label].map(typeClass => typeClass());
 
-    return [...variableObjects, ...objects, ...sections, ...systemDocuments, ...appDocuments];
+    return [...variableObjects, ...objects, ...sections, ...documents, ...system];
 }

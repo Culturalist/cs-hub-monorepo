@@ -1,15 +1,10 @@
 import { defineArrayMember, defineField, defineType } from '@sanity/types';
 import { ThLargeIcon } from '@sanity/icons';
-import { filterByDocumentApp } from '../../../utils';
 import { CardsType, cardsTypeList, CardPart, personCardParts } from './blockCards.values';
-import { DefaultSchemaProps } from 'globals';
-import { capitalize } from 'globals/utils';
-import globalConfig from 'globals/globalConfig';
-import { CardManual } from '../cardManual/cardManual';
+import { capitalize, appConfig } from 'globals';
+import { CardManual } from '../cardManual';
 import { Person, Post, Project, Event, Organisation, Page } from '../../documents';
 import { Label } from '../../system';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export type CardSource = Project | Post | Person | Event | Organisation;
 export type Card = CardManual | CardSource;
@@ -30,7 +25,7 @@ export interface BlockCards {
     showLabels?: boolean;
 }
 
-export default function blockCards({ appName = 'hub' }: SchemaProps) {
+export default function blockCards() {
     return defineType({
         name: 'blockCards',
         title: 'Cards',
@@ -43,9 +38,7 @@ export default function blockCards({ appName = 'hub' }: SchemaProps) {
                 initialValue: 'manual',
                 options: {
                     list: cardsTypeList
-                        .filter(({ docType }) =>
-                            ['manual', ...globalConfig.apps[appName].schemas.documents].includes(docType)
-                        )
+                        .filter(({ docType }) => ['manual', ...appConfig.schemas.documents].includes(docType))
                         .map(cardType => ({
                             title: cardType.title,
                             value: cardType.value
@@ -56,7 +49,7 @@ export default function blockCards({ appName = 'hub' }: SchemaProps) {
                 validation: Rule => Rule.required()
             }),
             ...cardsTypeList
-                .filter(({ docType }) => ['manual', ...globalConfig.apps[appName].schemas.documents].includes(docType))
+                .filter(({ docType }) => ['manual', ...appConfig.schemas.documents].includes(docType))
                 .map(({ value, title, docType }) => {
                     if (value == 'manual') {
                         return defineField({
@@ -86,8 +79,7 @@ export default function blockCards({ appName = 'hub' }: SchemaProps) {
                                 type: 'reference',
                                 to: [{ type: docType }],
                                 options: {
-                                    disableNew: true,
-                                    filter: ({ document }: any) => filterByDocumentApp(document)
+                                    disableNew: true
                                 }
                             }),
                             defineArrayMember({
@@ -107,8 +99,7 @@ export default function blockCards({ appName = 'hub' }: SchemaProps) {
                                           type: 'reference',
                                           to: [{ type: 'page' }],
                                           options: {
-                                              disableNew: true,
-                                              filter: ({ document }: any) => filterByDocumentApp(document)
+                                              disableNew: true
                                           }
                                       })
                                   ]

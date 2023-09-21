@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity';
 import { bodySegment, linkTypedSegment, mediaBlockSegment } from '../../objects';
 
-export const eventQuery = groq`*[_type == 'event' && slug.current == $slug && app._ref == $appName][0]{
+export const eventQuery = groq`*[_type == 'event' && slug.current == $slug][0]{
     ...,
     parent-> {
         _type,

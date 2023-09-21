@@ -1,10 +1,7 @@
 import { defineType, defineField } from '@sanity/types';
 import { ImageIcon } from '@sanity/icons';
 import { useMediaList, useMediaInitialValue, UseMedia } from '../coverArray';
-import { caseTransform } from 'globals/utils';
-import { DefaultSchemaProps, ImageObject } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
+import { ImageObject, caseTransform } from 'globals';
 
 export interface CoverImage extends ImageObject {
     _type: 'coverImage';
@@ -12,7 +9,7 @@ export interface CoverImage extends ImageObject {
     useMedia?: UseMedia[];
 }
 
-export default function coverImage({ appName = 'hub' }: SchemaProps) {
+export default function coverImage() {
     return defineType({
         name: 'coverImage',
         title: 'Image',

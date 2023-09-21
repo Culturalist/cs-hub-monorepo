@@ -4,9 +4,6 @@ import { getAppLanguageList, selectDefaultLocale } from '../../../utils';
 import { LocaleString } from '../../objects';
 import { Footer, Header, Hero, MetadataApp } from '../../sections';
 import { Theme } from '../theme';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface App extends SanityDocument {
     _type: 'app' | 'reference';
@@ -20,7 +17,7 @@ export interface App extends SanityDocument {
     metadata?: MetadataApp;
 }
 
-export default function app({ appName = 'hub' }: SchemaProps) {
+export default function app() {
     return defineType({
         name: 'app',
         title: 'App',

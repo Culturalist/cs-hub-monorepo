@@ -1,10 +1,7 @@
 import { defineType } from '@sanity/types';
-import globalConfig from 'globals/globalConfig';
-import { DefaultSchemaProps } from 'globals';
+import { globalConfig } from 'globals';
 
-interface SchemaProps extends DefaultSchemaProps {}
-
-export default function blockId(props: SchemaProps) {
+export default function blockId() {
     return defineType({
         name: 'blockId',
         title: 'Block ID',

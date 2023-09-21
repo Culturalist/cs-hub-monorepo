@@ -4,9 +4,6 @@ import { LocaleString } from '../localeString';
 import { selectDefaultLocale } from '../../../utils';
 import { capitalize } from 'globals/utils';
 import { EmbedSource, embedSourceList } from './blockEmbed.values';
-import { DefaultSchemaProps } from 'globals';
-
-interface SchemaProps extends DefaultSchemaProps {}
 
 export interface BlockEmbed {
     _type: 'mediEmbed';
@@ -16,7 +13,7 @@ export interface BlockEmbed {
     caption?: LocaleString;
 }
 
-export default function blockEmbed({ appName = 'hub' }: SchemaProps) {
+export default function blockEmbed() {
     return defineType({
         name: 'blockEmbed',
         title: 'Embedded',
