@@ -31,13 +31,12 @@ export const appsConfig: Record<string, AppConfig> = {
         title: 'Juhlarahasto',
         domain: 'https://juhlarahasto.fi/',
         schemas: {
-            documents: ['page', 'project', 'post', 'person', 'organisation', 'note'],
-            links: ['page', 'person', 'project', 'post'],
-            navigation: ['page', 'project'],
-            create: ['page', 'person', 'project', 'post', 'theme', 'label', 'organisation', 'note']
+            documents: ['page', 'post', 'person', 'organisation', 'note'],
+            links: ['page', 'person', 'post'],
+            navigation: ['page'],
+            create: ['page', 'person', 'post', 'theme', 'label', 'organisation', 'note']
         },
         parentDocuments: {
-            project: 'projektit',
             post: 'tarinat'
         },
         tokens: {

@@ -13,6 +13,9 @@ export default function deskStructure(): any {
             S.list()
                 .title('Content')
                 .items([
+                    //
+                    // S.listItem().title('Document with ID').child(S.document().schemaType('page').documentId('tarinat')),
+                    //
                     S.listItem()
                         .title(desk.app.title)
                         .icon(desk.app.icon)
