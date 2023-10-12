@@ -14,12 +14,19 @@ export default function LinkWrapper(props: LinkWrapperProps) {
     const { link, href, lang, children, ...commonProps } = props;
 
     if (!link) {
-        if (href)
+        if (href) {
+            const externalProps = !href.startsWith('/')
+                ? {
+                      target: '_blank',
+                      rel: 'noreferrer noopener nofollow'
+                  }
+                : {};
             return (
-                <a href={lang && href.startsWith('/') ? `/${lang}${href}` : href} {...commonProps}>
+                <a href={lang && href.startsWith('/') ? `/${lang}${href}` : href} {...externalProps} {...commonProps}>
                     {children}
                 </a>
             );
+        }
         return <span {...commonProps}>{children}</span>;
     }
 
