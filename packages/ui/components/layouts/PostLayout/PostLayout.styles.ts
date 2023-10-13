@@ -18,6 +18,8 @@ const defaultStyles = {
     dateWrapper: '',
     date: 'typo-caps-2xs trim-line',
     title: '',
+    subtitleWrapper: 'mt-8 sm:mt-16 lg:max-w-m20',
+    subtitle: 'typo-paragraph trim-line text-theme-text-light',
     cover: 'mt-24',
     body: ''
 };

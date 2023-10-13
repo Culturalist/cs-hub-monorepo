@@ -12,6 +12,7 @@ export default function PostLayout(props: PostLayoutProps) {
     const { data, lang, className } = props;
     const { covers, coverCaption, parent, body } = data;
     const title = localizeString(data.title, lang);
+    const subtitle = localizeString(data.subtitle, lang);
     const label = localizeString(data.labels?.[0]?.title, lang);
     const date = formatLocaleDate(data.date, lang, true);
     const author = localizeString(data.author?.title, lang);
@@ -55,6 +56,12 @@ export default function PostLayout(props: PostLayoutProps) {
                 <h1 className={styles.title}>
                     <span>{title}</span>
                 </h1>
+                {/* SUBTITLE */}
+                {subtitle && (
+                    <h2 className={styles.subtitleWrapper}>
+                        <span className={styles.subtitle}>{subtitle}</span>
+                    </h2>
+                )}
                 {/* COVER */}
                 <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
                 {/* BODY */}
