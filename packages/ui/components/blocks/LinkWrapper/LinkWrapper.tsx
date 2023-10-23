@@ -1,8 +1,8 @@
-'use client';
-import Link from 'next/link';
-import { DefaultPropsWithChildren } from 'globals';
-import { LinkTyped } from 'data/schemas';
-import { prepareLink } from 'data/utils';
+"use client";
+import Link from "next/link";
+import { DefaultPropsWithChildren } from "@cs/globals";
+import { LinkTyped } from "@cs/data/schemas";
+import { prepareLink } from "@cs/data/utils";
 
 export interface LinkWrapperProps extends Partial<DefaultPropsWithChildren> {
     link?: LinkTyped;
@@ -15,14 +15,14 @@ export default function LinkWrapper(props: LinkWrapperProps) {
 
     if (!link) {
         if (href) {
-            const externalProps = !href.startsWith('/')
+            const externalProps = !href.startsWith("/")
                 ? {
-                      target: '_blank',
-                      rel: 'noreferrer noopener nofollow'
+                      target: "_blank",
+                      rel: "noreferrer noopener nofollow"
                   }
                 : {};
             return (
-                <a href={lang && href.startsWith('/') ? `/${lang}${href}` : href} {...externalProps} {...commonProps}>
+                <a href={lang && href.startsWith("/") ? `/${lang}${href}` : href} {...externalProps} {...commonProps}>
                     {children}
                 </a>
             );
@@ -30,18 +30,18 @@ export default function LinkWrapper(props: LinkWrapperProps) {
         return <span {...commonProps}>{children}</span>;
     }
 
-    const linkType = link.type || 'external';
+    const linkType = link.type;
     const url = prepareLink(link, lang);
 
     if (url) {
-        if (linkType === 'external' || linkType === 'file') {
+        if (linkType === "external" || linkType === "file") {
             return (
                 //External
                 <a href={url} target="_blank" rel="noreferrer noopener nofollow" {...commonProps}>
                     {children}
                 </a>
             );
-        } else if (linkType === 'internal' || linkType === 'reference') {
+        } else if (linkType === "internal" || linkType === "reference") {
             return (
                 //Internal
                 <Link href={url} {...commonProps}>

@@ -1,12 +1,13 @@
-import { Hero } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { localizeString } from 'data/utils';
-import { neatTextBreaks } from 'globals/utils';
-import { getHeroVariables } from '../../../utils';
-import { CardsManual } from '../../blocks';
-import { Cover } from '../../blocks/Cover';
-import Links from '../../blocks/Links';
-import { createStyles } from './Hero.styles';
+import { Hero } from "@cs/data/schemas";
+import { DefaultProps } from "@cs/globals";
+import { localizeString } from "@cs/data/utils";
+import { neatTextBreaks } from "@cs/globals/utils";
+import { CardsManual } from "../../blocks";
+import { Cover } from "../../blocks/Cover";
+import Links from "../../blocks/Links";
+import { createStyles } from "./Hero.styles";
+import { SetPalette } from "@weresk/maket";
+import { colorToRGB } from "@weresk/core";
 
 interface HeroProps extends DefaultProps {
     data?: Hero;
@@ -16,7 +17,7 @@ export default function Hero(props: HeroProps) {
     const { data, lang, className } = props;
     if (!data) return null;
 
-    const { covers, actionType, cards, links, coverOnHover, theme } = data;
+    const { covers, actionType, cards, links, coverOnHover, palette } = data;
     const lead = neatTextBreaks(localizeString(data.lead, lang));
     const styles = createStyles({ className, leadLength: lead.length });
 
@@ -31,7 +32,7 @@ export default function Hero(props: HeroProps) {
                 )}
                 {/* ACTIONS */}
                 {/* CARDS */}
-                {actionType == 'cards' && cards && (
+                {actionType === "cards" && cards && (
                     <CardsManual
                         hero={true}
                         data={cards}
@@ -40,14 +41,21 @@ export default function Hero(props: HeroProps) {
                         className={styles.cards}
                     />
                 )}
-                {(actionType == 'links' || actionType == 'buttons') && (
+                {(actionType === "links" || actionType === "buttons") && (
                     <Links links={links} layout={actionType} lang={lang} className={styles.links} />
                 )}
             </div>
             <div className={styles.bg}>
                 <Cover array={covers} parent="hero" lang={lang} className={styles.cover} />
             </div>
-            {theme && <style>{getHeroVariables(theme)}</style>}
+
+            <SetPalette selector=".hero" set={palette}>
+                {palette
+                    ? `.hero { --palette-on-surface: ${colorToRGB(palette.on_surface)}; --header-logo-lightness: ${
+                          palette.on_surface.hsl.l
+                      } }`
+                    : undefined}
+            </SetPalette>
         </div>
     );
 }

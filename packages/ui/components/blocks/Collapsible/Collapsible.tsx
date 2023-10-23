@@ -1,11 +1,11 @@
-'use client';
-import { LocaleString } from 'data/schemas';
-import { createStyles } from './Collapsible.styles';
-import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { localizeString } from 'data/utils';
+"use client";
+import { LocaleString } from "@cs/data/schemas";
+import { createStyles } from "./Collapsible.styles";
+import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { localizeString } from "@cs/data/utils";
 // import gsap from 'gsap';
-import { DefaultProps } from 'globals';
+import { DefaultProps } from "@cs/globals";
 
 interface CollapsibleProps extends DefaultProps {
     target?: string;
@@ -19,7 +19,7 @@ export default function Collapsible(props: CollapsibleProps) {
     const [open, setOpen] = useState(initial || false);
     const [init, setInit] = useState(false);
     const minHeight = 80;
-    let height = useRef<number | string>(0);
+    const height = useRef<number | string>(0);
     const styles = createStyles({ className });
 
     return null;

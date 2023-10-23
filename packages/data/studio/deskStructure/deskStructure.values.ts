@@ -1,40 +1,47 @@
-import { HomeIcon, DocumentsIcon, PresentationIcon, UsersIcon, CalendarIcon, CaseIcon } from '@sanity/icons';
-import { DocumentApp } from 'globals';
+import {
+    HomeIcon,
+    DocumentsIcon,
+    PresentationIcon,
+    UsersIcon,
+    CalendarIcon,
+    CaseIcon
+} from "@sanity/icons";
+import { DocumentApp } from "@cs/globals";
 
 export type DeskValues = Record<DocumentApp, { icon: any; title: string }>;
 
 const desk: DeskValues = {
     app: {
         icon: HomeIcon,
-        title: 'Home'
+        title: "Home"
     },
     page: {
         icon: DocumentsIcon,
-        title: 'Pages'
+        title: "Pages"
     },
     person: {
         icon: UsersIcon,
-        title: 'People'
+        title: "People"
     },
     post: {
         icon: DocumentsIcon,
-        title: 'Posts'
+        title: "Posts"
     },
     project: {
         icon: PresentationIcon,
-        title: 'Projects'
+        title: "Projects"
     },
     event: {
         icon: CalendarIcon,
-        title: 'Events'
+        title: "Events"
     },
     note: {
         icon: DocumentsIcon,
-        title: 'Notes'
+        title: "Notes"
     },
     organisation: {
         icon: CaseIcon,
-        title: 'Organisations'
+        title: "Organisations"
     }
 };
 

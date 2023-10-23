@@ -1,19 +1,20 @@
-import { cx } from 'class-variance-authority';
-import { DefaultStyleProps } from 'globals';
-import { purgeEmptyStrings } from 'globals/utils';
+import { cx } from "class-variance-authority";
+import { DefaultStyleProps } from "@cs/globals";
+import { purgeEmptyStrings } from "@cs/globals/utils";
 
-export interface styleProps extends DefaultStyleProps {}
+export interface StyleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: 'mb-m3',
-    dateWrapper: 'mt-gutter',
-    date: 'typo-caps-2xs trim-line',
-    title: '',
-    cover: 'mt-24',
-    body: ''
+    container: "mb-m3",
+    dateWrapper: "mt-gutter",
+    date: "typo-caps-2xs trim-line",
+    titleWrapper: "",
+    title: "trim-line",
+    cover: "mt-24 mb-40",
+    body: ""
 };
 
-export const createStyles = ({ className }: styleProps) => {
+export const createStyles = ({ className }: StyleProps) => {
     const styles = {
         ...defaultStyles,
         container: cx(defaultStyles.container, className)

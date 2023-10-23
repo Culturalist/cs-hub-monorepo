@@ -1,16 +1,15 @@
-import React from 'react';
-import { PortableText as PortableTextRender, PortableTextComponents } from '@portabletext/react';
-import { createStyles } from './PortableText.styles';
-import { Breakpoint, DefaultProps } from 'globals';
-import { BlockParent, LocalePortableText } from 'data/schemas';
-import LinkWrapper from '../LinkWrapper';
-import { mapKeys, neatChildrenBreaks } from 'globals/utils';
-import { globalConfig } from 'globals';
-import { AdaptiveDimentions, boxPx, breakpoints } from '../../../utils';
-import metrics from '../../../metrics';
-import { localizeString } from 'data/utils';
-import { getImageUrl } from 'globals/lib/sanity';
-import Image from '../Image';
+import React from "react";
+import { PortableText as PortableTextRender, PortableTextComponents } from "@portabletext/react";
+import { globalConfig, Breakpoint, DefaultProps } from "@cs/globals";
+import { mapKeys, neatChildrenBreaks } from "@cs/globals/utils";
+import { getImageUrl } from "@cs/globals/lib/sanity";
+import { BlockParent, LocalePortableText, MediaImage } from "@cs/data/schemas";
+import { localizeString } from "@cs/data/utils";
+import { AdaptiveDimentions, boxPx, breakpoints } from "../../../utils";
+import metrics from "../../../metrics";
+import LinkWrapper from "../LinkWrapper";
+import Image from "../Image";
+import { createStyles } from "./PortableText.styles";
 
 interface PortableTextBlockProps extends DefaultProps {
     data?: LocalePortableText;
@@ -24,7 +23,7 @@ export default function PortableText(props: PortableTextBlockProps) {
         props.data?.[lang] ||
         (globalConfig.localization.safeReplace ? props.data?.[globalConfig.localization.default] : undefined);
 
-    const imageSizes: Record<'body' | 'column', AdaptiveDimentions> = {
+    const imageSizes: Record<"body" | "column", AdaptiveDimentions> = {
         body: {
             xs: [metrics.breakpoints.xs - 2 * metrics.grid.offset, 0],
             sm: [metrics.breakpoints.sm - 2 * metrics.grid.offset, 0],
@@ -43,7 +42,7 @@ export default function PortableText(props: PortableTextBlockProps) {
         marks: {
             strong: ({ children }) => <strong className={styles.strong}>{children}</strong>,
             underline: ({ children }) => <span className={styles.underline}>{children}</span>,
-            'strike-through': ({ children }) => <span className={styles.strikethrough}>{children}</span>,
+            "strike-through": ({ children }) => <span className={styles.strikethrough}>{children}</span>,
             // em: ({ children }) => <em>{children}</em>,
             link: ({ value, children }) => (
                 <LinkWrapper link={value} lang={lang} className={styles.link}>
@@ -83,33 +82,31 @@ export default function PortableText(props: PortableTextBlockProps) {
             )
         },
         types: {
-            mediaImage: ({ value }) => {
-                {
-                    if (parent !== 'field') {
-                        const caption = localizeString(value.caption, lang);
-                        const alt = localizeString(value.alt, lang);
-                        const coverUrls = mapKeys<Breakpoint, string>(breakpoints, (br: Breakpoint) =>
-                            getImageUrl(value, ...boxPx(imageSizes[parent], br))
-                        );
-                        return (
-                            <figure className={styles.imageWrapper}>
-                                <Image
-                                    sources={coverUrls}
-                                    sizes={imageSizes[parent]}
-                                    alt={alt}
-                                    lang={lang}
-                                    className={styles.image}
-                                />
-                                {caption && (
-                                    <figcaption className={styles.captionWrapper}>
-                                        <span className={styles.caption}>{caption}</span>
-                                    </figcaption>
-                                )}
-                            </figure>
-                        );
-                    }
-                    return null;
+            mediaImage: ({ value }: { value: MediaImage }) => {
+                if (parent !== "field") {
+                    const caption = localizeString(value.caption, lang);
+                    const alt = localizeString(value.alt, lang);
+                    const coverUrls = mapKeys<Breakpoint, string>(breakpoints, (br: Breakpoint) =>
+                        getImageUrl(value, ...boxPx(imageSizes[parent], br))
+                    );
+                    return (
+                        <figure className={styles.imageWrapper}>
+                            <Image
+                                sources={coverUrls}
+                                sizes={imageSizes[parent]}
+                                alt={alt}
+                                lang={lang}
+                                className={styles.image}
+                            />
+                            {caption && (
+                                <figcaption className={styles.captionWrapper}>
+                                    <span className={styles.caption}>{caption}</span>
+                                </figcaption>
+                            )}
+                        </figure>
+                    );
                 }
+                return null;
             }
         }
     };

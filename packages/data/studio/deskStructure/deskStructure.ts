@@ -1,26 +1,23 @@
-import { MasterDetailIcon } from '@sanity/icons';
-import desk from './deskStructure.values';
-import { appConfig, appName } from 'globals';
+import { MasterDetailIcon } from "@sanity/icons";
+import desk from "./deskStructure.values";
+import { appConfig, appName } from "@cs/globals";
 // import { defaultDocumentNode } from './defaultDocumentNode';
 
 export default function deskStructure(): any {
     return {
-        name: 'desk',
-        title: 'Desk',
+        name: "desk",
+        title: "Desk",
         icon: MasterDetailIcon,
         // defaultDocumentNode: defaultDocumentNode,
         structure: (S: any, context: any) =>
             S.list()
-                .title('Content')
+                .title("Content")
                 .items([
-                    //
-                    // S.listItem().title('Document with ID').child(S.document().schemaType('page').documentId('tarinat')),
-                    //
                     S.listItem()
                         .title(desk.app.title)
                         .icon(desk.app.icon)
-                        .child(S.document().schemaType('app').documentId(appName)),
-                    ...appConfig.schemas.documents.map(docType => {
+                        .child(S.document().schemaType("app").documentId(appName)),
+                    ...appConfig.schemas.documents.map((docType) => {
                         return S.listItem()
                             .title(desk[docType].title)
                             .icon(desk[docType].icon)
@@ -30,6 +27,10 @@ export default function deskStructure(): any {
                                     .initialValueTemplates([S.initialValueTemplateItem(`${docType}-with-initial`)])
                             );
                     })
+                    // S.listItem()
+                    //     .title("Themes")
+                    //     .icon(MasterDetailIcon)
+                    //     .child(S.documentTypeList("theme").title("Themes"))
                 ])
     };
 }

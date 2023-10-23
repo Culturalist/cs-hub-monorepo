@@ -1,4 +1,4 @@
-import { Breakpoint } from 'globals';
+import { Breakpoint } from "@cs/globals";
 
 const metrics: Metrics = {
     breakpoints: {

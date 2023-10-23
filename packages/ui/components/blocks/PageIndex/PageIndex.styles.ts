@@ -1,16 +1,16 @@
-import { cx } from 'class-variance-authority';
-import { DefaultStyleProps } from 'globals';
-import { purgeEmptyStrings } from 'globals/utils';
+import { cx } from "class-variance-authority";
+import { DefaultStyleProps } from "@cs/globals";
+import { purgeEmptyStrings } from "@cs/globals/utils";
 
-export interface styleProps extends DefaultStyleProps {}
+export interface StyleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: 'typo-caps-sm flex flex-col sm:flex-row items-stretch flex-wrap gap-x-20 gap-y-8 xs:gap-y-12',
-    link: 'underline hover:no-underline hover:text-theme-card-surface w-fit',
-    caption: 'trim-line'
+    container: "typo-caps-sm flex flex-col sm:flex-row items-stretch flex-wrap gap-x-24 gap-y-8 xs:gap-y-16",
+    link: "hover:text-primary w-fit",
+    caption: "trim-line"
 };
 
-export const createStyles = ({ className }: styleProps) => {
+export const createStyles = ({ className }: StyleProps) => {
     const styles = {
         ...defaultStyles,
         container: cx(defaultStyles.container, className)

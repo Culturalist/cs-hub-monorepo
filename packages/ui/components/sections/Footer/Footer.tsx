@@ -1,11 +1,9 @@
-import { wrapReference } from 'data/utils';
-import { Footer } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { globalConfig } from 'globals';
-import { getImageUrl } from 'globals/lib/sanity';
-import { localizeString } from 'data/utils';
-import { LinkWrapper, PortableText, LinkContact } from '../../blocks';
-import { createStyles } from './Footer.styles';
+import { wrapReference, localizeString } from "@cs/data/utils";
+import { Footer } from "@cs/data/schemas";
+import { globalConfig, DefaultProps } from "@cs/globals";
+import { getImageUrl } from "@cs/globals/lib/sanity";
+import { LinkWrapper, PortableText, LinkContact } from "../../blocks";
+import { createStyles } from "./Footer.styles";
 
 interface FooterProps extends DefaultProps {
     data?: Footer;
@@ -25,10 +23,17 @@ export default function Footer(props: FooterProps) {
             {links && links.length > 0 && (
                 <nav className={styles.navigation}>
                     {links.map((link, i) => {
-                        if (link._type !== 'reference') {
+                        if (link._type !== "reference") {
                             return (
-                                <LinkWrapper link={wrapReference(link)} lang={lang} className={styles.navLink} key={i}>
-                                    <span className={styles.navLinkCaption}>{localizeString(link.title, lang)}</span>
+                                <LinkWrapper
+                                    link={wrapReference(link)}
+                                    lang={lang}
+                                    className={styles.navLink}
+                                    key={i}
+                                >
+                                    <span className={styles.navLinkCaption}>
+                                        {localizeString(link.title, lang)}
+                                    </span>
                                 </LinkWrapper>
                             );
                         }
@@ -40,16 +45,30 @@ export default function Footer(props: FooterProps) {
                 {/* LOGO */}
                 {logoUrl && (
                     // UPLOADED
-                    <img src={logoUrl} className={styles.logoImage} alt={globalConfig.organization} />
+                    <img
+                        src={logoUrl}
+                        className={styles.logoImage}
+                        alt={globalConfig.organization}
+                    />
                 )}
                 <div className={styles.contactsWrapper}>
                     {/* CONTACTS */}
-                    <PortableText data={contacts} parent="field" lang={lang} className={styles.contacts} />
+                    <PortableText
+                        data={contacts}
+                        parent="field"
+                        lang={lang}
+                        className={styles.contacts}
+                    />
                     {/* SOCIAL */}
                     {social && social.length > 0 && (
                         <div className={styles.social}>
                             {social.map((link, i) => (
-                                <LinkContact link={link} lang={lang} className={styles.socialLink} key={i} />
+                                <LinkContact
+                                    link={link}
+                                    lang={lang}
+                                    className={styles.socialLink}
+                                    key={i}
+                                />
                             ))}
                         </div>
                     )}

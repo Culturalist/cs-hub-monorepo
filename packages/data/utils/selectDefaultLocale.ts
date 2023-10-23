@@ -1,6 +1,6 @@
-import { Locale } from 'globals';
-import { globalConfig } from 'globals';
+import { Locale } from "@cs/globals";
+import { globalConfig } from "@cs/globals";
 
 export function selectDefaultLocale(input?: Record<Locale, string>): string {
-    return input?.[globalConfig.localization.default] || '';
+    return input?.[globalConfig.localization.default] || "";
 }

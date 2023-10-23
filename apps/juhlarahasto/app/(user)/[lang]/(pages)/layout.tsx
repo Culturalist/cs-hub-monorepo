@@ -1,19 +1,19 @@
-import { App, layoutQuery } from 'data/schemas';
-import { appName, DefaultLayoutProps } from 'globals';
-import { clientNext } from 'globals/lib/sanity';
-import { Footer } from 'ui';
+import { appName, DefaultLayoutProps } from "@cs/globals";
+import { clientNext } from "@cs/data/client";
+import { App, layoutQuery } from "@cs/data/schemas";
+import { Footer } from "@cs/ui";
 
 export default async function RootLayout({ children, params: { lang } }: DefaultLayoutProps) {
-    const data: App = await clientNext.fetch(layoutQuery, { appName });
+    const data = await clientNext.fetch<App | null>(layoutQuery, { appName });
 
     if (!data) return <main>{children}</main>;
 
-    const showFooter = data?.hero?.hideFooter;
+    const showFooter = data.hero?.hideFooter;
 
     return (
         <>
             {children}
-            {showFooter && <Footer data={data.footer} lang={lang} />}
+            {showFooter ? <Footer data={data.footer} lang={lang} /> : null}
         </>
     );
 }

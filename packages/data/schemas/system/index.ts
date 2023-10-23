@@ -1,3 +1,3 @@
-export * from './theme';
-export * from './app';
-export * from './label';
+export * from "./app";
+export * from "./label";
+export * from "./palette";

@@ -1,16 +1,15 @@
-import { Note as Data, noteQuery } from 'data/schemas';
-import { getStaticParams, prepareMetadata } from 'data/utils';
-import { DefaultPageProps } from 'globals';
-import { clientNext } from 'globals/lib/sanity';
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
-import { NoteLayout } from 'ui';
+import { notFound } from "next/navigation";
+import { DefaultPageProps } from "@cs/globals";
+import { clientNext } from "@cs/data/client";
+import { Note as Data, noteQuery } from "@cs/data/schemas";
+import { getStaticParams, prepareMetadata } from "@cs/data/utils";
+import { NoteLayout } from "@cs/ui";
 
 export const revalidate = 60;
 
 export default async function Note({ params }: DefaultPageProps) {
     const { slug, lang } = params;
-    const data: Data = await clientNext.fetch(noteQuery, { slug });
+    const data = await clientNext.fetch<Data | null>(noteQuery, { slug });
 
     if (!data) {
         notFound();
@@ -20,9 +19,9 @@ export default async function Note({ params }: DefaultPageProps) {
 }
 
 export async function generateStaticParams() {
-    return getStaticParams('note');
+    return getStaticParams("note");
 }
 
-export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
-    return prepareMetadata({ type: 'note', params });
+export async function generateMetadata({ params }: DefaultPageProps) {
+    return prepareMetadata({ type: "note", params });
 }

@@ -1,8 +1,8 @@
-import { formatLocaleDate, wrapReference, localizeString } from 'data/utils';
-import { Post } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { Body, Cover, LinkWrapper } from '../../blocks';
-import { createStyles } from './PostLayout.styles';
+import { formatLocaleDate, wrapReference, localizeString } from "@cs/data/utils";
+import { Post } from "@cs/data/schemas";
+import { DefaultProps } from "@cs/globals";
+import { Body, Cover, LinkWrapper } from "../../blocks";
+import { createStyles } from "./PostLayout.styles";
 
 interface PostLayoutProps extends DefaultProps {
     data: Post;
@@ -10,7 +10,7 @@ interface PostLayoutProps extends DefaultProps {
 
 export default function PostLayout(props: PostLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, coverCaption, parent, body } = data;
+    const { covers, captionAlt, parent, body } = data;
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const label = localizeString(data.labels?.[0]?.title, lang);
@@ -53,17 +53,23 @@ export default function PostLayout(props: PostLayoutProps) {
                     </div>
                 </div>
                 {/* TITLE */}
-                <h1 className={styles.title}>
-                    <span>{title}</span>
+                <h1 className={styles.titleWrapper}>
+                    <span className={styles.title}>{title}</span>
                 </h1>
-                {/* SUBTITLE */}
                 {subtitle && (
                     <h2 className={styles.subtitleWrapper}>
                         <span className={styles.subtitle}>{subtitle}</span>
                     </h2>
                 )}
                 {/* COVER */}
-                <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
+                <Cover
+                    array={covers}
+                    parent="page"
+                    caption={captionAlt?.caption}
+                    alt={captionAlt?.alt}
+                    lang={lang}
+                    className={styles.cover}
+                />
                 {/* BODY */}
                 <Body data={body} lang={lang} className={styles.body} />
             </main>

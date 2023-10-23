@@ -1,6 +1,7 @@
-import { portableTextSegment } from '../portableText';
+import { groq } from "next-sanity";
+import { portableTextSegment } from "../portableText";
 
-export const localePortableTextSegment = `
+export const localePortableTextSegment = groq`
     fi[] {
         ${portableTextSegment}
     },

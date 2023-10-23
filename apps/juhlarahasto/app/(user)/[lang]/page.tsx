@@ -1,26 +1,26 @@
-import { App, homeQuery } from 'data/schemas';
-import { prepareMetadata } from 'data/utils';
-import { appName, DefaultPageProps } from 'globals';
-import { clientNext } from 'globals/lib/sanity';
-import { getPageVariables, Hero } from 'ui';
-import { Metadata } from 'next';
+import { notFound } from "next/navigation";
+import { appName, DefaultPageProps } from "@cs/globals";
+import { clientNext } from "@cs/data/client";
+import { App, homeQuery } from "@cs/data/schemas";
+import { prepareMetadata } from "@cs/data/utils";
+import { Hero } from "@cs/ui";
+
+export const revalidate = 60;
 
 export default async function Home({ params: { lang } }: DefaultPageProps) {
-    const data: App = await clientNext.fetch(homeQuery, { appName });
+    const data: App | null = await clientNext.fetch(homeQuery, { appName });
 
-    if (!data) return <></>;
+    if (!data) return notFound();
 
     return (
-        <>
-            <main>
-                <Hero data={data.hero} lang={lang} />
-                {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-            </main>
-            <style>{getPageVariables(data.theme)}</style>
-        </>
+        // <>
+        <main>
+            <Hero data={data.hero} lang={lang} />
+        </main>
+        // </>
     );
 }
 
-export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
-    return prepareMetadata({ type: 'app', params });
+export async function generateMetadata({ params }: DefaultPageProps) {
+    return prepareMetadata({ type: "app", params });
 }

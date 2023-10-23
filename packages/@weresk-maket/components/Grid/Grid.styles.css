@@ -1,0 +1,51 @@
+.maket-grid-container {
+    position: absolute;
+    z-index: 9999;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%);
+    max-width: var(--metrics-container);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.maket-grid-rows {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-top: var(--metrics-offset);
+    background-image: linear-gradient(
+        180deg,
+        rgb(var(--grid-color) / 0.15) calc(var(--metrics-module)),
+        transparent calc(var(--metrics-module))
+    );
+    background-size: calc(var(--metrics-module) + var(--metrics-gutter))
+        calc(var(--metrics-module) + var(--metrics-gutter));
+    /* opacity: 0.1; */
+}
+
+.maket-grid-columns {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-left: var(--metrics-offset);
+    padding-right: var(--metrics-offset);
+    display: grid;
+    grid-template-columns: repeat(var(--metrics-columns), minmax(0, 1fr));
+    column-gap: var(--metrics-gutter);
+}
+
+.maket-grid-column {
+    background-color: rgb(var(--grid-color) / 0.15);
+}
+
+.maket-grid-units {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgb(var(--grid-color) / 0.2) 1px, transparent 1px),
+        linear-gradient(to right, rgb(var(--grid-color) / 0.2) 1px, transparent 1px);
+    background-size: var(--metrics-unit) var(--metrics-unit);
+}

@@ -1,5 +1,5 @@
-import { DefaultLayoutProps } from 'globals';
+import { DefaultLayoutProps } from "@cs/globals";
 
-export default async function RootLayout({ children }: DefaultLayoutProps) {
+export default function RootLayout({ children }: DefaultLayoutProps) {
     return <>{children}</>;
 }

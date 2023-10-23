@@ -1,2 +1,1 @@
-export * from './dimentions';
-export * from './theme';
+export * from "./dimentions";

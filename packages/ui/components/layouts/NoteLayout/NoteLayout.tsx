@@ -1,8 +1,8 @@
-import { formatLocaleDate, localizeString } from 'data/utils';
-import { Note } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { Body, Cover } from '../../blocks';
-import { createStyles } from './NoteLayout.styles';
+import { formatLocaleDate, localizeString } from "@cs/data/utils";
+import { Note } from "@cs/data/schemas";
+import { DefaultProps } from "@cs/globals";
+import { Body, Cover } from "../../blocks";
+import { createStyles } from "./NoteLayout.styles";
 
 interface NoteLayoutProps extends DefaultProps {
     data: Note;
@@ -10,7 +10,7 @@ interface NoteLayoutProps extends DefaultProps {
 
 export default function NoteLayout(props: NoteLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, coverCaption, body } = data;
+    const { covers, captionAlt, body } = data;
     const title = localizeString(data.title, lang);
     const date = formatLocaleDate(data.date, lang, true);
     const styles = createStyles({ className });
@@ -25,11 +25,18 @@ export default function NoteLayout(props: NoteLayoutProps) {
                     </p>
                 )}
                 {/* TITLE */}
-                <h1 className={styles.title}>
-                    <span>{title}</span>
+                <h1 className={styles.titleWrapper}>
+                    <span className={styles.title}>{title}</span>
                 </h1>
                 {/* COVER */}
-                <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
+                <Cover
+                    array={covers}
+                    parent="page"
+                    caption={captionAlt?.caption}
+                    alt={captionAlt?.alt}
+                    lang={lang}
+                    className={styles.cover}
+                />
                 {/* BODY */}
                 <Body data={body} lang={lang} className={styles.body} />
             </main>

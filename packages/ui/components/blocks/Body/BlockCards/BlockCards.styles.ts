@@ -1,17 +1,17 @@
-import { cx } from 'class-variance-authority';
-import { CardsType } from 'data';
-import { DefaultStyleProps } from 'globals';
-import { purgeEmptyStrings } from 'globals/utils';
+import { cx } from "class-variance-authority";
+import { CardsType } from "@cs/data";
+import { DefaultStyleProps } from "@cs/globals";
+import { purgeEmptyStrings } from "@cs/globals/utils";
 
-export interface styleProps extends DefaultStyleProps {
+export interface StyleProps extends DefaultStyleProps {
     cardsType: CardsType;
 }
 
 const defaultStyles = {
-    container: 'mt-40'
+    container: "mt-40"
 };
 
-export const createStyles = ({ className }: styleProps) => {
+export const createStyles = ({ className }: StyleProps) => {
     const styles = {
         ...defaultStyles,
         container: cx(defaultStyles.container, className)

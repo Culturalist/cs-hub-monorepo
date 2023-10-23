@@ -1,30 +1,34 @@
-import { cx } from 'class-variance-authority';
-import { Theme } from 'data/schemas';
-import { DefaultStyleProps } from 'globals';
-import { purgeEmptyStrings } from 'globals/utils';
+import { cx } from "class-variance-authority";
+import { DefaultStyleProps } from "@cs/globals";
+import { purgeEmptyStrings } from "@cs/globals/utils";
 
-export interface styleProps extends DefaultStyleProps {
+export interface StyleProps extends DefaultStyleProps {
     leadLength: number;
 }
 
-type LeadSize = 'short' | 'medium' | 'long';
+type LeadSize = "short" | "medium" | "long";
 
 const defaultStyles = {
-    container: 'hero',
-    wrapper: 'h-hero-height pb-offset flex flex-col gap-module justify-between',
-    leadWrapper: '',
-    lead: 'trim-line text-outline hyphens-auto sm:hyphens-none text-theme-text',
-    short: 'typo-caps-huge',
-    medium: 'typo-caps-3xl',
-    long: 'typo-caps-2xl',
-    cards: '',
-    links: 'mb-gutter',
-    bg: 'absolute -z-50 inset-0 w-full h-[100svh] bg-theme-surface',
-    cover: 'w-full h-full'
+    container: "hero",
+    wrapper: "h-hero-height pb-offset flex flex-col gap-module justify-between",
+    leadWrapper: "",
+    lead: "trim-line text-outline hyphens-auto sm:hyphens-none text-on-surface",
+    short: "typo-caps-huge",
+    medium: "typo-caps-3xl",
+    long: "typo-caps-2xl",
+    cards: "",
+    links: "mb-gutter",
+    bg: "absolute -z-50 inset-0 w-full h-[100svh] bg-surface",
+    cover: "w-full h-full"
 };
 
-export const createStyles = ({ className, leadLength }: styleProps) => {
-    const leadSize: LeadSize = leadLength < 30 ? 'short' : leadLength < 120 ? 'medium' : 'long';
+export const createStyles = ({ className, leadLength }: StyleProps) => {
+    let leadSize: LeadSize = "long";
+    if (leadLength < 30) {
+        leadSize = "short";
+    } else if (leadLength < 120) {
+        leadSize = "medium";
+    }
     const styles = {
         ...defaultStyles,
         container: cx(defaultStyles.container, className),

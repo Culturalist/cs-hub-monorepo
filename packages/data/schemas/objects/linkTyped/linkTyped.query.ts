@@ -1,4 +1,6 @@
-export const linkTypedSegment = `
+import { groq } from "next-sanity";
+
+export const linkTypedSegment = groq`
     ...,
     file{
         ...,

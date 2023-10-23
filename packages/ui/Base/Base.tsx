@@ -1,6 +1,6 @@
-import { BodyBlock } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { createStyles } from './Base.styles';
+import { BodyBlock } from "@cs/data/schemas";
+import { DefaultProps } from "@cs/globals";
+import { createStyles } from "./Base.styles";
 
 interface BaseProps extends DefaultProps {
     data?: BodyBlock[];

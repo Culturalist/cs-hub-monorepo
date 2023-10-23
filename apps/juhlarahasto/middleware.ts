@@ -1,17 +1,18 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { match as matchLocale } from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator';
-import { globalConfig, appName } from 'globals';
-import { clientNext } from 'globals/lib/sanity';
-import { langQuery } from 'data/schemas';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { match as matchLocale } from "@formatjs/intl-localematcher";
+import Negotiator from "negotiator";
+import { globalConfig, appName } from "@cs/globals";
+import { clientNext } from "@cs/data/client";
+import { langQuery } from "@cs/data/schemas";
 
-// @ts-ignore locales are readonly
-const locales: string[] = globalConfig.localization.languages.map(l => l.id);
+const locales: string[] = globalConfig.localization.languages.map((l) => l.id);
 const defaultLocale: string = globalConfig.localization.default;
 
 async function filterActive(input: string[]): Promise<string[]> {
-    const data: { languages?: string[] } = await clientNext.fetch(langQuery, { appName });
+    const data: { languages?: string[] } | null = await clientNext.fetch(langQuery, {
+        appName
+    });
     return data?.languages || input;
 }
 
@@ -20,7 +21,7 @@ async function getLocale(request: NextRequest): Promise<string | undefined> {
     const negotiatorHeaders: Record<string, string> = {};
     request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
     // Use negotiator and intl-localematcher to get best locale
-    let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
+    const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
     const active = await filterActive(locales);
 
     return matchLocale(languages, active, defaultLocale);
@@ -32,19 +33,19 @@ export async function middleware(request: NextRequest) {
     //Workaround to fix FB scraper failure
     let isCrawler = false;
     const headers = new Headers(request.headers);
-    if (headers.get('User-Agent').includes('facebookexternalhit')) {
+    if (headers.get("User-Agent")?.includes("facebookexternalhit")) {
         isCrawler = true;
     }
 
-    if (isCrawler && request.headers.has('Range')) {
-        headers.delete('Range');
+    if (isCrawler && request.headers.has("Range")) {
+        headers.delete("Range");
         const response = NextResponse.next({ request: { headers } });
         return response;
     }
 
     // Check if there is any supported locale in the pathname
     const pathnameIsMissingLocale = locales.every(
-        locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+        (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
     );
 
     // Redirect if there is no locale
@@ -55,5 +56,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/((?!api|admin|fonts|assets|_next/static|_ipx|_next/image|favicon.ico|apple-icon.png|icon.png).*)']
+    matcher: ["/((?!api|admin|fonts|assets|_next/static|_ipx|_next/image|favicon.ico|apple-icon.png|icon.png).*)"]
 };

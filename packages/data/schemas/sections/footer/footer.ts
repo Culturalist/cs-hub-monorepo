@@ -1,11 +1,11 @@
-import { appConfig, ImageObject } from 'globals';
-import { defineType, defineField } from '@sanity/types';
-import { PageDocument } from '../../documents';
-import { LinkContact } from '../../objects/linkContact';
-import { LocalePortableText } from '../../objects/localePortableText';
+import { appConfig, ImageObject } from "@cs/globals";
+import { defineType, defineField } from "@sanity/types";
+import { PageDocument } from "../../documents";
+import { LinkContact } from "../../objects/linkContact";
+import { LocalePortableText } from "../../objects/localePortableText";
 
 export interface Footer {
-    _type: 'footer';
+    _type: "footer";
     logo?: ImageObject;
     links?: PageDocument[];
     contacts?: LocalePortableText;
@@ -14,28 +14,30 @@ export interface Footer {
 
 export default function footer() {
     return defineType({
-        name: 'footer',
-        title: 'Footer',
-        type: 'object',
+        name: "footer",
+        title: "Footer",
+        type: "object",
         fields: [
             defineField({
-                name: 'logo',
-                title: 'Logo',
-                type: 'image',
-                description: 'Only SVG or PNG with transparency can be used.',
+                name: "logo",
+                title: "Logo",
+                type: "image",
+                description: "Only SVG or PNG with transparency can be used.",
                 options: {
-                    accept: '.svg,.png'
+                    accept: ".svg,.png"
                 }
             }),
             defineField({
-                name: 'links',
-                title: 'Links',
-                description: 'Bottom navigation',
-                type: 'array',
+                name: "links",
+                title: "Links",
+                description: "Bottom navigation",
+                type: "array",
                 of: [
                     {
-                        type: 'reference',
-                        to: appConfig.schemas.navigation.map(docType => ({ type: docType })),
+                        type: "reference",
+                        to: appConfig.schemas.navigation.map((docType) => ({
+                            type: docType
+                        })),
                         options: {
                             disableNew: true
                         }
@@ -43,15 +45,15 @@ export default function footer() {
                 ]
             }),
             defineField({
-                name: 'contacts',
-                title: 'Contacts',
-                type: 'localePortableTextField'
+                name: "contacts",
+                title: "Contacts",
+                type: "localePortableTextField"
             }),
             defineField({
-                name: 'social',
-                title: 'Social links',
-                type: 'array',
-                of: [{ type: 'linkContact' }]
+                name: "social",
+                title: "Social links",
+                type: "array",
+                of: [{ type: "linkContact" }]
             })
         ]
     });

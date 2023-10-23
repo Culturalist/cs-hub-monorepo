@@ -1,4 +1,6 @@
-export const portableTextSegment = `
+import { groq } from "next-sanity";
+
+export const portableTextSegment = groq`
     ...,
     markDefs[] {
         ...,

@@ -1,8 +1,8 @@
-import { globalConfig, ListItem } from 'globals';
+import { globalConfig, ListItem } from "@cs/globals";
 
 export function getAppLanguageList(): ListItem[] {
     let languageList: ListItem[] = [];
-    globalConfig.localization.languages.forEach(languageItem => {
+    globalConfig.localization.languages.forEach((languageItem) => {
         if (languageItem) {
             languageList.push({
                 value: languageItem.id,

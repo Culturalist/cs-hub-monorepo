@@ -1,0 +1,32 @@
+{
+    "name": "@weresk/maket",
+    "version": "0.0.0",
+    "main": "./index.ts",
+    "license": "MIT",
+    "scripts": {
+        "lint": "eslint \"**/*.ts*\""
+    },
+    "browserslist": [
+        "defaults "
+    ],
+    "dependencies": {
+        "@sanity/icons": "^2.5.0",
+        "@weresk/core": "workspace:*",
+        "lodash": "^4.17.21",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-hotkeys-hook": "^4.4.1"
+    },
+    "devDependencies": {
+        "@sanity/types": "^3.16.7",
+        "@types/lodash": "^4.14.199",
+        "@types/node": "^17.0.12",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "eslint-config-custom": "workspace:*",
+        "postcss": "^8.4.28",
+        "tailwindcss": "^3.3.3",
+        "tsconfig": "workspace:*",
+        "typescript": "^5.2.2"
+    }
+}

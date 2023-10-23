@@ -1,24 +1,25 @@
-import { defineConfig } from 'sanity';
-import { deskTool } from 'sanity/desk';
-import { visionTool } from '@sanity/vision';
-import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
-import { ToolMenuApp } from 'ui';
-import StudioLogo from './studio/StudioLogo';
-import { globalConfig, appConfig, appName, DocumentAny, capitalize } from 'globals';
-import { initialValueTemplates, schemaTypes } from 'data/schemas';
-import { languageFilter } from '@sanity/language-filter';
-import { languageFilterConfig } from 'globals/lib/language-filter';
-import { colorInput } from '@sanity/color-input';
-import { deskStructure } from 'data';
+import { defineConfig } from "sanity";
+import { deskTool } from "sanity/desk";
+import { visionTool } from "@sanity/vision";
+import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
+import { scheduledPublishing } from "@sanity/scheduled-publishing";
+import { ToolMenuApp } from "@cs/ui";
+import StudioLogo from "./studio/StudioLogo";
+import { globalConfig, appConfig, appName, DocumentAny, capitalize } from "@cs/globals";
+import { initialValueTemplates, schemaTypes } from "@cs/data/schemas";
+import { languageFilter } from "@sanity/language-filter";
+import { languageFilterConfig } from "@cs/globals/lib/language-filter";
+import { colorInput } from "@sanity/color-input";
+import { deskStructure } from "@cs/data";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "";
 
 export default defineConfig({
     name: appName,
     title: appConfig.title,
-    basePath: '/admin',
+    basePath: "/admin",
     projectId,
-    dataset: 'production',
+    dataset: "production",
     apiVersion: globalConfig.latestUpdate,
 
     plugins: [
@@ -26,10 +27,10 @@ export default defineConfig({
         languageFilter(languageFilterConfig()),
         colorInput(),
         vercelDeployTool()
+        // scheduledPublishing()
         // visionTool()
     ],
     schema: {
-        //@ts-ignore
         types: schemaTypes(),
         templates: initialValueTemplates
     },
@@ -43,19 +44,19 @@ export default defineConfig({
         actions: (prev, { schemaType }) => {
             if (!appConfig.schemas.create.includes(schemaType as DocumentAny)) {
                 return prev.filter(
-                    prevAction =>
-                        prevAction.action !== 'unpublish' &&
-                        prevAction.action !== 'delete' &&
-                        prevAction.action !== 'duplicate'
+                    (prevAction) =>
+                        prevAction.action !== "unpublish" &&
+                        prevAction.action !== "delete" &&
+                        prevAction.action !== "duplicate"
                 );
             }
             return prev;
         },
         newDocumentOptions: () => {
-            return appConfig.schemas.create.map(docType => ({
+            return appConfig.schemas.create.map((docType) => ({
                 title: capitalize(docType),
                 templateId: `${docType}-with-initial`,
-                type: 'initialValueTemplateItem'
+                type: "initialValueTemplateItem"
             }));
         }
     }

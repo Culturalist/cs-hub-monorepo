@@ -1,5 +1,5 @@
-import { groq } from 'next-sanity';
-import { bodySegment, mediaBlockSegment } from '../../objects';
+import { groq } from "next-sanity";
+import { bodySegment, mediaBlockSegment } from "../../objects";
 
 export const pageQuery = groq`*[_type == 'page' && slug.current == $slug][0]{
     ...,
@@ -9,5 +9,5 @@ export const pageQuery = groq`*[_type == 'page' && slug.current == $slug][0]{
     body[] {
         ${bodySegment}
     },
-    theme->
+    palette->
 }`;

@@ -1,7 +1,8 @@
-import { groq } from 'next-sanity';
-import { linkTypedSegment, localePortableTextSegment } from '../../objects';
+import { groq } from "next-sanity";
+import { linkTypedSegment, localePortableTextSegment } from "../../objects";
 
 export const layoutQuery = groq`*[_type == 'app' && _id == $appName][0]{
+    title,
     languages[],
     header {
         ...,
@@ -24,5 +25,5 @@ export const layoutQuery = groq`*[_type == 'app' && _id == $appName][0]{
     hero {
         hideFooter
     },
-    theme->
+    palette->
 }`;

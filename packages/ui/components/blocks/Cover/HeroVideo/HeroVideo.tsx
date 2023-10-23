@@ -1,10 +1,10 @@
-'use client';
-import { DefaultProps } from 'globals';
-import { createStyles } from './HeroVideo.styles';
-import { ImageSources, UseMedia, VideoSources } from 'data/schemas';
-import { useEffect, useRef, useState } from 'react';
-import { getImageUrl } from 'globals/lib/sanity';
-import metrics from '../../../../metrics';
+"use client";
+import { DefaultProps } from "@cs/globals";
+import { createStyles } from "./HeroVideo.styles";
+import { ImageSources, UseMedia, VideoSources } from "@cs/data/schemas";
+import { useEffect, useRef, useState } from "react";
+import { getImageUrl } from "@cs/globals/lib/sanity";
+import metrics from "../../../../metrics";
 
 interface HeroVideoProps extends DefaultProps {
     sources: VideoSources;
@@ -14,8 +14,8 @@ interface HeroVideoProps extends DefaultProps {
 export default function HeroVideo(props: HeroVideoProps) {
     const { className } = props;
     const sources = {
-        mobile: props.sources?.mobile || props.sources?.desktop,
-        desktop: props.sources?.desktop || props.sources?.mobile
+        mobile: props.sources.mobile || props.sources.desktop,
+        desktop: props.sources.desktop || props.sources.mobile
     };
     const posters = {
         mobile: props.posters?.mobile || props.posters?.desktop,
@@ -23,9 +23,9 @@ export default function HeroVideo(props: HeroVideoProps) {
     };
     const responsive = sources.desktop?.url !== sources.mobile?.url;
     const videoRef = useRef<HTMLVideoElement>(null);
-    const device = useRef<UseMedia>('desktop');
+    const device = useRef<UseMedia>("desktop");
     const [source, setSource] = useState(sources[device.current]);
-    const [trim, setTrim] = useState<'x' | 'y' | 'load'>('load');
+    const [trim, setTrim] = useState<"x" | "y" | "load">("load");
     const videoId = sources[device.current]?.asset?._id;
 
     const styles = createStyles({ className });
@@ -41,19 +41,26 @@ export default function HeroVideo(props: HeroVideoProps) {
 
     function validateSize() {
         if (responsive) {
-            if (window.innerWidth > window.innerHeight && device.current == 'mobile') {
-                changeSource('desktop');
-            } else if (window.innerWidth <= window.innerHeight && device.current == 'desktop') {
-                changeSource('mobile');
+            if (
+                window.innerWidth > window.innerHeight &&
+                device.current === "mobile"
+            ) {
+                changeSource("desktop");
+            } else if (
+                window.innerWidth <= window.innerHeight &&
+                device.current === "desktop"
+            ) {
+                changeSource("mobile");
             }
         }
 
         if (videoRef.current) {
-            if (videoRef.current?.videoHeight) {
+            if (videoRef.current.videoHeight) {
                 setTrim(
-                    videoRef.current.videoWidth / videoRef.current.videoHeight > window.innerWidth / window.innerHeight
-                        ? 'x'
-                        : 'y'
+                    videoRef.current.videoWidth / videoRef.current.videoHeight >
+                        window.innerWidth / window.innerHeight
+                        ? "x"
+                        : "y"
                 );
             } else {
                 setTimeout(validateSize, 500);
@@ -63,8 +70,10 @@ export default function HeroVideo(props: HeroVideoProps) {
 
     useEffect(() => {
         validateSize();
-        window.addEventListener('resize', validateSize);
-        return () => window.removeEventListener('resize', validateSize);
+        window.addEventListener("resize", validateSize);
+        return () => {
+            window.removeEventListener("resize", validateSize);
+        };
     }, [videoRef]);
 
     if (!source) return null;
@@ -77,8 +86,8 @@ export default function HeroVideo(props: HeroVideoProps) {
                 poster={
                     posters[device.current] &&
                     getImageUrl(
-                        posters[device.current]!,
-                        device.current == 'mobile'
+                        posters[device.current],
+                        device.current === "mobile"
                             ? metrics.breakpoints.sm * metrics.pd.xs
                             : metrics.breakpoints.lg * metrics.pd.lg
                     )

@@ -1,8 +1,8 @@
-export type Locale = 'fi' | 'ru' | 'en';
-export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg';
+export type Locale = "fi" | "ru" | "en";
+export type Breakpoint = "xs" | "sm" | "md" | "lg";
 
-export type DocumentApp = 'app' | 'page' | 'person' | 'post' | 'project' | 'event' | 'note' | 'organisation';
-export type DocumentSystem = 'theme' | 'label';
+export type DocumentApp = "app" | "page" | "person" | "post" | "project" | "event" | "note" | "organisation";
+export type DocumentSystem = "label" | "palette";
 export type DocumentAny = DocumentApp | DocumentSystem;
 
 export interface AppConfig {

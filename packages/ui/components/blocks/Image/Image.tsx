@@ -1,9 +1,9 @@
-import { LocaleString } from 'data/schemas';
-import { Breakpoint, DefaultProps } from 'globals';
-import { localizeString } from 'data/utils';
-import { AdaptiveDimentions } from '../../../utils';
-import { createStyles } from './Image.styles';
-import metrics from '../../../metrics';
+import { LocaleString } from "@cs/data/schemas";
+import { Breakpoint, DefaultProps } from "@cs/globals";
+import { localizeString } from "@cs/data/utils";
+import { AdaptiveDimentions } from "../../../utils";
+import { createStyles } from "./Image.styles";
+import metrics from "../../../metrics";
 
 interface ImageProps extends DefaultProps {
     sources?: Record<Breakpoint, string>;

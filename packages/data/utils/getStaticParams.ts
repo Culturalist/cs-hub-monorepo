@@ -1,8 +1,8 @@
-import { DefaultPageProps, globalConfig } from 'globals';
-import { groq } from 'next-sanity';
-import { clientNext } from 'globals/lib/sanity';
+import { DefaultPageProps, globalConfig } from "@cs/globals";
+import { groq } from "next-sanity";
+import { clientNext } from "../client";
 
-type Param = Partial<DefaultPageProps['params']>;
+type Param = Partial<DefaultPageProps["params"]>;
 
 export async function getStaticParams(docType: string): Promise<Param[]> {
     let params: Param[] = [];
@@ -11,8 +11,8 @@ export async function getStaticParams(docType: string): Promise<Param[]> {
     params = [...pages];
 
     let localeParams: Param[] = [];
-    globalConfig.localization.languages.forEach(language => {
-        params.forEach(param => {
+    globalConfig.localization.languages.forEach((language) => {
+        params.forEach((param) => {
             localeParams.push({ ...param, lang: language.id });
         });
     });

@@ -1,12 +1,12 @@
-import { defineType, defineField } from '@sanity/types';
-import { ContactType, contactTypeList } from './linkContact.values';
-import { LinkIcon } from '@sanity/icons';
-import { capitalize } from 'globals/utils';
-import { LocaleString } from '../localeString';
-import { selectDefaultLocale } from '../../../utils';
+import { defineType, defineField } from "@sanity/types";
+import { ContactType, contactTypeList } from "./linkContact.values";
+import { LinkIcon } from "@sanity/icons";
+import { capitalize } from "@cs/globals/utils";
+import { LocaleString } from "../localeString";
+import { selectDefaultLocale } from "../../../utils";
 
 export interface LinkContact {
-    _type: 'linkContact';
+    _type: "linkContact";
     _key: string;
     type: ContactType;
     caption?: LocaleString;
@@ -16,56 +16,59 @@ export interface LinkContact {
 
 export default function linkContact() {
     return defineType({
-        name: 'linkContact',
-        title: 'Contact',
-        type: 'object',
+        name: "linkContact",
+        title: "Contact",
+        type: "object",
         fields: [
             {
-                name: 'type',
-                title: 'Type',
-                type: 'string',
-                initialValue: 'email',
+                name: "type",
+                title: "Type",
+                type: "string",
+                initialValue: "email",
                 options: {
                     list: contactTypeList
                 },
-                validation: Rule => Rule.required()
+                validation: (Rule) => Rule.required()
             },
             defineField({
-                name: 'caption',
-                title: 'Caption',
-                type: 'localeString',
-                hidden: ({ parent }) => parent?.type !== 'website'
+                name: "caption",
+                title: "Caption",
+                type: "localeString",
+                hidden: ({ parent }) => parent?.type !== "website"
             }),
             defineField({
-                name: 'phone',
-                title: 'Phone number',
-                type: 'string',
-                hidden: ({ parent }) => parent?.type !== 'phone'
+                name: "phone",
+                title: "Phone number",
+                type: "string",
+                hidden: ({ parent }) => parent?.type !== "phone"
             }),
             {
-                name: 'url',
-                title: 'URL',
-                type: 'url',
+                name: "url",
+                title: "URL",
+                type: "url",
                 description: `URL starts with "http://" or "https://" and email with "mailto"`,
-                validation: Rule =>
+                validation: (Rule) =>
                     Rule.uri({
-                        scheme: ['http', 'https', 'mailto']
+                        scheme: ["http", "https", "mailto"]
                     }),
-                hidden: ({ parent }) => parent?.type == 'phone'
+                hidden: ({ parent }) => parent?.type == "phone"
             }
         ],
         preview: {
             select: {
-                type: 'type',
-                caption: 'caption',
-                url: 'url',
-                phone: 'phone'
+                type: "type",
+                caption: "caption",
+                url: "url",
+                phone: "phone"
             },
             prepare({ type, caption, url, phone }) {
                 const localeCaption = selectDefaultLocale(caption);
                 return {
-                    title: type == 'website' && localeCaption ? localeCaption : capitalize(type) || 'Contact',
-                    subtitle: type == 'phone' ? phone : url
+                    title:
+                        type == "website" && localeCaption
+                            ? localeCaption
+                            : capitalize(type) || "Contact",
+                    subtitle: type == "phone" ? phone : url
                 };
             }
         },

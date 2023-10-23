@@ -1,13 +1,13 @@
-import { defineType, defineField } from '@sanity/types';
-import { InlineElementIcon } from '@sanity/icons';
-import { selectDefaultLocale } from '../../../utils';
-import { LocaleString } from '../localeString';
-import { LinkTyped } from '../linkTyped';
-import { themeColors } from '../../system';
-import { Color, ImageObject } from 'globals';
+import { defineType, defineField } from "@sanity/types";
+import { InlineElementIcon } from "@sanity/icons";
+import { selectDefaultLocale } from "../../../utils";
+import { LocaleString } from "../localeString";
+import { LinkTyped } from "../linkTyped";
+import { Color, ImageObject } from "@cs/globals";
+import { swatches } from "../../system";
 
 export interface CardManual {
-    _type: 'cardManual';
+    _type: "cardManual";
     _key: string;
     title?: LocaleString;
     subtitle?: LocaleString;
@@ -18,13 +18,13 @@ export interface CardManual {
 
 export default function cardManual() {
     return defineType({
-        name: 'cardManual',
-        title: 'Card',
-        type: 'object',
+        name: "cardManual",
+        title: "Card",
+        type: "object",
         fieldsets: [
             {
-                name: 'style',
-                title: 'Style',
+                name: "style",
+                title: "Style",
                 options: {
                     collapsible: true,
                     collapsed: true
@@ -33,50 +33,50 @@ export default function cardManual() {
         ],
         fields: [
             defineField({
-                name: 'title',
-                title: 'Title',
-                type: 'localeString'
+                name: "title",
+                title: "Title",
+                type: "localeString"
             }),
             defineField({
-                name: 'subtitle',
-                title: 'Subtitle',
-                type: 'localeString',
+                name: "subtitle",
+                title: "Subtitle",
+                type: "localeString",
                 options: {
                     collapsible: true,
                     collapsed: true
                 }
             }),
             defineField({
-                name: 'link',
-                title: 'Link',
-                type: 'linkTyped'
+                name: "link",
+                title: "Link",
+                type: "linkTyped"
             }),
             defineField({
-                name: 'cover',
-                title: 'Cover',
-                type: 'image'
+                name: "cover",
+                title: "Cover",
+                type: "image"
             }),
             defineField({
-                name: 'cardSurface',
-                title: 'Custom color',
-                type: 'color',
+                name: "cardSurface",
+                title: "Custom color",
+                type: "color",
                 options: {
-                    colorList: themeColors
+                    colorList: swatches
                 },
-                fieldset: 'style'
+                fieldset: "style"
             })
         ],
         preview: {
             select: {
-                title: 'title',
-                cover: 'cover'
+                title: "title",
+                cover: "cover"
             },
             prepare({ title, cover }) {
                 const localeTitle = selectDefaultLocale(title);
-                const url = '';
+                const url = "";
                 return {
-                    title: localeTitle || 'Card',
-                    subtitle: localeTitle ? url : '',
+                    title: localeTitle || "Card",
+                    subtitle: localeTitle ? url : "",
                     media: cover
                 };
             }

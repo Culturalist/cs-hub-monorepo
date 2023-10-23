@@ -1,104 +1,104 @@
-import { defineType, defineField, SanityDocument, Slug } from '@sanity/types';
-import { DocumentIcon } from '@sanity/icons';
-import { BodyBlock, CoverBlock, LocaleString } from '../../objects';
-import { MetadataPage } from '../../sections';
-import { getMediaCover, selectDefaultLocale } from '../../../utils';
-import { globalConfig } from 'globals';
-import { Theme } from '../../system';
+import { defineType, defineField, SanityDocument, Slug } from "@sanity/types";
+import { DocumentIcon } from "@sanity/icons";
+import { BodyBlock, CaptionAlt, CoverBlock, LocaleString } from "../../objects";
+import { MetadataPage } from "../../sections";
+import { getMediaCover, selectDefaultLocale } from "../../../utils";
+import { globalConfig } from "@cs/globals";
+import { Palette } from "@weresk/maket";
 
 export interface Page extends SanityDocument {
-    _type: 'page' | 'reference';
+    _type: "page" | "reference";
     _ref?: string;
     _key?: string;
     title?: LocaleString;
     slug: Slug;
     covers?: CoverBlock[];
-    coverCaption?: LocaleString;
+    captionAlt?: CaptionAlt;
     index?: boolean;
     body?: BodyBlock[];
-    theme?: Theme;
+    palette?: Palette;
     metadata?: MetadataPage;
 }
 
 export default function page() {
     return defineType({
-        name: 'page',
-        title: 'Page',
-        type: 'document',
+        name: "page",
+        title: "Page",
+        type: "document",
         groups: [
             {
-                name: 'card',
-                title: 'Card'
+                name: "card",
+                title: "Card"
             },
             {
-                name: 'page',
-                title: 'Page'
+                name: "page",
+                title: "Page"
             },
             {
-                name: 'style',
-                title: 'Style'
+                name: "style",
+                title: "Style"
             },
             {
-                name: 'seo',
-                title: 'SEO'
+                name: "seo",
+                title: "SEO"
             }
         ],
         fields: [
             defineField({
-                name: 'title',
-                title: 'Title',
-                type: 'localeString',
-                group: 'card'
+                name: "title",
+                title: "Title",
+                type: "localeString",
+                group: "card"
             }),
             defineField({
-                name: 'slug',
-                type: 'normalizedSlug',
-                validation: Rule => Rule.required(),
-                group: 'card'
+                name: "slug",
+                type: "normalizedSlug",
+                validation: (Rule) => Rule.required(),
+                group: "card"
             }),
             defineField({
-                name: 'covers',
-                title: 'Covers',
-                type: 'coverArray',
-                group: 'page'
+                name: "covers",
+                title: "Covers",
+                type: "coverArray",
+                group: "page"
             }),
             defineField({
-                name: 'coverCaption',
-                title: 'Cover caption',
-                type: 'localeString',
+                name: "captionAlt",
+                title: "Cover caption & alternative text",
+                type: "captionAlt",
                 options: {
                     collapsible: true,
                     collapsed: true
                 },
-                group: 'page'
+                group: "page"
             }),
             defineField({
-                name: 'index',
-                title: 'Page index',
-                description: 'Creates page index from blocks with titles and IDs',
-                type: 'boolean',
+                name: "index",
+                title: "Page index",
+                description: "Creates page index from blocks with titles and IDs",
+                type: "boolean",
                 initialValue: false,
-                group: 'page'
+                group: "page"
             }),
             defineField({
-                name: 'body',
-                type: 'bodyPage',
-                title: 'Body',
-                group: 'page'
+                name: "body",
+                type: "bodyPage",
+                title: "Body",
+                group: "page"
             }),
             defineField({
-                name: 'theme',
-                title: 'Page theme',
-                type: 'reference',
-                description: 'If not set – default website theme will be used',
-                to: [{ type: 'theme' }],
-                group: 'style'
+                name: "palette",
+                title: "Page palette",
+                type: "reference",
+                description: "If not set – default website palette will be used",
+                to: [{ type: "palette" }],
+                group: "style"
             }),
             defineField({
-                name: 'metadata',
-                title: 'Metadata',
-                type: 'metadataPage',
-                group: 'seo',
+                name: "metadata",
+                title: "Metadata",
+                type: "metadataPage",
+                group: "seo",
                 options: {
                     collapsed: true
                 }
@@ -106,16 +106,16 @@ export default function page() {
         ],
         preview: {
             select: {
-                title: 'title',
-                covers: 'covers',
-                metaCover: 'metadata.sharedImage'
+                title: "title",
+                covers: "covers",
+                metaCover: "metadata.sharedImage"
             },
             prepare({ title, covers, metaCover }) {
                 const localeTitle = selectDefaultLocale(title);
                 const cover = getMediaCover(covers) || metaCover;
                 return {
-                    title: localeTitle || 'Page',
-                    subtitle: localeTitle ? 'Page' : '',
+                    title: localeTitle || "Page",
+                    subtitle: localeTitle ? "Page" : "",
                     media: cover
                 };
             }
@@ -123,9 +123,14 @@ export default function page() {
         icon: DocumentIcon,
         orderings: [
             {
-                title: 'Title',
-                name: 'titleAsc',
-                by: [{ field: `title.${globalConfig.localization.default}`, direction: 'asc' }]
+                title: "Title",
+                name: "titleAsc",
+                by: [
+                    {
+                        field: `title.${globalConfig.localization.default}`,
+                        direction: "asc"
+                    }
+                ]
             }
         ]
     });

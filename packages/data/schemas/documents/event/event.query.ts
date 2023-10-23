@@ -1,5 +1,5 @@
-import { groq } from 'next-sanity';
-import { bodySegment, linkTypedSegment, mediaBlockSegment } from '../../objects';
+import { groq } from "next-sanity";
+import { bodySegment, linkTypedSegment, mediaBlockSegment } from "../../objects";
 
 export const eventQuery = groq`*[_type == 'event' && slug.current == $slug][0]{
     ...,
@@ -26,5 +26,5 @@ export const eventQuery = groq`*[_type == 'event' && slug.current == $slug][0]{
     body[] {
         ${bodySegment}
     },
-    theme->
+    palette->
 }`;

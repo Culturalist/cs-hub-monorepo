@@ -1,8 +1,8 @@
-import { localizeString } from 'data/utils';
-import { BlockSchedule } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { createStyles } from './BlockSchedule.styles';
-import PortableText from '../../PortableText';
+import { localizeString } from "@cs/data/utils";
+import { BlockSchedule } from "@cs/data/schemas";
+import { DefaultProps } from "@cs/globals";
+import { createStyles } from "./BlockSchedule.styles";
+import PortableText from "../../PortableText";
 
 interface BlockScheduleProps extends DefaultProps {
     data: BlockSchedule;
@@ -11,7 +11,7 @@ interface BlockScheduleProps extends DefaultProps {
 export default function BlockSchedule(props: BlockScheduleProps) {
     const { data, lang, className } = props;
     const { schedule } = data;
-    if (!schedule || schedule.length == 0) return null;
+    if (!schedule || schedule.length === 0) return null;
 
     const styles = createStyles({ className });
 
@@ -33,12 +33,16 @@ export default function BlockSchedule(props: BlockScheduleProps) {
                         <div className={styles.contentCol}>
                             {title && (
                                 <h3 className={styles.titleWrapper}>
-                                    <span className={styles.title}>{title}</span>
+                                    <span className={styles.title}>
+                                        {title}
+                                    </span>
                                 </h3>
                             )}
                             {subtitle && (
                                 <p className={styles.subtitleWrapper}>
-                                    <span className={styles.subtitle}>{subtitle}</span>
+                                    <span className={styles.subtitle}>
+                                        {subtitle}
+                                    </span>
                                 </p>
                             )}
                             <PortableText

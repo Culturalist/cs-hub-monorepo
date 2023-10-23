@@ -1,7 +1,4 @@
 module.exports = {
     reactStrictMode: true,
-    transpilePackages: ['globals', 'data', 'ui'],
-    experimental: {
-        appDir: true
-    }
+    transpilePackages: ["@cs/globals", "@cs/data", "@cs/ui", "@weresk/core", "@weresk/maket"]
 };

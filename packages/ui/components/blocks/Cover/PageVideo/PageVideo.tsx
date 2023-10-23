@@ -1,11 +1,16 @@
-'use client';
-import { DefaultProps } from 'globals';
-import { createStyles } from './PageVideo.styles';
-import { ImageSources, LocaleString, UseMedia, VideoSources } from 'data/schemas';
-import { useEffect, useRef, useState } from 'react';
-import { getImageUrl } from 'globals/lib/sanity';
-import metrics from '../../../../metrics';
-import { localizeString } from 'data/utils';
+"use client";
+import { DefaultProps } from "@cs/globals";
+import { createStyles } from "./PageVideo.styles";
+import {
+    ImageSources,
+    LocaleString,
+    UseMedia,
+    VideoSources
+} from "@cs/data/schemas";
+import { useEffect, useRef, useState } from "react";
+import { getImageUrl } from "@cs/globals/lib/sanity";
+import metrics from "../../../../metrics";
+import { localizeString } from "@cs/data/utils";
 
 interface PageVideoProps extends DefaultProps {
     sources: VideoSources;
@@ -16,8 +21,8 @@ interface PageVideoProps extends DefaultProps {
 export default function PageVideo(props: PageVideoProps) {
     const { className, lang } = props;
     const sources = {
-        mobile: props.sources?.mobile || props.sources?.desktop,
-        desktop: props.sources?.desktop || props.sources?.mobile
+        mobile: props.sources.mobile || props.sources.desktop,
+        desktop: props.sources.desktop || props.sources.mobile
     };
     const posters = {
         mobile: props.posters?.mobile || props.posters?.desktop,
@@ -27,9 +32,9 @@ export default function PageVideo(props: PageVideoProps) {
     const responsive = sources.desktop?.url !== sources.mobile?.url;
     const containerRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const device = useRef<UseMedia>('desktop');
+    const device = useRef<UseMedia>("desktop");
     const [source, setSource] = useState(sources[device.current]);
-    const [trim, setTrim] = useState<'x' | 'y' | 'load'>('load');
+    const [trim, setTrim] = useState<"x" | "y" | "load">("load");
     const videoId = sources[device.current]?.asset?._id;
     const styles = createStyles({ className });
 
@@ -46,24 +51,30 @@ export default function PageVideo(props: PageVideoProps) {
         if (videoRef.current && containerRef.current) {
             if (responsive) {
                 if (
-                    containerRef.current.clientWidth > containerRef.current.clientHeight &&
-                    device.current == 'mobile'
+                    containerRef.current.clientWidth >
+                        containerRef.current.clientHeight &&
+                    device.current === "mobile"
                 ) {
-                    changeSource('desktop');
+                    changeSource("desktop");
                 } else if (
-                    containerRef.current.clientWidth <= containerRef.current.clientHeight &&
-                    device.current == 'desktop'
+                    containerRef.current.clientWidth <=
+                        containerRef.current.clientHeight &&
+                    device.current === "desktop"
                 ) {
-                    changeSource('mobile');
+                    changeSource("mobile");
                 }
             }
 
-            if (videoRef.current?.videoHeight && containerRef.current?.clientHeight) {
+            if (
+                videoRef.current.videoHeight &&
+                containerRef.current.clientHeight
+            ) {
                 setTrim(
                     videoRef.current.videoWidth / videoRef.current.videoHeight >
-                        containerRef.current.clientWidth / containerRef.current.clientHeight
-                        ? 'x'
-                        : 'y'
+                        containerRef.current.clientWidth /
+                            containerRef.current.clientHeight
+                        ? "x"
+                        : "y"
                 );
             } else {
                 setTimeout(validateSize, 500);
@@ -73,8 +84,10 @@ export default function PageVideo(props: PageVideoProps) {
 
     useEffect(() => {
         validateSize();
-        window.addEventListener('resize', validateSize);
-        return () => window.removeEventListener('resize', validateSize);
+        window.addEventListener("resize", validateSize);
+        return () => {
+            window.removeEventListener("resize", validateSize);
+        };
     }, [videoRef, containerRef]);
 
     if (!source) return null;
@@ -88,8 +101,8 @@ export default function PageVideo(props: PageVideoProps) {
                     poster={
                         posters[device.current] &&
                         getImageUrl(
-                            posters[device.current]!,
-                            device.current == 'mobile'
+                            posters[device.current],
+                            device.current === "mobile"
                                 ? metrics.breakpoints.sm * metrics.pd.xs
                                 : metrics.breakpoints.lg * metrics.pd.lg
                         )

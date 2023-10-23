@@ -1,10 +1,10 @@
-import { Person } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { localizeString } from 'data/utils';
-import { LinkContact, PortableText } from '../../blocks';
-import { createStyles } from './PersonLayout.styles';
-import { getImageUrl } from 'globals/lib/sanity';
-import metrics from '../../../metrics';
+import { Person } from "@cs/data/schemas";
+import { DefaultProps } from "@cs/globals";
+import { localizeString } from "@cs/data/utils";
+import { LinkContact, PortableText } from "../../blocks";
+import { createStyles } from "./PersonLayout.styles";
+import { getImageUrl } from "@cs/globals/lib/sanity";
+import metrics from "../../../metrics";
 
 interface PersonLayoutProps extends DefaultProps {
     data: Person;
@@ -22,8 +22,8 @@ export default function PersonLayout(props: PersonLayoutProps) {
     return (
         <main className={styles.container}>
             {/* NAME */}
-            <h1 className={styles.name}>
-                <span>{name}</span>
+            <h1 className={styles.nameWrapper}>
+                <span className={styles.name}>{name}</span>
             </h1>
             {subtitle && (
                 <p className={styles.subtitleWrapper}>

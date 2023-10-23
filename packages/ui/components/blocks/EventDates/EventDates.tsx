@@ -1,8 +1,8 @@
-import { ElementDate } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { formatLocaleDate, localizeString } from 'data/utils';
-import LinkWrapper from '../LinkWrapper';
-import { createStyles } from './EventDates.styles';
+import { ElementDate } from "@cs/data/schemas";
+import { DefaultProps } from "@cs/globals";
+import { formatLocaleDate, localizeString } from "@cs/data/utils";
+import LinkWrapper from "../LinkWrapper";
+import { createStyles } from "./EventDates.styles";
 
 interface EventDatesProps extends DefaultProps {
     data?: ElementDate[];
@@ -10,7 +10,7 @@ interface EventDatesProps extends DefaultProps {
 
 export default function EventDates(props: EventDatesProps) {
     const { data, lang, className } = props;
-    if (!data || data.length == 0) return null;
+    if (!data || data.length === 0) return null;
 
     const styles = createStyles({ className });
 
@@ -19,7 +19,7 @@ export default function EventDates(props: EventDatesProps) {
             {data.map((event, i) => {
                 const { start, end, mapUrl } = event;
                 const date = formatLocaleDate(event.date, lang);
-                const time = `${start || ''}${end ? '-' + end : ''}`;
+                const time = `${start || ""}${end ? "-" + end : ""}`;
                 const location = localizeString(event.location, lang);
                 return (
                     <div className={styles.event} key={i}>
@@ -29,13 +29,21 @@ export default function EventDates(props: EventDatesProps) {
                             </p>
                         )}
                         <p className={styles.details}>
-                            {time && <span className={styles.time}>{time}</span>}
+                            {time && (
+                                <span className={styles.time}>{time}</span>
+                            )}
                             {location && (
                                 <LinkWrapper
                                     href={mapUrl}
-                                    className={mapUrl ? styles.locationLink : styles.locationWrapper}
+                                    className={
+                                        mapUrl
+                                            ? styles.locationLink
+                                            : styles.locationWrapper
+                                    }
                                 >
-                                    <span className={styles.location}>{location}</span>
+                                    <span className={styles.location}>
+                                        {location}
+                                    </span>
                                 </LinkWrapper>
                             )}
                         </p>

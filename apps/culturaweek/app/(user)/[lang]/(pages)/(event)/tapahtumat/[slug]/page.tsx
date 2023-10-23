@@ -1,16 +1,15 @@
-import { Event as Data, eventQuery } from 'data/schemas';
-import { getStaticParams, prepareMetadata } from 'data/utils';
-import { DefaultPageProps } from 'globals';
-import { clientNext } from 'globals/lib/sanity';
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
-import { EventLayout } from 'ui';
+import { notFound } from "next/navigation";
+import { DefaultPageProps } from "@cs/globals";
+import { clientNext } from "@cs/data/client";
+import { Event as Data, eventQuery } from "@cs/data/schemas";
+import { getStaticParams, prepareMetadata } from "@cs/data/utils";
+import { EventLayout } from "@cs/ui";
 
 export const revalidate = 60;
 
 export default async function Event({ params }: DefaultPageProps) {
     const { slug, lang } = params;
-    const data: Data = await clientNext.fetch(eventQuery, { slug });
+    const data = await clientNext.fetch<Data | null>(eventQuery, { slug });
 
     if (!data) {
         notFound();
@@ -20,9 +19,9 @@ export default async function Event({ params }: DefaultPageProps) {
 }
 
 export async function generateStaticParams() {
-    return getStaticParams('event');
+    return getStaticParams("event");
 }
 
-export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
-    return prepareMetadata({ type: 'event', params });
+export async function generateMetadata({ params }: DefaultPageProps) {
+    return prepareMetadata({ type: "event", params });
 }

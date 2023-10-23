@@ -1,11 +1,9 @@
-import { wrapReference } from 'data/utils';
-import { Header, LocaleString } from 'data/schemas';
-import { DefaultProps, Locale } from 'globals';
-import { createStyles, Styles } from './Header.styles';
-import { getImageUrl } from 'globals/lib/sanity';
-import { LinkWrapper, Menu } from '../../blocks';
-import { localizeString } from 'data/utils';
-import { globalConfig } from 'globals';
+import { wrapReference, localizeString } from "@cs/data/utils";
+import { Header, LocaleString } from "@cs/data/schemas";
+import { globalConfig, DefaultProps, Locale, appsConfig } from "@cs/globals";
+import { createStyles, Styles } from "./Header.styles";
+import { getImageUrl } from "@cs/globals/lib/sanity";
+import { LinkWrapper, Menu } from "../../blocks";
 
 interface HeaderProps extends DefaultProps {
     data?: Header;
@@ -27,24 +25,28 @@ export default function Header(props: HeaderProps) {
         <header className={styles.container}>
             <div className={styles.wrapper}>
                 {/* LOGO */}
-                <LinkWrapper href="/" lang={lang} className={styles.logo}>
-                    {logoUrl ? (
-                        // UPLOADED
+                {logoUrl ? (
+                    // UPLOADED
+                    <LinkWrapper href="/" lang={lang} className={styles.logo}>
                         <img src={logoUrl} className={styles.logoImage} alt={title} />
-                    ) : (
-                        // DEFAULT WITH TITLE
-                        <div className={styles.defaultLogo}>
+                    </LinkWrapper>
+                ) : (
+                    // DEFAULT WITH TITLE
+                    <div className={styles.defaultLogo}>
+                        <LinkWrapper href={appsConfig.culturas.domain || "/"} lang={lang}>
                             <img
                                 src="/assets/cs-logo-min.svg"
                                 className={styles.logoImage}
                                 alt={globalConfig.organization}
                             />
+                        </LinkWrapper>
+                        <LinkWrapper href="/" lang={lang}>
                             <div>
                                 <span className={styles.title}>{title}</span>
                             </div>
-                        </div>
-                    )}
-                </LinkWrapper>
+                        </LinkWrapper>
+                    </div>
+                )}
                 {markerCaption && (
                     <>
                         {/* LINE */}

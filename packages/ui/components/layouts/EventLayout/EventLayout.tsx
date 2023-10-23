@@ -1,10 +1,9 @@
-import { wrapReference } from 'data/utils';
-import { Event } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { localizeString } from 'data/utils';
-import { Body, Cover, Links, LinkWrapper, EventDates, Lineup } from '../../blocks';
-import { createStyles } from './EventLayout.styles';
-import { getPageVariables } from '../../../utils';
+import { SetPalette } from "@weresk/maket";
+import { DefaultProps } from "@cs/globals";
+import { wrapReference, localizeString } from "@cs/data/utils";
+import { Event } from "@cs/data/schemas";
+import { Body, Cover, Links, LinkWrapper, EventDates, Lineup } from "../../blocks";
+import { createStyles } from "./EventLayout.styles";
 
 interface EventLayoutProps extends DefaultProps {
     data: Event;
@@ -12,7 +11,7 @@ interface EventLayoutProps extends DefaultProps {
 
 export default function EventLayout(props: EventLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, coverCaption, lineup, dates, action, parent, body, theme } = data;
+    const { covers, captionAlt, lineup, dates, action, parent, body, palette } = data;
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const label = localizeString(data.labels?.[0]?.title, lang);
@@ -37,8 +36,8 @@ export default function EventLayout(props: EventLayoutProps) {
                     </div>
                 )}
                 {/* TITLE */}
-                <h1 className={styles.title}>
-                    <span>{title}</span>
+                <h1 className={styles.titleWrapper}>
+                    <span className={styles.title}>{title}</span>
                 </h1>
                 {/* SUBTITLE */}
                 {subtitle && (
@@ -54,11 +53,22 @@ export default function EventLayout(props: EventLayoutProps) {
                     {action && <Links links={[action]} layout="buttons" lang={lang} className={styles.action} />}
                 </div>
                 {/* COVER */}
-                <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
+                <Cover
+                    array={covers}
+                    parent="page"
+                    caption={captionAlt?.caption}
+                    alt={captionAlt?.alt}
+                    lang={lang}
+                    className={styles.cover}
+                />
                 {/* BODY */}
                 <Body data={body} lang={lang} className={styles.body} />
             </main>
-            {theme && <style>{getPageVariables(theme)}</style>}
+            <SetPalette selector="body" set={palette}>
+                {palette?.on_surface
+                    ? `header { --header-logo-lightness: ${palette.on_surface.hsl.l} } footer { --footer-logo-lightness: ${palette.on_surface_light.hsl.l} }`
+                    : undefined}
+            </SetPalette>
         </>
     );
 }

@@ -1,12 +1,25 @@
-import { DefaultPageProps, DocumentApp, ImageObject, appName, appConfig } from 'globals';
-import { globalConfig } from 'globals';
-import { clientNext, getImageUrlBuilder } from 'globals/lib/sanity';
-import { Metadata } from 'next';
-import { SanityDocument } from 'sanity';
-import { localizeString } from 'data/utils';
-import { formatKeywords } from 'globals/utils';
-import { metadataAppQuery, metadataPageQuery } from '../schemas';
-import { App, CoverBlock, ElementDate, LineupPeople, LocaleString, MetadataPage } from '../schemas';
+import {
+    DefaultPageProps,
+    DocumentApp,
+    ImageObject,
+    appName,
+    appConfig
+} from "@cs/globals";
+import { globalConfig } from "@cs/globals";
+import { clientNext, getImageUrlBuilder } from "@cs/globals/lib/sanity";
+import { Metadata } from "next";
+import { SanityDocument } from "sanity";
+import { localizeString } from ".";
+import { formatKeywords } from "@cs/globals/utils";
+import { metadataAppQuery, metadataPageQuery } from "../schemas";
+import {
+    App,
+    CoverBlock,
+    ElementDate,
+    LineupPeople,
+    LocaleString,
+    MetadataPage
+} from "../schemas";
 
 export interface MetadataAny extends SanityDocument {
     _type: DocumentApp;
@@ -22,59 +35,72 @@ export interface MetadataAny extends SanityDocument {
 
 export interface prepareMetadataProps {
     type: DocumentApp;
-    params: DefaultPageProps['params'];
+    params: DefaultPageProps["params"];
 }
 
-export async function prepareMetadata({ type, params: { slug, lang } }: prepareMetadataProps): Promise<Metadata> {
+export async function prepareMetadata({
+    type,
+    params: { slug, lang }
+}: prepareMetadataProps): Promise<Metadata> {
     const output: Metadata = {};
     const app: App = await clientNext.fetch(metadataAppQuery, { appName });
-    const languages = app?.languages || globalConfig.localization.languages.map(lang => lang.id);
+    const languages =
+        app?.languages ||
+        globalConfig.localization.languages.map((lang) => lang.id);
     const global = app ? app.metadata : undefined;
     const document: MetadataAny | undefined =
-        type !== 'app' && slug ? await clientNext.fetch(metadataPageQuery, { type, slug, appName }) : undefined;
+        type !== "app" && slug
+            ? await clientNext.fetch(metadataPageQuery, { type, slug, appName })
+            : undefined;
     const metadata = document ? document.metadata : undefined;
 
     //Title ------
-    const template = localizeString(global?.template, lang) || '%s';
-    let title = localizeString(global?.title, lang) || localizeString(app.title, lang) || '';
+    const template = localizeString(global?.template, lang) || "%s";
+    let title =
+        localizeString(global?.title, lang) ||
+        localizeString(app.title, lang) ||
+        "";
     const websiteName = localizeString(app.title, lang) || title;
-    if (type !== 'app' && document) {
+    if (type !== "app" && document) {
         // Page
         title = localizeString(document.title, lang) || title;
 
         //Metadata title
         title = localizeString(metadata?.title, lang) || title;
 
-        title = template.replace('%s', title);
+        title = template.replace("%s", title);
     }
     output.title = title;
 
     //Description
     let description = localizeString(global?.description, lang);
-    if (type !== 'app' && document) {
+    if (type !== "app" && document) {
         //Metadata description
-        description = localizeString(metadata?.description, lang) || description;
+        description =
+            localizeString(metadata?.description, lang) || description;
     }
     output.description = description;
 
     //Keywords
-    let keywords = localizeString(global?.keywords, lang) || '';
+    let keywords = localizeString(global?.keywords, lang) || "";
     //Metadata keywords
-    if (type !== 'app' && localizeString(metadata?.keywords, lang)) {
-        keywords = `${localizeString(metadata?.keywords, lang)}${keywords ? ', ' + keywords : ''}`;
+    if (type !== "app" && localizeString(metadata?.keywords, lang)) {
+        keywords = `${localizeString(metadata?.keywords, lang)}${
+            keywords ? ", " + keywords : ""
+        }`;
     }
     output.keywords = formatKeywords(keywords);
 
     //Video
     let videoUrl: string | undefined = global?.sharedVideo?.url;
-    if (type !== 'app') {
+    if (type !== "app") {
         videoUrl = metadata?.sharedVideo?.url;
     }
     let videoCover = !!videoUrl;
 
     //Image
     let image: ImageObject | undefined = global?.sharedImage;
-    if (type !== 'app' && document) {
+    if (type !== "app" && document) {
         // Photo
         if (document.photo?.asset) {
             image = document.photo;
@@ -82,10 +108,10 @@ export async function prepareMetadata({ type, params: { slug, lang } }: prepareM
 
         //Covers
         if (document.covers && document.covers.length > 0) {
-            document.covers.every(cover => {
-                if (cover._type == 'coverImage' && cover.asset) {
+            document.covers.every((cover) => {
+                if (cover._type == "coverImage" && cover.asset) {
                     image = cover;
-                    if (cover.useMedia?.includes('desktop')) {
+                    if (cover.useMedia?.includes("desktop")) {
                         videoCover = false;
                         return false;
                     }
@@ -100,21 +126,29 @@ export async function prepareMetadata({ type, params: { slug, lang } }: prepareM
         }
     }
     const imageUrl: string | undefined = image
-        ? getImageUrlBuilder(image).fit('max').width(1200).height(630).url()
+        ? getImageUrlBuilder(image).fit("max").width(1200).height(630).url()
         : undefined;
 
     //URL
     let path: string | undefined;
-    if (type !== 'app' && slug) {
-        path = `${globalConfig.routes[type] ? globalConfig.routes[type] + '/' : ''}${slug}/`;
+    if (type !== "app" && slug) {
+        path = `${
+            globalConfig.routes[type] ? globalConfig.routes[type] + "/" : ""
+        }${slug}/`;
     }
     const url = path ? appConfig.domain + path : appConfig.domain;
     output.alternates = {
         canonical: url,
         languages: {
-            'fi-FI': languages.includes('fi') ? `${appConfig.domain}fi/${path || ''}` : undefined,
-            'en-US': languages.includes('en') ? `${appConfig.domain}en/${path || ''}` : undefined,
-            'ru-RU': languages.includes('ru') ? `${appConfig.domain}ru/${path || ''}` : undefined
+            "fi-FI": languages.includes("fi")
+                ? `${appConfig.domain}fi/${path || ""}`
+                : undefined,
+            "en-US": languages.includes("en")
+                ? `${appConfig.domain}en/${path || ""}`
+                : undefined,
+            "ru-RU": languages.includes("ru")
+                ? `${appConfig.domain}ru/${path || ""}`
+                : undefined
         }
     };
 
@@ -127,7 +161,7 @@ export async function prepareMetadata({ type, params: { slug, lang } }: prepareM
 
     //Opengraph
     output.openGraph = {
-        type: videoCover ? 'video.other' : 'website',
+        type: videoCover ? "video.other" : "website",
         title: title,
         description: description,
         url: url,
@@ -148,7 +182,7 @@ export async function prepareMetadata({ type, params: { slug, lang } }: prepareM
                       {
                           url: videoUrl,
                           secureUrl: videoUrl,
-                          type: 'video/mp4',
+                          type: "video/mp4",
                           width: 800,
                           height: 420
                       }
@@ -159,7 +193,7 @@ export async function prepareMetadata({ type, params: { slug, lang } }: prepareM
 
     //Twitter
     output.twitter = {
-        card: 'summary_large_image',
+        card: "summary_large_image",
         title: title,
         description: description,
         site: organization,
@@ -168,9 +202,9 @@ export async function prepareMetadata({ type, params: { slug, lang } }: prepareM
 
     //Robots
     output.robots =
-        (type !== 'app' && metadata?.preventIndexing) || type === 'note'
-            ? 'noindex, nofollow'
-            : 'index, follow, max-image-preview:large';
+        (type !== "app" && metadata?.preventIndexing) || type === "note"
+            ? "noindex, nofollow"
+            : "index, follow, max-image-preview:large";
 
     //Viewport no zoom
     output.viewport = {

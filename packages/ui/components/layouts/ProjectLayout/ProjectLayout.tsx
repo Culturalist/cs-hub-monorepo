@@ -1,9 +1,8 @@
-import { wrapReference } from 'data/utils';
-import { Project } from 'data/schemas';
-import { DefaultProps } from 'globals';
-import { localizeString } from 'data/utils';
-import { Body, Cover, Lineup, LinkWrapper } from '../../blocks';
-import { createStyles } from './ProjectLayout.styles';
+import { wrapReference, localizeString } from "@cs/data/utils";
+import { Project } from "@cs/data/schemas";
+import { DefaultProps } from "@cs/globals";
+import { Body, Cover, Lineup, LinkWrapper } from "../../blocks";
+import { createStyles } from "./ProjectLayout.styles";
 
 interface ProjectLayoutProps extends DefaultProps {
     data: Project;
@@ -11,7 +10,7 @@ interface ProjectLayoutProps extends DefaultProps {
 
 export default function ProjectLayout(props: ProjectLayoutProps) {
     const { data, lang, className } = props;
-    const { covers, coverCaption, parent, body, organisations } = data;
+    const { covers, captionAlt, parent, body, organisations } = data;
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const label = localizeString(data.labels?.[0]?.title, lang);
@@ -36,8 +35,8 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                     </div>
                 )}
                 {/* TITLE */}
-                <h1 className={styles.title}>
-                    <span>{title}</span>
+                <h1 className={styles.titleWrapper}>
+                    <span className={styles.title}>{title}</span>
                 </h1>
                 {/* SUBTITLE */}
                 {subtitle && (
@@ -48,7 +47,14 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                 {/* LINEUP */}
                 <Lineup data={organisations} lang={lang} className={styles.organisations} />
                 {/* COVER */}
-                <Cover array={covers} parent="page" caption={coverCaption} lang={lang} className={styles.cover} />
+                <Cover
+                    array={covers}
+                    parent="page"
+                    caption={captionAlt?.caption}
+                    alt={captionAlt?.alt}
+                    lang={lang}
+                    className={styles.cover}
+                />
                 {/* BODY */}
                 <Body data={body} lang={lang} className={styles.body} />
             </main>

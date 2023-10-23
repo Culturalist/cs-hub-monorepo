@@ -1,7 +1,7 @@
-import { defineType, defineField } from '@sanity/types';
-import { BlockquoteIcon } from '@sanity/icons';
-import { globalConfig, capitalize, Locale } from 'globals';
-import { BlockParent, PortableTextBlock } from '../portableText';
+import { defineType, defineField } from "@sanity/types";
+import { BlockquoteIcon } from "@sanity/icons";
+import { globalConfig, capitalize, Locale } from "@cs/globals";
+import { BlockParent, PortableTextBlock } from "../portableText";
 
 interface SchemaProps {
     parent: BlockParent;
@@ -9,16 +9,16 @@ interface SchemaProps {
 
 export type LocalePortableText = Record<Locale, PortableTextBlock> & {
     _type: `localePortableText${Capitalize<BlockParent>}`;
-    typeClass: 'blockText';
+    typeClass: "blockText";
 };
 
 export default function localePortableText({ parent }: SchemaProps) {
     return defineType({
         name: `localePortableText${capitalize(parent)}`,
-        title: 'Text',
-        type: 'object',
+        title: "Text",
+        type: "object",
         fields: [
-            ...globalConfig.localization.languages.map(lang =>
+            ...globalConfig.localization.languages.map((lang) =>
                 defineField({
                     title: lang.title,
                     name: lang.id,
@@ -26,10 +26,10 @@ export default function localePortableText({ parent }: SchemaProps) {
                 })
             ),
             defineField({
-                name: 'typeClass',
-                title: 'Class',
-                type: 'string',
-                initialValue: 'blockText',
+                name: "typeClass",
+                title: "Class",
+                type: "string",
+                initialValue: "blockText",
                 hidden: true,
                 readOnly: true
             })
@@ -39,10 +39,13 @@ export default function localePortableText({ parent }: SchemaProps) {
                 content: globalConfig.localization.default
             },
             prepare({ content }) {
-                const title = content && content[0]._type === 'block' ? content[0].children[0].text : null;
+                const title =
+                    content && content[0]._type === "block"
+                        ? content[0].children[0].text
+                        : null;
                 return {
-                    title: title || 'Text',
-                    subtitle: title ? 'Text' : ''
+                    title: title || "Text",
+                    subtitle: title ? "Text" : ""
                 };
             }
         },

@@ -1,5 +1,5 @@
-import Script from 'next/script';
-import { appConfig } from 'globals';
+import Script from "next/script";
+import { appConfig } from "@cs/globals";
 
 interface GoogleTagProps {}
 
