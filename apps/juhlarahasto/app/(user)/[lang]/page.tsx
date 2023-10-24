@@ -4,6 +4,7 @@ import { clientNext } from "@cs/data/client";
 import { App, homeQuery } from "@cs/data/schemas";
 import { prepareMetadata } from "@cs/data/utils";
 import { Hero } from "@cs/ui";
+import { Metadata } from "next";
 
 export const revalidate = 60;
 
@@ -21,6 +22,6 @@ export default async function Home({ params: { lang } }: DefaultPageProps) {
     );
 }
 
-export async function generateMetadata({ params }: DefaultPageProps) {
+export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
     return prepareMetadata({ type: "app", params });
 }
