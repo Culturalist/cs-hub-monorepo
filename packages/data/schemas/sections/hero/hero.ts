@@ -60,7 +60,7 @@ export default function hero() {
                 of: [{ type: "cardManual" }],
                 description: "Up to 3 cards may be added",
                 validation: (Rule) => Rule.max(3),
-                hidden: ({ parent }) => parent?.actionType !== "cards"
+                hidden: ({ parent }: { parent: Hero | undefined }) => parent?.actionType !== "cards"
             }),
             defineField({
                 name: "links",
@@ -69,7 +69,8 @@ export default function hero() {
                 of: [{ type: "linkCaptioned" }],
                 description: "Up to 3 links may be added",
                 validation: (Rule) => Rule.max(3),
-                hidden: ({ parent }) => !(parent?.actionType == "links" || parent?.actionType == "buttons")
+                hidden: ({ parent }: { parent: Hero | undefined }) =>
+                    !(parent?.actionType === "links" || parent?.actionType === "buttons")
             }),
             defineField({
                 name: "palette",
@@ -85,7 +86,7 @@ export default function hero() {
                 type: "boolean",
                 initialValue: false,
                 fieldset: "style",
-                hidden: ({ parent }) => parent?.actionType !== "cards"
+                hidden: ({ parent }: { parent: Hero | undefined }) => parent?.actionType !== "cards"
             }),
             defineField({
                 name: "hideFooter",

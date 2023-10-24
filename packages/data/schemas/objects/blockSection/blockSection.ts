@@ -60,8 +60,7 @@ export default function blockSection({ parent }: SchemaProps) {
             defineField({
                 name: "indexTitle",
                 title: "Index title",
-                description:
-                    "Manual override for title used in page index, if not set – section title will be used",
+                description: "Manual override for title used in page index, if not set – section title will be used",
                 type: "localeString",
                 options: {
                     columns: 2
@@ -82,15 +81,11 @@ export default function blockSection({ parent }: SchemaProps) {
                 id: "blockId.current"
             },
             prepare({ title, indexTitle, id }) {
-                const localeTitle =
-                    selectDefaultLocale(indexTitle) ||
-                    selectDefaultLocale(title);
-                const subtitle = `${localeTitle ? "Section " : ""}${
-                    id ? `#${id}` : ""
-                }`;
+                const localeTitle = selectDefaultLocale(indexTitle) || selectDefaultLocale(title);
+                const subtitle = `${localeTitle ? "Section " : ""}${id ? `#${id}` : ""}`;
                 return {
                     title: localeTitle || "Section",
-                    subtitle: subtitle
+                    subtitle
                 };
             }
         },

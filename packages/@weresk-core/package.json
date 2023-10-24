@@ -1,22 +1,22 @@
 {
-  "name": "@weresk/core",
-  "version": "0.0.0",
-  "main": "./index.ts",
-  "license": "MIT",
-  "scripts": {
-    "lint": "eslint \"**/*.ts*\""
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@sanity/image-url": "^1.0.2"
-  },
-  "devDependencies": {
-    "@types/node": "^17.0.12",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "typescript": "^5.2.2",
-    "eslint-config-custom": "workspace:*",
-    "tsconfig": "workspace:*"
-  }
+    "name": "@weresk/core",
+    "version": "0.0.0",
+    "main": "./index.ts",
+    "license": "MIT",
+    "scripts": {
+        "lint": "eslint \"**/*.ts*\""
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@types/node": "^17.0.12",
+        "@types/react": "^18.2.0",
+        "@sanity/image-url": "^1.0.2",
+        "@types/react-dom": "^18.2.0",
+        "eslint-config-custom": "workspace:*",
+        "tsconfig": "workspace:*"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    }
 }

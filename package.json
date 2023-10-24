@@ -1,19 +1,21 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
-  "devDependencies": {
-    "eslint": "^8.48.0",
-    "prettier": "^3.0.3",
-    "syncpack": "^11.2.1",
-    "tsconfig": "workspace:*",
-    "turbo": "^1.10.15",
-    "typescript": "^5.2.2"
-  },
-  "packageManager": "pnpm@8.8.0",
-  "name": "weresk-monorepo"
+    "private": true,
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    },
+    "devDependencies": {
+        "@babel/core": "^7.23.2",
+        "@babel/preset-env": "^7.23.2",
+        "@babel/preset-react": "^7.22.15",
+        "eslint": "^8.48.0",
+        "prettier": "^3.0.3",
+        "tsconfig": "workspace:*",
+        "turbo": "latest",
+        "typescript": "^5.2.2"
+    },
+    "packageManager": "pnpm@8.8.0",
+    "name": "cs-hub-monorepo"
 }

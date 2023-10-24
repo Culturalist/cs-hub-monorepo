@@ -106,7 +106,7 @@ export default function note() {
                 const url = slug ? `/${globalConfig.routes.note}/${slug}` : "";
                 return {
                     title: localeTitle || "Note",
-                    subtitle: url ? url : localeTitle ? "Note" : "",
+                    subtitle: url || (localeTitle ? "Note" : ""),
                     media: cover
                 };
             }

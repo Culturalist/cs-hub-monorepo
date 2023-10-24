@@ -34,13 +34,13 @@ export default function linkContact() {
                 name: "caption",
                 title: "Caption",
                 type: "localeString",
-                hidden: ({ parent }) => parent?.type !== "website"
+                hidden: ({ parent }: { parent: LinkContact | undefined }) => parent?.type !== "website"
             }),
             defineField({
                 name: "phone",
                 title: "Phone number",
                 type: "string",
-                hidden: ({ parent }) => parent?.type !== "phone"
+                hidden: ({ parent }: { parent: LinkContact | undefined }) => parent?.type !== "phone"
             }),
             {
                 name: "url",
@@ -51,7 +51,7 @@ export default function linkContact() {
                     Rule.uri({
                         scheme: ["http", "https", "mailto"]
                     }),
-                hidden: ({ parent }) => parent?.type == "phone"
+                hidden: ({ parent }: { parent: LinkContact | undefined }) => parent?.type === "phone"
             }
         ],
         preview: {
@@ -64,11 +64,8 @@ export default function linkContact() {
             prepare({ type, caption, url, phone }) {
                 const localeCaption = selectDefaultLocale(caption);
                 return {
-                    title:
-                        type == "website" && localeCaption
-                            ? localeCaption
-                            : capitalize(type) || "Contact",
-                    subtitle: type == "phone" ? phone : url
+                    title: type === "website" && localeCaption ? localeCaption : capitalize(type) || "Contact",
+                    subtitle: type === "phone" ? phone : url
                 };
             }
         },

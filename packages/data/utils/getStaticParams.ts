@@ -10,7 +10,7 @@ export async function getStaticParams(docType: string): Promise<Param[]> {
     const pages: Param[] = await clientNext.fetch(groq`*[_type == $docType]{'slug': slug.current}`, { docType });
     params = [...pages];
 
-    let localeParams: Param[] = [];
+    const localeParams: Param[] = [];
     globalConfig.localization.languages.forEach((language) => {
         params.forEach((param) => {
             localeParams.push({ ...param, lang: language.id });

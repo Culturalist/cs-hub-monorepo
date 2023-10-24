@@ -42,10 +42,7 @@ export default function coverVideo() {
             prepare({ use }) {
                 return {
                     title: "Video",
-                    subtitle:
-                        use && use.length > 0
-                            ? caseTransform(use.join(" | "), "title")
-                            : ""
+                    subtitle: Array.isArray(use) ? caseTransform(use.join(" | "), "title") : ""
                 };
             }
         },

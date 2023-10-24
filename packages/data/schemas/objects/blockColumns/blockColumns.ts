@@ -2,6 +2,7 @@ import { defineType, defineField } from "@sanity/types";
 import { SplitVerticalIcon } from "@sanity/icons";
 import { LocalePortableText } from "../localePortableText";
 import { globalConfig } from "@cs/globals";
+import { previewPortableText } from "@weresk/core";
 
 export interface BlockColumns {
     _type: "blockColumns";
@@ -18,8 +19,7 @@ export default function blockColumns() {
                 name: "content",
                 title: "Content",
                 type: "array",
-                description:
-                    "Any number of text blocks will be automatically grouped in 2 columns layout",
+                description: "Any number of text blocks will be automatically grouped in 2 columns layout",
                 of: [
                     {
                         type: "localePortableTextColumn"
@@ -32,10 +32,7 @@ export default function blockColumns() {
                 content: `content.0.${globalConfig.localization.default}`
             },
             prepare({ content }) {
-                const title =
-                    content && content[0]._type === "block"
-                        ? content[0].children[0].text
-                        : null;
+                const title = Array.isArray(content) ? previewPortableText(content) : null;
                 return {
                     title: title || "Columns",
                     subtitle: title ? "Columns" : ""

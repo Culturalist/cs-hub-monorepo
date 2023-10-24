@@ -1,11 +1,11 @@
 import { defineType, defineField, SanityDocument, Slug } from "@sanity/types";
 import { CaseIcon } from "@sanity/icons";
 import { joinLocaleStrings, selectDefaultLocale } from "../../../utils";
-import { LocaleString } from "../../objects";
 import { globalConfig } from "@cs/globals";
-import { Label } from "../../system";
-import { ImageObject } from "@cs/globals";
-import { Page } from "../page";
+import type { ImageObject } from "@cs/globals";
+import type { LocaleString } from "../../objects";
+import type { Label } from "../../system";
+import type { Page } from "../page";
 
 export interface Organisation extends SanityDocument {
     _type: "organisation" | "reference";
@@ -44,8 +44,7 @@ export default function organisation() {
                 name: "logo",
                 title: "Logo",
                 type: "image",
-                description:
-                    "Recommended files to use: .svg and .png with transparency"
+                description: "Recommended files to use: .svg and .png with transparency"
             }),
             {
                 name: "url",

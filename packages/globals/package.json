@@ -7,19 +7,20 @@
         "lint": "eslint \"**/*.ts*\""
     },
     "dependencies": {
-        "@sanity/client": "^6.4.12",
+        "@sanity/client": "^6.7.0",
         "@sanity/image-url": "^1.0.2",
         "@sanity/language-filter": "^3.2.1",
-        "next-sanity": "^5.5.5",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "next-sanity": "^5.5.8"
     },
     "devDependencies": {
         "@types/node": "^17.0.12",
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
         "eslint-config-custom": "workspace:*",
-        "tsconfig": "workspace:*",
-        "typescript": "^5.2.2"
+        "tsconfig": "workspace:*"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     }
 }

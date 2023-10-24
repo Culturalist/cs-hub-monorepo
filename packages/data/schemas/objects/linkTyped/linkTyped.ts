@@ -43,7 +43,7 @@ export default function linkTyped() {
                 options: {
                     disableNew: true
                 },
-                hidden: ({ parent }) => parent?.type !== "reference"
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) => parent?.type !== "reference"
             }),
             defineField({
                 name: "href",
@@ -54,7 +54,7 @@ export default function linkTyped() {
                     Rule.uri({
                         scheme: ["http", "https", "mailto"]
                     }),
-                hidden: ({ parent }) => parent?.type !== "external"
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) => parent?.type !== "external"
             }),
             defineField({
                 name: "internal",
@@ -65,14 +65,14 @@ export default function linkTyped() {
                     Rule.uri({
                         allowRelative: true
                     }),
-                hidden: ({ parent }) => parent?.type !== "internal"
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) => parent?.type !== "internal"
             }),
             defineField({
                 name: "anchor",
                 title: "Anchor",
                 type: "string",
                 description: "ID of the block on the same page",
-                hidden: ({ parent }) => parent?.type !== "anchor"
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) => parent?.type !== "anchor"
             }),
             defineField({
                 name: "file",
@@ -81,7 +81,7 @@ export default function linkTyped() {
                 options: {
                     storeOriginalFilename: true
                 },
-                hidden: ({ parent }) => parent?.type !== "file"
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) => parent?.type !== "file"
             })
         ]
     });

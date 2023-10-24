@@ -1,3 +1,3 @@
 module.exports = {
-    extends: ["custom/sanity"]
+    extends: ["custom/library"]
 };

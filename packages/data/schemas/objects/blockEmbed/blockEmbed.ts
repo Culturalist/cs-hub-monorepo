@@ -38,13 +38,11 @@ export default function blockEmbed() {
                 description: "Vimeo or Youtube link",
                 validation: (Rule) =>
                     Rule.custom((link) => {
-                        const regex =
-                            /^(http|https):\/\/(vimeo.com|youtube.com|youtu.be)\S+/g;
+                        const regex = /^(http|https):\/\/(vimeo.com|youtube.com|youtu.be)\S+/g;
                         if (!link || regex.test(link)) {
                             return true;
-                        } else {
-                            return "Not a valid link";
                         }
+                        return "Not a valid link";
                     })
             }),
             defineField({

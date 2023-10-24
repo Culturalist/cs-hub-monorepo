@@ -9,7 +9,7 @@ const initialValueTemplates = [
         parameters: [],
         value: () => ({
             parent: appConfig.parentDocuments?.post
-                ? { _type: "reference", _ref: appConfig.parentDocuments?.post }
+                ? { _type: "reference", _ref: appConfig.parentDocuments.post }
                 : undefined
         })
     },
@@ -22,7 +22,7 @@ const initialValueTemplates = [
             parent: appConfig.parentDocuments?.project
                 ? {
                       _type: "reference",
-                      _ref: appConfig.parentDocuments?.project
+                      _ref: appConfig.parentDocuments.project
                   }
                 : undefined
         })
@@ -34,7 +34,7 @@ const initialValueTemplates = [
         parameters: [],
         value: () => ({
             parent: appConfig.parentDocuments?.event
-                ? { _type: "reference", _ref: appConfig.parentDocuments?.event }
+                ? { _type: "reference", _ref: appConfig.parentDocuments.event }
                 : undefined,
             action: {
                 _type: "linkCaptioned",

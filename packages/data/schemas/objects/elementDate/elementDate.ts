@@ -1,10 +1,10 @@
-import { defineType, defineField } from '@sanity/types';
-import { CalendarIcon } from '@sanity/icons';
-import { LocaleString } from '../localeString';
-import { selectDefaultLocale } from '../../../utils';
+import { defineType, defineField } from "@sanity/types";
+import { CalendarIcon } from "@sanity/icons";
+import { LocaleString } from "../localeString";
+import { selectDefaultLocale } from "../../../utils";
 
 export interface ElementDate {
-    _type: 'elementDate';
+    _type: "elementDate";
     _key: string;
     date: string;
     start?: string;
@@ -15,13 +15,13 @@ export interface ElementDate {
 
 export default function elementDate() {
     return defineType({
-        name: 'elementDate',
-        title: 'Date',
-        type: 'object',
+        name: "elementDate",
+        title: "Date",
+        type: "object",
         fieldsets: [
             {
-                name: 'date',
-                title: ' ',
+                name: "date",
+                title: " ",
                 options: {
                     columns: 3
                 }
@@ -29,61 +29,61 @@ export default function elementDate() {
         ],
         fields: [
             defineField({
-                name: 'date',
-                title: 'Date',
-                type: 'date',
-                initialValue: new Date().toISOString().split('T')[0],
-                fieldset: 'date',
-                validation: Rule => Rule.required()
+                name: "date",
+                title: "Date",
+                type: "date",
+                initialValue: new Date().toISOString().split("T")[0],
+                fieldset: "date",
+                validation: (Rule) => Rule.required()
             }),
             defineField({
-                name: 'start',
-                title: 'Start time',
-                type: 'string',
-                initialValue: '12:00',
-                validation: Rule =>
-                    Rule.regex(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/).warning('Use valid time format (HH:MM)'),
-                fieldset: 'date'
+                name: "start",
+                title: "Start time",
+                type: "string",
+                initialValue: "12:00",
+                validation: (Rule) =>
+                    Rule.regex(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/).warning("Use valid time format (HH:MM)"),
+                fieldset: "date"
             }),
             defineField({
-                name: 'end',
-                title: 'End time',
-                type: 'string',
-                initialValue: '13:00',
-                validation: Rule =>
-                    Rule.regex(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/).warning('Use valid time format (HH:MM)'),
-                fieldset: 'date'
+                name: "end",
+                title: "End time",
+                type: "string",
+                initialValue: "13:00",
+                validation: (Rule) =>
+                    Rule.regex(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/).warning("Use valid time format (HH:MM)"),
+                fieldset: "date"
             }),
             defineField({
-                name: 'location',
-                title: 'Location',
-                type: 'localeString'
+                name: "location",
+                title: "Location",
+                type: "localeString"
             }),
             {
-                name: 'mapUrl',
-                title: 'Map URL',
-                type: 'url',
+                name: "mapUrl",
+                title: "Map URL",
+                type: "url",
                 description: `URL starts with "http://" or "https://"`,
-                validation: Rule =>
+                validation: (Rule) =>
                     Rule.uri({
-                        scheme: ['http', 'https']
+                        scheme: ["http", "https"]
                     }),
-                hidden: ({ parent }) => !parent?.location
+                hidden: ({ parent }: { parent: ElementDate | undefined }) => !parent?.location
             }
         ],
         preview: {
             select: {
-                date: 'date',
-                start: 'start',
-                end: 'end',
-                location: 'location'
+                date: "date",
+                start: "start",
+                end: "end",
+                location: "location"
             },
             prepare({ date, start, end, location }) {
-                const localeDate = new Date(date).toLocaleString('fi-FI', { month: 'numeric', day: 'numeric' });
+                const localeDate = new Date(date).toLocaleString("fi-FI", { month: "numeric", day: "numeric" });
                 const localeLocation = selectDefaultLocale(location);
                 return {
-                    title: localeDate || 'Date',
-                    subtitle: `${start ? start : ''} – ${end ? end : ''}${localeLocation ? ', ' + localeLocation : ''}`
+                    title: localeDate || "Date",
+                    subtitle: `${start ? start : ""} – ${end ? end : ""}${localeLocation ? ", " + localeLocation : ""}`
                 };
             }
         },

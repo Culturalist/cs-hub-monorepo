@@ -1,0 +1,1 @@
+export { colorToRGB } from "./colorToRgb";

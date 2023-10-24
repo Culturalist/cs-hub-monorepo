@@ -39,8 +39,8 @@ export default function coverImage() {
             prepare({ media, use }) {
                 return {
                     title: "Image",
-                    subtitle: use && use.length > 0 ? caseTransform(use.join(" | "), "title") : "",
-                    media: media
+                    subtitle: Array.isArray(use) ? caseTransform(use.join(" | "), "title") : "",
+                    media
                 };
             }
         },

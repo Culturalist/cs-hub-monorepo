@@ -9,23 +9,25 @@
     },
     "dependencies": {
         "@cs/globals": "workspace:*",
-        "@sanity/client": "^6.4.12",
+        "@sanity/client": "^6.7.0",
         "@sanity/icons": "^2.5.0",
         "@sanity/image-url": "^1.0.2",
-        "@sanity/types": "^3.16.7",
         "@weresk/core": "workspace:*",
         "@weresk/maket": "workspace:*",
-        "next": "^13.5.4",
-        "next-sanity": "^5.5.5",
-        "sanity": "^3.17.0"
+        "next-sanity": "^5.5.8"
     },
     "devDependencies": {
+        "@sanity/types": "^3.18.1",
+        "@types/node": "^17.0.12",
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
         "eslint-config-custom": "workspace:*",
+        "tsconfig": "workspace:*"
+    },
+    "peerDependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "tsconfig": "workspace:*",
-        "typescript": "^5.2.2"
+        "next": "13.5.3",
+        "sanity": "^3.18.1"
     }
 }

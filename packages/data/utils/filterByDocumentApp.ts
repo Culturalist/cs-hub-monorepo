@@ -1,20 +1,23 @@
-import { ReferenceFilterSearchOptions } from 'sanity';
+import type { ReferenceFilterSearchOptions } from "@sanity/types";
 
 export function filterByDocumentApp(document: any): ReferenceFilterSearchOptions {
-    if (document.app?._ref) {
-        const appRef = document.app._ref.replace('drafts.', '');
+    const { _id, _type } = document;
+    // eslint-disable-next-line
+    const _ref = document.app?._ref;
+    if (typeof _ref === "string") {
+        const appRef = _ref.replace("drafts.", "");
         return {
-            filter: 'app._ref == $appRef',
-            params: { appRef: appRef }
+            filter: "app._ref == $appRef",
+            params: { appRef }
         };
-    } else if (document._type == 'app') {
-        const appRef = document._id.replace('drafts.', '');
+    } else if (_type === "app" && typeof _id === "string") {
+        const appRef = _id.replace("drafts.", "");
         return {
-            filter: 'app._ref == $appRef',
-            params: { appRef: appRef }
+            filter: "app._ref == $appRef",
+            params: { appRef }
         };
     }
     return {
-        filter: ''
+        filter: ""
     };
 }

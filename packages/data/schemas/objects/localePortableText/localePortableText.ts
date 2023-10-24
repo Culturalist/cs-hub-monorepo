@@ -2,6 +2,7 @@ import { defineType, defineField } from "@sanity/types";
 import { BlockquoteIcon } from "@sanity/icons";
 import { globalConfig, capitalize, Locale } from "@cs/globals";
 import { BlockParent, PortableTextBlock } from "../portableText";
+import { previewPortableText } from "@weresk/core";
 
 interface SchemaProps {
     parent: BlockParent;
@@ -39,10 +40,7 @@ export default function localePortableText({ parent }: SchemaProps) {
                 content: globalConfig.localization.default
             },
             prepare({ content }) {
-                const title =
-                    content && content[0]._type === "block"
-                        ? content[0].children[0].text
-                        : null;
+                const title = Array.isArray(content) ? previewPortableText(content) : null;
                 return {
                     title: title || "Text",
                     subtitle: title ? "Text" : ""

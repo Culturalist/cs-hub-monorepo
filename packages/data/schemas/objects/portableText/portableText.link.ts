@@ -1,7 +1,7 @@
 import { defineArrayMember, defineField } from "@sanity/types";
 import { LinkIcon } from "@sanity/icons";
 import { appConfig } from "@cs/globals";
-import { linkTypeList } from "../linkTyped";
+import { type LinkTyped, linkTypeList } from "../linkTyped";
 
 const portableTextLink = () =>
     defineArrayMember({
@@ -32,7 +32,7 @@ const portableTextLink = () =>
                 options: {
                     disableNew: true
                 },
-                hidden: ({ parent }) => parent?.type !== "reference"
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) => parent?.type !== "reference"
             }),
             defineField({
                 name: "href",
@@ -43,8 +43,8 @@ const portableTextLink = () =>
                     Rule.uri({
                         scheme: ["http", "https", "mailto"]
                     }),
-                hidden: ({ parent }) =>
-                    !(parent?.type == "external" || !parent?.type)
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) =>
+                    !(parent?.type === "external" || !parent?.type)
             }),
             defineField({
                 name: "internal",
@@ -55,20 +55,20 @@ const portableTextLink = () =>
                     Rule.uri({
                         allowRelative: true
                     }),
-                hidden: ({ parent }) => parent?.type !== "internal"
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) => parent?.type !== "internal"
             }),
             defineField({
                 name: "anchor",
                 title: "Anchor",
                 type: "string",
                 description: "ID of the block on the same page",
-                hidden: ({ parent }) => parent?.type !== "anchor"
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) => parent?.type !== "anchor"
             }),
             defineField({
                 name: "file",
                 title: "File",
                 type: "file",
-                hidden: ({ parent }) => parent?.type !== "file"
+                hidden: ({ parent }: { parent: LinkTyped | undefined }) => parent?.type !== "file"
             })
         ]
     });

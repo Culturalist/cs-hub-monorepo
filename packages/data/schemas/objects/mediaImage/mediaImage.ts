@@ -46,12 +46,11 @@ export default function mediaImage() {
                 media: "asset"
             },
             prepare({ alt, caption, media }) {
-                const title =
-                    selectDefaultLocale(alt) || selectDefaultLocale(caption);
+                const title = selectDefaultLocale(alt) || selectDefaultLocale(caption);
                 return {
                     title: title || "Image",
                     subtitle: title ? "Image" : "",
-                    media: media
+                    media
                 };
             }
         },

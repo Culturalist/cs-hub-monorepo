@@ -1,15 +1,16 @@
 import { MasterDetailIcon } from "@sanity/icons";
 import desk from "./deskStructure.values";
 import { appConfig, appName } from "@cs/globals";
+import type { DeskToolOptions, StructureBuilder, StructureResolverContext } from "sanity/desk";
 // import { defaultDocumentNode } from './defaultDocumentNode';
 
-export default function deskStructure(): any {
+export default function deskStructure(): DeskToolOptions {
     return {
         name: "desk",
         title: "Desk",
         icon: MasterDetailIcon,
         // defaultDocumentNode: defaultDocumentNode,
-        structure: (S: any, context: any) =>
+        structure: (S: StructureBuilder, context: StructureResolverContext) =>
             S.list()
                 .title("Content")
                 .items([

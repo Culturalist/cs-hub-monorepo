@@ -4,27 +4,23 @@ import { LinkTyped, PageDocument } from "../schemas";
 export function prepareLink(input: LinkTyped, lang?: Locale): string {
     const { type, anchor, href, internal, reference, file } = input;
     let link = "";
-    if ((type == "external" || !type) && href) {
+    if (type === "external" && href) {
         link = href;
-    } else if (type == "anchor" && anchor) {
+    } else if (type === "anchor" && anchor) {
         link = anchor.startsWith("#") ? anchor : `#${anchor}`;
-    } else if (type == "file") {
+    } else if (type === "file") {
         link = file?.url || file?.asset?.url || link;
-    } else if (type == "internal" && internal) {
+    } else if (type === "internal" && internal) {
         link =
-            internal.startsWith("/") ||
-            internal.startsWith("?") ||
-            internal.startsWith("#")
+            internal.startsWith("/") || internal.startsWith("?") || internal.startsWith("#")
                 ? internal
                 : `/${internal}`;
         link = lang && internal.startsWith("/") ? `/${lang}${link}` : link;
-    } else if (type == "reference" && reference) {
+    } else if (type === "reference" && reference) {
         if (reference._type !== "reference") {
-            link = `${
-                globalConfig.routes[reference._type]
-                    ? "/" + globalConfig.routes[reference._type]
-                    : ""
-            }/${reference.slug?.current || ""}`;
+            link = `${globalConfig.routes[reference._type] ? "/" + globalConfig.routes[reference._type] : ""}/${
+                reference.slug?.current || ""
+            }`;
             link = lang ? `/${lang}${link}` : link;
         }
     }
@@ -47,10 +43,8 @@ export function wrapReference(doc: PageDocument): LinkTyped {
 }
 
 export function linkPreview(link: LinkTyped): string {
-    const route = link.reference?._type
-        ? globalConfig.routes[link.reference._type as DocumentApp]
-        : "";
-    return link.type == "reference"
+    const route = link.reference?._type ? globalConfig.routes[link.reference._type as DocumentApp] : "";
+    return link.type === "reference"
         ? `/${route ? route + "/" : ""}${link.reference?.slug?.current || ""}`
         : prepareLink(link);
 }

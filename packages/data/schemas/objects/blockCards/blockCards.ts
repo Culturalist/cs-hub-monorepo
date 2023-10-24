@@ -1,21 +1,9 @@
 import { defineArrayMember, defineField, defineType } from "@sanity/types";
 import { ThLargeIcon } from "@sanity/icons";
-import {
-    CardsType,
-    cardsTypeList,
-    CardPart,
-    personCardParts
-} from "./blockCards.values";
+import { CardsType, cardsTypeList, CardPart, personCardParts } from "./blockCards.values";
 import { capitalize, appConfig } from "@cs/globals";
 import { CardManual } from "../cardManual";
-import {
-    Person,
-    Post,
-    Project,
-    Event,
-    Organisation,
-    Page
-} from "../../documents";
+import { Person, Post, Project, Event, Organisation, Page } from "../../documents";
 import { Label } from "../../system";
 
 export type CardSource = Project | Post | Person | Event | Organisation;
@@ -50,11 +38,7 @@ export default function blockCards() {
                 initialValue: "manual",
                 options: {
                     list: cardsTypeList
-                        .filter(({ docType }) =>
-                            ["manual", ...appConfig.schemas.documents].includes(
-                                docType
-                            )
-                        )
+                        .filter(({ docType }) => ["manual", ...appConfig.schemas.documents].includes(docType))
                         .map((cardType) => ({
                             title: cardType.title,
                             value: cardType.value
@@ -65,11 +49,9 @@ export default function blockCards() {
                 validation: (Rule) => Rule.required()
             }),
             ...cardsTypeList
-                .filter(({ docType }) =>
-                    ["manual", ...appConfig.schemas.documents].includes(docType)
-                )
+                .filter(({ docType }) => ["manual", ...appConfig.schemas.documents].includes(docType))
                 .map(({ value, title, docType }) => {
-                    if (value == "manual") {
+                    if (value === "manual") {
                         return defineField({
                             name: "manual",
                             title: "Manual",
@@ -79,18 +61,16 @@ export default function blockCards() {
                                     type: "cardManual"
                                 }
                             ],
-                            hidden: ({ parent }) => parent?.type !== "manual"
+                            hidden: ({ parent }: { parent: BlockCards | undefined }) => parent?.type !== "manual"
                         });
                     }
 
                     return defineField({
                         name: value,
-                        title: title,
+                        title,
                         type: "array",
                         description: `Select ${value} individually or filter by label${
-                            !(value == "organisations" || value == "people")
-                                ? " / parent page"
-                                : ""
+                            !(value === "organisations" || value === "people") ? " / parent page" : ""
                         }`,
                         of: [
                             defineArrayMember({
@@ -111,7 +91,7 @@ export default function blockCards() {
                                     disableNew: true
                                 }
                             }),
-                            ...(!(value == "organisations" || value == "people")
+                            ...(!(value === "organisations" || value === "people")
                                 ? [
                                       defineArrayMember({
                                           name: "page",
@@ -125,7 +105,7 @@ export default function blockCards() {
                                   ]
                                 : [])
                         ],
-                        hidden: ({ parent }) => parent?.type !== value
+                        hidden: ({ parent }: { parent: BlockCards | undefined }) => parent?.type !== value
                     });
                 }),
             // Options
@@ -140,35 +120,35 @@ export default function blockCards() {
                     list: personCardParts,
                     layout: "grid"
                 },
-                hidden: ({ parent }) => parent?.type !== "people"
+                hidden: ({ parent }: { parent: BlockCards | undefined }) => parent?.type !== "people"
             }),
             defineField({
                 name: "monochromePhoto",
                 title: "Make photos monochrome",
                 type: "boolean",
                 initialValue: false,
-                hidden: ({ parent }) => parent?.type !== "people"
+                hidden: ({ parent }: { parent: BlockCards | undefined }) => parent?.type !== "people"
             }),
             defineField({
                 name: "coverOnHover",
                 title: "Show cards cover only on hover",
                 type: "boolean",
                 initialValue: false,
-                hidden: ({ parent }) => parent?.type !== "manual"
+                hidden: ({ parent }: { parent: BlockCards | undefined }) => parent?.type !== "manual"
             }),
             defineField({
                 name: "displayDates",
                 title: "Display each date as separate card",
                 type: "boolean",
                 initialValue: false,
-                hidden: ({ parent }) => parent?.type !== "events"
+                hidden: ({ parent }: { parent: BlockCards | undefined }) => parent?.type !== "events"
             }),
             defineField({
                 name: "showLabels",
                 title: "Show labels",
                 type: "boolean",
                 initialValue: false,
-                hidden: ({ parent }) => parent?.type !== "projects"
+                hidden: ({ parent }: { parent: BlockCards | undefined }) => parent?.type !== "projects"
             })
         ],
         preview: {

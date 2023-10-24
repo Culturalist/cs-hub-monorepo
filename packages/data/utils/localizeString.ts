@@ -1,10 +1,7 @@
 import { globalConfig } from "@cs/globals";
 
-export function localizeString(
-    input: string | Record<string, string> | undefined,
-    lang: string | undefined
-): string {
-    let output: string = "";
+export function localizeString(input: string | Record<string, string> | undefined, lang: string | undefined): string {
+    let output = "";
     if (typeof input === "string") {
         //If input is string, return input
         output = input;

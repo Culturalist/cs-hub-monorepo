@@ -45,8 +45,7 @@ export default function blockLinks() {
             },
             prepare({ link1, link2, link3, layout }) {
                 const names = joinLocaleStrings([link1, link2, link3]);
-                const subtitle =
-                    layout == "list" ? "Links list" : capitalize(layout);
+                const subtitle = layout === "list" ? "Links list" : capitalize(layout);
                 return {
                     title: names || subtitle,
                     subtitle: names ? subtitle : ""
