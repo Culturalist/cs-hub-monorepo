@@ -1,9 +1,6 @@
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
-import { visionTool } from "@sanity/vision";
 import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
-import { scheduledPublishing } from "@sanity/scheduled-publishing";
-import { ToolMenuApp } from "@cs/ui";
 import StudioLogo from "./studio/StudioLogo";
 import { globalConfig, appConfig, appName, DocumentAny, capitalize } from "@cs/globals";
 import { initialValueTemplates, schemaTypes } from "@cs/data/schemas";
@@ -22,14 +19,7 @@ export default defineConfig({
     dataset: "production",
     apiVersion: globalConfig.latestUpdate,
 
-    plugins: [
-        deskTool(deskStructure()),
-        languageFilter(languageFilterConfig()),
-        colorInput(),
-        vercelDeployTool()
-        // scheduledPublishing()
-        // visionTool()
-    ],
+    plugins: [deskTool(deskStructure()), languageFilter(languageFilterConfig()), colorInput(), vercelDeployTool()],
     schema: {
         types: schemaTypes(),
         templates: initialValueTemplates
@@ -37,7 +27,6 @@ export default defineConfig({
     studio: {
         components: {
             logo: StudioLogo
-            // toolMenu: ToolMenuApp
         }
     },
     document: {
