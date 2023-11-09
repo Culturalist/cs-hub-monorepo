@@ -1,0 +1,41 @@
+{
+    "name": "culturas",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev --port 3000",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@cs/data": "workspace:*",
+        "@cs/globals": "workspace:*",
+        "@cs/ui": "workspace:*",
+        "@formatjs/intl-localematcher": "^0.2.32",
+        "@sanity/color-input": "^3.1.0",
+        "@sanity/language-filter": "^3.2.1",
+        "@weresk/core": "workspace:*",
+        "@weresk/maket": "workspace:*",
+        "negotiator": "^0.6.3",
+        "next": "13.5.3",
+        "next-sanity": "^5.5.8",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-is": "^18.2.0",
+        "sanity": "^3.18.1",
+        "sanity-plugin-vercel-deploy": "^3.3.4",
+        "styled-components": "^5.2.0"
+    },
+    "devDependencies": {
+        "@types/negotiator": "^0.6.1",
+        "@types/node": "^17.0.12",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "autoprefixer": "^10.4.15",
+        "eslint-config-custom": "workspace:*",
+        "tailwindcss": "^3.3.3",
+        "tsconfig": "*"
+    }
+}

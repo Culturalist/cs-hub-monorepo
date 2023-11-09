@@ -32,5 +32,5 @@ module.exports = {
             }
         }
     },
-    ignorePatterns: ["node_modules/", "dist/"]
+    ignorePatterns: ["node_modules/", "dist/", "tsconfig.tsbuildinfo"]
 };

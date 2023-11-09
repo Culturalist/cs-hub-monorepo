@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Head from "next/head";
 import { notFound } from "next/navigation";
 import { Maket } from "@weresk/maket";
@@ -6,7 +7,8 @@ import { clientNext } from "@cs/data/client";
 import { App, homeQuery } from "@cs/data/schemas";
 import { prepareMetadata } from "@cs/data/utils";
 import { Hero, Header, GoogleTag, Body } from "@cs/ui";
-import { Metadata } from "next";
+
+export const revalidate = 0;
 
 export default async function Home() {
     const lang = globalConfig.localization.default;

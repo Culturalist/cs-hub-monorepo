@@ -7,11 +7,7 @@ const initialValueTemplates = [
         title: "Post",
         schemaType: "post",
         parameters: [],
-        value: () => ({
-            parent: appConfig.parentDocuments?.post
-                ? { _type: "reference", _ref: appConfig.parentDocuments.post }
-                : undefined
-        })
+        value: () => ({})
     },
     {
         id: "post-with-parent",
@@ -27,14 +23,7 @@ const initialValueTemplates = [
         title: "Project",
         schemaType: "project",
         parameters: [],
-        value: () => ({
-            parent: appConfig.parentDocuments?.project
-                ? {
-                      _type: "reference",
-                      _ref: appConfig.parentDocuments.project
-                  }
-                : undefined
-        })
+        value: () => ({})
     },
     {
         id: "project-with-parent",
@@ -51,9 +40,6 @@ const initialValueTemplates = [
         schemaType: "event",
         parameters: [],
         value: () => ({
-            parent: appConfig.parentDocuments?.event
-                ? { _type: "reference", _ref: appConfig.parentDocuments.event }
-                : undefined,
             action: {
                 _type: "linkCaptioned",
                 caption: dictionary.registration,

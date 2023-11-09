@@ -33,6 +33,85 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
 
+  apps/culturas:
+    dependencies:
+      '@cs/data':
+        specifier: workspace:*
+        version: link:../../packages/data
+      '@cs/globals':
+        specifier: workspace:*
+        version: link:../../packages/globals
+      '@cs/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@formatjs/intl-localematcher':
+        specifier: ^0.2.32
+        version: 0.2.32
+      '@sanity/color-input':
+        specifier: ^3.1.0
+        version: 3.1.0(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      '@sanity/language-filter':
+        specifier: ^3.2.1
+        version: 3.2.1(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      '@weresk/core':
+        specifier: workspace:*
+        version: link:../../packages/@weresk-core
+      '@weresk/maket':
+        specifier: workspace:*
+        version: link:../../packages/@weresk-maket
+      negotiator:
+        specifier: ^0.6.3
+        version: 0.6.3
+      next:
+        specifier: 13.5.3
+        version: 13.5.3(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      next-sanity:
+        specifier: ^5.5.8
+        version: 5.5.8(@sanity/client@6.7.0)(@sanity/icons@2.5.0)(@sanity/types@3.18.1)(@sanity/ui@1.8.2)(next@13.5.3)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-is:
+        specifier: ^18.2.0
+        version: 18.2.0
+      sanity:
+        specifier: ^3.18.1
+        version: 3.18.1(@types/node@17.0.45)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      sanity-plugin-vercel-deploy:
+        specifier: ^3.3.4
+        version: 3.3.4(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      styled-components:
+        specifier: ^5.2.0
+        version: 5.3.11(@babel/core@7.23.2)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@types/negotiator':
+        specifier: ^0.6.1
+        version: 0.6.1
+      '@types/node':
+        specifier: ^17.0.12
+        version: 17.0.45
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.2.28
+      '@types/react-dom':
+        specifier: ^18.2.0
+        version: 18.2.10
+      autoprefixer:
+        specifier: ^10.4.15
+        version: 10.4.16(postcss@8.4.31)
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../dev/eslint-config-custom
+      tailwindcss:
+        specifier: ^3.3.3
+        version: 3.3.3
+      tsconfig:
+        specifier: '*'
+        version: 7.0.0
+
   apps/culturaweek:
     dependencies:
       '@cs/data':
@@ -112,7 +191,165 @@ importers:
         specifier: workspace:*
         version: link:../../dev/tsconfig
 
+  apps/instituutit:
+    dependencies:
+      '@cs/data':
+        specifier: workspace:*
+        version: link:../../packages/data
+      '@cs/globals':
+        specifier: workspace:*
+        version: link:../../packages/globals
+      '@cs/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@formatjs/intl-localematcher':
+        specifier: ^0.2.32
+        version: 0.2.32
+      '@sanity/color-input':
+        specifier: ^3.1.0
+        version: 3.1.0(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      '@sanity/language-filter':
+        specifier: ^3.2.1
+        version: 3.2.1(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      '@weresk/core':
+        specifier: workspace:*
+        version: link:../../packages/@weresk-core
+      '@weresk/maket':
+        specifier: workspace:*
+        version: link:../../packages/@weresk-maket
+      negotiator:
+        specifier: ^0.6.3
+        version: 0.6.3
+      next:
+        specifier: 13.5.3
+        version: 13.5.3(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      next-sanity:
+        specifier: ^5.5.8
+        version: 5.5.8(@sanity/client@6.7.0)(@sanity/icons@2.5.0)(@sanity/types@3.18.1)(@sanity/ui@1.8.2)(next@13.5.3)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-is:
+        specifier: ^18.2.0
+        version: 18.2.0
+      sanity:
+        specifier: ^3.18.1
+        version: 3.18.1(@types/node@17.0.45)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      sanity-plugin-vercel-deploy:
+        specifier: ^3.3.4
+        version: 3.3.4(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      styled-components:
+        specifier: ^5.2.0
+        version: 5.3.11(@babel/core@7.23.2)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@types/negotiator':
+        specifier: ^0.6.1
+        version: 0.6.1
+      '@types/node':
+        specifier: ^17.0.12
+        version: 17.0.45
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.2.28
+      '@types/react-dom':
+        specifier: ^18.2.0
+        version: 18.2.10
+      autoprefixer:
+        specifier: ^10.4.15
+        version: 10.4.16(postcss@8.4.31)
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../dev/eslint-config-custom
+      tailwindcss:
+        specifier: ^3.3.3
+        version: 3.3.3
+      tsconfig:
+        specifier: '*'
+        version: 7.0.0
+
   apps/juhlarahasto:
+    dependencies:
+      '@cs/data':
+        specifier: workspace:*
+        version: link:../../packages/data
+      '@cs/globals':
+        specifier: workspace:*
+        version: link:../../packages/globals
+      '@cs/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@formatjs/intl-localematcher':
+        specifier: ^0.2.32
+        version: 0.2.32
+      '@sanity/color-input':
+        specifier: ^3.1.0
+        version: 3.1.0(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      '@sanity/language-filter':
+        specifier: ^3.2.1
+        version: 3.2.1(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      '@weresk/core':
+        specifier: workspace:*
+        version: link:../../packages/@weresk-core
+      '@weresk/maket':
+        specifier: workspace:*
+        version: link:../../packages/@weresk-maket
+      negotiator:
+        specifier: ^0.6.3
+        version: 0.6.3
+      next:
+        specifier: 13.5.3
+        version: 13.5.3(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      next-sanity:
+        specifier: ^5.5.8
+        version: 5.5.8(@sanity/client@6.7.0)(@sanity/icons@2.5.0)(@sanity/types@3.18.1)(@sanity/ui@1.8.2)(next@13.5.3)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-is:
+        specifier: ^18.2.0
+        version: 18.2.0
+      sanity:
+        specifier: ^3.18.1
+        version: 3.18.1(@types/node@17.0.45)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      sanity-plugin-vercel-deploy:
+        specifier: ^3.3.4
+        version: 3.3.4(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.18.1)(styled-components@5.3.11)
+      styled-components:
+        specifier: ^5.2.0
+        version: 5.3.11(@babel/core@7.23.2)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@types/negotiator':
+        specifier: ^0.6.1
+        version: 0.6.1
+      '@types/node':
+        specifier: ^17.0.12
+        version: 17.0.45
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.2.28
+      '@types/react-dom':
+        specifier: ^18.2.0
+        version: 18.2.10
+      autoprefixer:
+        specifier: ^10.4.15
+        version: 10.4.16(postcss@8.4.31)
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../dev/eslint-config-custom
+      tailwindcss:
+        specifier: ^3.3.3
+        version: 3.3.3
+      tsconfig:
+        specifier: '*'
+        version: 7.0.0
+
+  apps/venajankieliset:
     dependencies:
       '@cs/data':
         specifier: workspace:*

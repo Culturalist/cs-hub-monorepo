@@ -7,6 +7,7 @@ import { Label } from "../../system";
 import { getMediaCover, selectDefaultLocale, urlPreview } from "../../../utils";
 import { Person } from "../person";
 import { Page } from "../page";
+import { appDesk } from "@cs/globals/router/desk";
 
 export interface Post extends SanityDocument {
     _type: "post" | "reference";
@@ -129,7 +130,7 @@ export default function post() {
                 options: {
                     disableNew: true
                 },
-                readOnly: false,
+                readOnly: Boolean(appDesk.post?.length),
                 group: "connections"
             }),
             defineField({

@@ -36,7 +36,7 @@ module.exports = {
             }
         }
     },
-    ignorePatterns: ["node_modules/", "dist/"],
+    ignorePatterns: ["node_modules/", "dist/", "tsconfig.tsbuildinfo"],
     // add rules configurations here
     rules: {
         "@next/next/no-html-link-for-pages": "off"

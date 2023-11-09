@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from "@sanity/types";
 import { PresentationIcon } from "@sanity/icons";
-import { globalConfig } from "@cs/globals";
+import { appDesk, globalConfig } from "@cs/globals";
 import { BodyBlock, CaptionAlt, CoverBlock, LineupOrganisations, LocaleString } from "../../objects";
 import { MetadataPage } from "../../sections";
 import { Label } from "../../system";
@@ -128,7 +128,7 @@ export default function project() {
                 options: {
                     disableNew: true
                 },
-                readOnly: false,
+                readOnly: Boolean(appDesk.project?.length),
                 group: "connections"
             }),
             defineField({

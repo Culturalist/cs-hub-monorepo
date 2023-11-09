@@ -6,7 +6,7 @@ import { prepareMetadata } from "@cs/data/utils";
 import { Body, Hero } from "@cs/ui";
 import { Metadata } from "next";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 export default async function Home({ params: { lang } }: DefaultPageProps) {
     const data: App | null = await clientNext.fetch(homeQuery, { appName });

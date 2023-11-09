@@ -13,7 +13,6 @@ export interface AppConfig {
         navigation: DocumentApp[];
         create: DocumentAny[];
     };
-    parentDocuments?: Partial<Record<DocumentApp, string>>;
     tokens?: Record<string, string>;
 }
 

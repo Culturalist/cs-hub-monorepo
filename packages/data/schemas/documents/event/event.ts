@@ -1,7 +1,7 @@
 import { defineType, defineField, SanityDocument, Slug } from "@sanity/types";
 import { PresentationIcon } from "@sanity/icons";
 import { getMediaCover, selectDefaultLocale, urlPreview } from "../../../utils";
-import { Color, globalConfig } from "@cs/globals";
+import { Color, appDesk, globalConfig } from "@cs/globals";
 import {
     BodyBlock,
     CaptionAlt,
@@ -145,7 +145,7 @@ export default function event() {
                 options: {
                     disableNew: true
                 },
-                readOnly: false,
+                readOnly: Boolean(appDesk.event?.length),
                 group: "connections"
             }),
             defineField({

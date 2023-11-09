@@ -1,4 +1,4 @@
-import { MasterDetailIcon } from "@sanity/icons";
+import { MasterDetailIcon, TerminalIcon } from "@sanity/icons";
 import deskValues from "./deskStructure.values";
 import { DocumentApp, appDesk, appName } from "@cs/globals";
 import type {
@@ -62,7 +62,21 @@ export default function deskStructure(): DeskToolOptions {
                         .title(deskValues.app.title)
                         .icon(deskValues.app.icon)
                         .child(S.document().schemaType("app").documentId(appName)),
-                    ...appItems
+                    ...appItems,
+
+                    // View all documents for dev only
+                    ...(context.currentUser?.email === "merlinni@gmail.com"
+                        ? [
+                              S.listItem()
+                                  .title("All documents")
+                                  .icon(TerminalIcon)
+                                  .child(
+                                      S.list()
+                                          .title("All documents")
+                                          .items([...S.documentTypeListItems()])
+                                  )
+                          ]
+                        : [])
 
                     // ...appConfig.schemas.documents.map((docType) => {
                     //     return S.listItem()
