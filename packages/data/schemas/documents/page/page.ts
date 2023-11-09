@@ -2,7 +2,7 @@ import { defineType, defineField, SanityDocument, Slug } from "@sanity/types";
 import { DocumentIcon } from "@sanity/icons";
 import { BodyBlock, CaptionAlt, CoverBlock, LocaleString } from "../../objects";
 import { MetadataPage } from "../../sections";
-import { getMediaCover, selectDefaultLocale } from "../../../utils";
+import { getMediaCover, selectDefaultLocale, urlPreview } from "../../../utils";
 import { globalConfig } from "@cs/globals";
 import { Palette } from "@weresk/maket";
 
@@ -17,6 +17,7 @@ export interface Page extends SanityDocument {
     index?: boolean;
     body?: BodyBlock[];
     palette?: Palette;
+    publishDate: string;
     metadata?: MetadataPage;
 }
 
@@ -37,6 +38,10 @@ export default function page() {
             {
                 name: "style",
                 title: "Style"
+            },
+            {
+                name: "schedule",
+                title: "Schedule"
             },
             {
                 name: "seo",
@@ -95,6 +100,15 @@ export default function page() {
                 group: "style"
             }),
             defineField({
+                name: "publishDate",
+                title: "Publication date",
+                type: "datetime",
+                description: "Enables publication planning to certain time in the future and defines order of cards",
+                initialValue: new Date().toISOString(),
+                validation: (Rule) => Rule.required(),
+                group: "schedule"
+            }),
+            defineField({
                 name: "metadata",
                 title: "Metadata",
                 type: "metadataPage",
@@ -108,14 +122,17 @@ export default function page() {
             select: {
                 title: "title",
                 covers: "covers",
-                metaCover: "metadata.sharedImage"
+                metaCover: "metadata.sharedImage",
+                slug: "slug.current"
             },
-            prepare({ title, covers, metaCover }) {
+            prepare({ title, covers, metaCover, slug }) {
                 const localeTitle = selectDefaultLocale(title);
                 const cover = getMediaCover(covers) || metaCover;
+                const category = "Page";
+                const subtitle = `${localeTitle ? category + " " : ""}${urlPreview(slug, "page")}`;
                 return {
-                    title: localeTitle || "Page",
-                    subtitle: localeTitle ? "Page" : "",
+                    title: localeTitle || category,
+                    subtitle,
                     media: cover
                 };
             }
@@ -129,6 +146,16 @@ export default function page() {
                     {
                         field: `title.${globalConfig.localization.default}`,
                         direction: "asc"
+                    }
+                ]
+            },
+            {
+                title: "Publish date",
+                name: "publishDesc",
+                by: [
+                    {
+                        field: "publishDate",
+                        direction: "desc"
                     }
                 ]
             }

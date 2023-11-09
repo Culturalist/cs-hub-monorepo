@@ -1,16 +1,9 @@
-import {
-    HomeIcon,
-    DocumentsIcon,
-    PresentationIcon,
-    UsersIcon,
-    CalendarIcon,
-    CaseIcon
-} from "@sanity/icons";
+import { HomeIcon, DocumentsIcon, PresentationIcon, UsersIcon, CalendarIcon, CaseIcon } from "@sanity/icons";
 import { DocumentApp } from "@cs/globals";
 
 export type DeskValues = Record<DocumentApp, { icon: any; title: string }>;
 
-const desk: DeskValues = {
+const deskValues: DeskValues = {
     app: {
         icon: HomeIcon,
         title: "Home"
@@ -45,4 +38,4 @@ const desk: DeskValues = {
     }
 };
 
-export default desk;
+export default deskValues;

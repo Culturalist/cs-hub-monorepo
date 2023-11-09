@@ -1,6 +1,6 @@
 import { wrapReference, localizeString } from "@cs/data/utils";
 import { Header, LocaleString } from "@cs/data/schemas";
-import { globalConfig, DefaultProps, Locale, appsConfig } from "@cs/globals";
+import { globalConfig, DefaultProps, Locale, appsConfig, domains } from "@cs/globals";
 import { createStyles, Styles } from "./Header.styles";
 import { getImageUrl } from "@cs/globals/lib/sanity";
 import { LinkWrapper, Menu } from "../../blocks";
@@ -33,7 +33,7 @@ export default function Header(props: HeaderProps) {
                 ) : (
                     // DEFAULT WITH TITLE
                     <div className={styles.defaultLogo}>
-                        <LinkWrapper href={appsConfig.culturas.domain || "/"} lang={lang}>
+                        <LinkWrapper href={domains.global || "/"} lang={lang}>
                             <img
                                 src="/assets/cs-logo-min.svg"
                                 className={styles.logoImage}

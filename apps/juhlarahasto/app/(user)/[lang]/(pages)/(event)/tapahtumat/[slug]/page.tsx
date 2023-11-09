@@ -6,7 +6,7 @@ import { getStaticParams, prepareMetadata } from "@cs/data/utils";
 import { EventLayout } from "@cs/ui";
 import { Metadata } from "next";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 export default async function Event({ params }: DefaultPageProps) {
     const { slug, lang } = params;

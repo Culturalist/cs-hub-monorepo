@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { DefaultPropsWithChildren } from "@cs/globals";
 import { LinkTyped } from "@cs/data/schemas";

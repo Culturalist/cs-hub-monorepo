@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from "@sanity/types";
 import { UserIcon } from "@sanity/icons";
-import { joinLocaleStrings, selectDefaultLocale } from "../../../utils";
+import { joinLocaleStrings, selectDefaultLocale, urlPreview } from "../../../utils";
 import { LinkContact, LocalePortableText, LocaleString } from "../../objects";
 import { Label } from "../../system";
 import { globalConfig, ImageObject } from "@cs/globals";
@@ -89,14 +89,17 @@ export default function person() {
                 photo: "photo",
                 label1: "labels.0.title",
                 label2: "labels.1.title",
-                label3: "labels.2.title"
+                label3: "labels.2.title",
+                slug: "slug.current"
             },
-            prepare({ name, photo, label1, label2, label3 }) {
+            prepare({ name, photo, label1, label2, label3, slug }) {
                 const localeName = selectDefaultLocale(name);
                 const labels = joinLocaleStrings([label1, label2, label3]);
+                const category = "Person";
+                const subtitle = `${localeName ? (labels || category) + " " : ""}${urlPreview(slug, "person")}`;
                 return {
-                    title: localeName || "Person",
-                    subtitle: localeName ? labels : "",
+                    title: localeName || category,
+                    subtitle,
                     media: photo
                 };
             }

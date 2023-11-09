@@ -14,7 +14,7 @@ export default function PostLayout(props: PostLayoutProps) {
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const label = localizeString(data.labels?.[0]?.title, lang);
-    const date = formatLocaleDate(data.date, lang, true);
+    const date = formatLocaleDate(data.publishDate, lang, true);
     const author = localizeString(data.author?.title, lang);
     const styles = createStyles({ className });
 

@@ -7,7 +7,6 @@ export type DocumentAny = DocumentApp | DocumentSystem;
 
 export interface AppConfig {
     title: string;
-    domain: string;
     schemas: {
         documents: DocumentApp[];
         links: DocumentApp[];
@@ -28,7 +27,6 @@ export interface GlobalConfig {
         default: Locale;
         safeReplace?: boolean;
     };
-    routes: Record<DocumentApp, string>;
     latestUpdate: string;
     organization: string;
     creator: string;

@@ -12,7 +12,7 @@ export default function NoteLayout(props: NoteLayoutProps) {
     const { data, lang, className } = props;
     const { covers, captionAlt, body } = data;
     const title = localizeString(data.title, lang);
-    const date = formatLocaleDate(data.date, lang, true);
+    const date = formatLocaleDate(data.publishDate, lang, true);
     const styles = createStyles({ className });
 
     return (

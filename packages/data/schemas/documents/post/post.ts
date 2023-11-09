@@ -4,7 +4,7 @@ import { globalConfig } from "@cs/globals";
 import { BodyBlock, CaptionAlt, CoverBlock, LocaleString } from "../../objects";
 import { MetadataPage } from "../../sections";
 import { Label } from "../../system";
-import { getMediaCover, selectDefaultLocale } from "../../../utils";
+import { getMediaCover, selectDefaultLocale, urlPreview } from "../../../utils";
 import { Person } from "../person";
 import { Page } from "../page";
 
@@ -14,13 +14,13 @@ export interface Post extends SanityDocument {
     title?: LocaleString;
     subtitle?: LocaleString;
     slug: Slug;
-    date: string;
     covers?: CoverBlock[];
     captionAlt?: CaptionAlt;
     body?: BodyBlock[];
     author?: Person;
     parent?: Page;
     labels?: Label[];
+    publishDate: string;
     metadata?: MetadataPage;
 }
 
@@ -41,6 +41,10 @@ export default function post() {
             {
                 name: "connections",
                 title: "Connections"
+            },
+            {
+                name: "schedule",
+                title: "Schedule"
             },
             {
                 name: "seo",
@@ -67,15 +71,6 @@ export default function post() {
             defineField({
                 name: "slug",
                 type: "normalizedSlug",
-                validation: (Rule) => Rule.required(),
-                group: "card"
-            }),
-            defineField({
-                name: "date",
-                title: "Date",
-                type: "datetime",
-                description: "Date and time  define the order of posts",
-                initialValue: new Date().toISOString(),
                 validation: (Rule) => Rule.required(),
                 group: "card"
             }),
@@ -138,6 +133,15 @@ export default function post() {
                 group: "connections"
             }),
             defineField({
+                name: "publishDate",
+                title: "Publication date",
+                type: "datetime",
+                description: "Enables publication planning to certain time in the future and defines order of cards",
+                initialValue: new Date().toISOString(),
+                validation: (Rule) => Rule.required(),
+                group: "schedule"
+            }),
+            defineField({
                 name: "metadata",
                 title: "Metadata",
                 type: "metadataPage",
@@ -151,14 +155,18 @@ export default function post() {
             select: {
                 title: "title",
                 covers: "covers",
-                metaCover: "metadata.sharedImage"
+                metaCover: "metadata.sharedImage",
+                parent: "parent.title",
+                slug: "slug.current"
             },
-            prepare({ title, covers, metaCover }) {
+            prepare({ title, covers, metaCover, parent, slug }) {
                 const localeTitle = selectDefaultLocale(title);
                 const cover = getMediaCover(covers) || metaCover;
+                const category = `Post${selectDefaultLocale(parent) ? "/" + selectDefaultLocale(parent) : ""}`;
+                const subtitle = `${localeTitle ? category + " " : ""}${urlPreview(slug, "post")}`;
                 return {
-                    title: localeTitle || "Post",
-                    subtitle: localeTitle ? "Post" : "",
+                    title: localeTitle || category,
+                    subtitle,
                     media: cover
                 };
             }
@@ -172,6 +180,16 @@ export default function post() {
                     {
                         field: `title.${globalConfig.localization.default}`,
                         direction: "asc"
+                    }
+                ]
+            },
+            {
+                title: "Publish date",
+                name: "publishDesc",
+                by: [
+                    {
+                        field: "publishDate",
+                        direction: "desc"
                     }
                 ]
             }

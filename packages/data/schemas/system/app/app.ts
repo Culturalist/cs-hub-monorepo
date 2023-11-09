@@ -1,7 +1,7 @@
 import { defineType, defineField, SanityDocument } from "@sanity/types";
 import { ComponentIcon } from "@sanity/icons";
 import { getAppLanguageList, selectDefaultLocale } from "../../../utils";
-import { LocaleString } from "../../objects";
+import { BodyBlock, LocaleString } from "../../objects";
 import { Footer, Header, Hero, MetadataApp } from "../../sections";
 import { Palette } from "@weresk/maket";
 
@@ -13,6 +13,7 @@ export interface App extends SanityDocument {
     header?: Header;
     footer?: Footer;
     hero?: Hero;
+    body?: BodyBlock[];
     palette?: Palette;
     metadata?: MetadataApp;
 }

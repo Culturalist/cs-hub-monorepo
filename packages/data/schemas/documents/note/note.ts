@@ -2,7 +2,7 @@ import { defineType, defineField, SanityDocument, Slug } from "@sanity/types";
 import { DocumentIcon } from "@sanity/icons";
 import { BodyBlock, CaptionAlt, CoverBlock, LocaleString } from "../../objects";
 import { MetadataPage } from "../../sections";
-import { getMediaCover, selectDefaultLocale } from "../../../utils";
+import { getMediaCover, selectDefaultLocale, urlPreview } from "../../../utils";
 import { globalConfig } from "@cs/globals";
 
 export interface Note extends SanityDocument {
@@ -10,10 +10,10 @@ export interface Note extends SanityDocument {
     _ref?: string;
     title?: LocaleString;
     slug: Slug;
-    date: string;
     covers?: CoverBlock[];
     captionAlt?: CaptionAlt;
     body?: BodyBlock[];
+    publishDate: string;
     metadata?: MetadataPage;
 }
 
@@ -36,6 +36,10 @@ export default function note() {
                 title: "Connections"
             },
             {
+                name: "schedule",
+                title: "Schedule"
+            },
+            {
                 name: "seo",
                 title: "SEO"
             }
@@ -50,14 +54,6 @@ export default function note() {
             defineField({
                 name: "slug",
                 type: "normalizedSlug",
-                validation: (Rule) => Rule.required(),
-                group: "card"
-            }),
-            defineField({
-                name: "date",
-                title: "Date",
-                type: "datetime",
-                initialValue: new Date().toISOString(),
                 validation: (Rule) => Rule.required(),
                 group: "card"
             }),
@@ -84,6 +80,15 @@ export default function note() {
                 group: "page"
             }),
             defineField({
+                name: "publishDate",
+                title: "Publication date",
+                type: "datetime",
+                description: "Enables publication planning to certain time in the future and defines order of cards",
+                initialValue: new Date().toISOString(),
+                validation: (Rule) => Rule.required(),
+                group: "schedule"
+            }),
+            defineField({
                 name: "metadata",
                 title: "Metadata",
                 type: "metadataPage",
@@ -103,10 +108,11 @@ export default function note() {
             prepare({ title, covers, slug, metaCover }) {
                 const localeTitle = selectDefaultLocale(title);
                 const cover = getMediaCover(covers) || metaCover;
-                const url = slug ? `/${globalConfig.routes.note}/${slug}` : "";
+                const category = "Note";
+                const subtitle = `${localeTitle ? category + " " : ""}${urlPreview(slug, "note")}`;
                 return {
-                    title: localeTitle || "Note",
-                    subtitle: url || (localeTitle ? "Note" : ""),
+                    title: localeTitle || category,
+                    subtitle,
                     media: cover
                 };
             }
@@ -120,6 +126,16 @@ export default function note() {
                     {
                         field: `title.${globalConfig.localization.default}`,
                         direction: "asc"
+                    }
+                ]
+            },
+            {
+                title: "Publish date",
+                name: "publishDesc",
+                by: [
+                    {
+                        field: "publishDate",
+                        direction: "desc"
                     }
                 ]
             }

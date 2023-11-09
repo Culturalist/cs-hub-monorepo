@@ -1,4 +1,4 @@
-import { globalConfig, DocumentApp, Locale } from "@cs/globals";
+import { globalConfig, DocumentApp, Locale, routes } from "@cs/globals";
 import { LinkTyped, PageDocument } from "../schemas";
 
 export function prepareLink(input: LinkTyped, lang?: Locale): string {
@@ -18,9 +18,7 @@ export function prepareLink(input: LinkTyped, lang?: Locale): string {
         link = lang && internal.startsWith("/") ? `/${lang}${link}` : link;
     } else if (type === "reference" && reference) {
         if (reference._type !== "reference") {
-            link = `${globalConfig.routes[reference._type] ? "/" + globalConfig.routes[reference._type] : ""}/${
-                reference.slug?.current || ""
-            }`;
+            link = `${routes[reference._type] ? "/" + routes[reference._type] : ""}/${reference.slug?.current || ""}`;
             link = lang ? `/${lang}${link}` : link;
         }
     }
@@ -43,7 +41,7 @@ export function wrapReference(doc: PageDocument): LinkTyped {
 }
 
 export function linkPreview(link: LinkTyped): string {
-    const route = link.reference?._type ? globalConfig.routes[link.reference._type as DocumentApp] : "";
+    const route = link.reference?._type ? routes[link.reference._type as DocumentApp] : "";
     return link.type === "reference"
         ? `/${route ? route + "/" : ""}${link.reference?.slug?.current || ""}`
         : prepareLink(link);

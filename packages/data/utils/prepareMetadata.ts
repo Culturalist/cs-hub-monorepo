@@ -1,4 +1,4 @@
-import { DefaultPageProps, DocumentApp, ImageObject, appName, appConfig, globalConfig } from "@cs/globals";
+import { DefaultPageProps, DocumentApp, ImageObject, appName, globalConfig, appDomain, routes } from "@cs/globals";
 import { clientNext, getImageUrlBuilder } from "@cs/globals/lib/sanity";
 import { Metadata } from "next";
 import { SanityDocument } from "sanity";
@@ -103,15 +103,15 @@ export async function prepareMetadata({ type, params: { slug, lang } }: PrepareM
     //URL
     let path: string | undefined;
     if (type !== "app" && slug) {
-        path = `${globalConfig.routes[type] ? globalConfig.routes[type] + "/" : ""}${slug}/`;
+        path = `${routes[type] ? routes[type] + "/" : ""}${slug}/`;
     }
-    const url = path ? appConfig.domain + path : appConfig.domain;
+    const url = path ? appDomain + path : appDomain;
     output.alternates = {
         canonical: url,
         languages: {
-            "fi-FI": languages.includes("fi") ? `${appConfig.domain}fi/${path || ""}` : undefined,
-            "en-US": languages.includes("en") ? `${appConfig.domain}en/${path || ""}` : undefined,
-            "ru-RU": languages.includes("ru") ? `${appConfig.domain}ru/${path || ""}` : undefined
+            "fi-FI": languages.includes("fi") ? `${appDomain}fi/${path || ""}` : undefined,
+            "en-US": languages.includes("en") ? `${appDomain}en/${path || ""}` : undefined,
+            "ru-RU": languages.includes("ru") ? `${appDomain}ru/${path || ""}` : undefined
         }
     };
 

@@ -5,13 +5,15 @@
     "types": "./index.ts",
     "license": "MIT",
     "scripts": {
-        "lint": "eslint \"**/*.ts*\""
+        "lint": "eslint \"**/*.ts*\"",
+        "typecheck": "tsc --noEmit"
     },
     "dependencies": {
         "@cs/globals": "workspace:*",
         "@sanity/client": "^6.7.0",
         "@sanity/icons": "^2.5.0",
         "@sanity/image-url": "^1.0.2",
+        "@sanity/ui": "^1.8.2",
         "@weresk/core": "workspace:*",
         "@weresk/maket": "workspace:*",
         "next-sanity": "^5.5.8"
@@ -25,9 +27,9 @@
         "tsconfig": "workspace:*"
     },
     "peerDependencies": {
+        "next": "13.5.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "next": "13.5.3",
         "sanity": "^3.18.1"
     }
 }

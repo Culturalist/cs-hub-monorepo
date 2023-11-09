@@ -22,16 +22,6 @@ export const globalConfig: GlobalConfig = {
         default: "fi",
         safeReplace: true
     },
-    routes: {
-        app: "",
-        page: "",
-        person: "ihmiset",
-        post: "blogit",
-        project: "projektit",
-        event: "tapahtumat",
-        note: "sivut",
-        organisation: "yritykset"
-    },
     latestUpdate: "2023-10-05",
     organization: "Cultura-säätiö",
     creator: "Alexander Kalachev <alexanderkalachev.com>",

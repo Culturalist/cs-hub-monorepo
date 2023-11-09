@@ -305,6 +305,9 @@ importers:
       '@sanity/image-url':
         specifier: ^1.0.2
         version: 1.0.2
+      '@sanity/ui':
+        specifier: ^1.8.2
+        version: 1.8.2(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       '@weresk/core':
         specifier: workspace:*
         version: link:../@weresk-core

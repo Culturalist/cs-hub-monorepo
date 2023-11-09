@@ -1,7 +1,7 @@
-import { groq } from 'next-sanity';
-import { bodySegment, mediaBlockSegment } from '../../objects';
+import { groq } from "next-sanity";
+import { bodySegment, mediaBlockSegment } from "../../objects";
 
-export const projectQuery = groq`*[_type == 'project' && slug.current == $slug][0]{
+export const projectQuery = groq`*[_type == 'project' && slug.current == $slug && (dateTime(publishDate) < dateTime(now()) || !defined(publishDate))][0]{
     ...,
     parent-> {
         _type,

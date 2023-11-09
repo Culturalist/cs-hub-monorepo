@@ -1,7 +1,14 @@
 import { MasterDetailIcon } from "@sanity/icons";
-import desk from "./deskStructure.values";
-import { appConfig, appName } from "@cs/globals";
-import type { DeskToolOptions, StructureBuilder, StructureResolverContext } from "sanity/desk";
+import deskValues from "./deskStructure.values";
+import { DocumentApp, appDesk, appName } from "@cs/globals";
+import type {
+    DeskToolOptions,
+    Divider,
+    ListItem,
+    ListItemBuilder,
+    StructureBuilder,
+    StructureResolverContext
+} from "sanity/desk";
 // import { defaultDocumentNode } from './defaultDocumentNode';
 
 export default function deskStructure(): DeskToolOptions {
@@ -10,28 +17,69 @@ export default function deskStructure(): DeskToolOptions {
         title: "Desk",
         icon: MasterDetailIcon,
         // defaultDocumentNode: defaultDocumentNode,
-        structure: (S: StructureBuilder, context: StructureResolverContext) =>
-            S.list()
+        structure: (S: StructureBuilder, context: StructureResolverContext) => {
+            const appItems: (ListItemBuilder | ListItem | Divider)[] = [];
+
+            Object.entries(appDesk).forEach(([_docType, parents]) => {
+                const docType = _docType as DocumentApp;
+                if (!parents.length) {
+                    appItems.push(
+                        S.listItem()
+                            .title(deskValues[docType].title)
+                            .icon(deskValues[docType].icon)
+                            .child(
+                                S.documentTypeList(docType)
+                                    .title(deskValues[docType].title)
+                                    .initialValueTemplates([S.initialValueTemplateItem(`${docType}-with-initial`)])
+                            )
+                    );
+                } else {
+                    parents.forEach(({ parentId, title }) => {
+                        appItems.push(
+                            S.listItem()
+                                .title(title)
+                                .icon(deskValues[docType].icon)
+                                .child(
+                                    S.documentTypeList(docType)
+                                        .title(title)
+                                        .filter("_type == $docType && parent._ref == $parentId")
+                                        .params({ docType, parentId })
+                                        .initialValueTemplates([
+                                            S.initialValueTemplateItem(`${docType}-with-parent`, {
+                                                parentId
+                                            })
+                                        ])
+                                )
+                        );
+                    });
+                }
+            });
+
+            return S.list()
                 .title("Content")
                 .items([
                     S.listItem()
-                        .title(desk.app.title)
-                        .icon(desk.app.icon)
+                        .title(deskValues.app.title)
+                        .icon(deskValues.app.icon)
                         .child(S.document().schemaType("app").documentId(appName)),
-                    ...appConfig.schemas.documents.map((docType) => {
-                        return S.listItem()
-                            .title(desk[docType].title)
-                            .icon(desk[docType].icon)
-                            .child(
-                                S.documentTypeList(docType)
-                                    .title(desk[docType].title)
-                                    .initialValueTemplates([S.initialValueTemplateItem(`${docType}-with-initial`)])
-                            );
-                    })
+                    ...appItems
+
+                    // ...appConfig.schemas.documents.map((docType) => {
+                    //     return S.listItem()
+                    //         .title(deskValues[docType].title)
+                    //         .icon(deskValues[docType].icon)
+                    //         .child(
+                    //             S.documentTypeList(docType)
+                    //                 .title(deskValues[docType].title)
+                    //                 .initialValueTemplates([S.initialValueTemplateItem(`${docType}-with-initial`)])
+                    //         );
+                    // })
+
                     // S.listItem()
                     //     .title("Themes")
                     //     .icon(MasterDetailIcon)
                     //     .child(S.documentTypeList("theme").title("Themes"))
-                ])
+                ]);
+        }
     };
 }

@@ -1,6 +1,6 @@
 import { defineType, defineField, SanityDocument, Slug } from "@sanity/types";
 import { PresentationIcon } from "@sanity/icons";
-import { getMediaCover, selectDefaultLocale } from "../../../utils";
+import { getMediaCover, selectDefaultLocale, urlPreview } from "../../../utils";
 import { Color, globalConfig } from "@cs/globals";
 import {
     BodyBlock,
@@ -32,6 +32,7 @@ export interface Event extends SanityDocument {
     labels?: Label[];
     palette?: Palette;
     cardSurface?: Color;
+    publishDate: string;
     metadata?: MetadataPage;
 }
 
@@ -60,6 +61,10 @@ export default function event() {
             {
                 name: "style",
                 title: "Style"
+            },
+            {
+                name: "schedule",
+                title: "Schedule"
             },
             {
                 name: "seo",
@@ -175,6 +180,15 @@ export default function event() {
                 group: "style"
             }),
             defineField({
+                name: "publishDate",
+                title: "Publication date",
+                type: "datetime",
+                description: "Enables publication planning to certain time in the future and defines order of cards",
+                initialValue: new Date().toISOString(),
+                validation: (Rule) => Rule.required(),
+                group: "schedule"
+            }),
+            defineField({
                 name: "metadata",
                 title: "Metadata",
                 type: "metadataPage",
@@ -189,17 +203,16 @@ export default function event() {
                 title: "title",
                 covers: "covers",
                 parent: "parent.title",
-                label: "labels.0.title",
-                metaCover: "metadata.sharedImage"
+                metaCover: "metadata.sharedImage",
+                slug: "slug.current"
             },
-            prepare({ title, covers, parent, label, metaCover }) {
+            prepare({ title, covers, parent, metaCover, slug }) {
                 const localeTitle = selectDefaultLocale(title);
                 const cover = getMediaCover(covers) || metaCover;
-                let subtitle = "Event";
-                subtitle += selectDefaultLocale(parent) ? " / " + selectDefaultLocale(parent) : "";
-                subtitle += selectDefaultLocale(label) ? " / " + selectDefaultLocale(label) : "";
+                const category = `Event${selectDefaultLocale(parent) ? "/" + selectDefaultLocale(parent) : ""}`;
+                const subtitle = `${localeTitle ? category + " " : ""}${urlPreview(slug, "event")}`;
                 return {
-                    title: localeTitle || "Event",
+                    title: localeTitle || category,
                     subtitle: localeTitle ? subtitle : "",
                     media: cover
                 };
@@ -214,6 +227,16 @@ export default function event() {
                     {
                         field: `title.${globalConfig.localization.default}`,
                         direction: "asc"
+                    }
+                ]
+            },
+            {
+                title: "Publish date",
+                name: "publishDesc",
+                by: [
+                    {
+                        field: "publishDate",
+                        direction: "desc"
                     }
                 ]
             }

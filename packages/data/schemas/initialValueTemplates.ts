@@ -14,6 +14,15 @@ const initialValueTemplates = [
         })
     },
     {
+        id: "post-with-parent",
+        title: "Post",
+        schemaType: "post",
+        parameters: [{ name: "parentId", type: "string" }],
+        value: (params: { parentId: string }) => ({
+            parent: { _type: "reference", _ref: params.parentId }
+        })
+    },
+    {
         id: "project-with-initial",
         title: "Project",
         schemaType: "project",
@@ -25,6 +34,15 @@ const initialValueTemplates = [
                       _ref: appConfig.parentDocuments.project
                   }
                 : undefined
+        })
+    },
+    {
+        id: "project-with-parent",
+        title: "Project",
+        schemaType: "project",
+        parameters: [{ name: "parentId", type: "string" }],
+        value: (params: { parentId: string }) => ({
+            parent: { _type: "reference", _ref: params.parentId }
         })
     },
     {
@@ -45,6 +63,15 @@ const initialValueTemplates = [
                     href: appConfig.tokens?.registration || ""
                 }
             }
+        })
+    },
+    {
+        id: "event-with-parent",
+        title: "Event",
+        schemaType: "event",
+        parameters: [{ name: "parentId", type: "string" }],
+        value: (params: { parentId: string }) => ({
+            parent: { _type: "reference", _ref: params.parentId }
         })
     },
     {
