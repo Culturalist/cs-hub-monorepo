@@ -18,7 +18,7 @@ const defaultStyles = {
     marker: "typo-caps-lg trim-line !font-light text-center whitespace-nowrap",
     navigation: "flex flex-col items-center gap-12 sm:gap-20 pb-header-height",
     link: "",
-    linkCaption: "typo-caps-3xl trim-line hover:text-outline lg:hover:text-outline-thick",
+    linkCaption: "typo-caps-3xl trim-line text-center hyphens-auto hover:text-outline lg:hover:text-outline-thick",
     languages: "",
     state: {
         open: "",

@@ -1,8 +1,17 @@
 import { AppConfig } from "./types";
 
-export const appName = process.env.NEXT_PUBLIC_APP_NAME || process.env.SANITY_STUDIO_APP_NAME || "template";
+export const appName = process.env.NEXT_PUBLIC_APP_NAME || process.env.SANITY_STUDIO_APP_NAME || "hub";
 
 export const appsConfig: Record<string, AppConfig> = {
+    hub: {
+        title: "Cultura-säätiö Hub",
+        schemas: {
+            documents: ["page", "project", "post", "event", "person", "note", "organisation"],
+            links: ["page", "project", "post", "person", "event"],
+            navigation: ["page", "project", "event"],
+            create: ["page", "project", "post", "person", "event", "organisation", "note", "label", "palette"]
+        }
+    },
     culturas: {
         title: "Cultura-säätiö",
         schemas: {

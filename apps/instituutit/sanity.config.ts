@@ -2,10 +2,9 @@ import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
 import StudioLogo from "./studio/StudioLogo";
-import { globalConfig, appConfig, appName, DocumentAny, capitalize } from "@cs/globals";
+import { globalConfig, appConfig, appName, DocumentAny, capitalize, languageFilterConfig } from "@cs/globals";
 import { initialValueTemplates, schemaTypes } from "@cs/data/schemas";
 import { languageFilter } from "@sanity/language-filter";
-import { languageFilterConfig } from "@cs/globals/lib/language-filter";
 import { colorInput } from "@sanity/color-input";
 import { deskStructure } from "@cs/data";
 

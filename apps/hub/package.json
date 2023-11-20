@@ -1,0 +1,45 @@
+{
+  "name": "hub",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@cs/data": "workspace:*",
+    "@cs/globals": "workspace:*",
+    "@sanity/vision": "^3.19.2",
+    "@sanity/color-input": "^3.1.0",
+    "@sanity/language-filter": "^3.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "sanity": "^3.19.2",
+    "sanity-plugin-vercel-deploy": "^3.3.4",
+    "styled-components": "^5.3.9"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26",
+    "@types/node": "^17.0.12",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "*"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
+  }
+}
