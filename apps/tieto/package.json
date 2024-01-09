@@ -1,9 +1,9 @@
 {
-    "name": "culturaweek",
+    "name": "tieto",
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "dev": "next dev --port 3001",
+        "dev": "next dev --port 3005",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
@@ -36,6 +36,6 @@
         "autoprefixer": "^10.4.15",
         "eslint-config-custom": "workspace:*",
         "tailwindcss": "^3.3.3",
-        "tsconfig": "workspace:*"
+        "tsconfig": "*"
     }
 }

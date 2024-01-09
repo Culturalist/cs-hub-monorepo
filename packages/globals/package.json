@@ -8,10 +8,10 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@sanity/client": "^6.7.0",
+        "@sanity/client": "6.10.0",
         "@sanity/image-url": "^1.0.2",
         "@sanity/language-filter": "^3.2.1",
-        "next-sanity": "^5.5.8"
+        "next-sanity": "7.0.4"
     },
     "devDependencies": {
         "@types/node": "^17.0.12",

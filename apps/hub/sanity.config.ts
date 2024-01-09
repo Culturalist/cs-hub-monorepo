@@ -5,7 +5,7 @@ import {initialValueTemplates, schemaTypes} from '@cs/data'
 import {languageFilter} from '@sanity/language-filter'
 import {colorInput} from '@sanity/color-input'
 import {vercelDeployTool} from 'sanity-plugin-vercel-deploy'
-import {globalConfig, languageFilterConfig} from '@cs/globals'
+import {languageFilterConfig} from '@cs/globals'
 
 const projectIds = {
   culturas: process.env.SANITY_STUDIO_PROJECT_ID_CULTURAS || '',

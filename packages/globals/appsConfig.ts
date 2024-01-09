@@ -72,6 +72,18 @@ export const appsConfig: Record<string, AppConfig> = {
         tokens: {
             googleTag: ""
         }
+    },
+    tieto: {
+        title: "Cultura-säätiö",
+        schemas: {
+            documents: ["page", "person", "organisation"],
+            links: ["page", "person"],
+            navigation: ["page"],
+            create: ["page", "person", "label", "organisation", "palette"]
+        },
+        tokens: {
+            googleTag: ""
+        }
     }
 };
 
