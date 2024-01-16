@@ -70,6 +70,7 @@ export const desk: Record<string, Partial<Record<DocumentApp, { parentId: string
     },
     tieto: {
         page: [],
+        report: [],
         person: [],
         organisation: []
     }

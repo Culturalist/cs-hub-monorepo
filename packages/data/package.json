@@ -16,10 +16,10 @@
         "@sanity/ui": "^1.8.2",
         "@weresk/core": "workspace:*",
         "@weresk/maket": "workspace:*",
-        "next-sanity": "7.0.4"
+        "next-sanity": "7.0.7"
     },
     "devDependencies": {
-        "@sanity/types": "3.22.2",
+        "@sanity/types": "3.23.4",
         "@types/node": "^17.0.12",
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
@@ -30,6 +30,6 @@
         "next": "14.0.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "sanity": "3.22.2"
+        "sanity": "3.23.4"
     }
 }

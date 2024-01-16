@@ -37,4 +37,8 @@
     h1 {
         @apply typo-caps-3xl text-outline lg:text-outline-thick;
     }
+
+    th {
+        @apply text-left font-normal;
+    }
 }

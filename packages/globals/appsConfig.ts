@@ -76,10 +76,10 @@ export const appsConfig: Record<string, AppConfig> = {
     tieto: {
         title: "Cultura-säätiö",
         schemas: {
-            documents: ["page", "person", "organisation"],
-            links: ["page", "person"],
-            navigation: ["page"],
-            create: ["page", "person", "label", "organisation", "palette"]
+            documents: ["page", "report", "person", "organisation"],
+            links: ["page", "report", "person"],
+            navigation: ["page", "report"],
+            create: ["page", "report", "person", "label", "organisation", "palette"]
         },
         tokens: {
             googleTag: ""

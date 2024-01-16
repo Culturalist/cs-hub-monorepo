@@ -10,3 +10,4 @@ export { localizeString } from "./localizeString";
 export { prepareCardsData } from "./prepareCardsData";
 export { selectDate, elementToDate, formatLocaleDate } from "./selectDate";
 export { urlPreview } from "./urlPreview";
+export { selectLocale } from "./selectLocale";

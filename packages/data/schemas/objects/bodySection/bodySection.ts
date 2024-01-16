@@ -1,12 +1,14 @@
 import { defineType } from "@sanity/types";
-import { bodyBlockDefinitions } from "./bodySection.values";
+import { DocumentApp, capitalize } from "@cs/globals";
 import { BlockCards } from "../blockCards/blockCards";
 import { BlockColumns } from "../blockColumns";
 import { BlockLinks } from "../blockLinks/blockLinks";
 import { BlockSchedule } from "../blockSchedule";
 import { LocalePortableText } from "../localePortableText";
 import { BlockMedia } from "../blockMedia";
-import { DocumentApp, capitalize } from "@cs/globals";
+import { BlockTable } from "../blockTable";
+import { BlockChart } from "../blockChart";
+import { bodyBlockDefinitions } from "./bodySection.values";
 
 interface SchemaProps {
     parent: DocumentApp;
@@ -18,7 +20,9 @@ export type BodySectionBlock =
     | BlockMedia
     | BlockLinks
     | BlockCards
-    | BlockSchedule;
+    | BlockSchedule
+    | BlockTable
+    | BlockChart;
 
 export default function bodySection({ parent }: SchemaProps) {
     return defineType({
@@ -31,11 +35,9 @@ export default function bodySection({ parent }: SchemaProps) {
             { type: "blockMedia" },
             { type: "blockLinks" },
             { type: "blockCards" },
-            { type: "blockSchedule" }
-        ].filter((field) =>
-            bodyBlockDefinitions[parent]
-                ? bodyBlockDefinitions[parent]?.includes(field.type)
-                : true
-        )
+            { type: "blockSchedule" },
+            { type: "blockTable" },
+            { type: "blockChart" }
+        ].filter((field) => (bodyBlockDefinitions[parent] ? bodyBlockDefinitions[parent]?.includes(field.type) : true))
     });
 }

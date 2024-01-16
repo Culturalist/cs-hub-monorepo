@@ -30,9 +30,12 @@ import {
     blockMedia,
     portableTextParents,
     bodyParents,
-    mediaArray
+    mediaArray,
+    blockTable,
+    localeTable,
+    blockChart
 } from "./objects";
-import { page, person, post, project, event, note, organisation } from "./documents";
+import { page, person, post, project, event, note, organisation, report } from "./documents";
 import { header, footer, hero, metadataApp, metadataPage } from "./sections";
 import { app, label, palette } from "./system";
 
@@ -49,6 +52,7 @@ export default function schemaTypes() {
         coverArray,
         localeString,
         localeText,
+        localeTable,
         normalizedSlug,
         elementDate,
         elementSchedule,
@@ -59,6 +63,8 @@ export default function schemaTypes() {
         blockSchedule,
         blockLinks,
         blockMedia,
+        blockTable,
+        blockChart,
         blockId,
         linkTyped,
         linkCaptioned,
@@ -75,7 +81,7 @@ export default function schemaTypes() {
 
     const sections = [header, footer, hero, metadataApp, metadataPage].map((typeClass) => typeClass());
 
-    const documents = [page, project, event, post, person, note, organisation].map((typeClass) => typeClass());
+    const documents = [page, project, event, post, person, note, organisation, report].map((typeClass) => typeClass());
 
     const system = [app, label, palette].map((typeClass) => typeClass());
 

@@ -6,5 +6,6 @@ export const routes = {
     project: "projektit",
     event: "tapahtumat",
     note: "sivut",
+    report: "raportit",
     organisation: "yritykset"
 };

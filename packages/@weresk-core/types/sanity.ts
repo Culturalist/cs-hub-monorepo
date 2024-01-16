@@ -1,8 +1,4 @@
-import {
-    SanityAsset,
-    SanityImageDimensions,
-    SanityImageObject
-} from "@sanity/image-url/lib/types/types";
+import { SanityAsset, SanityImageDimensions, SanityImageObject } from "@sanity/image-url/lib/types/types";
 
 export interface Span {
     _type: "span";
@@ -68,4 +64,15 @@ export interface ImageObject extends Partial<SanityImageObject> {
             dimensions?: SanityImageDimensions;
         };
     };
+}
+
+export interface TableRow {
+    _type: string;
+    _key: string;
+    cells: string[];
+}
+
+export interface TableValue {
+    _type: "table";
+    rows: TableRow[];
 }

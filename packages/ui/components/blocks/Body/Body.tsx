@@ -7,6 +7,8 @@ import BlockColumns from "./BlockColumns";
 import BlockMedia from "./BlockMedia";
 import BlockSchedule from "./BlockSchedule";
 import BlockSection from "./BlockSection";
+import BlockChart from "./BlockChart";
+import BlockTable from "./BlockTable";
 import { createStyles } from "./Body.styles";
 
 interface BodyProps extends DefaultProps {
@@ -38,6 +40,10 @@ export default function Body(props: BodyProps) {
                     return <BlockMedia data={block} key={i} {...blockProps} />;
                 } else if (block._type === "blockCards") {
                     return <BlockCards data={block} key={i} {...blockProps} />;
+                } else if (block._type === "blockChart") {
+                    return <BlockChart data={block} key={i} {...blockProps} />;
+                } else if (block._type === "blockTable") {
+                    return <BlockTable data={block} key={i} {...blockProps} />;
                 } else if (block.typeClass === "blockSection") {
                     return <BlockSection data={block} key={i} lang={lang} className={styles.section} />;
                 }

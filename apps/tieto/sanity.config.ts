@@ -7,6 +7,7 @@ import { initialValueTemplates, schemaTypes } from "@cs/data/schemas";
 import { languageFilter } from "@sanity/language-filter";
 import { languageFilterConfig } from "@cs/globals/lib/language-filter";
 import { colorInput } from "@sanity/color-input";
+import { table } from "@sanity/table";
 import { deskStructure } from "@cs/data";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "";
@@ -19,7 +20,13 @@ export default defineConfig({
     dataset: "production",
     apiVersion: globalConfig.latestUpdate,
 
-    plugins: [deskTool(deskStructure()), languageFilter(languageFilterConfig()), colorInput(), vercelDeployTool()],
+    plugins: [
+        deskTool(deskStructure()),
+        languageFilter(languageFilterConfig()),
+        colorInput(),
+        table(),
+        vercelDeployTool()
+    ],
     schema: {
         types: schemaTypes(),
         templates: initialValueTemplates

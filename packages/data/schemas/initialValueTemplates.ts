@@ -79,6 +79,12 @@ const initialValueTemplates = [
         value: () => ({})
     },
     {
+        id: "report-with-initial",
+        title: "Report",
+        schemaType: "report",
+        value: () => ({})
+    },
+    {
         id: "organisation-with-initial",
         title: "Organisation",
         schemaType: "organisation",

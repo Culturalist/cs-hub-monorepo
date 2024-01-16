@@ -32,6 +32,10 @@ const deskValues: DeskValues = {
         icon: DocumentsIcon,
         title: "Notes"
     },
+    report: {
+        icon: PresentationIcon,
+        title: "Reports"
+    },
     organisation: {
         icon: CaseIcon,
         title: "Organisations"
