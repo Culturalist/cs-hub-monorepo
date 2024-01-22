@@ -15,6 +15,7 @@
         "@cs/ui": "workspace:*",
         "@formatjs/intl-localematcher": "^0.2.32",
         "@sanity/color-input": "^3.1.0",
+        "@sanity/table": "^1.0.1",
         "@sanity/language-filter": "^3.2.1",
         "@weresk/core": "workspace:*",
         "@weresk/maket": "workspace:*",
