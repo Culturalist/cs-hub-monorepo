@@ -3,6 +3,7 @@ import { Project } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { Body, Cover, Lineup, LinkWrapper } from "../../blocks";
 import { createStyles } from "./ProjectLayout.styles";
+import { hasLongWords } from "../../../utils";
 
 interface ProjectLayoutProps extends DefaultProps {
     data: Project;
@@ -35,7 +36,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                     </div>
                 )}
                 {/* TITLE */}
-                <h1 className={styles.titleWrapper}>
+                <h1 data-hyphen={hasLongWords(title)} className={styles.titleWrapper}>
                     <span className={styles.title}>{title}</span>
                 </h1>
                 {/* SUBTITLE */}

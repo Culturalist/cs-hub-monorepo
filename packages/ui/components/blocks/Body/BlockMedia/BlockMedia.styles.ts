@@ -9,7 +9,7 @@ export interface StyleProps extends DefaultStyleProps {
 
 const defaultStyles = {
     container: "mt-40 grid grid-cols-1 gap-offset sm:gap-gutter",
-    wrapper: "",
+    wrapper: "lg:max-w-m20",
     image: "w-full",
     video: "w-full",
     captionWrapper: "mt-4",

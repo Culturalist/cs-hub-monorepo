@@ -1,14 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-const maket = require("@weresk/maket/tailwindcss");
-const gridTheme = require("./maket/grid.theme");
-const typographyTheme = require("./maket/typography.theme");
-const paletteTheme = require("./maket/palette.theme");
+import { maketConfig } from "./maket";
+
+const maket = require("../@weresk-maket/_backup/tailwindcss");
 
 module.exports = {
     theme: {
-        ...gridTheme,
-        ...typographyTheme,
-        ...paletteTheme,
+        ...maketConfig,
         extend: {
             spacing: {
                 "bar-height": "var(--c-bar-height)",

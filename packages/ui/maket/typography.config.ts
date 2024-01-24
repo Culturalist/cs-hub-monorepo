@@ -1,8 +1,6 @@
-/**
- * @type {import('@weresk/typo').TypoConfig}
- */
+import type { TypographyConfig } from "@weresk/maket";
 
-module.exports = {
+const typographyConfig: TypographyConfig = {
     typography: {
         fonts: {
             mabry: {
@@ -79,14 +77,12 @@ module.exports = {
             },
             "short-sm": {
                 fontSize: "16/20",
-                letterSpacing: "-0.01em",
                 sm: {
                     fontSize: "12/16"
                 }
             },
             "caps-huge": {
                 fontSize: "64",
-                letterSpacing: "-0.03em",
                 textTransform: "uppercase",
                 md: {
                     fontSize: "88"
@@ -97,7 +93,6 @@ module.exports = {
             },
             "caps-3xl": {
                 fontSize: "48",
-                letterSpacing: "-0.03em",
                 textTransform: "uppercase",
                 sm: {
                     fontSize: "72"
@@ -108,45 +103,37 @@ module.exports = {
             },
             "caps-2xl": {
                 fontSize: "48",
-                letterSpacing: "-0.03em",
                 textTransform: "uppercase",
                 sm: {
                     fontSize: "72"
                 }
             },
             "caps-xl": {
-                fontSize: "48",
-                letterSpacing: "-0.03em",
+                fontSize: "48/52",
                 textTransform: "uppercase"
             },
             "caps-lg": {
-                fontSize: "40",
-                letterSpacing: "-0.03em",
+                fontSize: "40/44",
                 textTransform: "uppercase"
             },
             caps: {
-                fontSize: "32",
-                letterSpacing: "-0.03em",
+                fontSize: "32/36",
                 textTransform: "uppercase"
             },
             "caps-sm": {
                 fontSize: "24",
-                letterSpacing: "-0.03em",
                 textTransform: "uppercase"
             },
             "caps-xs": {
                 fontSize: "20",
-                letterSpacing: "-0.03em",
                 textTransform: "uppercase"
             },
             "caps-2xs": {
                 fontSize: "16",
-                letterSpacing: "-0.03em",
                 textTransform: "uppercase"
             },
             "caps-3xs": {
                 fontSize: "12",
-                letterSpacing: "-0.03em",
                 textTransform: "uppercase"
             }
         },
@@ -154,6 +141,11 @@ module.exports = {
             DEFAULT: "1",
             thin: "0.5",
             thick: "1.5"
+        },
+        constants: {
+            hyphenWordLengthLimit: 14
         }
     }
 };
+
+export default typographyConfig;

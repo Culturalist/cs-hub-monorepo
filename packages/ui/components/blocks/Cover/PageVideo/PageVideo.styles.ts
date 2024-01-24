@@ -8,7 +8,7 @@ const defaultStyles = {
     container: "",
     wrapper:
         "flex data-[trim=load]:opacity-0 data-[trim=x]:flex-row data-[trim=y]:flex-col justify-center items-stretch overflow-hidden transition-opacity duration-1000",
-    box: "h-m12 xs:w-m12 sm:w-m24 sm:h-m16 md:h-m12",
+    box: "w-auto xs:h-m12 xs:w-m12 sm:w-m24 sm:h-m16 md:h-m12",
     video: "object-cover",
     captionWrapper: "mt-4",
     caption: "typo-short-sm trim-line text-on-surface-light"

@@ -6,10 +6,10 @@ export interface StyleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
     container: "mb-m3",
-    titleWrapper: "",
+    titleWrapper: "mt-4",
     title: "trim-line",
     index: "mt-48",
-    cover: "mt-24 mb-40",
+    cover: "mt-32 mb-40",
     body: ""
 };
 

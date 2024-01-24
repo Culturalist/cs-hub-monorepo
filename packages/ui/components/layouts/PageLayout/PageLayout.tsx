@@ -4,6 +4,9 @@ import { localizeString } from "@cs/data/utils";
 import { Body, Cover, PageIndex } from "../../blocks";
 import { createStyles } from "./PageLayout.styles";
 import { SetPalette } from "@weresk/maket";
+import { longestWord, numeric } from "@weresk/core";
+import { typographyConfig } from "../../../maket";
+import { hasLongWords } from "../../../utils";
 
 interface PageLayoutProps extends DefaultProps {
     data: Page;
@@ -18,7 +21,7 @@ export default function PageLayout(props: PageLayoutProps) {
     return (
         <>
             <main className={styles.container}>
-                <h1 className={styles.titleWrapper}>
+                <h1 data-hyphen={hasLongWords(title)} className={styles.titleWrapper}>
                     <span className={styles.title}>{title}</span>
                 </h1>
                 {/* INDEX */}

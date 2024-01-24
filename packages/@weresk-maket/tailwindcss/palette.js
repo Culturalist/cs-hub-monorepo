@@ -1,5 +1,5 @@
 const plugin = require("tailwindcss/plugin");
-const { addStyle, sortStyles } = require("./utils");
+const { addStyle, sortStyles } = require("../utils");
 
 const palette = plugin(
     function ({ addBase, theme }) {

@@ -1,4 +1,6 @@
-module.exports = {
+import type { GridConfig } from "@weresk/maket";
+
+const gridConfig: GridConfig = {
     screens: {
         xs: "512px",
         sm: "796px",
@@ -29,10 +31,24 @@ module.exports = {
             lg: "20px"
         },
         offset: {
-            DEFAULT: "20px"
+            DEFAULT: "20px",
+            xs: "20px",
+            sm: "20px",
+            md: "20px",
+            lg: "20px"
         },
-        zoom: {
-            DEFAULT: "off"
+        ruler: {
+            steps: 30,
+            modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 24]
         }
+    },
+    pd: {
+        DEFAULT: 3,
+        xs: 3,
+        sm: 2,
+        md: 2,
+        lg: 2
     }
 };
+
+export default gridConfig;

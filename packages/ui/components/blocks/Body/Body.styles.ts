@@ -6,8 +6,8 @@ export interface StyleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
     container: "",
-    block: "mb-40",
-    section: "mb-m2 first:mt-20",
+    block: "mb-60",
+    section: "mb-m3 first:mt-20",
     links: "mt-40"
 };
 

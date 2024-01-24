@@ -3,8 +3,9 @@ import { DefaultProps } from "@cs/globals";
 import { createStyles } from "./HeroVideo.styles";
 import { ImageSources, UseMedia, VideoSources } from "@cs/data/schemas";
 import { useEffect, useRef, useState } from "react";
+import { numeric } from "@weresk/core";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import metrics from "../../../../metrics";
+import { gridConfig } from "../../../../maket";
 
 interface HeroVideoProps extends DefaultProps {
     sources: VideoSources;
@@ -22,6 +23,8 @@ export default function HeroVideo(props: HeroVideoProps) {
         desktop: props.posters?.desktop || props.posters?.mobile
     };
     const responsive = sources.desktop?.url !== sources.mobile?.url;
+    const mobileWidth = numeric(gridConfig.screens?.xs) * numeric(gridConfig.pd?.xs);
+    const desktopWidth = numeric(gridConfig.screens?.lg) * numeric(gridConfig.pd?.lg);
     const videoRef = useRef<HTMLVideoElement>(null);
     const device = useRef<UseMedia>("desktop");
     const [source, setSource] = useState(sources[device.current]);
@@ -41,15 +44,9 @@ export default function HeroVideo(props: HeroVideoProps) {
 
     function validateSize() {
         if (responsive) {
-            if (
-                window.innerWidth > window.innerHeight &&
-                device.current === "mobile"
-            ) {
+            if (window.innerWidth > window.innerHeight && device.current === "mobile") {
                 changeSource("desktop");
-            } else if (
-                window.innerWidth <= window.innerHeight &&
-                device.current === "desktop"
-            ) {
+            } else if (window.innerWidth <= window.innerHeight && device.current === "desktop") {
                 changeSource("mobile");
             }
         }
@@ -57,8 +54,7 @@ export default function HeroVideo(props: HeroVideoProps) {
         if (videoRef.current) {
             if (videoRef.current.videoHeight) {
                 setTrim(
-                    videoRef.current.videoWidth / videoRef.current.videoHeight >
-                        window.innerWidth / window.innerHeight
+                    videoRef.current.videoWidth / videoRef.current.videoHeight > window.innerWidth / window.innerHeight
                         ? "x"
                         : "y"
                 );
@@ -85,12 +81,7 @@ export default function HeroVideo(props: HeroVideoProps) {
                 ref={videoRef}
                 poster={
                     posters[device.current] &&
-                    getImageUrl(
-                        posters[device.current],
-                        device.current === "mobile"
-                            ? metrics.breakpoints.sm * metrics.pd.xs
-                            : metrics.breakpoints.lg * metrics.pd.lg
-                    )
+                    getImageUrl(posters[device.current], device.current === "mobile" ? mobileWidth : desktopWidth)
                 }
                 className={styles.video}
                 playsInline={true}

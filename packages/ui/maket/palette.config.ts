@@ -1,4 +1,6 @@
-module.exports = {
+import type { PaletteConfig } from "@weresk/maket";
+
+const paletteConfig: PaletteConfig = {
     swatches: {
         white: "255 255 255",
         black: "50 50 50",
@@ -16,3 +18,5 @@ module.exports = {
         "header-text": theme("swatches.black")
     })
 };
+
+export default paletteConfig;

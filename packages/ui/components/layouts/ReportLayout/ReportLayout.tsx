@@ -4,6 +4,7 @@ import { localizeString } from "@cs/data/utils";
 import { Body, Cover, PageIndex } from "../../blocks";
 import { createStyles } from "./ReportLayout.styles";
 import { SetPalette } from "@weresk/maket";
+import { hasLongWords } from "../../../utils";
 
 interface ReportLayoutProps extends DefaultProps {
     data: Report;
@@ -18,7 +19,7 @@ export default function ReportLayout(props: ReportLayoutProps) {
     return (
         <>
             <main className={styles.container}>
-                <h1 className={styles.titleWrapper}>
+                <h1 data-hyphen={hasLongWords(title)} className={styles.titleWrapper}>
                     <span className={styles.title}>{title}</span>
                 </h1>
                 {/* INDEX */}

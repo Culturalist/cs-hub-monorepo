@@ -3,6 +3,7 @@ import { Note } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { Body, Cover } from "../../blocks";
 import { createStyles } from "./NoteLayout.styles";
+import { hasLongWords } from "../../../utils";
 
 interface NoteLayoutProps extends DefaultProps {
     data: Note;
@@ -25,7 +26,7 @@ export default function NoteLayout(props: NoteLayoutProps) {
                     </p>
                 )}
                 {/* TITLE */}
-                <h1 className={styles.titleWrapper}>
+                <h1 data-hyphen={hasLongWords(title)} className={styles.titleWrapper}>
                     <span className={styles.title}>{title}</span>
                 </h1>
                 {/* COVER */}

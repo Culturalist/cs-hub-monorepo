@@ -11,7 +11,7 @@ const defaultStyles = {
     parent: "trim-line",
     labelWrapper: "flex gap-12",
     label: "trim-line",
-    titleWrapper: "",
+    titleWrapper: "mt-4",
     title: "trim-line",
     subtitleWrapper: "mt-8 sm:mt-16 lg:max-w-m20",
     subtitle: "typo-paragraph trim-line text-on-surface-light",
@@ -19,7 +19,7 @@ const defaultStyles = {
     datesWrapper: "mt-m2 mb-32 flex flex-col sm:flex-row gap-32 sm:gap-gutter sm:justify-between sm:items-end",
     dates: "grow",
     action: "grow-0",
-    cover: "mt-24 mb-40",
+    cover: "mt-32 mb-40",
     body: ""
 };
 

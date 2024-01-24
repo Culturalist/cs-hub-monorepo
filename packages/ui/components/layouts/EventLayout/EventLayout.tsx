@@ -4,6 +4,7 @@ import { wrapReference, localizeString } from "@cs/data/utils";
 import { Event } from "@cs/data/schemas";
 import { Body, Cover, Links, LinkWrapper, EventDates, Lineup } from "../../blocks";
 import { createStyles } from "./EventLayout.styles";
+import { hasLongWords } from "../../../utils";
 
 interface EventLayoutProps extends DefaultProps {
     data: Event;
@@ -36,7 +37,7 @@ export default function EventLayout(props: EventLayoutProps) {
                     </div>
                 )}
                 {/* TITLE */}
-                <h1 className={styles.titleWrapper}>
+                <h1 data-hyphen={hasLongWords(title)} className={styles.titleWrapper}>
                     <span className={styles.title}>{title}</span>
                 </h1>
                 {/* SUBTITLE */}

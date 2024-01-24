@@ -10,7 +10,7 @@ import {languageFilterConfig} from '@cs/globals'
 const projectIds = {
   culturas: process.env.SANITY_STUDIO_PROJECT_ID_CULTURAS || '',
   culturaweek: process.env.SANITY_STUDIO_PROJECT_ID_CULTURAWEEK || '',
-  instituutit: process.env.SANITY_STUDIO_PROJECT_ID_INSTITUUTIT || '',
+  instituutiot: process.env.SANITY_STUDIO_PROJECT_ID_INSTITUUTIT || '',
   juhlarahasto: process.env.SANITY_STUDIO_PROJECT_ID_JUHLARAHASTO || '',
   venajankieliset: process.env.SANITY_STUDIO_PROJECT_ID_VENAJANKIELISET || '',
 }

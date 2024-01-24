@@ -5,7 +5,7 @@ export const domains: Record<string, string> = {
     culturas: "https://culturas.fi/",
     culturaweek: "https://culturaweek.fi/",
     juhlarahasto: "https://juhlarahasto.fi/",
-    instituutit: "https://instituutit.culturas.fi/",
+    instituutiot: "https://instituutiot.culturas.fi/",
     venajankieliset: "https://venajankieliset.culturas.fi/",
     tieto: "https://tieto.culturas.fi/"
 };

@@ -49,8 +49,8 @@ export const appsConfig: Record<string, AppConfig> = {
             googleTag: "G-580T1LN9R6"
         }
     },
-    instituutit: {
-        title: "Instituutit",
+    instituutiot: {
+        title: "Instituutiot",
         schemas: {
             documents: ["page", "project", "event", "person", "organisation"],
             links: ["page", "person", "project", "event"],

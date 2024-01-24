@@ -11,12 +11,12 @@ const defaultStyles = {
     parent: "trim-line",
     labelWrapper: "flex gap-12",
     label: "trim-line",
-    titleWrapper: "",
+    titleWrapper: "mt-4",
     title: "trim-line",
     subtitleWrapper: "mt-16 lg:max-w-m20",
     subtitle: "typo-paragraph trim-line text-on-surface-light",
     organisations: "mt-32",
-    cover: "mt-24 mb-40",
+    cover: "mt-32 mb-40",
     body: ""
 };
 

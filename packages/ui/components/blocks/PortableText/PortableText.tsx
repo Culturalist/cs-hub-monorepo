@@ -5,8 +5,7 @@ import { mapKeys, neatChildrenBreaks } from "@cs/globals/utils";
 import { getImageUrl } from "@cs/globals/lib/sanity";
 import { BlockParent, LocalePortableText, MediaImage } from "@cs/data/schemas";
 import { localizeString } from "@cs/data/utils";
-import { AdaptiveDimentions, boxPx, breakpoints } from "../../../utils";
-import metrics from "../../../metrics";
+import { AdaptiveDimentions, box, boxPx, breakpoints } from "../../../utils";
 import LinkWrapper from "../LinkWrapper";
 import Image from "../Image";
 import { createStyles } from "./PortableText.styles";
@@ -25,16 +24,16 @@ export default function PortableText(props: PortableTextBlockProps) {
 
     const imageSizes: Record<"body" | "column", AdaptiveDimentions> = {
         body: {
-            xs: [metrics.breakpoints.xs - 2 * metrics.grid.offset, 0],
-            sm: [metrics.breakpoints.sm - 2 * metrics.grid.offset, 0],
-            md: [metrics.breakpoints.md - 2 * metrics.grid.offset, 0],
-            lg: [metrics.breakpoints.lg - 2 * metrics.grid.offset, 0]
+            xs: box([12, 0], "xs"),
+            sm: box([24, 0], "sm"),
+            md: box([20, 0], "md"),
+            lg: box([20, 0], "lg")
         },
         column: {
-            xs: [metrics.breakpoints.xs - 2 * metrics.grid.offset, 0],
-            sm: [metrics.breakpoints.sm - 2 * metrics.grid.offset, 0],
-            md: [Math.floor((metrics.breakpoints.md - 2 * metrics.grid.offset - metrics.grid.md.gutter) / 2), 0],
-            lg: [Math.floor((metrics.breakpoints.lg - 2 * metrics.grid.offset - metrics.grid.lg.gutter) / 2), 0]
+            xs: box([12, 0], "xs"),
+            sm: box([12, 0], "sm"),
+            md: box([12, 0], "md"),
+            lg: box([12, 0], "lg")
         }
     };
 

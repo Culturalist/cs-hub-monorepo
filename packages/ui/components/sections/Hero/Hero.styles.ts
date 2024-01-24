@@ -10,7 +10,7 @@ type LeadSize = "short" | "medium" | "long";
 
 const defaultStyles = {
     container: "hero",
-    wrapper: "h-hero-height pb-offset flex flex-col gap-module justify-between",
+    wrapper: "min-h-hero-height pb-offset flex flex-col gap-module justify-between",
     leadWrapper: "",
     lead: "trim-line text-outline hyphens-auto sm:hyphens-none text-on-surface",
     short: "typo-caps-huge",

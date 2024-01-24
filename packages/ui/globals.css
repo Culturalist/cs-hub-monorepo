@@ -11,8 +11,11 @@
         --c-bar-height: 24px;
         --c-logo-height: calc(var(--c-bar-height) + 4px);
         --c-header-height: calc(var(--c-bar-height) + 2 * var(--metrics-offset));
-        --c-hero-height: calc(100svh - var(--c-header-height));
-        --c-page-min-height: calc(100svh - var(--c-header-height) - var(--c-module-3));
+        --c-screen-height: 720px;
+        --c-screen-height: 100vh;
+        --c-screen-height: 100svh;
+        --c-hero-height: calc(var(--c-screen-height) - var(--c-header-height));
+        --c-page-min-height: calc(var(--c-screen-height) - var(--c-header-height) - var(--c-module-3));
     }
     @media (min-width: theme("screens.xs")) {
         :root {
@@ -35,7 +38,7 @@
     }
 
     h1 {
-        @apply typo-caps-3xl text-outline lg:text-outline-thick;
+        @apply typo-caps-3xl text-outline lg:text-outline-thick data-[hyphen=true]:max-md:hyphens-auto;
     }
 
     th {

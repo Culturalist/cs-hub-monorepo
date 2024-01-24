@@ -6,7 +6,8 @@ import LinkContact from "../../LinkContact";
 import PortableText from "../../PortableText";
 import { createStyles } from "./CardsPeople.styles";
 import LinkWrapper from "../../LinkWrapper";
-import metrics from "../../../../metrics";
+import { numeric } from "@weresk/core";
+import { gridConfig } from "../../../../maket";
 
 interface CardsPeopleProps extends DefaultProps {
     data: Person[];
@@ -28,28 +29,18 @@ export default function CardsPeople(props: CardsPeopleProps) {
                     photo &&
                     getImageUrl(
                         photo,
-                        ...new Array(2).fill(
-                            metrics.breakpoints.xs * metrics.pd.xs * 2
-                        )
+                        ...new Array(2).fill(numeric(gridConfig.screens?.xs) * numeric(gridConfig.pd?.xs) * 2)
                     );
                 return (
                     <div className={styles.card} key={i}>
                         <LinkWrapper
-                            link={
-                                include?.includes("link")
-                                    ? wrapReference(card)
-                                    : undefined
-                            }
+                            link={include?.includes("link") ? wrapReference(card) : undefined}
                             lang={lang}
                             className={styles.linkWrapper}
                         >
                             {/* PHOTO */}
                             {photoUrl ? (
-                                <img
-                                    src={photoUrl}
-                                    alt={name}
-                                    className={styles.photo}
-                                />
+                                <img src={photoUrl} alt={name} className={styles.photo} />
                             ) : (
                                 <div className={styles.box}></div>
                             )}
@@ -61,9 +52,7 @@ export default function CardsPeople(props: CardsPeopleProps) {
                         {/* subtitle */}
                         {include?.includes("subtitle") && subtitle && (
                             <p className={styles.subtitleWrapper}>
-                                <span className={styles.subtitle}>
-                                    {subtitle}
-                                </span>
+                                <span className={styles.subtitle}>{subtitle}</span>
                             </p>
                         )}
                         {/* DESCRIPTION */}
@@ -76,19 +65,13 @@ export default function CardsPeople(props: CardsPeopleProps) {
                             />
                         )}
                         {/* CONTACTS */}
-                        {include?.includes("contacts") &&
-                            contacts &&
-                            contacts.length > 0 && (
-                                <div className={styles.contacts}>
-                                    {contacts.map((link, j) => (
-                                        <LinkContact
-                                            link={link}
-                                            lang={lang}
-                                            key={j}
-                                        />
-                                    ))}
-                                </div>
-                            )}
+                        {include?.includes("contacts") && contacts && contacts.length > 0 && (
+                            <div className={styles.contacts}>
+                                {contacts.map((link, j) => (
+                                    <LinkContact link={link} lang={lang} key={j} />
+                                ))}
+                            </div>
+                        )}
                     </div>
                 );
             })}

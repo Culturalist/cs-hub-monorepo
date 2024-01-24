@@ -1,17 +1,12 @@
-import {
-    elementToDate,
-    formatLocaleDate,
-    localizeString,
-    selectDate,
-    wrapReference
-} from "@cs/data/utils";
+import { elementToDate, formatLocaleDate, localizeString, selectDate, wrapReference } from "@cs/data/utils";
 import { CoverBlock, Event } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { createStyles } from "./CardsEvents.styles";
 import LinkWrapper from "../../LinkWrapper";
 import { box, BoxDimentions } from "../../../../utils";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import metrics from "../../../../metrics";
+import { gridConfig } from "../../../../maket";
+import { numeric } from "@weresk/core";
 
 interface CardsEventsProps extends DefaultProps {
     data: Event[];
@@ -23,9 +18,7 @@ export default function CardsEvents(props: CardsEventsProps) {
     let data = props.data;
     const styles = createStyles({ className });
 
-    const coverSize = box([12, 8], "lg").map(
-        (s) => s * metrics.pd.lg
-    ) as BoxDimentions;
+    const coverSize = box([12, 8], "lg").map((s) => s * numeric(gridConfig.pd?.lg)) as BoxDimentions;
 
     //If display separate dates, duplicate events with multiple dates and add single date in each copy
     if (displayDates) {
@@ -50,10 +43,7 @@ export default function CardsEvents(props: CardsEventsProps) {
         if (a.dates && b.dates) {
             const minDateA = selectDate(a.dates, "min");
             const minDateB = selectDate(b.dates, "min");
-            if (minDateA && minDateB)
-                return elementToDate(minDateA) > elementToDate(minDateB)
-                    ? 1
-                    : -1;
+            if (minDateA && minDateB) return elementToDate(minDateA) > elementToDate(minDateB) ? 1 : -1;
         }
         return 0;
     });
@@ -65,13 +55,8 @@ export default function CardsEvents(props: CardsEventsProps) {
                 const title = localizeString(card.title, lang);
                 const subtitle = localizeString(card.subtitle, lang);
                 const minDate = dates && selectDate(dates, "min");
-                const time = minDate
-                    ? `${minDate.start || ""}${
-                          minDate.end ? "-" + minDate.end : ""
-                      }`
-                    : "";
-                const maxDate =
-                    dates && dates.length > 1 && selectDate(dates, "max");
+                const time = minDate ? `${minDate.start || ""}${minDate.end ? "-" + minDate.end : ""}` : "";
+                const maxDate = dates && dates.length > 1 && selectDate(dates, "max");
                 const lineup = card.lineup?.[0]?.list;
                 const showLineup = lineup && lineup.length > 0;
                 let cover: CoverBlock | undefined;
@@ -82,52 +67,35 @@ export default function CardsEvents(props: CardsEventsProps) {
                         if (nextCover._type === "coverImage") {
                             cover = nextCover;
                         }
-                        return !(
-                            cover && nextCover.useMedia.includes("desktop")
-                        );
+                        return !(cover && nextCover.useMedia.includes("desktop"));
                     });
 
                 const coverUrl = cover && getImageUrl(cover, ...coverSize);
 
                 return (
-                    <LinkWrapper
-                        link={wrapReference(card)}
-                        lang={lang}
-                        className={styles.card}
-                        key={i}
-                    >
+                    <LinkWrapper link={wrapReference(card)} lang={lang} className={styles.card} key={i}>
                         <div
                             className={styles.wrapper}
-                            style={
-                                cardSurface
-                                    ? { backgroundColor: cardSurface.hex }
-                                    : undefined
-                            }
+                            style={cardSurface ? { backgroundColor: cardSurface.hex } : undefined}
                         >
                             {/* DATES */}
                             <div className={styles.dates}>
                                 {minDate && (
                                     <p className={styles.startWrapper}>
-                                        <span className={styles.start}>
-                                            {formatLocaleDate(minDate.date)}
-                                        </span>
+                                        <span className={styles.start}>{formatLocaleDate(minDate.date)}</span>
                                     </p>
                                 )}
                                 {maxDate ? (
                                     <div className={styles.lineWrapper}>
                                         <div className={styles.line}></div>
                                         <p className={styles.endWrapper}>
-                                            <span className={styles.end}>
-                                                {formatLocaleDate(maxDate.date)}
-                                            </span>
+                                            <span className={styles.end}>{formatLocaleDate(maxDate.date)}</span>
                                         </p>
                                     </div>
                                 ) : (
                                     time && (
                                         <p className={styles.timeWrapper}>
-                                            <span className={styles.time}>
-                                                {time}
-                                            </span>
+                                            <span className={styles.time}>{time}</span>
                                         </p>
                                     )
                                 )}
@@ -136,31 +104,17 @@ export default function CardsEvents(props: CardsEventsProps) {
                                 {/* TITLE */}
                                 {title && (
                                     <h4 className={styles.titleWrapper}>
-                                        <span className={styles.title}>
-                                            {title}
-                                        </span>
+                                        <span className={styles.title}>{title}</span>
                                     </h4>
                                 )}
                                 {/* LINEUP */}
                                 {showLineup && (
                                     <div className={styles.lineup}>
                                         {lineup.map((person, j) => {
-                                            const name = localizeString(
-                                                person.title,
-                                                lang
-                                            );
+                                            const name = localizeString(person.title, lang);
                                             return name ? (
-                                                <p
-                                                    className={
-                                                        styles.nameWrapper
-                                                    }
-                                                    key={j}
-                                                >
-                                                    <span
-                                                        className={styles.name}
-                                                    >
-                                                        {name}
-                                                    </span>
+                                                <p className={styles.nameWrapper} key={j}>
+                                                    <span className={styles.name}>{name}</span>
                                                 </p>
                                             ) : null;
                                         })}
@@ -169,20 +123,14 @@ export default function CardsEvents(props: CardsEventsProps) {
                                 {/* SUBTITLE */}
                                 {subtitle && !showLineup && (
                                     <h4 className={styles.subtitleWrapper}>
-                                        <span className={styles.subtitle}>
-                                            {subtitle}
-                                        </span>
+                                        <span className={styles.subtitle}>{subtitle}</span>
                                     </h4>
                                 )}
                             </div>
                         </div>
                         {/* COVER */}
                         {coverUrl ? (
-                            <img
-                                src={coverUrl}
-                                alt={title}
-                                className={styles.cover}
-                            />
+                            <img src={coverUrl} alt={title} className={styles.cover} />
                         ) : (
                             <div className={styles.box}></div>
                         )}

@@ -6,7 +6,7 @@ export interface StyleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
     container: "mb-m3",
-    connectionsWrapper: "mt-gutter flex flex-row flex-wrap items-end justify-between gap-32",
+    connectionsWrapper: "mt-gutter flex flex-col sm:flex-row sm:flex-wrap sm:items-end sm:justify-between gap-32",
     connections: `typo-caps-xs flex flex-row gap-12 [&_*:not(:first-child)]:before:content-['/'] [&_*:not(:first-child)]:before:trim-line`,
     parentWrapper: "",
     parent: "trim-line",
@@ -17,11 +17,11 @@ const defaultStyles = {
     author: "typo-caps-2xs trim-line",
     dateWrapper: "",
     date: "typo-caps-2xs trim-line",
-    titleWrapper: "",
+    titleWrapper: "mt-4",
     title: "trim-line",
     subtitleWrapper: "mt-8 sm:mt-16 mb-40 lg:max-w-m20",
     subtitle: "typo-paragraph trim-line text-on-surface-light",
-    cover: "mt-24 mb-40",
+    cover: "mt-32 mb-40",
     body: ""
 };
 

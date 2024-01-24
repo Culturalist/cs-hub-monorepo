@@ -29,7 +29,7 @@ const defaultStyles = {
         normalWrapper: "",
         normal: "trim-line"
     },
-    imageWrapper: "mt-40",
+    imageWrapper: "mt-40 md:max-w-m20",
     image: "",
     captionWrapper: "mt-4",
     caption: "typo-short-sm trim-line text-on-surface-light"

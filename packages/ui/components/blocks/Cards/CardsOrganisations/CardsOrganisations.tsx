@@ -4,7 +4,8 @@ import { DefaultProps } from "@cs/globals";
 import { getImageUrl } from "@cs/globals/lib/sanity";
 import LinkWrapper from "../../LinkWrapper";
 import { createStyles } from "./CardsOrganisations.styles";
-import metrics from "../../../../metrics";
+import { numeric } from "@weresk/core";
+import { gridConfig } from "../../../../maket";
 
 interface CardsOrganisationsProps extends DefaultProps {
     data: Organisation[];
@@ -19,20 +20,10 @@ export default function CardsOrganisations(props: CardsOrganisationsProps) {
             {data.map((card, i) => {
                 const { logo, url } = card;
                 const name = localizeString(card.title, lang);
-                const logoUrl =
-                    logo && getImageUrl(logo, metrics.breakpoints.xs);
+                const logoUrl = logo && getImageUrl(logo, numeric(gridConfig.screens?.xs));
                 return (
-                    <LinkWrapper
-                        href={url}
-                        title={name}
-                        className={styles.card}
-                        key={i}
-                    >
-                        <img
-                            src={logoUrl}
-                            alt={name}
-                            className={styles.image}
-                        />
+                    <LinkWrapper href={url} title={name} className={styles.card} key={i}>
+                        <img src={logoUrl} alt={name} className={styles.image} />
                     </LinkWrapper>
                 );
             })}

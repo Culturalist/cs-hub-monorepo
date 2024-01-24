@@ -252,7 +252,7 @@ importers:
         specifier: '*'
         version: 7.0.0
 
-  apps/instituutit:
+  apps/instituutiot:
     dependencies:
       '@cs/data':
         specifier: workspace:*

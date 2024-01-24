@@ -1,17 +1,12 @@
 import { Breakpoint, DefaultProps } from "@cs/globals";
 import { createStyles } from "./HeroImage.styles";
 import { ImageSources, LocaleString } from "@cs/data/schemas";
-import {
-    AdaptiveDimentions,
-    BoxDimentions,
-    boxFromWidthRatio,
-    boxPx,
-    breakpoints
-} from "../../../../utils";
+import { AdaptiveDimentions, BoxDimentions, boxFromWidthRatio, boxPx, breakpoints } from "../../../../utils";
 import { getImageUrl } from "@cs/globals/lib/sanity";
 import Image from "../../Image";
 import { mapKeys } from "@cs/globals/utils";
-import metrics from "../../../../metrics";
+import { gridConfig } from "../../../../maket";
+import { numeric } from "@weresk/core";
 
 interface HeroImageProps extends DefaultProps {
     sources: ImageSources;
@@ -33,10 +28,8 @@ export default function HeroImage(props: HeroImageProps) {
         lg: 16 / 9
     };
 
-    const sizes: AdaptiveDimentions = mapKeys<Breakpoint, BoxDimentions>(
-        breakpoints,
-        (br: Breakpoint) =>
-            boxFromWidthRatio(metrics.breakpoints[br], container[br])
+    const sizes: AdaptiveDimentions = mapKeys<Breakpoint, BoxDimentions>(breakpoints, (br: Breakpoint) =>
+        boxFromWidthRatio(numeric(gridConfig.screens?.[br]), container[br])
     );
 
     const coverUrls = desktop &&
@@ -49,13 +42,7 @@ export default function HeroImage(props: HeroImageProps) {
 
     return (
         <div className={styles.container}>
-            <Image
-                sources={coverUrls}
-                sizes={sizes}
-                alt={alt}
-                lang={lang}
-                className={styles.image}
-            />
+            <Image sources={coverUrls} sizes={sizes} alt={alt} lang={lang} className={styles.image} />
         </div>
     );
 }

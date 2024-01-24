@@ -1,3 +1,2 @@
-export * from './components';
-export * from './utils';
-export { default as metrics } from './metrics';
+export * from "./components";
+export * from "./utils";

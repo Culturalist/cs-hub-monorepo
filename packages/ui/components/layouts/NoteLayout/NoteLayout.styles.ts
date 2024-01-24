@@ -8,9 +8,9 @@ const defaultStyles = {
     container: "mb-m3",
     dateWrapper: "mt-gutter",
     date: "typo-caps-2xs trim-line",
-    titleWrapper: "",
+    titleWrapper: "mt-4",
     title: "trim-line",
-    cover: "mt-24 mb-40",
+    cover: "mt-32 mb-40",
     body: ""
 };
 

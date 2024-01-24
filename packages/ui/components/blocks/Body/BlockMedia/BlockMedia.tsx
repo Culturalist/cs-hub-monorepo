@@ -3,15 +3,11 @@ import { BlockMedia, MediaLayout } from "@cs/data/schemas";
 import { Breakpoint, DefaultProps } from "@cs/globals";
 import { getImageUrl } from "@cs/globals/lib/sanity";
 import { mapKeys } from "@cs/globals/utils";
-import metrics from "../../../../metrics";
-import {
-    AdaptiveDimentions,
-    BoxDimentions,
-    boxPx,
-    breakpoints
-} from "../../../../utils";
+import { gridConfig } from "../../../../maket";
+import { AdaptiveDimentions, box, boxPx, breakpoints } from "../../../../utils";
 import Image from "../../Image";
 import { createStyles } from "./BlockMedia.styles";
+import { numeric } from "@weresk/core";
 
 interface BlockMediaProps extends DefaultProps {
     data: BlockMedia;
@@ -26,70 +22,22 @@ export default function BlockMedia(props: BlockMediaProps) {
 
     const sizes: Record<MediaLayout, AdaptiveDimentions> = {
         full: {
-            xs: [metrics.breakpoints.xs - 2 * metrics.grid.offset, 0],
-            sm: [metrics.breakpoints.sm - 2 * metrics.grid.offset, 0],
-            md: [metrics.breakpoints.md - 2 * metrics.grid.offset, 0],
-            lg: [metrics.breakpoints.lg - 2 * metrics.grid.offset, 0]
+            xs: box([12, 0], "xs"),
+            sm: box([24, 0], "sm"),
+            md: box([20, 0], "md"),
+            lg: box([20, 0], "lg")
         },
         "2-columns": {
-            xs: [metrics.breakpoints.xs - 2 * metrics.grid.offset, 0],
-            sm: [
-                Math.floor(
-                    (metrics.breakpoints.sm -
-                        2 * metrics.grid.offset -
-                        metrics.grid.sm.gutter) /
-                        2
-                ),
-                0
-            ],
-            md: [
-                Math.floor(
-                    (metrics.breakpoints.md -
-                        2 * metrics.grid.offset -
-                        metrics.grid.md.gutter) /
-                        2
-                ),
-                0
-            ],
-            lg: [
-                Math.floor(
-                    (metrics.breakpoints.lg -
-                        2 * metrics.grid.offset -
-                        metrics.grid.lg.gutter) /
-                        2
-                ),
-                0
-            ]
+            xs: box([12, 0], "xs"),
+            sm: box([12, 0], "sm"),
+            md: box([12, 0], "md"),
+            lg: box([12, 0], "lg")
         },
         "3-columns": {
-            xs: [metrics.breakpoints.xs - 2 * metrics.grid.offset, 0],
-            sm: [
-                Math.floor(
-                    (metrics.breakpoints.sm -
-                        2 * metrics.grid.offset -
-                        metrics.grid.sm.gutter) /
-                        2
-                ),
-                0
-            ],
-            md: [
-                Math.floor(
-                    (metrics.breakpoints.md -
-                        2 * metrics.grid.offset -
-                        2 * metrics.grid.md.gutter) /
-                        3
-                ),
-                0
-            ],
-            lg: [
-                Math.floor(
-                    (metrics.breakpoints.lg -
-                        2 * metrics.grid.offset -
-                        2 * metrics.grid.lg.gutter) /
-                        3
-                ),
-                0
-            ]
+            xs: box([12, 0], "xs"),
+            sm: box([12, 0], "sm"),
+            md: box([8, 0], "md"),
+            lg: box([8, 0], "lg")
         }
     };
 
@@ -99,10 +47,8 @@ export default function BlockMedia(props: BlockMediaProps) {
                 if (item._type === "mediaImage") {
                     const caption = localizeString(item.caption, lang);
                     const alt = localizeString(item.alt, lang);
-                    const coverUrls = mapKeys<Breakpoint, string>(
-                        breakpoints,
-                        (br: Breakpoint) =>
-                            getImageUrl(item, ...boxPx(sizes[layout], br))
+                    const coverUrls = mapKeys<Breakpoint, string>(breakpoints, (br: Breakpoint) =>
+                        getImageUrl(item, ...boxPx(sizes[layout], br))
                     );
                     return (
                         <figure className={styles.wrapper} key={i}>
@@ -115,9 +61,7 @@ export default function BlockMedia(props: BlockMediaProps) {
                             />
                             {caption && (
                                 <figcaption className={styles.captionWrapper}>
-                                    <span className={styles.caption}>
-                                        {caption}
-                                    </span>
+                                    <span className={styles.caption}>{caption}</span>
                                 </figcaption>
                             )}
                         </figure>
@@ -140,9 +84,7 @@ export default function BlockMedia(props: BlockMediaProps) {
                             </video>
                             {caption && (
                                 <figcaption className={styles.captionWrapper}>
-                                    <span className={styles.caption}>
-                                        {caption}
-                                    </span>
+                                    <span className={styles.caption}>{caption}</span>
                                 </figcaption>
                             )}
                         </figure>

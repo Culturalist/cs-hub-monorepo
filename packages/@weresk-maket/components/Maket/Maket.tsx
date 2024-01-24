@@ -7,9 +7,9 @@ interface MaketProps extends DefaultPropsWithChildren {
 }
 
 export default function Maket(props: MaketProps) {
-    const { lang, debug, children } = props;
+    const { lang, debug, children, ...restProps } = props;
     return (
-        <html lang={lang} data-useragent="hhea">
+        <html lang={lang} data-useragent="hhea" {...restProps}>
             {children}
             <TypoInit />
         </html>

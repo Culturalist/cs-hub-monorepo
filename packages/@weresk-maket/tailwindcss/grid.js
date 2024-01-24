@@ -1,5 +1,6 @@
 const plugin = require("tailwindcss/plugin");
-const { numeric, addStyle, sortStyles } = require("./utils");
+const { numeric, cssValue, addStyle, sortStyles, sortScreens } = require("../utils");
+const { min, max } = require("lodash");
 
 const defaultOptions = {
     unit: 4,
@@ -9,33 +10,90 @@ const defaultOptions = {
 };
 
 const grid = plugin(
-    function ({ addBase, theme }) {
+    function ({ addBase, addComponents, theme }) {
+        const sortedScreens = sortScreens(theme("screens"));
         // Base
         const baseStyles = {};
 
-        // Container
-        Object.entries(theme("screens")).forEach((screen) => {
-            addStyle(baseStyles, ":root", [[`--metrics-container`, screen[1]]], screen[1]);
-        });
+        // Scale & Container
+        if (sortedScreens.length) {
+            // Minimal width
+            addStyle(baseStyles, ":root", [
+                [
+                    `--metrics-scale`,
+                    !theme("grid.scale") || theme("grid.scale.min")
+                        ? "1px"
+                        : `calc(100vw / ${numeric(sortedScreens[0][1])})`
+                ],
+                ["--metrics-container", "100%"]
+            ]);
+            // For each screen
+            sortedScreens.forEach(([media, width], i) => {
+                const nextWidth = i < sortedScreens.length - 1 ? sortedScreens[i + 1][1] : width;
+                let scaleValue = theme("grid.scale") ? `calc(100vw / ${numeric(nextWidth)})` : "1px";
+                let containerValue = theme("grid.scale")
+                    ? `calc(${numeric(nextWidth)}px * var(--metrics-scale))`
+                    : cssValue(width, "px");
+                if (theme("grid.scale")) {
+                    if (
+                        (theme("grid.scale.min") &&
+                            numeric(width) < numeric(theme(`screens.${theme("grid.scale.min")}`))) ||
+                        (theme("grid.scale.max") &&
+                            numeric(width) >= numeric(theme(`screens.${theme("grid.scale.max")}`)))
+                    ) {
+                        scaleValue = "1px";
+                        containerValue = cssValue(width, "px");
+                    }
+                    addStyle(baseStyles, ":root", [[`--metrics-scale`, scaleValue]], cssValue(width, "px"));
+                }
+                addStyle(baseStyles, ":root", [[`--metrics-container`, containerValue]], cssValue(width, "px"));
+            });
+        }
 
         // Unit, Columns, Module, Gutter, Offset
         ["unit", "columns", "module", "gutter", "offset"].forEach((prop) => {
-            Object.keys(theme(`grid.${prop}`)).forEach((key) => {
-                if (key === "DEFAULT") {
-                    addStyle(baseStyles, ":root", [[`--metrics-${prop}`, theme(`grid.${prop}.DEFAULT`)]]);
+            Object.keys(theme(`grid.${prop}`)).forEach((screen) => {
+                const value =
+                    prop === "columns"
+                        ? cssValue(theme(`grid.${prop}.${screen}`), "")
+                        : `calc(${numeric(theme(`grid.${prop}.${screen}`))} * var(--metrics-scale))`;
+                if (screen === "DEFAULT") {
+                    addStyle(baseStyles, ":root", [[`--metrics-${prop}`, value]]);
                 } else {
                     addStyle(
                         baseStyles,
                         ":root",
-                        [[`--metrics-${prop}`, theme(`grid.${prop}.${key}`)]],
-                        theme(`screens.${key}`)
+                        [[`--metrics-${prop}`, value]],
+                        cssValue(theme(`screens.${screen}`), "px")
                     );
                 }
             });
         });
 
+        // Container class
+        addComponents({
+            ".grid-container": {
+                maxWidth: "var(--metrics-container)"
+            }
+        });
+
         // Marking
-        addStyle(baseStyles, ":root", [["--grid-color", theme("grid.marking.color") || defaultOptions.color]]);
+        if (theme("grid.color") && typeof theme("grid.color") === "object") {
+            Object.entries(theme("grid.color")).forEach(([screen, value]) => {
+                if (screen === "DEFAULT") {
+                    addStyle(baseStyles, ":root", [["--grid-color", value]]);
+                } else {
+                    addStyle(
+                        baseStyles,
+                        ":root",
+                        [["--grid-color", value]],
+                        cssValue(theme(`screens.${screen}`), "px")
+                    );
+                }
+            });
+        } else {
+            addStyle(baseStyles, ":root", [["--grid-color", theme("grid.color") || defaultOptions.color]]);
+        }
 
         // Create styles
         addBase(sortStyles(baseStyles));
@@ -74,12 +132,10 @@ const grid = plugin(
                 offset: {
                     DEFAULT: "20px"
                 },
-                zoom: {
+                scale: {
                     DEFAULT: "off"
                 },
-                marking: {
-                    color: defaultOptions.color
-                },
+                color: { DEFAULT: defaultOptions.color },
                 ruler: {
                     steps: defaultOptions.steps,
                     modules: defaultOptions.modules
@@ -91,7 +147,13 @@ const grid = plugin(
                 const modules = theme("grid.ruler.modules") || defaultOptions.modules;
 
                 return Object.fromEntries([
-                    ...[...new Array(steps + 1)].map((v, i) => [`${unit * i}`, `${unit * i}px`]),
+                    ["1", "var(--metrics-scale)"],
+                    ["2", "calc(2 * var(--metrics-scale))"],
+                    ["3", "calc(3 * var(--metrics-scale))"],
+                    ...[...new Array(steps + 1)].map((v, i) => [
+                        `${unit * i}`,
+                        `calc(${unit * i} * var(--metrics-scale))`
+                    ]),
                     ["module", "var(--metrics-module)"],
                     ["gutter", "var(--metrics-gutter)"],
                     ["offset", "var(--metrics-offset)"],

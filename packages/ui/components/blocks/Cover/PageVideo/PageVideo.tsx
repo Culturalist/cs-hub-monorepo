@@ -1,16 +1,12 @@
 "use client";
 import { DefaultProps } from "@cs/globals";
 import { createStyles } from "./PageVideo.styles";
-import {
-    ImageSources,
-    LocaleString,
-    UseMedia,
-    VideoSources
-} from "@cs/data/schemas";
+import { ImageSources, LocaleString, UseMedia, VideoSources } from "@cs/data/schemas";
 import { useEffect, useRef, useState } from "react";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import metrics from "../../../../metrics";
 import { localizeString } from "@cs/data/utils";
+import { gridConfig } from "../../../../maket";
+import { numeric } from "@weresk/core";
 
 interface PageVideoProps extends DefaultProps {
     sources: VideoSources;
@@ -33,6 +29,8 @@ export default function PageVideo(props: PageVideoProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const device = useRef<UseMedia>("desktop");
+    const mobileWidth = numeric(gridConfig.screens?.xs) * numeric(gridConfig.pd?.xs);
+    const desktopWidth = numeric(gridConfig.screens?.lg) * numeric(gridConfig.pd?.lg);
     const [source, setSource] = useState(sources[device.current]);
     const [trim, setTrim] = useState<"x" | "y" | "load">("load");
     const videoId = sources[device.current]?.asset?._id;
@@ -51,28 +49,22 @@ export default function PageVideo(props: PageVideoProps) {
         if (videoRef.current && containerRef.current) {
             if (responsive) {
                 if (
-                    containerRef.current.clientWidth >
-                        containerRef.current.clientHeight &&
+                    containerRef.current.clientWidth > containerRef.current.clientHeight &&
                     device.current === "mobile"
                 ) {
                     changeSource("desktop");
                 } else if (
-                    containerRef.current.clientWidth <=
-                        containerRef.current.clientHeight &&
+                    containerRef.current.clientWidth <= containerRef.current.clientHeight &&
                     device.current === "desktop"
                 ) {
                     changeSource("mobile");
                 }
             }
 
-            if (
-                videoRef.current.videoHeight &&
-                containerRef.current.clientHeight
-            ) {
+            if (videoRef.current.videoHeight && containerRef.current.clientHeight) {
                 setTrim(
                     videoRef.current.videoWidth / videoRef.current.videoHeight >
-                        containerRef.current.clientWidth /
-                            containerRef.current.clientHeight
+                        containerRef.current.clientWidth / containerRef.current.clientHeight
                         ? "x"
                         : "y"
                 );
@@ -100,12 +92,7 @@ export default function PageVideo(props: PageVideoProps) {
                     ref={videoRef}
                     poster={
                         posters[device.current] &&
-                        getImageUrl(
-                            posters[device.current],
-                            device.current === "mobile"
-                                ? metrics.breakpoints.sm * metrics.pd.xs
-                                : metrics.breakpoints.lg * metrics.pd.lg
-                        )
+                        getImageUrl(posters[device.current], device.current === "mobile" ? mobileWidth : desktopWidth)
                     }
                     className={styles.video}
                     playsInline={true}

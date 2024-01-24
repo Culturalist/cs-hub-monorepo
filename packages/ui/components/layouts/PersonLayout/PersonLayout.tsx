@@ -4,7 +4,9 @@ import { localizeString } from "@cs/data/utils";
 import { LinkContact, PortableText } from "../../blocks";
 import { createStyles } from "./PersonLayout.styles";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import metrics from "../../../metrics";
+import { numeric } from "@weresk/core";
+import { gridConfig } from "../../../maket";
+import { hasLongWords } from "../../../utils";
 
 interface PersonLayoutProps extends DefaultProps {
     data: Person;
@@ -16,13 +18,15 @@ export default function PersonLayout(props: PersonLayoutProps) {
     const name = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const caption = localizeString(data.photoCaption, lang);
-    const photoUrl = photo && getImageUrl(photo, ...new Array(2).fill(metrics.breakpoints.xs * metrics.pd.xs * 2));
+    const photoUrl =
+        photo &&
+        getImageUrl(photo, ...new Array(2).fill(numeric(gridConfig.screens?.xs) * numeric(gridConfig.pd?.xs) * 2));
     const styles = createStyles({ className });
 
     return (
         <main className={styles.container}>
             {/* NAME */}
-            <h1 className={styles.nameWrapper}>
+            <h1 data-hyphen={hasLongWords(name)} className={styles.nameWrapper}>
                 <span className={styles.name}>{name}</span>
             </h1>
             {subtitle && (

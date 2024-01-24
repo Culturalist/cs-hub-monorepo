@@ -3,7 +3,8 @@ import { Breakpoint, DefaultProps } from "@cs/globals";
 import { localizeString } from "@cs/data/utils";
 import { AdaptiveDimentions } from "../../../utils";
 import { createStyles } from "./Image.styles";
-import metrics from "../../../metrics";
+import { gridConfig } from "../../../maket";
+import { numeric } from "@weresk/core";
 
 interface ImageProps extends DefaultProps {
     sources?: Record<Breakpoint, string>;
@@ -21,19 +22,19 @@ export default function Image(props: ImageProps) {
         <picture className={styles.container}>
             <source
                 srcSet={sources.xs}
-                media={`(max-width: ${metrics.breakpoints.sm - 1}px)`}
+                media={`(max-width: ${numeric(gridConfig.screens?.sm) - 1}px)`}
                 width={sizes?.xs[0] || undefined}
                 height={sizes?.xs[1] || undefined}
             />
             <source
                 srcSet={sources.sm}
-                media={`(max-width: ${metrics.breakpoints.md - 1}px)`}
+                media={`(max-width: ${numeric(gridConfig.screens?.md) - 1}px)`}
                 width={sizes?.sm[0] || undefined}
                 height={sizes?.sm[1] || undefined}
             />
             <source
                 srcSet={sources.md}
-                media={`(max-width: ${metrics.breakpoints.lg - 1}px)`}
+                media={`(max-width: ${numeric(gridConfig.screens?.lg) - 1}px)`}
                 width={sizes?.md[0] || undefined}
                 height={sizes?.md[1] || undefined}
             />
