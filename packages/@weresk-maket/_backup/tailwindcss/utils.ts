@@ -1,4 +1,6 @@
-import merge from "lodash/merge";
+// import merge from "lodash.merge";
+
+import { mergeDeep } from "@weresk/core";
 
 export function numeric(input: number | string): number {
     if (typeof input === "number") {
@@ -14,7 +16,8 @@ export function addStyle(
     screen?: string | number
 ) {
     const def = Object.fromEntries([[selector, Object.fromEntries(props)]]);
-    merge(styles, screen ? Object.fromEntries([[`@media (min-width: ${screen})`, def]]) : def);
+    const merged = mergeDeep(styles, screen ? Object.fromEntries([[`@media (min-width: ${screen})`, def]]) : def);
+    // merge(styles, screen ? Object.fromEntries([[`@media (min-width: ${screen})`, def]]) : def);
 }
 
 export function sortStyles(styles: object): object {

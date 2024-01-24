@@ -1,4 +1,4 @@
-import merge from "lodash/merge";
+import { mergeDeep } from "@weresk/core";
 
 export default function addStyle(
     styles: object,
@@ -7,5 +7,6 @@ export default function addStyle(
     screen?: string | number
 ) {
     const def = Object.fromEntries([[selector, Object.fromEntries(props)]]);
-    merge(styles, screen ? Object.fromEntries([[`@media (min-width: ${screen})`, def]]) : def);
+    const merged = mergeDeep(styles, screen ? Object.fromEntries([[`@media (min-width: ${screen})`, def]]) : def);
+    // merge(styles, screen ? Object.fromEntries([[`@media (min-width: ${screen})`, def]]) : def);
 }

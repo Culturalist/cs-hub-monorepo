@@ -13,7 +13,6 @@
     "dependencies": {
         "@sanity/icons": "^2.5.0",
         "@weresk/core": "workspace:*",
-        "lodash": "^4.17.21",
         "react-hotkeys-hook": "^4.4.1"
     },
     "devDependencies": {
@@ -28,8 +27,8 @@
         "tsconfig": "workspace:*"
     },
     "peerDependencies": {
+        "next": "14.0.4",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "next": "14.0.4"
+        "react-dom": "^18.2.0"
     }
 }
