@@ -16,6 +16,7 @@ export const createStyles = ({ className }: StyleProps) => {
     const styles = {
         ...defaultStyles,
         container: cx(defaultStyles.container, className),
+        list: cx(defaultStyles.list, className),
         card: cx(defaultStyles.card, defaultStyles.box)
     };
     return purgeEmptyStrings(styles) as Partial<typeof styles>;
