@@ -1,6 +1,13 @@
 import { defineArrayMember, defineField, defineType } from "@sanity/types";
 import { ThLargeIcon } from "@sanity/icons";
-import { CardsType, cardsTypeList, CardPart, personCardParts } from "./blockCards.values";
+import {
+    CardsType,
+    cardsTypeList,
+    CardPart,
+    personCardParts,
+    organisationCardsLayout,
+    OrganizationCardLayout
+} from "./blockCards.values";
 import { capitalize, appConfig } from "@cs/globals";
 import { CardManual } from "../cardManual";
 import { Person, Post, Project, Event, Organisation, Page } from "../../documents";
@@ -23,6 +30,7 @@ export interface BlockCards {
     coverOnHover?: boolean;
     displayDates?: boolean;
     showLabels?: boolean;
+    organizationsLayout?: OrganizationCardLayout;
 }
 
 export default function blockCards() {
@@ -149,6 +157,18 @@ export default function blockCards() {
                 type: "boolean",
                 initialValue: false,
                 hidden: ({ parent }: { parent: BlockCards | undefined }) => parent?.type !== "projects"
+            }),
+            defineField({
+                name: "organizationsLayout",
+                title: "Layout",
+                type: "string",
+                initialValue: "logos",
+                options: {
+                    list: organisationCardsLayout,
+                    layout: "radio",
+                    direction: "horizontal"
+                },
+                hidden: ({ parent }: { parent: BlockCards | undefined }) => parent?.type !== "organisations"
             })
         ],
         preview: {

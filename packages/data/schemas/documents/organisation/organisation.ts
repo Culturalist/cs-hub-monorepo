@@ -9,6 +9,7 @@ import type { Page } from "../page";
 
 export interface Organisation extends SanityDocument {
     _type: "organisation" | "reference";
+    _key: string;
     _ref?: string;
     title?: LocaleString;
     slug?: Slug;

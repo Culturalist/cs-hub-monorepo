@@ -46,12 +46,7 @@ export const desk: Record<string, Partial<Record<DocumentApp, { parentId: string
     },
     instituutiot: {
         page: [],
-        project: [
-            {
-                parentId: "projektimme",
-                title: "Projects"
-            }
-        ],
+        project: [],
         event: [],
         person: [],
         organisation: []

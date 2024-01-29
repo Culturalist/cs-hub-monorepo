@@ -16,7 +16,7 @@ export interface Project extends SanityDocument {
     covers?: CoverBlock[];
     captionAlt?: CaptionAlt;
     body?: BodyBlock[];
-    organisations?: LineupOrganisations[];
+    // organisations?: LineupOrganisations[];
     parent?: Page;
     labels?: Label[];
     publishDate: string;
@@ -95,13 +95,13 @@ export default function project() {
                 title: "Body",
                 group: "page"
             }),
-            defineField({
-                name: "organisations",
-                title: "Organisations",
-                type: "array",
-                of: [{ type: "lineupOrganisations" }],
-                group: "connections"
-            }),
+            // defineField({
+            //     name: "organisations",
+            //     title: "Organisations",
+            //     type: "array",
+            //     of: [{ type: "lineupOrganisations" }],
+            //     group: "connections"
+            // }),
             defineField({
                 name: "labels",
                 title: "Labels",

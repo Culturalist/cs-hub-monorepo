@@ -1,21 +1,8 @@
 import { prepareCardsData } from "@cs/data/utils";
-import {
-    BlockCards,
-    CardManual,
-    Event,
-    Organisation,
-    Person,
-    Post,
-    Project
-} from "@cs/data/schemas";
+import { BlockCards, CardManual, Event, Organisation, Person, Post, Project } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { createStyles } from "./BlockCards.styles";
-import {
-    CardsManual,
-    CardsPeople,
-    CardsPosts,
-    CardsProjects
-} from "../../Cards";
+import { CardsManual, CardsPeople, CardsPosts, CardsProjects } from "../../Cards";
 import CardsEvents from "../../Cards/CardsEvents";
 import CardsOrganisations from "../../Cards/CardsOrganisations";
 
@@ -31,7 +18,8 @@ export default async function BlockCards(props: BlockCardsProps) {
         monochromePhoto,
         coverOnHover,
         displayDates,
-        showLabels
+        showLabels,
+        organizationsLayout
     } = props.data;
     const cards = props.data[cardsType];
     const include = cardsType === "people" ? includePerson : undefined;
@@ -47,46 +35,20 @@ export default async function BlockCards(props: BlockCardsProps) {
 
     // MANUAL
     if (cardsType === "manual")
-        return (
-            <CardsManual
-                data={data as CardManual[]}
-                coverOnHover={coverOnHover}
-                {...containerProps}
-            />
-        );
+        return <CardsManual data={data as CardManual[]} coverOnHover={coverOnHover} {...containerProps} />;
     // PEOPLE
     else if (cardsType === "people")
         return (
-            <CardsPeople
-                data={data as Person[]}
-                include={include}
-                monochrome={monochromePhoto}
-                {...containerProps}
-            />
+            <CardsPeople data={data as Person[]} include={include} monochrome={monochromePhoto} {...containerProps} />
         );
     // EVENTS
     else if (cardsType === "events")
-        return (
-            <CardsEvents
-                data={data as Event[]}
-                displayDates={displayDates}
-                {...containerProps}
-            />
-        );
+        return <CardsEvents data={data as Event[]} displayDates={displayDates} {...containerProps} />;
     // PROJECTS
     else if (cardsType === "projects")
-        return (
-            <CardsProjects
-                data={data as Project[]}
-                showLabels={showLabels}
-                {...containerProps}
-            />
-        );
+        return <CardsProjects data={data as Project[]} showLabels={showLabels} {...containerProps} />;
     // PROJECTS
-    else if (cardsType === "posts")
-        return <CardsPosts data={data as Post[]} {...containerProps} />;
+    else if (cardsType === "posts") return <CardsPosts data={data as Post[]} {...containerProps} />;
     // ORGANISATIONS
-    return (
-        <CardsOrganisations data={data as Organisation[]} {...containerProps} />
-    );
+    return <CardsOrganisations data={data as Organisation[]} layout={organizationsLayout} {...containerProps} />;
 }
