@@ -3,12 +3,13 @@ import { PortableText as PortableTextRender, PortableTextComponents } from "@por
 import { globalConfig, Breakpoint, DefaultProps } from "@cs/globals";
 import { mapKeys, neatChildrenBreaks } from "@cs/globals/utils";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import { BlockParent, LocalePortableText, MediaImage } from "@cs/data/schemas";
+import { BlockLinks, BlockParent, LocalePortableText, MediaImage } from "@cs/data/schemas";
 import { localizeString } from "@cs/data/utils";
 import { AdaptiveDimentions, box, boxPx, breakpoints } from "../../../utils";
 import LinkWrapper from "../LinkWrapper";
 import Image from "../Image";
 import { createStyles } from "./PortableText.styles";
+import Links from "../Links";
 
 interface PortableTextBlockProps extends DefaultProps {
     data?: LocalePortableText;
@@ -106,6 +107,9 @@ export default function PortableText(props: PortableTextBlockProps) {
                     );
                 }
                 return null;
+            },
+            blockLinks: ({ value }: { value: BlockLinks }) => {
+                return <Links links={value.links} layout={value.layout} lang={lang} className={styles.links} />;
             }
         }
     };

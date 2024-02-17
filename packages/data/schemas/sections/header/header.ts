@@ -1,13 +1,14 @@
-import { appConfig, ImageObject } from "@cs/globals";
 import { defineType, defineField } from "@sanity/types";
-import { PageDocument } from "../../documents";
-import { LinkCaptioned } from "../../objects";
+import { DocumentIcon } from "@sanity/icons";
+import { appConfig, ImageObject } from "@cs/globals";
+import type { PageDocument } from "../../documents";
+import type { LinkCaptioned, LinkExternal } from "../../objects";
 
 export interface Header {
     _type: "header";
     logo?: ImageObject;
     marker?: LinkCaptioned;
-    links?: PageDocument[];
+    links?: (PageDocument | LinkExternal)[];
 }
 
 export default function header() {
@@ -29,8 +30,7 @@ export default function header() {
                 name: "marker",
                 title: "Marker",
                 type: "linkCaptioned",
-                description:
-                    "Optional caption with or without link (dates, open call, etc.)",
+                description: "Optional caption with or without link (dates, open call, etc.)",
                 options: {
                     collapsible: true,
                     collapsed: true
@@ -43,13 +43,19 @@ export default function header() {
                 type: "array",
                 of: [
                     {
+                        title: "Page",
                         type: "reference",
                         to: appConfig.schemas.navigation.map((docType) => ({
                             type: docType
                         })),
                         options: {
                             disableNew: true
-                        }
+                        },
+                        icon: DocumentIcon
+                    },
+                    {
+                        title: "Link",
+                        type: "linkExternal"
                     }
                 ]
             })

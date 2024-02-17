@@ -6,7 +6,7 @@ import { PageDocument } from "../../documents";
 export interface LinkTyped {
     _type: "linkTyped";
     _key?: string;
-    type: LinkType;
+    type?: LinkType;
     reference?: PageDocument;
     href?: string;
     internal?: string;

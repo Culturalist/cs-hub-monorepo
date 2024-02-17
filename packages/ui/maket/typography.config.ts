@@ -56,7 +56,7 @@ const typographyConfig: TypographyConfig = {
                 letterSpacing: "-0.02em"
             },
             "title-lg": {
-                fontSize: "32",
+                fontSize: "28",
                 letterSpacing: "-0.02em"
             },
             title: {
@@ -135,6 +135,13 @@ const typographyConfig: TypographyConfig = {
             "caps-3xs": {
                 fontSize: "12",
                 textTransform: "uppercase"
+            },
+            menu: {
+                fontSize: "48",
+                textTransform: "uppercase",
+                sm: {
+                    fontSize: "72"
+                }
             }
         },
         outline: {

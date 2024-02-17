@@ -9,7 +9,7 @@ export interface StyleProps extends DefaultStyleProps {
 
 const defaultStyles = {
     container: "",
-    leadWrapper: "mt-40 lg:max-w-m20",
+    leadWrapper: "mt-40",
     lead: "typo-lead trim-line hyphens-auto xs:hyphens-none",
     normalWrapper: "mt-20 lg:max-w-m20",
     normal: "typo-paragraph trim-line",
@@ -32,7 +32,8 @@ const defaultStyles = {
     imageWrapper: "mt-40 md:max-w-m20",
     image: "",
     captionWrapper: "mt-4",
-    caption: "typo-short-sm trim-line text-on-surface-light"
+    caption: "typo-short-sm trim-line text-on-surface-light",
+    links: "mt-40"
 };
 
 export const createStyles = ({ parent = "body", className }: StyleProps) => {

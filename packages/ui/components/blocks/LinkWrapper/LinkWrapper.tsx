@@ -33,7 +33,7 @@ export default function LinkWrapper(props: LinkWrapperProps) {
     const url = prepareLink(link, lang);
 
     if (url) {
-        if (linkType === "external" || linkType === "file") {
+        if (!linkType || linkType === "external" || linkType === "file") {
             return (
                 //External
                 <a href={url} target="_blank" rel="noreferrer noopener nofollow" {...commonProps}>

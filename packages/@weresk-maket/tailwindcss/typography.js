@@ -212,18 +212,19 @@ const typography = plugin(
                 DEFAULT: 1
             },
             fontFamily: ({ theme }) => {
+                const definedFonts = theme("fontFamily");
                 const fonts = [];
                 Object.entries(theme("typography.fonts")).forEach((font) => {
-                    let family = font[1].familyName ? [`"${font[1].familyName}"`] : [font[0]];
+                    const family = font[1].familyName ? [`"${font[1].familyName}"`] : [font[0]];
                     // Extends
-                    if (font[1].extends && defaultTheme.fontFamily[font[1].extends]) {
-                        fonts.push([font[0], [...family, ...defaultTheme.fontFamily[font[1].extends]]]);
+                    if (font[1].extends && definedFonts?.[font[1].extends]) {
+                        fonts.push([font[0], [...family, ...definedFonts[font[1].extends]]]);
                     } else {
                         fonts.push([font[0], family]);
                     }
                     //Included
-                    if (font[1].included && defaultTheme.fontFamily[font[1].included]) {
-                        fonts.push([font[1].included, [...family, ...defaultTheme.fontFamily[font[1].included]]]);
+                    if (font[1].included && definedFonts?.[font[1].included]) {
+                        fonts.push([font[1].included, [...family, ...definedFonts[font[1].included]]]);
                     }
                 });
                 return Object.fromEntries(fonts);

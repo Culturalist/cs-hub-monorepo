@@ -4,12 +4,6 @@ import type { DocumentApp } from "../types";
 export const desk: Record<string, Partial<Record<DocumentApp, { parentId: string; title: string }[]>>> = {
     culturas: {
         page: [],
-        project: [
-            {
-                parentId: "hankeemme",
-                title: "Projects"
-            }
-        ],
         post: [
             {
                 parentId: "blogi",
@@ -20,6 +14,7 @@ export const desk: Record<string, Partial<Record<DocumentApp, { parentId: string
                 title: "News"
             }
         ],
+        project: [],
         event: [],
         note: [],
         person: [],

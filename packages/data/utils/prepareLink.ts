@@ -4,7 +4,7 @@ import { LinkTyped, PageDocument } from "../schemas";
 export function prepareLink(input: LinkTyped, lang?: Locale): string {
     const { type, anchor, href, internal, reference, file } = input;
     let link = "";
-    if (type === "external" && href) {
+    if ((!type || type === "external") && href) {
         link = href;
     } else if (type === "anchor" && anchor) {
         link = anchor.startsWith("#") ? anchor : `#${anchor}`;

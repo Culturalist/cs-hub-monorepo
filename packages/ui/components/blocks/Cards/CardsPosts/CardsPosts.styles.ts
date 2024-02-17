@@ -13,7 +13,7 @@ const defaultStyles = {
     titleWrapper: "mt-4",
     title: "typo-title-lg trim-line hyphens-auto xs:hyphens-none",
     authorWrapper: "mt-16",
-    author: "typo-caps-2xs trim-line text-on-surface-light"
+    author: "typo-caps-3xs trim-line text-on-surface-light"
 };
 
 export const createStyles = ({ className }: StyleProps) => {

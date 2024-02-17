@@ -1,13 +1,13 @@
-import { appConfig, ImageObject } from "@cs/globals";
 import { defineType, defineField } from "@sanity/types";
-import { PageDocument } from "../../documents";
-import { LinkContact } from "../../objects/linkContact";
-import { LocalePortableText } from "../../objects/localePortableText";
+import { DocumentIcon } from "@sanity/icons";
+import { appConfig, ImageObject } from "@cs/globals";
+import type { PageDocument } from "../../documents";
+import type { LinkExternal, LocalePortableText, LinkContact } from "../../objects";
 
 export interface Footer {
     _type: "footer";
     logo?: ImageObject;
-    links?: PageDocument[];
+    links?: (PageDocument | LinkExternal)[];
     contacts?: LocalePortableText;
     social?: LinkContact[];
 }
@@ -34,13 +34,19 @@ export default function footer() {
                 type: "array",
                 of: [
                     {
+                        title: "Page",
                         type: "reference",
                         to: appConfig.schemas.navigation.map((docType) => ({
                             type: docType
                         })),
                         options: {
                             disableNew: true
-                        }
+                        },
+                        icon: DocumentIcon
+                    },
+                    {
+                        title: "Link",
+                        type: "linkExternal"
                     }
                 ]
             }),

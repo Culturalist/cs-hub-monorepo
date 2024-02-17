@@ -32,15 +32,11 @@ export default function portableText({ parent }: SchemaProps) {
                         value: "small",
                         component: SmallStyle
                     }
-                ].filter((style) =>
-                    portableTextDefinitions.styles[parent].includes(style.value)
-                ),
+                ].filter((style) => portableTextDefinitions.styles[parent].includes(style.value)),
                 lists: [
                     { title: "Bullet", value: "bullet" },
                     { title: "Numbered", value: "number" }
-                ].filter((style) =>
-                    portableTextDefinitions.lists[parent].includes(style.value)
-                ),
+                ].filter((style) => portableTextDefinitions.lists[parent].includes(style.value)),
                 marks: {
                     decorators: [
                         // { title: 'Emphasis', value: 'em' },
@@ -49,21 +45,18 @@ export default function portableText({ parent }: SchemaProps) {
                         { title: "Strikethrough", value: "strike-through" }
                     ],
                     annotations: [portableTextLink()].filter(
-                        (field) =>
-                            field.name &&
-                            portableTextDefinitions.annotations[
-                                parent
-                            ].includes(field.name)
+                        (field) => field.name && portableTextDefinitions.annotations[parent].includes(field.name)
                     )
                 }
             },
             ...[
                 {
                     type: "mediaImage"
+                },
+                {
+                    type: "blockLinks"
                 }
-            ].filter((field) =>
-                portableTextDefinitions.blocks[parent].includes(field.type)
-            )
+            ].filter((field) => portableTextDefinitions.blocks[parent].includes(field.type))
         ]
     });
 }

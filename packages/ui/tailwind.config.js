@@ -5,6 +5,19 @@ const maket = require("../@weresk-maket/_backup/tailwindcss");
 
 module.exports = {
     theme: {
+        fontFamily: {
+            sans: [
+                "Mabry Pro",
+                "Arial",
+                "ui-sans-serif",
+                "system-ui",
+                "sans-serif",
+                '"Apple Color Emoji"',
+                '"Segoe UI Emoji"',
+                '"Segoe UI Symbol"',
+                '"Noto Color Emoji"'
+            ]
+        },
         ...maketConfig,
         extend: {
             spacing: {

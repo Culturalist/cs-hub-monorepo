@@ -21,7 +21,7 @@ export const portableTextDefinitions: PortableTextElements = {
     },
     blocks: {
         body: ["mediaImage"],
-        column: ["mediaImage"],
+        column: ["mediaImage", "blockLinks"],
         field: []
     }
 };

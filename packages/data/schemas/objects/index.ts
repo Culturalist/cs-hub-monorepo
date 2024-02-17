@@ -19,6 +19,7 @@ export * from "./lineupOrganisations";
 export * from "./lineupPeople";
 export * from "./linkCaptioned";
 export * from "./linkContact";
+export * from "./linkExternal";
 export * from "./localeString";
 export * from "./localeText";
 export * from "./localeTable";

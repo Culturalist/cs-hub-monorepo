@@ -6,7 +6,10 @@ export const layoutQuery = groq`*[_type == 'app' && _id == $appName][0]{
     languages[],
     header {
         ...,
-        links[]->,
+        links[] {
+            _type == 'reference' => @->,
+            _type != 'reference' => @
+        },
         marker {
             ...,
             link {
@@ -16,7 +19,10 @@ export const layoutQuery = groq`*[_type == 'app' && _id == $appName][0]{
     },
     footer {
         ...,
-        links[]->,
+        links[] {
+            _type == 'reference' => @->,
+            _type != 'reference' => @
+        },
         contacts {
             ...,
             ${localePortableTextSegment}

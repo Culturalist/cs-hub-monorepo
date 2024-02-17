@@ -23,21 +23,15 @@ export default function Footer(props: FooterProps) {
             {links && links.length > 0 && (
                 <nav className={styles.navigation}>
                     {links.map((link, i) => {
-                        if (link._type !== "reference") {
-                            return (
-                                <LinkWrapper
-                                    link={wrapReference(link)}
-                                    lang={lang}
-                                    className={styles.navLink}
-                                    key={i}
-                                >
-                                    <span className={styles.navLinkCaption}>
-                                        {localizeString(link.title, lang)}
-                                    </span>
-                                </LinkWrapper>
-                            );
-                        }
-                        return null;
+                        return link._type === "linkExternal" ? (
+                            <LinkWrapper href={link.href} lang={lang} className={styles.navLink} key={i}>
+                                <span className={styles.navLinkCaption}>{localizeString(link.caption, lang)}</span>
+                            </LinkWrapper>
+                        ) : (
+                            <LinkWrapper link={wrapReference(link)} lang={lang} className={styles.navLink} key={i}>
+                                <span className={styles.navLinkCaption}>{localizeString(link.title, lang)}</span>
+                            </LinkWrapper>
+                        );
                     })}
                 </nav>
             )}
@@ -45,30 +39,16 @@ export default function Footer(props: FooterProps) {
                 {/* LOGO */}
                 {logoUrl && (
                     // UPLOADED
-                    <img
-                        src={logoUrl}
-                        className={styles.logoImage}
-                        alt={globalConfig.organization}
-                    />
+                    <img src={logoUrl} className={styles.logoImage} alt={globalConfig.organization} />
                 )}
                 <div className={styles.contactsWrapper}>
                     {/* CONTACTS */}
-                    <PortableText
-                        data={contacts}
-                        parent="field"
-                        lang={lang}
-                        className={styles.contacts}
-                    />
+                    <PortableText data={contacts} parent="field" lang={lang} className={styles.contacts} />
                     {/* SOCIAL */}
                     {social && social.length > 0 && (
                         <div className={styles.social}>
                             {social.map((link, i) => (
-                                <LinkContact
-                                    link={link}
-                                    lang={lang}
-                                    className={styles.socialLink}
-                                    key={i}
-                                />
+                                <LinkContact link={link} lang={lang} className={styles.socialLink} key={i} />
                             ))}
                         </div>
                     )}

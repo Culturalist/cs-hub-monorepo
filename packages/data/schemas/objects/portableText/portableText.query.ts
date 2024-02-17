@@ -1,4 +1,5 @@
 import { groq } from "next-sanity";
+import { linkTypedSegment } from "../linkTyped";
 
 export const portableTextSegment = groq`
     ...,
@@ -9,5 +10,11 @@ export const portableTextSegment = groq`
             "url": asset->url
         },
         reference->
-    }
+    },
+    links[] {
+        ...,
+        link {
+            ${linkTypedSegment}
+        }
+    },
 `;
