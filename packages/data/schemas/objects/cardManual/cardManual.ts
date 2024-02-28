@@ -41,10 +41,7 @@ export default function cardManual() {
                 name: "subtitle",
                 title: "Subtitle",
                 type: "localeString",
-                options: {
-                    collapsible: true,
-                    collapsed: true
-                }
+                description: "Optional"
             }),
             defineField({
                 name: "link",

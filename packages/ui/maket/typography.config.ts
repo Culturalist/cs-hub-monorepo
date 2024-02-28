@@ -56,15 +56,15 @@ const typographyConfig: TypographyConfig = {
                 letterSpacing: "-0.02em"
             },
             "title-lg": {
-                fontSize: "28",
+                fontSize: "28/32",
                 letterSpacing: "-0.02em"
             },
             title: {
-                fontSize: "24",
+                fontSize: "24/28",
                 letterSpacing: "-0.02em"
             },
             "title-sm": {
-                fontSize: "20",
+                fontSize: "20/24",
                 letterSpacing: "-0.02em"
             },
             "short-lg": {

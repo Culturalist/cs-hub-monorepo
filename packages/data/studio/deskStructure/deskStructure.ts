@@ -78,6 +78,11 @@ export default function deskStructure(): DeskToolOptions {
                           ]
                         : [])
 
+                    // S.listItem()
+                    //     .title("News")
+                    //     .icon(TerminalIcon)
+                    //     .child(S.document().schemaType("page").documentId("uutiset"))
+
                     // ...appConfig.schemas.documents.map((docType) => {
                     //     return S.listItem()
                     //         .title(deskValues[docType].title)
