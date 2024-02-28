@@ -199,6 +199,11 @@ module.exports = {
                 permanent: true
             },
             {
+                source: "/juhlarahaston-apurahat-jaettiin",
+                destination: "https://www.juhlarahasto.fi/blogit/juhlarahaston-apurahat-jaettiin",
+                permanent: true
+            },
+            {
                 source: "/blogi/:slug",
                 destination: "/blogit/:slug",
                 permanent: true

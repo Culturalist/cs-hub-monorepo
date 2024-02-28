@@ -1,5 +1,5 @@
 export type CardsType = "manual" | "projects" | "posts" | "people" | "events" | "organisations";
-export type CardPart = "subtitle" | "description" | "contacts" | "link";
+export type CardPart = "photo" | "subtitle" | "description" | "contacts" | "link";
 export type OrganizationCardLayout = "logos" | "list";
 
 export const cardsTypeList = [
@@ -12,6 +12,7 @@ export const cardsTypeList = [
 ];
 
 export const personCardParts = [
+    { title: "Photo", value: "photo" },
     { title: "Subtitle", value: "subtitle" },
     { title: "Description", value: "description" },
     { title: "Contacts", value: "contacts" },

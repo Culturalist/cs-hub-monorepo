@@ -123,7 +123,7 @@ export default function blockCards() {
                 type: "array",
                 description: "Select information to include in card",
                 of: [{ type: "string" }],
-                initialValue: ["subtitle"],
+                initialValue: ["photo", "subtitle"],
                 options: {
                     list: personCardParts,
                     layout: "grid"

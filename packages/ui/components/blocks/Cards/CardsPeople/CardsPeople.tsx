@@ -25,6 +25,7 @@ export default function CardsPeople(props: CardsPeopleProps) {
                 const { photo, contacts, description } = card;
                 const name = localizeString(card.title, lang);
                 const subtitle = localizeString(card.subtitle, lang);
+                const showPhoto = include?.includes("photo");
                 const photoUrl =
                     photo &&
                     getImageUrl(
@@ -39,11 +40,12 @@ export default function CardsPeople(props: CardsPeopleProps) {
                             className={styles.linkWrapper}
                         >
                             {/* PHOTO */}
-                            {photoUrl ? (
-                                <img src={photoUrl} alt={name} className={styles.photo} />
-                            ) : (
-                                <div className={styles.box}></div>
-                            )}
+                            {showPhoto &&
+                                (photoUrl ? (
+                                    <img src={photoUrl} alt={name} className={styles.photo} />
+                                ) : (
+                                    <div className={styles.box}></div>
+                                ))}
                             {/* NAME */}
                             <p className={styles.nameWrapper}>
                                 <span className={styles.name}>{name}</span>
