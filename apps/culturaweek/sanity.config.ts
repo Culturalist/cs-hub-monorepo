@@ -1,5 +1,5 @@
 import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
+import { structureTool } from "sanity/structure";
 import { languageFilter } from "@sanity/language-filter";
 import { colorInput } from "@sanity/color-input";
 import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
@@ -8,7 +8,7 @@ import { globalConfig, appConfig, appName, DocumentAny, capitalize } from "@cs/g
 import { languageFilterConfig } from "@cs/globals/lib/language-filter";
 import { initialValueTemplates, schemaTypes } from "@cs/data/schemas";
 import { deskStructure } from "@cs/data/studio";
-import StudioLogo from "./studio/StudioLogo";
+import { StudioLogo } from "@cs/ui";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "";
 
@@ -19,9 +19,9 @@ export default defineConfig({
     projectId,
     dataset: "production",
     apiVersion: globalConfig.latestUpdate,
-
+    icon: StudioLogo[appName],
     plugins: [
-        deskTool(deskStructure()),
+        structureTool(deskStructure(appName)),
         languageFilter(languageFilterConfig()),
         colorInput(),
         table(),
@@ -30,11 +30,6 @@ export default defineConfig({
     schema: {
         types: schemaTypes(),
         templates: initialValueTemplates
-    },
-    studio: {
-        components: {
-            logo: StudioLogo
-        }
     },
     document: {
         actions: (prev, { schemaType }) => {

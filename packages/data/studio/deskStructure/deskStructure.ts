@@ -1,17 +1,26 @@
+import type {
+    StructureToolOptions,
+    StructureBuilder,
+    StructureResolverContext,
+    ListItemBuilder,
+    ListItem,
+    Divider
+} from "sanity/structure";
 import { MasterDetailIcon, TerminalIcon } from "@sanity/icons";
 import deskValues from "./deskStructure.values";
-import { DocumentApp, appDesk, appName } from "@cs/globals";
-import type {
-    DeskToolOptions,
-    Divider,
-    ListItem,
-    ListItemBuilder,
-    StructureBuilder,
-    StructureResolverContext
-} from "sanity/desk";
+import { DocumentApp, desk } from "@cs/globals";
+// import type {
+//     DeskToolOptions,
+//     Divider,
+//     ListItem,
+//     ListItemBuilder,
+//     StructureBuilder,
+//     StructureResolverContext
+// } from "sanity/desk";
 // import { defaultDocumentNode } from './defaultDocumentNode';
 
-export default function deskStructure(): DeskToolOptions {
+export default function deskStructure(appName: string): StructureToolOptions {
+    const appDesk = desk[appName];
     return {
         name: "desk",
         title: "Desk",

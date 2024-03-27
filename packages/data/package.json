@@ -10,16 +10,16 @@
     },
     "dependencies": {
         "@cs/globals": "workspace:*",
-        "@sanity/client": "6.10.0",
-        "@sanity/icons": "^2.5.0",
+        "@sanity/client": "6.15.7",
+        "@sanity/icons": "2.11.4",
         "@sanity/image-url": "^1.0.2",
-        "@sanity/ui": "^1.8.2",
+        "@sanity/ui": "2.0.12",
         "@weresk/core": "workspace:*",
         "@weresk/maket": "workspace:*",
-        "next-sanity": "7.0.7"
+        "next-sanity": "8.5.0"
     },
     "devDependencies": {
-        "@sanity/types": "3.23.4",
+        "@sanity/types": "3.36.0",
         "@types/node": "^17.0.12",
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
@@ -27,9 +27,9 @@
         "tsconfig": "workspace:*"
     },
     "peerDependencies": {
-        "next": "14.0.4",
+        "next": "14.1.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "sanity": "3.23.4"
+        "sanity": "3.36.0"
     }
 }
