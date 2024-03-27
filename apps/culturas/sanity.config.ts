@@ -31,11 +31,6 @@ export default defineConfig({
         types: schemaTypes(),
         templates: initialValueTemplates
     },
-    // studio: {
-    //     components: {
-    //         logo: StudioLogo
-    //     }
-    // },
     document: {
         actions: (prev, { schemaType }) => {
             if (!appConfig.schemas.create.includes(schemaType as DocumentAny)) {

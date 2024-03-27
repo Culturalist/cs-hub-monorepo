@@ -1,2 +1,2 @@
-export { StudioLogo } from "./StudioIcon";
+export { StudioLogo } from "./StudioLogo";
 export { ToolMenuApp } from "./ToolMenu";

@@ -18,8 +18,10 @@
   "dependencies": {
     "@cs/data": "workspace:*",
     "@cs/globals": "workspace:*",
+    "@cs/ui": "workspace:*",
     "@sanity/vision": "^3.19.2",
     "@sanity/color-input": "^3.1.0",
+    "@sanity/table": "^1.0.1",
     "@sanity/language-filter": "^3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

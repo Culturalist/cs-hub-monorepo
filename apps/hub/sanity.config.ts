@@ -1,106 +1,80 @@
+/* eslint import/no-unresolved: 0 */
 import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
-import {visionTool} from '@sanity/vision'
-import {initialValueTemplates, schemaTypes} from '@cs/data'
+import {structureTool} from 'sanity/structure'
 import {languageFilter} from '@sanity/language-filter'
 import {colorInput} from '@sanity/color-input'
+import {table} from '@sanity/table'
 import {vercelDeployTool} from 'sanity-plugin-vercel-deploy'
-import {languageFilterConfig} from '@cs/globals'
+import {DocumentAny, appsConfig, capitalize, globalConfig, languageFilterConfig} from '@cs/globals'
+import {deskStructure, initialValueTemplates, schemaTypes} from '@cs/data'
+import {StudioLogo} from '@cs/ui/components/studio'
 
-const projectIds = {
-  culturas: process.env.SANITY_STUDIO_PROJECT_ID_CULTURAS || '',
-  culturaweek: process.env.SANITY_STUDIO_PROJECT_ID_CULTURAWEEK || '',
-  instituutiot: process.env.SANITY_STUDIO_PROJECT_ID_INSTITUUTIT || '',
-  juhlarahasto: process.env.SANITY_STUDIO_PROJECT_ID_JUHLARAHASTO || '',
-  venajankieliset: process.env.SANITY_STUDIO_PROJECT_ID_VENAJANKIELISET || '',
+const websites = {
+  culturas: {
+    title: 'Cultura-säätiö',
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID_CULTURAS || '',
+  },
+  instituutiot: {
+    title: 'Instituutiot',
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID_INSTITUUTIT || '',
+  },
+  venajankieliset: {
+    title: 'Venajankieliset',
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID_VENAJANKIELISET || '',
+  },
+  juhlarahasto: {
+    title: 'Juhlarahasto',
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID_JUHLARAHASTO || '',
+  },
+  culturaweek: {
+    title: 'CulturaWeek',
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID_CULTURAWEEK || '',
+  },
+  tieto: {
+    title: 'Tieto',
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID_TIETO || '',
+  },
 }
 
-export default defineConfig([
-  {
-    name: 'culturas',
-    title: 'Cultura-säätiö',
-
-    projectId: projectIds.culturas,
+export default defineConfig(
+  Object.entries(websites).map(([appName, {title, projectId}]) => ({
+    name: appName,
+    title,
+    projectId,
     dataset: 'production',
-    basePath: '/culturas',
-
+    basePath: `/${appName}`,
+    apiVersion: globalConfig.latestUpdate,
+    icon: StudioLogo[appName],
     plugins: [
-      deskTool(),
+      structureTool(deskStructure(appName)),
       languageFilter(languageFilterConfig()),
       colorInput(),
+      table(),
       vercelDeployTool(),
-      visionTool(),
     ],
-
     schema: {
       types: schemaTypes(),
       templates: initialValueTemplates,
     },
-  },
-  {
-    name: 'culturaweek',
-    title: 'CulturaWeek',
-
-    projectId: projectIds.culturaweek,
-    dataset: 'production',
-    basePath: '/culturaweek',
-
-    plugins: [
-      deskTool(),
-      languageFilter(languageFilterConfig()),
-      colorInput(),
-      vercelDeployTool(),
-      visionTool(),
-    ],
-
-    schema: {
-      types: schemaTypes(),
-      templates: initialValueTemplates,
+    document: {
+      actions: (prev, {schemaType}) => {
+        if (!appsConfig[appName].schemas.create.includes(schemaType as DocumentAny)) {
+          return prev.filter(
+            (prevAction) =>
+              prevAction.action !== 'unpublish' &&
+              prevAction.action !== 'delete' &&
+              prevAction.action !== 'duplicate',
+          )
+        }
+        return prev
+      },
+      newDocumentOptions: () => {
+        return appsConfig[appName].schemas.create.map((docType) => ({
+          title: capitalize(docType),
+          templateId: `${docType}-with-initial`,
+          type: 'initialValueTemplateItem',
+        }))
+      },
     },
-  },
-])
-
-// export default defineConfig({
-//   name: appName,
-//   title: appConfig.title,
-//   basePath: '/admin',
-//   projectId,
-//   dataset: 'production',
-//   apiVersion: globalConfig.latestUpdate,
-
-//   plugins: [
-//     deskTool(deskStructure()),
-//     languageFilter(languageFilterConfig()),
-//     colorInput(),
-//     vercelDeployTool(),
-//   ],
-//   schema: {
-//     types: schemaTypes(),
-//     templates: initialValueTemplates,
-//   },
-//   studio: {
-//     components: {
-//       logo: StudioLogo,
-//     },
-//   },
-//   document: {
-//     actions: (prev, {schemaType}) => {
-//       if (!appConfig.schemas.create.includes(schemaType as DocumentAny)) {
-//         return prev.filter(
-//           (prevAction) =>
-//             prevAction.action !== 'unpublish' &&
-//             prevAction.action !== 'delete' &&
-//             prevAction.action !== 'duplicate',
-//         )
-//       }
-//       return prev
-//     },
-//     newDocumentOptions: () => {
-//       return appConfig.schemas.create.map((docType) => ({
-//         title: capitalize(docType),
-//         templateId: `${docType}-with-initial`,
-//         type: 'initialValueTemplateItem',
-//       }))
-//     },
-//   },
-// })
+  })),
+)

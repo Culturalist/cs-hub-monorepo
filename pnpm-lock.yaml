@@ -205,12 +205,18 @@ importers:
       '@cs/globals':
         specifier: workspace:*
         version: link:../../packages/globals
+      '@cs/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@sanity/color-input':
         specifier: ^3.1.0
         version: 3.1.0(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.36.0)(styled-components@6.1.2)
       '@sanity/language-filter':
         specifier: ^3.2.1
         version: 3.2.1(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.36.0)(styled-components@6.1.2)
+      '@sanity/table':
+        specifier: ^1.0.1
+        version: 1.0.1(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.36.0)(styled-components@6.1.2)
       '@sanity/vision':
         specifier: ^3.19.2
         version: 3.19.2(@babel/runtime@7.23.2)(@codemirror/lint@6.4.2)(@codemirror/state@6.3.1)(@codemirror/theme-one-dark@6.1.2)(@lezer/common@1.1.1)(codemirror@6.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.2)
@@ -5022,6 +5028,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
