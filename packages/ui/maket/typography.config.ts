@@ -137,7 +137,7 @@ const typographyConfig: TypographyConfig = {
                 textTransform: "uppercase"
             },
             menu: {
-                fontSize: "48",
+                fontSize: "40",
                 textTransform: "uppercase",
                 sm: {
                     fontSize: "72"
