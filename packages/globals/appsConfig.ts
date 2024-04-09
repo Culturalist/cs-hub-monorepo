@@ -7,7 +7,7 @@ export const appsConfig: Record<string, AppConfig> = {
         title: "Cultura-säätiö Hub",
         schemas: {
             documents: ["page", "project", "post", "event", "person", "note", "organisation"],
-            links: ["page", "project", "post", "person", "event"],
+            links: ["page", "project", "post", "person", "event", "note"],
             navigation: ["page", "project", "event"],
             create: ["page", "project", "post", "person", "event", "organisation", "note", "label", "palette"]
         }
@@ -16,7 +16,7 @@ export const appsConfig: Record<string, AppConfig> = {
         title: "Cultura-säätiö",
         schemas: {
             documents: ["page", "project", "post", "event", "person", "organisation"],
-            links: ["page", "project", "post", "person", "event"],
+            links: ["page", "project", "post", "person", "event", "note"],
             navigation: ["page", "project", "event"],
             create: ["page", "project", "post", "person", "event", "label", "organisation", "palette"]
         },
@@ -41,7 +41,7 @@ export const appsConfig: Record<string, AppConfig> = {
         title: "Juhlarahasto",
         schemas: {
             documents: ["page", "post", "event", "note", "person", "organisation"],
-            links: ["page", "person", "post", "event"],
+            links: ["page", "person", "post", "event", "note"],
             navigation: ["page", "event"],
             create: ["page", "person", "post", "event", "label", "organisation", "note", "palette"]
         },
