@@ -31,6 +31,7 @@ export default function deskStructure(appName: string): StructureToolOptions {
 
             Object.entries(appDesk).forEach(([_docType, parents]) => {
                 const docType = _docType as DocumentApp;
+                // If just the single type without parent page
                 if (!parents.length) {
                     appItems.push(
                         S.listItem()
@@ -42,9 +43,31 @@ export default function deskStructure(appName: string): StructureToolOptions {
                                     .initialValueTemplates([S.initialValueTemplateItem(`${docType}-with-initial`)])
                             )
                     );
-                } else {
+                }
+                // If just the single type with parent page
+                else if (parents.length === 1) {
+                    appItems.push(
+                        S.listItem()
+                            .title(parents[0].title)
+                            .icon(deskValues[docType].icon)
+                            .child(
+                                S.documentTypeList(docType)
+                                    .title(parents[0].title)
+                                    .filter("_type == $docType && parent._ref == $parentId")
+                                    .params({ docType, parentId: parents[0].parentId })
+                                    .initialValueTemplates([
+                                        S.initialValueTemplateItem(`${docType}-with-parent`, {
+                                            parentId: parents[0].parentId
+                                        })
+                                    ])
+                            )
+                    );
+                }
+                // If type with multiple parent pages
+                else {
+                    const itemsFolder: (ListItemBuilder | ListItem | Divider)[] = [];
                     parents.forEach(({ parentId, title }) => {
-                        appItems.push(
+                        itemsFolder.push(
                             S.listItem()
                                 .title(title)
                                 .icon(deskValues[docType].icon)
@@ -61,6 +84,28 @@ export default function deskStructure(appName: string): StructureToolOptions {
                                 )
                         );
                     });
+                    appItems.push(
+                        S.listItem()
+                            .title(deskValues[docType].title)
+                            .icon(deskValues[docType].icon)
+                            .child(
+                                S.list()
+                                    .title(deskValues[docType].title)
+                                    .items([
+                                        ...itemsFolder,
+                                        S.listItem()
+                                            .title(`All ${deskValues[docType].title}`)
+                                            .icon(deskValues[docType].icon)
+                                            .child(
+                                                S.documentTypeList(docType)
+                                                    .title(`All ${deskValues[docType].title}`)
+                                                    .initialValueTemplates([
+                                                        S.initialValueTemplateItem(`${docType}-with-initial`)
+                                                    ])
+                                            )
+                                    ])
+                            )
+                    );
                 }
             });
 

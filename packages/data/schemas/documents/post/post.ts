@@ -130,7 +130,7 @@ export default function post() {
                 options: {
                     disableNew: true
                 },
-                readOnly: Boolean(appDesk.post?.length),
+                // readOnly: Boolean(appDesk.post?.length),
                 group: "connections"
             }),
             defineField({
