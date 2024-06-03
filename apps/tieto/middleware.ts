@@ -31,17 +31,17 @@ export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     //Workaround to fix FB scraper failure
-    let isCrawler = false;
-    const headers = new Headers(request.headers);
-    if (headers.get("User-Agent")?.includes("facebookexternalhit")) {
-        isCrawler = true;
-    }
+    // let isCrawler = false;
+    // const headers = new Headers(request.headers);
+    // if (headers.get("User-Agent")?.includes("facebookexternalhit")) {
+    //     isCrawler = true;
+    // }
 
-    if (isCrawler && request.headers.has("Range")) {
-        headers.delete("Range");
-        const response = NextResponse.next({ request: { headers } });
-        return response;
-    }
+    // if (isCrawler && request.headers.has("Range")) {
+    //     headers.delete("Range");
+    //     const response = NextResponse.next({ request: { headers } });
+    //     return response;
+    // }
 
     // Check if there is any supported locale in the pathname
     const pathnameIsMissingLocale = locales.every(
@@ -49,7 +49,7 @@ export async function middleware(request: NextRequest) {
     );
 
     // Redirect if there is no locale
-    if (!isCrawler && pathnameIsMissingLocale) {
+    if (pathnameIsMissingLocale) {
         const locale = await getLocale(request);
         return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
     }
