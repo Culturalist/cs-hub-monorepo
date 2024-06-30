@@ -1,1 +1,1 @@
-export { default } from './BlockSchedule';
+export { default as BlockSchedule } from "./BlockSchedule";

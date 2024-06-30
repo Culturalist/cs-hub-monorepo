@@ -38,7 +38,7 @@ import {
 } from "./objects";
 import { page, person, post, project, event, note, organisation, report } from "./documents";
 import { header, footer, hero, metadataApp, metadataPage } from "./sections";
-import { app, label, palette } from "./system";
+import { app, label, palette, swatch, swatches } from "./system";
 
 export default function schemaTypes() {
     const variableObjects = [
@@ -85,7 +85,7 @@ export default function schemaTypes() {
 
     const documents = [page, project, event, post, person, note, organisation, report].map((typeClass) => typeClass());
 
-    const system = [app, label, palette].map((typeClass) => typeClass());
+    const system = [app, label, palette, swatch, swatches].map((typeClass) => typeClass());
 
     return [...variableObjects, ...objects, ...sections, ...documents, ...system];
 }

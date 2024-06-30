@@ -2,11 +2,11 @@ import { localizeString } from "@cs/data/utils";
 import { LinkCaptioned, Organisation, OrganizationCardLayout } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import LinkWrapper from "../../LinkWrapper";
+import { LinkWrapper } from "../../LinkWrapper";
 import { createStyles } from "./CardsOrganisations.styles";
 import { numeric } from "@weresk/core";
 import { gridConfig } from "../../../../maket";
-import Links from "../../Links";
+import { Links } from "../../Links";
 
 interface CardsOrganisationsProps extends DefaultProps {
     data: Organisation[];

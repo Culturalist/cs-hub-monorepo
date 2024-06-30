@@ -1,7 +1,7 @@
 import { ElementDate } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { formatLocaleDate, localizeString } from "@cs/data/utils";
-import LinkWrapper from "../LinkWrapper";
+import { LinkWrapper } from "../LinkWrapper";
 import { createStyles } from "./EventDates.styles";
 
 interface EventDatesProps extends DefaultProps {

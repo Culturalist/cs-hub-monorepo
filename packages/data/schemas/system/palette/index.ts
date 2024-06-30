@@ -1,2 +1,2 @@
 export { default as palette } from "./palette";
-export { swatches } from "./palette.values";
+export { brandSwatches } from "./palette.values";

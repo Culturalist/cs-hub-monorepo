@@ -3,11 +3,9 @@ import { BlockMedia, MediaLayout } from "@cs/data/schemas";
 import { Breakpoint, DefaultProps } from "@cs/globals";
 import { getImageUrl } from "@cs/globals/lib/sanity";
 import { mapKeys } from "@cs/globals/utils";
-import { gridConfig } from "../../../../maket";
 import { AdaptiveDimentions, box, boxPx, breakpoints } from "../../../../utils";
-import Image from "../../Image";
+import { Image } from "../../Image";
 import { createStyles } from "./BlockMedia.styles";
-import { numeric } from "@weresk/core";
 
 interface BlockMediaProps extends DefaultProps {
     data: BlockMedia;

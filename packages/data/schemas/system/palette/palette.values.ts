@@ -1,4 +1,4 @@
-export const swatches = [
+export const brandSwatches = [
     "#323232", //Black 900
     "#999999", //CS Grey
     "#FFFFFF", //White

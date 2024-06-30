@@ -1,15 +1,15 @@
 import React from "react";
-import { PortableText as PortableTextRender, PortableTextComponents } from "@portabletext/react";
+import { PortableText as PortableTextRender, type PortableTextComponents } from "@portabletext/react";
 import { globalConfig, Breakpoint, DefaultProps } from "@cs/globals";
 import { mapKeys, neatChildrenBreaks } from "@cs/globals/utils";
 import { getImageUrl } from "@cs/globals/lib/sanity";
 import { BlockLinks, BlockParent, LocalePortableText, MediaImage } from "@cs/data/schemas";
 import { localizeString } from "@cs/data/utils";
 import { AdaptiveDimentions, box, boxPx, breakpoints } from "../../../utils";
-import LinkWrapper from "../LinkWrapper";
-import Image from "../Image";
+import { LinkWrapper } from "../LinkWrapper";
+import { Image } from "../Image";
 import { createStyles } from "./PortableText.styles";
-import Links from "../Links";
+import { Links } from "../Links";
 
 interface PortableTextBlockProps extends DefaultProps {
     data?: LocalePortableText;

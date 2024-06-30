@@ -1,4 +1,4 @@
-export interface ThemeIconProps {
+export interface PaletteIconProps {
     surface: string;
     text: string;
     textLight: string;
@@ -6,7 +6,7 @@ export interface ThemeIconProps {
     cardText: string;
 }
 
-export function PaletteIcon({ surface, text, textLight, cardSurface, cardText }: ThemeIconProps) {
+export function PaletteIcon({ surface, text, textLight, cardSurface, cardText }: PaletteIconProps) {
     return (
         <div
             style={{

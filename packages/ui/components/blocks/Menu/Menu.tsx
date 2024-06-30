@@ -4,8 +4,8 @@ import { usePathname } from "next/navigation";
 import { LinkCaptioned, LinkExternal, PageDocument } from "@cs/data/schemas";
 import { wrapReference, localizeString } from "@cs/data/utils";
 import { DefaultProps } from "@cs/globals";
-import LinkWrapper from "../LinkWrapper";
-import Languages from "../Languages";
+import { LinkWrapper } from "../LinkWrapper";
+import { Languages } from "../Languages";
 import { createStyles } from "./Menu.styles";
 
 interface MenuProps extends DefaultProps {

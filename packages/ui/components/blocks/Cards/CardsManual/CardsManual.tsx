@@ -5,8 +5,8 @@ import { getImageUrl } from "@cs/globals/lib/sanity";
 import { localizeString } from "@cs/data/utils";
 import { mapKeys, neatTextBreaks } from "@cs/globals/utils";
 import { createStyles } from "./CardsManual.styles";
-import LinkWrapper from "../../LinkWrapper";
-import Image from "../../Image";
+import { LinkWrapper } from "../../LinkWrapper";
+import { Image } from "../../Image";
 
 interface CardsManualProps extends DefaultProps {
     data: CardManual[];
@@ -30,9 +30,7 @@ export default function CardsManual(props: CardsManualProps) {
             {data.map((card, i) => {
                 const { cover, link, cardSurface } = card;
                 const title = neatTextBreaks(localizeString(card.title, lang));
-                const subtitle = neatTextBreaks(
-                    localizeString(card.subtitle, lang)
-                );
+                const subtitle = neatTextBreaks(localizeString(card.subtitle, lang));
                 const coverUrls =
                     cover &&
                     mapKeys<Breakpoint, string>(breakpoints, (br: Breakpoint) =>
@@ -41,27 +39,20 @@ export default function CardsManual(props: CardsManualProps) {
                 return (
                     <LinkWrapper
                         link={link}
+                        lang={lang}
                         className={styles.card}
-                        style={
-                            cardSurface
-                                ? { backgroundColor: cardSurface.hex }
-                                : undefined
-                        }
+                        style={cardSurface ? { backgroundColor: cardSurface.hex } : undefined}
                         key={i}
                     >
                         <div className={styles.content}>
                             {title && (
                                 <h4 className={styles.titleWrapper}>
-                                    <span className={styles.title}>
-                                        {title}
-                                    </span>
+                                    <span className={styles.title}>{title}</span>
                                 </h4>
                             )}
                             {subtitle && (
                                 <p className={styles.subtitleWrapper}>
-                                    <span className={styles.subtitle}>
-                                        {subtitle}
-                                    </span>
+                                    <span className={styles.subtitle}>{subtitle}</span>
                                 </p>
                             )}
                         </div>

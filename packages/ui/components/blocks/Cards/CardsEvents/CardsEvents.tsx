@@ -2,7 +2,7 @@ import { elementToDate, formatLocaleDate, localizeString, selectDate, wrapRefere
 import { CoverBlock, Event } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { createStyles } from "./CardsEvents.styles";
-import LinkWrapper from "../../LinkWrapper";
+import { LinkWrapper } from "../../LinkWrapper";
 import { box, BoxDimentions } from "../../../../utils";
 import { getImageUrl } from "@cs/globals/lib/sanity";
 import { gridConfig } from "../../../../maket";

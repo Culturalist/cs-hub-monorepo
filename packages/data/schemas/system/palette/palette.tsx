@@ -1,6 +1,6 @@
 import { palette as paletteClass } from "@weresk/maket";
-import { swatches } from "./palette.values";
+import { brandSwatches } from "./palette.values";
 
 export default function palette() {
-    return paletteClass({ swatches });
+    return paletteClass({ swatches: brandSwatches });
 }

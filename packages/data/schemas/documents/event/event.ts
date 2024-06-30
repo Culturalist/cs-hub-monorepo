@@ -12,7 +12,7 @@ import {
     LocaleString
 } from "../../objects";
 import { MetadataPage } from "../../sections";
-import { Label, swatches } from "../../system";
+import { Label, brandSwatches } from "../../system";
 import { Page } from "../page";
 import { Palette } from "@weresk/maket";
 
@@ -175,7 +175,7 @@ export default function event() {
                 title: "Custom card color",
                 type: "color",
                 options: {
-                    colorList: swatches
+                    colorList: brandSwatches
                 },
                 group: "style"
             }),

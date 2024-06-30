@@ -2,7 +2,7 @@ import { LinkContact } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { capitalize } from "@cs/globals/utils";
 import { localizeString } from "@cs/data/utils";
-import LinkWrapper from "../LinkWrapper";
+import { LinkWrapper } from "../LinkWrapper";
 
 interface LinkContactProps extends DefaultProps {
     link: LinkContact;

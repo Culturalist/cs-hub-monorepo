@@ -3,7 +3,7 @@ import { createStyles } from "./HeroImage.styles";
 import { ImageSources, LocaleString } from "@cs/data/schemas";
 import { AdaptiveDimentions, BoxDimentions, boxFromWidthRatio, boxPx, breakpoints } from "../../../../utils";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import Image from "../../Image";
+import { Image } from "../../Image";
 import { mapKeys } from "@cs/globals/utils";
 import { gridConfig } from "../../../../maket";
 import { numeric } from "@weresk/core";

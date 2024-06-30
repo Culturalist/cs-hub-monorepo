@@ -2,7 +2,7 @@ import { localizeString } from "@cs/data/utils";
 import { BlockSchedule } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { createStyles } from "./BlockSchedule.styles";
-import PortableText from "../../PortableText";
+import { PortableText } from "../../PortableText";
 
 interface BlockScheduleProps extends DefaultProps {
     data: BlockSchedule;
@@ -33,16 +33,12 @@ export default function BlockSchedule(props: BlockScheduleProps) {
                         <div className={styles.contentCol}>
                             {title && (
                                 <h3 className={styles.titleWrapper}>
-                                    <span className={styles.title}>
-                                        {title}
-                                    </span>
+                                    <span className={styles.title}>{title}</span>
                                 </h3>
                             )}
                             {subtitle && (
                                 <p className={styles.subtitleWrapper}>
-                                    <span className={styles.subtitle}>
-                                        {subtitle}
-                                    </span>
+                                    <span className={styles.subtitle}>{subtitle}</span>
                                 </p>
                             )}
                             <PortableText

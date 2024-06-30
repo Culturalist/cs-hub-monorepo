@@ -101,6 +101,12 @@ const initialValueTemplates = [
         title: "Label",
         schemaType: "label",
         value: () => ({})
+    },
+    {
+        id: "swatches-with-initial",
+        title: "Swatches",
+        schemaType: "swatches",
+        value: () => ({})
     }
 ];
 

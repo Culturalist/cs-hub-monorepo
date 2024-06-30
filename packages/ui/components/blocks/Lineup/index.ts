@@ -1,1 +1,1 @@
-export { default } from './Lineup';
+export { default as Lineup } from "./Lineup";

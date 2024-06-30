@@ -79,7 +79,7 @@ export const appsConfig: Record<string, AppConfig> = {
             documents: ["page", "report", "person", "organisation"],
             links: ["page", "report", "person"],
             navigation: ["page", "report"],
-            create: ["page", "report", "person", "label", "organisation", "palette"]
+            create: ["page", "report", "person", "label", "organisation", "palette", "swatches"]
         },
         tokens: {
             googleTag: ""

@@ -1,6 +1,6 @@
-import { linkTypedSegment } from '../linkTyped';
-import { localePortableTextSegment } from '../localePortableText';
-import { mediaBlockSegment } from '../mediaArray';
+import { linkTypedSegment } from "../linkTyped";
+import { localePortableTextSegment } from "../localePortableText";
+import { mediaBlockSegment } from "../mediaArray";
 
 export const bodySegment = `
     ...,
@@ -57,6 +57,7 @@ export const bodySegment = `
         media[] {
             ...,
             ${mediaBlockSegment}
-        }
+        },
+        swatches->
     }
 `;

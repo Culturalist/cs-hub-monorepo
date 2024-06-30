@@ -4,7 +4,7 @@ import { LocaleString, UseMedia } from "@cs/data/schemas";
 import { localizeString } from "@cs/data/utils";
 import { AdaptiveDimentions, box, boxPx } from "../../../../utils";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import Image from "../../Image";
+import { Image } from "../../Image";
 
 export type ImageSources = Partial<Record<UseMedia, ImageObject>>;
 

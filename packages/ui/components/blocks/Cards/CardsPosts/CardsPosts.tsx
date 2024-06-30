@@ -5,8 +5,8 @@ import { getImageUrl } from "@cs/globals/lib/sanity";
 import { localizeString, wrapReference } from "@cs/data/utils";
 import { mapKeys, neatTextBreaks } from "@cs/globals/utils";
 import { createStyles } from "./CardsPosts.styles";
-import LinkWrapper from "../../LinkWrapper";
-import Image from "../../Image";
+import { LinkWrapper } from "../../LinkWrapper";
+import { Image } from "../../Image";
 
 interface CardsPostsProps extends DefaultProps {
     data: Post[];
@@ -40,13 +40,21 @@ export default function CardsPosts(props: CardsPostsProps) {
                         return !nextCover.useMedia.includes("desktop");
                     });
 
-                const coverUrls = mapKeys<Breakpoint, string>(breakpoints, (br: Breakpoint) => getImageUrl(cover, ...boxPx(sizes, br)));
+                const coverUrls = mapKeys<Breakpoint, string>(breakpoints, (br: Breakpoint) =>
+                    getImageUrl(cover, ...boxPx(sizes, br))
+                );
 
                 return (
                     <div className={styles.card} key={i}>
                         <LinkWrapper link={wrapReference(card)} className={styles.wrapper}>
                             {cover ? (
-                                <Image sources={coverUrls} sizes={sizes} alt={card.title} lang={lang} className={styles.cover} />
+                                <Image
+                                    sources={coverUrls}
+                                    sizes={sizes}
+                                    alt={card.title}
+                                    lang={lang}
+                                    className={styles.cover}
+                                />
                             ) : (
                                 <div className={styles.box}></div>
                             )}

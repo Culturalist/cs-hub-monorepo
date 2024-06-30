@@ -4,7 +4,7 @@ import { selectDefaultLocale } from "../../../utils";
 import { LocaleString } from "../localeString";
 import { LinkTyped } from "../linkTyped";
 import { Color, ImageObject } from "@cs/globals";
-import { swatches } from "../../system";
+import { brandSwatches } from "../../system";
 
 export interface CardManual {
     _type: "cardManual";
@@ -58,7 +58,7 @@ export default function cardManual() {
                 title: "Custom color",
                 type: "color",
                 options: {
-                    colorList: swatches
+                    colorList: brandSwatches
                 },
                 fieldset: "style"
             })

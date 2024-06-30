@@ -2,10 +2,10 @@ import { localizeString, wrapReference } from "@cs/data/utils";
 import { CardPart, Person } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import LinkContact from "../../LinkContact";
-import PortableText from "../../PortableText";
+import { LinkContact } from "../../LinkContact";
+import { PortableText } from "../../PortableText";
 import { createStyles } from "./CardsPeople.styles";
-import LinkWrapper from "../../LinkWrapper";
+import { LinkWrapper } from "../../LinkWrapper";
 import { numeric } from "@weresk/core";
 import { gridConfig } from "../../../../maket";
 

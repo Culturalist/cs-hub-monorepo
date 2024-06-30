@@ -2,7 +2,7 @@ export type Locale = "fi" | "ru" | "en";
 export type Breakpoint = "xs" | "sm" | "md" | "lg";
 
 export type DocumentApp = "app" | "page" | "person" | "post" | "project" | "event" | "report" | "note" | "organisation";
-export type DocumentSystem = "label" | "palette";
+export type DocumentSystem = "label" | "palette" | "swatches";
 export type DocumentAny = DocumentApp | DocumentSystem;
 
 export interface AppConfig {

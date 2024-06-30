@@ -15,6 +15,7 @@ import {
     chartOrientationInitialValue,
     chartOrientationList
 } from "./blockChart.values";
+import { Swatches } from "../../system";
 
 export interface BlockChart {
     _type: "blockChart";
@@ -25,6 +26,7 @@ export interface BlockChart {
     swap?: boolean;
     components?: ChartComponent[];
     orientation: ChartOrientation;
+    swatches?: Swatches;
 }
 
 export default function blockChart() {
@@ -96,6 +98,13 @@ export default function blockChart() {
                     layout: "grid"
                 },
                 // hidden: ({ parent }: { parent: BlockChart | undefined }) => parent?.design === "pie",
+                fieldset: "style"
+            }),
+            defineField({
+                name: "swatches",
+                title: "Swatches",
+                type: "reference",
+                to: [{ type: "swatches" }],
                 fieldset: "style"
             })
         ],

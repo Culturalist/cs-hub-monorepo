@@ -1,1 +1,1 @@
-export { default } from './LinkWrapper';
+export { default as LinkWrapper } from "./LinkWrapper";

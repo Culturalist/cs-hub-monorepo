@@ -2,11 +2,9 @@ import { localizeString, wrapReference } from "@cs/data/utils";
 import { CoverBlock, Project } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import LinkContact from "../../LinkContact";
-import PortableText from "../../PortableText";
 import { createStyles } from "./CardsProjects.styles";
-import LinkWrapper from "../../LinkWrapper";
-import { AdaptiveDimentions, box, BoxDimentions } from "../../../../utils";
+import { LinkWrapper } from "../../LinkWrapper";
+import { box, BoxDimentions } from "../../../../utils";
 import { numeric } from "@weresk/core";
 import { gridConfig } from "../../../../maket";
 

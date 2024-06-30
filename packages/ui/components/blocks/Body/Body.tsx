@@ -1,14 +1,14 @@
 import { BodyBlock, BodySectionBlock } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
-import Links from "../Links";
-import PortableText from "../PortableText";
-import BlockCards from "./BlockCards";
-import BlockColumns from "./BlockColumns";
-import BlockMedia from "./BlockMedia";
-import BlockSchedule from "./BlockSchedule";
-import BlockSection from "./BlockSection";
-import BlockChart from "./BlockChart";
-import BlockTable from "./BlockTable";
+import { Links } from "../Links";
+import { PortableText } from "../PortableText";
+import { BlockCards } from "./BlockCards";
+import { BlockColumns } from "./BlockColumns";
+import { BlockMedia } from "./BlockMedia";
+import { BlockSchedule } from "./BlockSchedule";
+import { BlockSection } from "./BlockSection";
+import { BlockChart } from "./BlockChart";
+import { BlockTable } from "./BlockTable";
 import { createStyles } from "./Body.styles";
 
 interface BodyProps extends DefaultProps {

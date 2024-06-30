@@ -11,6 +11,7 @@ export interface Report extends SanityDocument {
     _ref?: string;
     _key?: string;
     title?: LocaleString;
+    subtitle?: LocaleString;
     slug: Slug;
     covers?: CoverBlock[];
     captionAlt?: CaptionAlt;
@@ -53,6 +54,16 @@ export default function report() {
                 name: "title",
                 title: "Title",
                 type: "localeString",
+                group: "card"
+            }),
+            defineField({
+                name: "subtitle",
+                title: "Subtitle",
+                type: "localeString",
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                },
                 group: "card"
             }),
             defineField({

@@ -1,1 +1,1 @@
-export { default } from './BlockCards';
+export { default as BlockCards } from "./BlockCards";

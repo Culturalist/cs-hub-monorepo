@@ -2,7 +2,7 @@ import { DocumentArrowDownIcon } from "@heroicons/react/24/outline";
 import { LinksLayout, LinkCaptioned } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { localizeString } from "@cs/data/utils";
-import LinkWrapper from "../LinkWrapper";
+import { LinkWrapper } from "../LinkWrapper";
 import { createStyles } from "./Links.styles";
 
 interface LinksProps extends DefaultProps {

@@ -1,1 +1,1 @@
-export { default } from "./BlockChart";
+export { default as BlockChart } from "./BlockChart";

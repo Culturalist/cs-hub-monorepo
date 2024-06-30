@@ -4,7 +4,7 @@ import { localizeString } from "@cs/data/utils";
 import { neatTextBreaks } from "@cs/globals/utils";
 import { CardsManual } from "../../blocks";
 import { Cover } from "../../blocks/Cover";
-import Links from "../../blocks/Links";
+import { Links } from "../../blocks/Links";
 import { createStyles } from "./Hero.styles";
 import { SetPalette } from "@weresk/maket";
 import { colorToRGB } from "@weresk/core";

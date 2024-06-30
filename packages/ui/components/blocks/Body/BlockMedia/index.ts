@@ -1,1 +1,1 @@
-export { default } from './BlockMedia';
+export { default as BlockMedia } from "./BlockMedia";

@@ -1,1 +1,1 @@
-export { default } from './BlockSection';
+export { default as BlockSection } from "./BlockSection";

@@ -1,1 +1,1 @@
-export { default } from './PageIndex';
+export { default as PageIndex } from "./PageIndex";
