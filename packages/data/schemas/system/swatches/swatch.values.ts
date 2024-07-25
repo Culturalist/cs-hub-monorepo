@@ -1,9 +1,11 @@
 export const defaultSwatches = [
-    "#60a5fa", //Blue 400
-    "#84cc16", //Lime 400
-    "#c084fc", //Purple 400
-    "#fbbf24", //Amber 400
-    "#f472b6", //Pink 400
-    "#34d399", //Emerald 400
-    "#f87171" //Red 400
+    "#4C63E0", // CS Blue Alt
+    "#6E9FED", // CS Sky Blue
+    "#458345", // CS Green Alt
+    "#BDC654", // Einstein
+    "#EBB128", // Curie
+    "#D0545B", // Alvarez
+    "#D96C9A", // Pink
+    "#9971DB", // Raman
+    "#81CEAD" // Mint
 ];
