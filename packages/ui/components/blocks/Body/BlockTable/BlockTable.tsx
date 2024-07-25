@@ -12,6 +12,7 @@ export default function BlockTable(props: BlockTableProps) {
     if (!data) return null;
     const { headers } = data;
     const title = localizeString(data.title, lang);
+    const subtitle = localizeString(data.subtitle, lang);
     const tableData = selectLocale(data.data, lang);
     const topHeader = headers?.includes("top") && tableData?.rows[0] ? tableData.rows[0] : undefined;
     const rows = headers?.includes("top") ? tableData?.rows.slice(1) : tableData?.rows;
@@ -24,6 +25,11 @@ export default function BlockTable(props: BlockTableProps) {
                 <h3 className={styles.titleWrapper}>
                     <span className={styles.title}>{title}</span>
                 </h3>
+            ) : null}
+            {subtitle ? (
+                <p className={styles.subtitleWrapper}>
+                    <span className={styles.subtitle}>{subtitle}</span>
+                </p>
             ) : null}
             {tableData ? (
                 <table className={styles.table}>

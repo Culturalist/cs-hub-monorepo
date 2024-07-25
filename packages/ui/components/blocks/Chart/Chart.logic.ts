@@ -1,24 +1,37 @@
-import { ChartDesign, Swatches, defaultSwatches } from "@cs/data/schemas";
+import { ChartDesign, ChartOrientation, Swatches, defaultSwatches } from "@cs/data/schemas";
 import { TableValue, numeric } from "@weresk/core";
 
 export type ChartData = { value: string } & (Record<string, number> | object);
+export type LabelsData = { value: string } & Record<string, string>;
 
-export function prepareChartData(data: TableValue | undefined, design: ChartDesign, swap?: boolean): ChartData[] {
-    const output: ChartData[] = [];
+export function prepareChartData(
+    data: TableValue | undefined,
+    design: ChartDesign,
+    swap?: boolean
+): [ChartData[], LabelsData[]] {
+    const chart: ChartData[] = [];
+    const labels: LabelsData[] = [];
     const params = getChartParams(data, swap);
     const values = getChartValues(data, swap);
     values.forEach((value, v) => {
-        const item: Record<string, number> = {};
+        const chartItem: Record<string, number> = {};
+        const labelItem: Record<string, string> = {};
         params.forEach((param, p) => {
-            item[param] = numeric(data?.rows[(swap ? v : p) + 1]?.cells[(swap ? p : v) + 1]);
+            const cell = data?.rows[(swap ? v : p) + 1]?.cells[(swap ? p : v) + 1];
+            labelItem[param] = cell || "";
+            chartItem[param] = numeric(cell);
         });
-        output.push({
+        chart.push({
             value,
-            ...item
+            ...chartItem
+        });
+        labels.push({
+            value,
+            ...labelItem
         });
     });
 
-    return output;
+    return [chart, labels];
 }
 
 export function getChartParams(data: TableValue | undefined, swap?: boolean): string[] {

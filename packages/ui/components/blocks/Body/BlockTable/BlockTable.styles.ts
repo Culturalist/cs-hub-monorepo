@@ -6,8 +6,10 @@ export interface StyleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
     container: "",
-    titleWrapper: "typo-caps mt-40",
+    titleWrapper: "typo-paragraph !font-normal mt-40",
     title: "trim-line",
+    subtitleWrapper: "typo-paragraph-sm text-on-surface-light mt-8",
+    subtitle: "trim-line",
     table: "w-full mt-32",
     topHeader: "border-b border-on-surface-light",
     leftHeader: "",

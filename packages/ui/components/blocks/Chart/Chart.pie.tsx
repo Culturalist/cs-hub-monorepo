@@ -1,20 +1,23 @@
 "use client";
-import { ResponsiveContainer, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from "recharts";
+import { ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
 import { ContentType, Formatter } from "recharts/types/component/DefaultLegendContent";
-import { ChartComponent, ChartOrientation, Swatches } from "@cs/data/schemas";
-import { pickSwatch, type ChartData } from "./Chart.logic";
+import { ChartComponent, Swatches } from "@cs/data/schemas";
+import { pickSwatch, type ChartData, LabelsData } from "./Chart.logic";
 import { pieChartValues } from "./Chart.values";
+import ChartLabel from "./Chart.label";
+import ChartComponents from "./Chart.components";
+import ChartLegend from "./Chart.legend";
 
 interface ChartPieProps {
     data: ChartData[];
     params: string[];
-    orientation: ChartOrientation;
+    labels: LabelsData[];
     components?: ChartComponent[];
     swatches?: Swatches;
 }
 
 export default function ChartPie(props: ChartPieProps) {
-    const { data, params, swatches } = props;
+    const { data, params, components, labels, swatches } = props;
 
     const startRadius = Math.max(
         pieChartValues.minRadius,
@@ -40,23 +43,19 @@ export default function ChartPie(props: ChartPieProps) {
         );
     };
 
-    const components = (
-        <>
-            {props.components?.includes("grid") && <CartesianGrid strokeDasharray="3 3" />}
-            {props.components?.includes("tooltip") && (
-                <Tooltip separator=": " cursor={{ fill: pickSwatch(swatches, 0), opacity: 0.1 }} />
-            )}
-            {props.components?.includes("legend") && <Legend formatter={renderChartLegend} />}
-        </>
-    );
-
     return (
         <ResponsiveContainer width="100%" height={500}>
             <PieChart width={500} height={300}>
                 {/* COMPONENTS */}
-                {components}
+                {ChartComponents({ design: "pie", components, swatches, params })}
+                {/* LEGEND */}
+                {/* {ChartLegend({})} */}
+                {/* CHART */}
                 {data.map((param, i) => {
                     const pieData = Object.entries(param)
+                        .map(([name, value]) => ({ name, value, param: param.value }))
+                        .filter((item) => item.name !== "value");
+                    const labelsData = Object.entries(labels[i])
                         .map(([name, value]) => ({ name, value, param: param.value }))
                         .filter((item) => item.name !== "value");
 
@@ -69,8 +68,20 @@ export default function ChartPie(props: ChartPieProps) {
                             cy="50%"
                             innerRadius={startRadius + i * (pieChartValues.gap + pieChartValues.step)}
                             outerRadius={startRadius + i * pieChartValues.gap + (i + 1) * pieChartValues.step}
+                            startAngle={-180}
+                            endAngle={180}
                             // fill={pickSwatch(swatches, i)}
-                            label={i === data.length - 1}
+                            label={(labelProps) => (
+                                <ChartLabel
+                                    {...labelProps}
+                                    design="pie"
+                                    param={"value"}
+                                    hide={!props.components?.includes("label")}
+                                    hideExternal={i !== data.length - 1}
+                                    labels={labelsData}
+                                />
+                            )}
+                            labelLine={props.components?.includes("label") && i === data.length - 1}
                             key={i}
                         >
                             {pieData.map((entry, index) => (

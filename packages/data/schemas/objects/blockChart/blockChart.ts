@@ -1,6 +1,6 @@
 import { defineType, defineField } from "@sanity/types";
 import { BarChartIcon } from "@sanity/icons";
-import { selectDefaultLocale } from "../../../utils";
+import { getTitleByValue, selectDefaultLocale } from "../../../utils";
 import { LocaleString } from "../localeString";
 import { LocaleTable } from "../localeTable";
 import { globalConfig } from "@cs/globals";
@@ -21,6 +21,7 @@ export interface BlockChart {
     _type: "blockChart";
     _key: string;
     title?: LocaleString;
+    subtitle?: LocaleString;
     design: ChartDesign;
     data?: LocaleTable;
     swap?: boolean;
@@ -37,11 +38,11 @@ export default function blockChart() {
         fieldsets: [
             {
                 name: "style",
-                title: "Style",
-                options: {
-                    collapsible: true,
-                    collapsed: true
-                }
+                title: "Style"
+                // options: {
+                //     collapsible: true,
+                //     collapsed: true
+                // }
             }
         ],
         fields: [
@@ -49,6 +50,15 @@ export default function blockChart() {
                 name: "title",
                 title: "Title",
                 type: "localeString"
+            }),
+            defineField({
+                name: "subtitle",
+                title: "Subtitle",
+                type: "localeString",
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                }
             }),
             defineField({
                 name: "design",
@@ -77,15 +87,15 @@ export default function blockChart() {
                 hidden: ({ parent }: { parent: BlockChart | undefined }) => parent?.design === "pie"
             }),
             defineField({
-                name: "data",
-                title: "Data",
-                type: "localeTable"
-            }),
-            defineField({
                 name: "swap",
                 title: "Swap rows and columns",
                 type: "boolean",
                 initialValue: false
+            }),
+            defineField({
+                name: "data",
+                title: "Data",
+                type: "localeTable"
             }),
             defineField({
                 name: "components",
@@ -111,13 +121,15 @@ export default function blockChart() {
         preview: {
             select: {
                 title: "title",
+                design: "design",
                 corner: `data.${globalConfig.localization.default}.rows[0].cells[0]`
             },
-            prepare({ title, corner }) {
+            prepare({ title, design, corner }) {
                 const localeTitle = selectDefaultLocale(title) || corner;
+                const subtitle = getTitleByValue(design, chartDesignList) + " Chart";
                 return {
-                    title: localeTitle || "Chart",
-                    subtitle: localeTitle ? "Chart" : ""
+                    title: localeTitle || subtitle,
+                    subtitle: localeTitle ? subtitle : ""
                 };
             }
         },

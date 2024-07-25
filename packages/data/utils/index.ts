@@ -4,6 +4,7 @@ export { getMediaCover } from "./getMediaCover";
 export { prepareLink, wrapReference, linkPreview } from "./prepareLink";
 export { joinLocaleStrings } from "./joinLocaleStrings";
 export { getStaticParams } from "./getStaticParams";
+export { getTitleByValue } from "./getTitleByValue";
 export { isUniqueSlug } from "./isUniqueSlug";
 export { prepareMetadata } from "./prepareMetadata";
 export { localizeString } from "./localizeString";

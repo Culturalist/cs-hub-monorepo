@@ -169,11 +169,5 @@ export async function prepareMetadata({ type, params: { slug, lang } }: PrepareM
             ? "noindex, nofollow"
             : "index, follow, max-image-preview:large";
 
-    //Viewport no zoom
-    output.viewport = {
-        width: 512,
-        userScalable: false
-    };
-
     return output;
 }

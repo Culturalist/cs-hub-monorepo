@@ -10,6 +10,7 @@ export interface BlockTable {
     _type: "blockTable";
     _key: string;
     title?: LocaleString;
+    subtitle?: LocaleString;
     data?: LocaleTable;
     headers?: TableHeaderOption[];
 }
@@ -22,11 +23,11 @@ export default function blockTable() {
         fieldsets: [
             {
                 name: "style",
-                title: "Style",
-                options: {
-                    collapsible: true,
-                    collapsed: true
-                }
+                title: "Style"
+                // options: {
+                //     collapsible: true,
+                //     collapsed: true
+                // }
             }
         ],
         fields: [
@@ -38,6 +39,15 @@ export default function blockTable() {
                 //     collapsible: true,
                 //     collapsed: true
                 // }
+            }),
+            defineField({
+                name: "subtitle",
+                title: "Subtitle",
+                type: "localeString",
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                }
             }),
             defineField({
                 name: "data",

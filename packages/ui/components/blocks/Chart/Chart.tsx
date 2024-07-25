@@ -15,19 +15,17 @@ interface ChartProps extends DefaultProps {
 export default function Chart(props: ChartProps) {
     const { data, lang } = props;
     if (!data) return null;
-    const { design, orientation, components, swatches } = data;
-
-    let swap = orientation === "horizontal" ? data.swap : !data.swap;
-    if (design === "pie") swap = !swap;
+    const { design, orientation, components, swatches, swap } = data;
 
     const tableData = selectLocale(data.data, lang);
-    const chartParams = getChartParams(tableData, swap);
-    const chartData = prepareChartData(tableData, design, swap);
+    const chartParams = getChartParams(tableData, !swap);
+    const [chartData, labelsData] = prepareChartData(tableData, design, design === "pie" ? swap : !swap);
     if (!chartData.length) return null;
 
     const chartProps = {
         data: chartData,
         params: chartParams,
+        labels: labelsData,
         components,
         orientation,
         swatches

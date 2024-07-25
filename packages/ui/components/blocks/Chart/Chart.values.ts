@@ -1,9 +1,9 @@
 export const barChartValues = {
-    size: 30
+    size: 40
 };
 export const pieChartValues = {
-    minRadius: 15,
+    minRadius: 20,
     maxRadius: 200,
-    gap: 15,
-    step: 30
+    gap: 20,
+    step: 40
 };
