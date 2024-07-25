@@ -58,6 +58,10 @@ export const bodySegment = `
             ...,
             ${mediaBlockSegment}
         },
-        swatches->
+        swatches->,
+        description {
+            ...,
+            ${localePortableTextSegment}
+        }
     }
 `;

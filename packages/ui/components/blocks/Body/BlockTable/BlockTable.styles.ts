@@ -16,7 +16,8 @@ const defaultStyles = {
     body: "",
     row: "",
     cellWrapper: "py-8",
-    cell: "align-top"
+    cell: "align-top",
+    description: "typo-paragraph-xs text-on-surface-light text-center mt-8"
 };
 
 export const createStyles = ({ className }: StyleProps) => {

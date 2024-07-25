@@ -3,6 +3,7 @@ import { DefaultProps } from "@cs/globals";
 import { localizeString } from "@cs/data";
 import { createStyles } from "./BlockChart.styles";
 import { Chart } from "../../Chart";
+import { PortableText } from "../../PortableText";
 
 interface BlockChartProps extends DefaultProps {
     data?: BlockChart;
@@ -11,6 +12,7 @@ interface BlockChartProps extends DefaultProps {
 export default function BlockChart(props: BlockChartProps) {
     const { data, lang, className } = props;
     if (!data) return null;
+    const { description } = data;
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
 
@@ -31,6 +33,7 @@ export default function BlockChart(props: BlockChartProps) {
             <div className={styles.chart}>
                 <Chart data={data} lang={lang} />
             </div>
+            <PortableText parent="field" data={description} lang={lang} className={styles.description} />
         </div>
     );
 }

@@ -55,6 +55,12 @@ export default function portableText({ parent }: SchemaProps) {
                 },
                 {
                     type: "blockLinks"
+                },
+                {
+                    type: "blockTable"
+                },
+                {
+                    type: "blockChart"
                 }
             ].filter((field) => portableTextDefinitions.blocks[parent].includes(field.type))
         ]

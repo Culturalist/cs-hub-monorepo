@@ -33,7 +33,9 @@ const defaultStyles = {
     image: "",
     captionWrapper: "mt-4",
     caption: "typo-short-sm trim-line text-on-surface-light",
-    links: "mt-40"
+    links: "mt-40",
+    table: "",
+    chart: ""
 };
 
 export const createStyles = ({ parent = "body", className }: StyleProps) => {

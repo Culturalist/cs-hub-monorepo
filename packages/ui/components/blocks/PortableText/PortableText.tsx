@@ -3,13 +3,21 @@ import { PortableText as PortableTextRender, type PortableTextComponents } from 
 import { globalConfig, Breakpoint, DefaultProps } from "@cs/globals";
 import { mapKeys, neatChildrenBreaks } from "@cs/globals/utils";
 import { getImageUrl } from "@cs/globals/lib/sanity";
-import { BlockLinks, BlockParent, LocalePortableText, MediaImage } from "@cs/data/schemas";
+import {
+    BlockChart as BlockChartData,
+    BlockLinks,
+    BlockParent,
+    BlockTable as BlockTableData,
+    LocalePortableText,
+    MediaImage
+} from "@cs/data/schemas";
 import { localizeString } from "@cs/data/utils";
 import { AdaptiveDimentions, box, boxPx, breakpoints } from "../../../utils";
 import { LinkWrapper } from "../LinkWrapper";
 import { Image } from "../Image";
 import { createStyles } from "./PortableText.styles";
 import { Links } from "../Links";
+import { BlockTable, BlockChart } from "../Body";
 
 interface PortableTextBlockProps extends DefaultProps {
     data?: LocalePortableText;
@@ -110,12 +118,19 @@ export default function PortableText(props: PortableTextBlockProps) {
             },
             blockLinks: ({ value }: { value: BlockLinks }) => {
                 return <Links links={value.links} layout={value.layout} lang={lang} className={styles.links} />;
+            },
+            blockTable: ({ value }: { value: BlockTableData }) => {
+                return <BlockTable data={value} lang={lang} className={styles.table} />;
+            },
+            blockChart: ({ value }: { value: BlockChartData }) => {
+                return <BlockChart data={value} lang={lang} className={styles.table} />;
             }
         }
     };
     if (!data) {
         return <div></div>;
     }
+
     return (
         <div className={styles.container}>
             <PortableTextRender value={data} components={components} />

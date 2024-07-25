@@ -2,6 +2,7 @@ import { BlockTable } from "@cs/data/schemas";
 import { DefaultProps } from "@cs/globals";
 import { createStyles } from "./BlockTable.styles";
 import { localizeString, selectLocale } from "@cs/data";
+import { PortableText } from "../../PortableText";
 
 interface BlockTableProps extends DefaultProps {
     data?: BlockTable;
@@ -10,7 +11,7 @@ interface BlockTableProps extends DefaultProps {
 export default function BlockTable(props: BlockTableProps) {
     const { data, lang, className } = props;
     if (!data) return null;
-    const { headers } = data;
+    const { headers, description } = data;
     const title = localizeString(data.title, lang);
     const subtitle = localizeString(data.subtitle, lang);
     const tableData = selectLocale(data.data, lang);
@@ -59,6 +60,7 @@ export default function BlockTable(props: BlockTableProps) {
                     ) : null}
                 </table>
             ) : null}
+            <PortableText parent="field" data={description} lang={lang} className={styles.description} />
         </div>
     );
 }

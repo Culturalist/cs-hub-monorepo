@@ -5,6 +5,7 @@ import { LocaleString } from "../localeString";
 import { LocaleTable } from "../localeTable";
 import { globalConfig } from "@cs/globals";
 import { TableHeaderOption, tableHeadersInitialValue, tableHeadersOptionsList } from "./blockTable.values";
+import { LocalePortableText } from "../localePortableText";
 
 export interface BlockTable {
     _type: "blockTable";
@@ -13,6 +14,7 @@ export interface BlockTable {
     subtitle?: LocaleString;
     data?: LocaleTable;
     headers?: TableHeaderOption[];
+    description?: LocalePortableText;
 }
 
 export default function blockTable() {
@@ -65,6 +67,11 @@ export default function blockTable() {
                     layout: "grid"
                 },
                 fieldset: "style"
+            }),
+            defineField({
+                name: "description",
+                title: "Description",
+                type: "localePortableTextField"
             })
         ],
         preview: {

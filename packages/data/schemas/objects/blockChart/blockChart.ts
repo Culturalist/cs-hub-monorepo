@@ -16,6 +16,7 @@ import {
     chartOrientationList
 } from "./blockChart.values";
 import { Swatches } from "../../system";
+import { LocalePortableText } from "../localePortableText";
 
 export interface BlockChart {
     _type: "blockChart";
@@ -28,6 +29,7 @@ export interface BlockChart {
     components?: ChartComponent[];
     orientation: ChartOrientation;
     swatches?: Swatches;
+    description?: LocalePortableText;
 }
 
 export default function blockChart() {
@@ -116,6 +118,11 @@ export default function blockChart() {
                 type: "reference",
                 to: [{ type: "swatches" }],
                 fieldset: "style"
+            }),
+            defineField({
+                name: "description",
+                title: "Description",
+                type: "localePortableTextField"
             })
         ],
         preview: {
