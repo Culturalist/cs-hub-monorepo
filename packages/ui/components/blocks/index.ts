@@ -13,3 +13,4 @@ export * from "./LinkWrapper";
 export * from "./Menu";
 export * from "./PageIndex";
 export * from "./PortableText";
+export * from "./Table";

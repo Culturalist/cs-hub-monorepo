@@ -5,13 +5,13 @@ import { purgeEmptyStrings } from "@cs/globals/utils";
 export interface StyleProps extends DefaultStyleProps {}
 
 const defaultStyles = {
-    container: "",
-    titleWrapper: "typo-paragraph !font-normal mt-40",
-    title: "trim-line",
-    subtitleWrapper: "typo-paragraph-sm text-on-surface-light mt-8",
-    subtitle: "trim-line",
-    table: "mt-32",
-    description: "typo-paragraph-xs text-on-surface-light text-center mt-8"
+    container: "w-full typo-short-lg",
+    topHeader: "border-b border-on-surface",
+    leftHeader: "",
+    body: "",
+    row: "",
+    cellWrapper: "px-8 py-12",
+    cell: "align-top"
 };
 
 export const createStyles = ({ className }: StyleProps) => {

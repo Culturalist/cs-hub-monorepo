@@ -1,23 +1,27 @@
-import { ChartDesign, ChartOrientation, Swatches, defaultSwatches } from "@cs/data/schemas";
+import { ChartDesign, Swatches, defaultSwatches } from "@cs/data/schemas";
 import { TableValue, numeric } from "@weresk/core";
+import { flipTable } from "../Table";
 
 export type ChartData = { value: string } & (Record<string, number> | object);
 export type LabelsData = { value: string } & Record<string, string>;
 
 export function prepareChartData(
-    data: TableValue | undefined,
-    design: ChartDesign,
+    data?: TableValue,
+    design?: ChartDesign,
     swap?: boolean
-): [ChartData[], LabelsData[]] {
+): [ChartData[], LabelsData[], string[]] {
+    if (!data) return [[], [], []];
     const chart: ChartData[] = [];
     const labels: LabelsData[] = [];
-    const params = getChartParams(data, swap);
-    const values = getChartValues(data, swap);
+    const _swap = design === "pie" ? swap : !swap;
+    const input = _swap ? flipTable(data) : data;
+    const params = getTopHeaderValues(input);
+    const values = getLeftHeaderValues(input);
     values.forEach((value, v) => {
         const chartItem: Record<string, number> = {};
         const labelItem: Record<string, string> = {};
         params.forEach((param, p) => {
-            const cell = data?.rows[(swap ? v : p) + 1]?.cells[(swap ? p : v) + 1];
+            const cell = input.rows[p + 1]?.cells[v + 1];
             labelItem[param] = cell || "";
             chartItem[param] = numeric(cell);
         });
@@ -31,15 +35,15 @@ export function prepareChartData(
         });
     });
 
-    return [chart, labels];
+    return [chart, labels, design === "pie" ? values : params];
 }
 
-export function getChartParams(data: TableValue | undefined, swap?: boolean): string[] {
-    return swap ? data?.rows[0]?.cells.slice(1) ?? [] : data?.rows.slice(1)?.map((row) => row.cells[0]) ?? [];
+export function getLeftHeaderValues(data: TableValue | undefined): string[] {
+    return data?.rows[0]?.cells.slice(1) || [];
 }
 
-export function getChartValues(data: TableValue | undefined, swap?: boolean): string[] {
-    return !swap ? data?.rows[0]?.cells.slice(1) ?? [] : data?.rows.slice(1)?.map((row) => row.cells[0]) ?? [];
+export function getTopHeaderValues(data: TableValue | undefined): string[] {
+    return data?.rows.slice(1)?.map((row) => row.cells[0]) || [];
 }
 
 export function pickSwatch(swatches: Swatches | undefined, index: number): string {

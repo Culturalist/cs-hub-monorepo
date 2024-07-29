@@ -6,6 +6,7 @@ import { LocaleTable } from "../localeTable";
 import { globalConfig } from "@cs/globals";
 import { TableHeaderOption, tableHeadersInitialValue, tableHeadersOptionsList } from "./blockTable.values";
 import { LocalePortableText } from "../localePortableText";
+import { Swatches } from "../../system";
 
 export interface BlockTable {
     _type: "blockTable";
@@ -13,7 +14,9 @@ export interface BlockTable {
     title?: LocaleString;
     subtitle?: LocaleString;
     data?: LocaleTable;
+    swap?: boolean;
     headers?: TableHeaderOption[];
+    swatches?: Swatches;
     description?: LocalePortableText;
 }
 
@@ -37,10 +40,6 @@ export default function blockTable() {
                 name: "title",
                 title: "Title",
                 type: "localeString"
-                // options: {
-                //     collapsible: true,
-                //     collapsed: true
-                // }
             }),
             defineField({
                 name: "subtitle",
@@ -54,7 +53,14 @@ export default function blockTable() {
             defineField({
                 name: "data",
                 title: "Data",
-                type: "localeTable"
+                type: "localeTable",
+                description: `Use /! command to highlight column, row or cell. Use digits after the command to choose different colors from swatches (ex. /!2 – will highlight with second color). In order to select whole row or column, top or left headers must be turned on.`
+            }),
+            defineField({
+                name: "swap",
+                title: "Swap rows and columns",
+                type: "boolean",
+                initialValue: false
             }),
             defineField({
                 name: "headers",
@@ -66,6 +72,13 @@ export default function blockTable() {
                     list: tableHeadersOptionsList,
                     layout: "grid"
                 },
+                fieldset: "style"
+            }),
+            defineField({
+                name: "swatches",
+                title: "Swatches",
+                type: "reference",
+                to: [{ type: "swatches" }],
                 fieldset: "style"
             }),
             defineField({

@@ -1,5 +1,5 @@
 import { BlockChart } from "@cs/data/schemas";
-import { getChartParams, prepareChartData } from "./Chart.logic";
+import { getLeftHeaderValues, prepareChartData } from "./Chart.logic";
 import { DefaultProps } from "@weresk/core";
 import { selectLocale } from "@cs/data";
 import ChartBar from "./Chart.bar";
@@ -18,8 +18,7 @@ export default function Chart(props: ChartProps) {
     const { design, orientation, components, swatches, swap } = data;
 
     const tableData = selectLocale(data.data, lang);
-    const chartParams = getChartParams(tableData, !swap);
-    const [chartData, labelsData] = prepareChartData(tableData, design, design === "pie" ? swap : !swap);
+    const [chartData, labelsData, chartParams] = prepareChartData(tableData, design, swap);
     if (!chartData.length) return null;
 
     const chartProps = {
