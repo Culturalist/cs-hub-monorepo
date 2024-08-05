@@ -1,18 +1,11 @@
+import { MetadataRoute } from "next";
 import { groq } from "next-sanity";
 import { Slug } from "@sanity/types";
-import { DocumentApp, Locale } from "@cs/globals";
+import { DocumentApp } from "@cs/globals";
 import { clientNext } from "../client";
 import { MetadataPage } from "../schemas";
 
 export type ChangeFrequency = "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
-
-export interface SitemapFile {
-    url: string;
-    lastModified?: string | Date;
-    changeFrequency?: ChangeFrequency;
-    priority?: number;
-    alternates?: { languages: Partial<Record<Locale, string>> };
-}
 
 export interface SitemapData {
     languages?: string[];
@@ -61,8 +54,8 @@ export async function generateSitemap(
     domain: string,
     routes: Record<string, string>,
     docTypes: DocumentApp[]
-): Promise<SitemapFile[]> {
-    const sitemap: SitemapFile[] = [];
+): Promise<MetadataRoute.Sitemap> {
+    const sitemap: MetadataRoute.Sitemap = [];
     const baseUrl = domain.slice(0, -1);
     const data = await clientNext.fetch<SitemapData | null>(sitemapQuery, { appName, docTypes });
 

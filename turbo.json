@@ -1,20 +1,18 @@
 {
     "$schema": "https://turbo.build/schema.json",
-    "globalDependencies": ["**/.env.*local"],
-    "globalDotEnv": [".env"],
     "globalEnv": ["SANITY_STUDIO_*", "NEXT_PUBLIC_*"],
-    "pipeline": {
+    "tasks": {
         "build": {
             "dependsOn": ["^build"],
             "outputs": [".next/**", "!.next/cache/**"],
-            "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"]
+            "inputs": [".env.production.local", ".env.local", ".env.production", ".env"]
         },
         "lint": {},
         "typecheck": {},
         "dev": {
             "cache": false,
             "persistent": true,
-            "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"]
+            "inputs": [".env.production.local", ".env.local", ".env.production", ".env"]
         }
     }
 }
